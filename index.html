@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi Portafolio</title>
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    
-
 </head>
+
 <body>
     <div class="sidebar">
         <div class="profile">
@@ -19,83 +20,191 @@
         </div>
         <nav>
             <ul>
-                <li><a href="#about">Sobre Mí</a></li>
-                <li><a href="#projects">Portafolio</a></li>
-                <li><a href="#educacion">Educacion</a></li>
-                <li><a href="#habilidades">Habilidades</a></li>
-                <li><a href="#contact">Contacto</a></li>
+                <li><a href="#inicio" onclick="showSection('inicio')"></a></li>
+                <li><a href="#about" onclick="showSection('about')">Sobre Mí</a></li>
+                <li><a href="#projects" onclick="showSection('projects')">Portafolio</a></li>
+                <li><a href="#educacion" onclick="showSection('educacion')">Educacion</a></li>
+                <li><a href="#habilidades" onclick="showSection('habilidades')">Habilidades</a></li>
+                <li><a href="#contact" onclick="showSection('contact')">Contacto</a></li>
             </ul>
         </nav>
     </div>
 
     <div class="main-content">
-        <section id="hero">
-            <div class="hero-content">
-                <h1>Hola, soy Guadalupe Mendoza</h1>
-                <p>Desarrollador Web y Diseñador</p>
+
+        <section id="inicio" class="content-section">
+            <h1 class="title-animation">Hola, soy Guadalupe Mendoza</h1>
+            <h2>BIENVENIDOS A MI PORTFOLIO</h2>
+            <a href="MendozaGuadalupeCV.pdf" class="btn-download" download>Descargar CV</a>
+        </section>
+
+
+
+        <section id="about" class="content-section">
+            <div id="about-content">
+                <h2>Sobre Mí</h2>
+                <p>Estudiante de Licenciatura en Sistemas de Información con formación en análisis de sistemas y un
+                    fuerte
+                    interés en el desarrollo web. Actualmente en búsqueda de oportunidades para adquirir experiencia
+                    laboral
+                    práctica y aplicar mis conocimientos en un entorno profesional. Habilidades técnicas en lenguajes de
+                    programación, herramientas de desarrollo y tecnologías de visualización de datos, combinadas con
+                    habilidades blandas como la resolución creativa de problemas, el trabajo en equipo y la
+                    adaptabilidad.</p>
             </div>
         </section>
 
-        <section id="about">
-            <h2>Sobre Mí</h2>
-            <p>Breve descripción sobre ti.</p>
-            <h4>Actualmente estoy estudiando </h4>
-        </section>
-
-        <section id="projects">
-            <h2>Porfolio</h2>
-            <div class="project">
-                <h3>Proyecto 1</h3>
-                <p>Descripción del proyecto 1.</p>
+        <section id="projects" class="content-section">
+            <div class="project-title">
+                <h2>Proyecto Destacado: Sistema de Gestión Textil (SGT)</h2>
+                <div class="project-tech">
+                    <span><i class="fab fa-php"></i> PHP</span>
+                    <span><i class="fab fa-laravel"></i> Laravel</span>
+                    <span><i class="fas fa-database"></i> MySQL</span>
+                    <span><i class="fab fa-js"></i> jQuery</span>
+                </div>
             </div>
-           
+            <div class="projects-container">
+                <div class="project-card">
+
+                    <div class="gallery-container">
+                        <button class="prev-btn">&#10094;</button>
+                        <div class="image-gallery">
+                            <img src="imagenes/imagen1 (5).png" alt="Proyecto 1" class="project-image">
+                            <img src="imagenes/imagen1 (4).png" alt="Proyecto 1" class="project-image">
+                            <img src="imagenes/imagen1 (3).png" alt="Proyecto 1" class="project-image">
+                            <img src="imagenes/imagen2.png" alt="Proyecto 1" class="project-image">
+                            <img src="imagenes/imagen1 (1).png" alt="Proyecto 1" class="project-image">
+                        </div>
+                        <button class="next-btn">&#10095;</button>
+
+                    </div>
+                    <p>Es una aplicación web desarrollada para trabajo final de Analista en
+                        Sistemas.</p>
+                </div>
+            </div>
         </section>
 
-        <section id="educacion">
-            <h2>Educacion</h2>
-            <form>
-                <label for="name">Nombre:</label>
-                <input type="text" id="name" name="name" required>
-                
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-                
-                <label for="message">Mensaje:</label>
-                <textarea id="message" name="message" required></textarea>
-                
-                <button type="submit">Enviar</button>
-            </form>
+        <section id="educacion" class="content-section">
+            <h2 class="section-title">Educación</h2>
+            <ul class="education-list">
+                <li>
+                    <span class="course-title">Gestión de Proyectos y Fundamentos de metodología Agile (Junio.
+                        2023)</span> -
+                    <a href="https://www.linkedin.com/in/gmmendoza/overlay/1717984965185/single-media-viewer/?profileId=ACoAAEB9tqoB2Ar6-MCgIfA6A4R5W8A-XCy2764"
+                        target="_blank" class="course-link">Santander | OpenAcademy</a>
+                </li>
+                <li>
+                    <span class="course-title">Introducción a la Ciencia de Datos (Mayo. 2023)</span> -
+                    <a href="https://www.linkedin.com/in/guada-m/details/certifications/1717977889750/single-media-viewer/?profileId=ACoAAEB9tqoB2Ar6-MCgIfA6A4R5W8A-XCy2764v"
+                        target="_blank" class="course-link">Santander | OpenAcademy</a>
+                </li>
+                <li>
+                    <span class="course-title">Community Manager (Marzo. 2023)</span> -
+                    <a href="https://www.linkedin.com/in/guada-m/details/certifications/1716246435808/single-media-viewer/?profileId=ACoAAEB9tqoB2Ar6-MCgIfA6A4R5W8A-XCy2764"
+                        target="_blank" class="course-link">Silicon Misiones</a>
+                </li>
+            </ul>
         </section>
-        <section id="habilidades">
-            <h2>Habilidades</h2>
-            <form>
-                <label for="name">Nombre:</label>
-                <input type="text" id="name" name="name" required>
-                
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-                
-                <label for="message">Mensaje:</label>
-                <textarea id="message" name="message" required></textarea>
-                
-                <button type="submit">Enviar</button>
-            </form>
-        </section>
-        <section id="contacto">
-            <h2>Contacto</h2>
-            <h5>Email: <i class="material-icons">email</i></h5>
-            <h5>WhatsApp <i class="fab fa-whatsapp"></i></h5>
-            <h5>LinkedIn <i class="fab fa-linkedin"></i></h5>
-            <h5>GitHub <i class="fab fa-github"></i></h5>
-        </section>
-        
 
-        <footer>
-            <p>&copy; 2024 Guadalupe Mendoza. Todos los derechos reservados.</p>
-        </footer>
+
+        <section id="habilidades" class="content-section">
+            <h2 class="section-title">Habilidades</h2>
+            <ul class="skills-list">
+                <li>
+                    <i class="material-icons">desktop_windows</i>
+                    <strong class="skill-category">Software:</strong>
+                    <span class="skill-description">Visual Studio Code, Ms Office</span>
+                </li>
+                <li>
+                    <i class="material-icons">code</i>
+                    <strong class="skill-category">Lenguajes:</strong>
+                    <span class="skill-description">HTML, CSS, PHP</span>
+                </li>
+                <li>
+                    <i class="material-icons">extension</i>
+                    <strong class="skill-category">Frameworks y Librerías:</strong>
+                    <span class="skill-description">Laravel, jQuery, Bootstrap</span>
+                </li>
+                <li>
+                    <i class="material-icons">build</i>
+                    <strong class="skill-category">Tecnologías y Herramientas:</strong>
+                    <span class="skill-description">Git, GitHub, Notion, Visual Studio Code, MySQL</span>
+                </li>
+                <li>
+                    <i class="material-icons">group</i>
+                    <strong class="skill-category">Habilidades blandas:</strong>
+                    <span class="skill-description">Presentación, Planificación, Organización, Resolución Creativa de
+                        Problemas, Trabajo en Equipo, Escucha Activa, Adaptabilidad, Pensamiento Analítico</span>
+                </li>
+            </ul>
+            <h3 class="learning-title">Estoy aprendiendo</h3>
+            <p class="learning-description">Curso de React.JS Developer</p>
+        </section>
+
+
+
+        <section id="contact" class="content-section">
+            <h2 class="section-title">Contacto</h2>
+            <ul class="contact-info">
+                <li><i class="material-icons">phone</i> <span>+54 3758576244</span></li>
+                <li><i class="material-icons">email</i> <span>guuamendoza@gmail.com</span></li>
+                <li><i class="material-icons">home</i> <span>Misiones, Argentina</span></li>
+                <li><i class="material-icons">linkedin</i> <a href="https://www.linkedin.com/in/gmmendoza/"
+                        target="_blank">LinkedIn</a></li>
+                <li><i class="material-icons">github</i> <a href="https://github.com/gmmendoza"
+                        target="_blank">GitHub</a></li>
+            </ul>
+        </section>
+
+
     </div>
+
+
+    <script>
+        const gallery = document.querySelector('.image-gallery');
+        const images = gallery.querySelectorAll('.project-image');
+        const galleryWidth = gallery.offsetWidth;
+        const prevBtn = document.querySelector('.prev-btn');
+        const nextBtn = document.querySelector('.next-btn');
+        let currentIndex = 0;
+
+        function scrollGallery(amount) {
+            currentIndex += amount;
+
+            if (currentIndex < 0) {
+                currentIndex = images.length - 1;
+            } else if (currentIndex >= images.length) {
+                currentIndex = 0;
+            }
+
+            const newPosition = -currentIndex * galleryWidth;
+            gallery.style.transform = `translateX(${newPosition}px)`;
+        }
+
+        prevBtn.addEventListener('click', () => scrollGallery(-1));
+        nextBtn.addEventListener('click', () => scrollGallery(1));
+    </script>
+    <script>
+        function showSection(sectionId) {
+
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(section => {
+                section.style.display = 'none';
+            });
+
+
+            const selectedSection = document.getElementById(sectionId);
+            selectedSection.style.display = 'block';
+        }
+
+
+        window.onload = function () {
+            showSection('inicio');
+        };
+    </script>
 
     <script src="js/script.js"></script>
 </body>
-</html>
 
+</html>

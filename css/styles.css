@@ -9,14 +9,21 @@
 body {
     font-family: 'Roboto', sans-serif;
     line-height: 1.6;
-    background-color: #001f3f; /* Azul oscuro */
+    background-color: #001f3f; 
     color: white;
     display: flex;
 }
-
+.content-section h2,
+.content-section h3 {
+    font-size: 36px;
+    color: #FF007F;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
 /* Estilos de la barra lateral */
 .sidebar {
-    background-color: #00274d; /* Azul más oscuro para la barra lateral */
+    background-color: #00274d; 
     width: 250px;
     height: 100vh;
     padding: 2rem 1rem;
@@ -64,12 +71,11 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-    background: #004080; /* Azul más claro al pasar el ratón */
+    background: #004080; 
 }
 
-/* Estilos del contenido principal */
 .main-content {
-    margin-left: 250px; /* Desplazamiento para dejar espacio a la barra lateral */
+    margin-left: 250px; 
     width: calc(100% - 250px);
     padding: 2rem 1rem;
 }
@@ -94,17 +100,34 @@ section {
     text-align: center;
 }
 
-#projects .project {
-    background: #f4f4f4;
-    margin: 1rem 0;
-    padding: 2rem;
-    border-radius: 8px;
-    transition: transform 0.3s ease;
-    color: #000; /* Color de texto negro para mejor contraste en secciones */
+#projects .projects-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
-#projects .project:hover {
+#projects .project-card {
+    background: #f4f4f4;
+    margin: 1rem;
+    padding: 1rem;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+    color: #000; 
+    width: 300px; 
+}
+
+#projects .project-card:hover {
     transform: translateY(-10px);
+}
+
+.project-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.project-info {
+    margin-top: 1rem;
 }
 
 form {
@@ -148,20 +171,261 @@ footer {
     padding: 1rem 0;
 }
 
+.btn-download {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.btn-download:hover {
+    background-color: #0056b3;
+}
+
 @media (min-width: 768px) {
     section {
         padding: 6rem 2rem;
     }
 
-    #projects .project {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+    #projects .project-card {
+        width: 45%; 
     }
 
     form input, form textarea {
         width: 80%;
     }
-  
 }
 
+/* Estilos para la sección "Sobre Mí" */
+#about {
+    text-align: center;
+    background-color: #FF007F;
+    transition: background-color 0.3s;
+    padding: 60px 0; 
+}
+
+#about:hover {
+    background-color: #555;
+}
+
+#about-content {
+    max-width: 800px;
+    margin: 0 auto; 
+    padding: 0 20px; 
+}
+
+#about h2 {
+    color: #007bff;
+    font-size: 36px;
+    margin-bottom: 30px;
+}
+
+#about p {
+    font-size: 18px;
+    line-height: 1.8;
+    color: #ffffff;
+    margin-bottom: 30px;
+}
+
+
+/* Estilos para la sección "PortaFolio" */
+
+.gallery-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.image-gallery {
+    display: flex;
+    transition: transform 0.3s ease;
+}
+
+.project-image {
+    width: 100%;
+    height: 100%;
+}
+
+.image-gallery::-webkit-scrollbar {
+    display: none;
+}
+
+.prev-btn,
+.next-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    font-size: 20px;
+    z-index: 1;
+}
+
+.prev-btn {
+    left: 0;
+}
+
+.next-btn {
+    right: 0;
+}
+.title-animation {
+    font-size: 36px;
+    color: #FF007F;
+    animation: move 2s infinite;
+}
+
+@keyframes move {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+.section-title {
+    font-size: 36px;
+    color: #FF007F;
+    margin-bottom: 30px;
+}
+
+.education-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.education-list li {
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.course-title {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.course-link {
+    color: #007BFF;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.course-link:hover {
+    color: #0056b3;
+}
+/* Estilos para la sección "Habilidades" */
+.section-title {
+    font-size: 36px;
+    color: #FF007F;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.skills-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.skills-list li {
+    margin-bottom: 20px;
+    line-height: 1.6;
+    font-size: 20px;
+}
+
+.skill-category {
+    color: #007BFF;
+    font-size: 24px;
+    margin-right: 10px;
+}
+
+.material-icons {
+    vertical-align: middle;
+    font-size: 28px;
+    margin-right: 10px;
+    color: #007BFF;
+}
+
+.skill-description {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.learning-title {
+    margin-top: 40px;
+    font-size: 28px;
+    color: #FF007F;
+}
+
+.learning-description {
+    font-size: 20px;
+    font-weight: bold;
+}
+/* Estilos para la sección "Contacto" */
+.section-title {
+    font-size: 36px;
+    color: #FF007F;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.contact-info {
+    list-style-type: none;
+    padding: 0;
+}
+
+.contact-info li {
+    margin-bottom: 20px;
+    line-height: 1.6;
+    font-size: 20px;
+    transition: transform 0.3s ease;
+}
+
+.contact-info li:hover {
+    transform: translateX(5px);
+}
+
+.material-icons {
+    vertical-align: middle;
+    font-size: 24px;
+    margin-right: 10px;
+    color: #007BFF;
+    transition: color 0.3s ease;
+}
+
+.contact-info a {
+    text-decoration: none;
+    color: #007BFF;
+    transition: color 0.3s ease;
+}
+
+.contact-info a:hover {
+    color: #0056b3;
+}
+
+
+
+.project-tech {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.project-tech span {
+    margin-right: 10px;
+    font-size: 18px;
+    color: #666666;
+}
+
+.project-card p {
+    font-size: 16px;
+    color: #333333;
+    margin-bottom: 20px;
+}
