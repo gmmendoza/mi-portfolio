@@ -5,6 +5,6 @@ Portfolio creado con HTML, CSS y Javascript.
 * [Linkedin] (https://www.linkedin.com/in/gmmendoza/)
 
 ## Ver ejemplo en vivo
- - [ENLACEGITHUBPAGES] (ENLACEGITHUBPAGES)
+ - [https://gmmendoza.github.io/mi-portfolio/] (https://gmmendoza.github.io/mi-portfolio/)
 ## Contacto
 Mi email es guuamendoza@gmail.com
