@@ -8,15 +8,22 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --primary-color: #2563eb;
-            --secondary-color: #1e293b;
-            --accent-color: #3b82f6;
-            --text-dark: #0f172a;
-            --text-light: #64748b;
-            --bg-light: #f8fafc;
+            --primary-color: #1d4ed8;
+            /* Blue 700 */
+            --secondary-color: #0f172a;
+            /* Slate 900 */
+            --accent-color: #0ea5e9;
+            /* Sky 500 */
+            --text-dark: #1e293b;
+            /* Slate 800 */
+            --text-light: #475569;
+            /* Slate 600 */
+            --bg-light: #f1f5f9;
+            /* Slate 100 */
             --bg-white: #ffffff;
-            --shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
-            --border-radius: 12px;
+            --shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+            --shadow-hover: 0 10px 30px -5px rgba(0, 0, 0, 0.1);
+            --border-radius: 16px;
             --success-color: #10b981;
             --warning-color: #f59e0b;
         }
@@ -81,10 +88,10 @@
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, var(--bg-white) 0%, var(--bg-light) 100%);
-            padding: 4rem 2rem;
+            background: linear-gradient(135deg, var(--bg-white) 0%, #e2e8f0 100%);
+            padding: 5rem 2rem 4rem;
             text-align: center;
-            border-bottom: 1px solid #e2e8f0;
+            border-bottom: 1px solid #cbd5e1;
         }
 
         .hero-content {
@@ -176,13 +183,15 @@
 
         .about-content {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 2fr 1fr;
             gap: 2rem;
+            align-items: center;
         }
 
         .about-text p {
-            color: var(--text-light);
             margin-bottom: 1rem;
+            color: var(--text-light);
+            font-size: 1.05rem;
         }
 
         .education-item {
@@ -251,44 +260,52 @@
         }
 
         .skill-tag {
-            background-color: var(--bg-light);
+            background-color: var(--bg-white);
             color: var(--text-dark);
             padding: 0.5rem 1rem;
             border-radius: 50px;
             font-size: 0.9rem;
-            font-weight: 500;
-            border: 1px solid #e2e8f0;
-            transition: all 0.3s;
-            display: inline-flex;
+            border: 1px solid #cbd5e1;
+            display: flex;
             align-items: center;
-            gap: 0.3rem;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            cursor: default;
         }
 
         .skill-tag i {
-            font-size: 1rem;
-            color: var(--primary-color);
+            font-size: 1.1rem;
+            color: var(--text-light);
         }
 
         .skill-tag:hover {
-            background-color: var(--primary-color);
-            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px -3px rgba(0, 0, 0, 0.1);
             border-color: var(--primary-color);
-            transform: translateY(-2px);
+            color: var(--primary-color);
         }
 
         .skill-tag:hover i {
-            color: white;
+            color: var(--primary-color);
         }
 
         .skill-tag.highlight {
-            background-color: var(--primary-color);
-            color: white;
-            border-color: var(--primary-color);
-            font-weight: 600;
+            background-color: #eff6ff;
+            border-color: #bfdbfe;
+            color: var(--primary-color);
         }
 
         .skill-tag.highlight i {
-            color: white;
+            color: var(--primary-color);
+        }
+
+        .skill-version {
+            font-size: 0.75rem;
+            opacity: 0.8;
+            margin-left: 0.2rem;
+            background: rgba(29, 78, 216, 0.1);
+            padding: 0.1rem 0.4rem;
+            border-radius: 10px;
         }
 
         /* Versiones específicas de tecnologías */
@@ -417,14 +434,14 @@
             border-radius: var(--border-radius);
             overflow: hidden;
             box-shadow: var(--shadow);
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             border: 1px solid #e2e8f0;
         }
 
         .project-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.2);
-            border-color: var(--primary-color);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--accent-color);
         }
 
         .project-header {
@@ -615,10 +632,59 @@
             }
         }
 
+        @keyframes pulseGlow {
+            0% {
+                box-shadow: 0 0 0 0 rgba(29, 78, 216, 0.4);
+            }
+
+            70% {
+                box-shadow: 0 0 0 10px rgba(29, 78, 216, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(29, 78, 216, 0);
+            }
+        }
+
         .skill-category,
         .cert-card,
-        .project-card {
-            animation: fadeInUp 0.5s ease-out;
+        .project-card,
+        .about-content {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
+            border: 2px solid var(--primary-color);
+        }
+
+        .cta-button:hover {
+            background-color: #1e3a8a;
+            /* darker blue */
+            border-color: #1e3a8a;
+            transform: translateY(-2px);
+            animation: pulseGlow 1.5s infinite;
+        }
+
+        .cta-button-outline {
+            background-color: transparent;
+            color: var(--primary-color);
+        }
+
+        .cta-button-outline:hover {
+            background-color: rgba(29, 78, 216, 0.05);
+            color: #1e3a8a;
+            animation: none;
         }
     </style>
 </head>
@@ -642,17 +708,26 @@
     <!-- Hero Section -->
     <section id="inicio" class="hero">
         <div class="hero-content">
-            <!-- Reemplaza con tu foto real -->
-            <img src="https://via.placeholder.com/150" alt="Guadalupe Mendoza" class="profile-img">
+            <img src="profile.jpg" alt="Guadalupe Mendoza" class="profile-img">
             <h1>Guadalupe Mendoza</h1>
-            <h2>Estudiante Avanzada en Sistemas de Información</h2>
+            <h2>Desarrolladora Full Stack | Analista en Sistemas</h2>
+            <div class="contact-info"
+                style="margin-bottom: 1.5rem; color: var(--text-light); display: flex; gap: 1rem; justify-content: center; font-size: 0.95rem; font-weight: 500;">
+                <span><i class="fas fa-map-marker-alt"></i> Misiones, Argentina</span>
+                <span><i class="fab fa-whatsapp"></i> +54 376 489-5145</span>
+            </div>
             <p>Desarrolladora full-stack con experiencia en Spring Boot, PostgreSQL, Docker y tecnologías modernas.
                 Apasionada por crear soluciones escalables y eficientes.</p>
-            <div class="social-links">
+            <div class="social-links" style="margin-bottom: 2rem;">
                 <a href="https://github.com/gmmendoza" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
                 <a href="https://www.linkedin.com/in/gmmendoza/" target="_blank" rel="noopener"><i
                         class="fab fa-linkedin"></i></a>
                 <a href="mailto:guuamendoza@gmail.com"><i class="fas fa-envelope"></i></a>
+            </div>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="#contacto" class="cta-button">Contrátame <i class="fas fa-paper-plane"></i></a>
+                <a href="cv.html" target="_blank" class="cta-button cta-button-outline">CV <i
+                        class="fas fa-external-link-alt"></i></a>
             </div>
         </div>
     </section>
@@ -673,16 +748,35 @@
                     <p>Actualmente estoy buscando mi primera oportunidad profesional para aportar mis conocimientos,
                         seguir aprendiendo y crecer en un equipo dinámico.</p>
                 </div>
-                <div class="education">
-                    <div class="education-item">
-                        <h4>Licenciatura en Sistemas de Información</h4>
-                        <div class="place">Universidad Nacional de Misiones </div>
-                        <div class="date"> Presente</div>
+                <div class="sidebar-info">
+                    <div class="education">
+                        <div class="education-item">
+                            <h4>Licenciatura en Sistemas de Información</h4>
+                            <div class="place">Universidad Nacional de Misiones </div>
+                            <div class="date"> Presente</div>
+                        </div>
+                        <div class="education-item">
+                            <h4>Analista en Sistemas de Computación</h4>
+                            <div class="place">Universidad Nacional de Misiones </div>
+                            <div class="date"> Presente </div>
+                        </div>
+                        <div class="education-item">
+                            <h4>Analista Personal y Prof. en Informática</h4>
+                            <div class="place">EPET N° 1 - Misiones</div>
+                            <div class="date"> 2017 </div>
+                        </div>
                     </div>
-                    <div class="education-item">
-                        <h4>Analista en Sistemas de Computación</h4>
-                        <div class="place">Universidad Nacional de Misiones </div>
-                        <div class="date"> Presente </div>
+                    <div class="languages" style="margin-top: 2.5rem;">
+                        <h4
+                            style="font-size: 1.2rem; color: var(--text-dark); margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid #e2e8f0;">
+                            Idiomas</h4>
+                        <div style="margin-bottom: 0.8rem;">
+                            <span style="font-weight: 600; color: var(--primary-color);">Español:</span> Nativo
+                        </div>
+                        <div>
+                            <span style="font-weight: 600; color: var(--primary-color);">Inglés:</span> Técnico
+                            (Lectura)
+                        </div>
                     </div>
                 </div>
             </div>
@@ -830,106 +924,147 @@
                     </div>
                 </div>
             </div>
+
+            <h3
+                style="font-size: 1.5rem; color: var(--text-dark); margin: 4rem 0 2rem; text-align: center; font-weight: 700;">
+                Seminarios y Formación Complementaria</h3>
+            <div class="cert-grid">
+                <div class="cert-card">
+                    <div class="cert-icon"><i class="fas fa-shield-alt"></i></div>
+                    <div class="cert-content">
+                        <h3 class="cert-title">Introducción a la Ciberseguridad</h3>
+                        <div class="cert-issuer">Silicon Misiones</div>
+                        <div class="cert-date"><i class="far fa-calendar-alt"></i> 2024</div>
+                    </div>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-icon"><i class="fas fa-chart-bar"></i></div>
+                    <div class="cert-content">
+                        <h3 class="cert-title">Fundamentos de Data Science</h3>
+                        <div class="cert-issuer">Santander</div>
+                        <div class="cert-date"><i class="far fa-calendar-alt"></i> 2024</div>
+                    </div>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-icon"><i class="fas fa-users-cog"></i></div>
+                    <div class="cert-content">
+                        <h3 class="cert-title">Metodologías Ágiles / Scrum</h3>
+                        <div class="cert-issuer">Santander</div>
+                        <div class="cert-date"><i class="far fa-calendar-alt"></i> 2023</div>
+                    </div>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-icon"><i class="fas fa-share-alt"></i></div>
+                    <div class="cert-content">
+                        <h3 class="cert-title">Community Manager</h3>
+                        <div class="cert-issuer">Silicon Misiones</div>
+                        <div class="cert-date"><i class="far fa-calendar-alt"></i> 2023</div>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <!-- Proyectos - ACTUALIZADOS con tu proyecto real de POO2 -->
         <section id="proyectos" class="projects">
             <h2 class="section-title">Proyectos Destacados</h2>
             <div class="projects-grid">
-                <!-- Proyecto 1: App POO2 (TU PROYECTO REAL) -->
+                <!-- Proyecto 1: Agrosystem -->
                 <div class="project-card">
                     <div class="project-header">
-                        <h3>Sistema de Gestión con Spring Boot <span class="project-badge">Completado v1.0</span></h3>
+                        <h3>Agrosystem - Sistema de Gestión <span class="project-badge">Completado v1.0</span></h3>
                         <div style="font-size: 0.8rem; opacity: 0.9;">Proyecto final de POO2</div>
                     </div>
                     <div class="project-content">
                         <div class="project-tech">
-                            <span>Spring Boot 3.2.2 <span class="tech-version">v3.2.2</span></span>
+                            <span>Spring Boot 3.2.2</span>
                             <span>Spring Data JPA</span>
                             <span>Spring Security</span>
                             <span>PostgreSQL 15</span>
-                            <span>Thymeleaf</span>
                             <span>Tailwind CSS</span>
                             <span>Chart.js</span>
                             <span>Docker</span>
                         </div>
                         <p class="project-description">
-                            Aplicación web completa con autenticación de usuarios, dashboard interactivo con métricas
-                            visualizadas con Chart.js, y CRUD completo para gestión de productos/usuarios. La aplicación
-                            está containerizada con Docker y utiliza PostgreSQL como base de datos. Implementa Spring
-                            Security para autenticación y autorización basada en roles.
+                            Sistema de gestión integral para pymes desarrollado como proyecto final. Incluye motor de
+                            autenticación propio vía JWT, control de roles (RBAC) y un panel principal de analítica
+                            graficando datos en tiempo real.
                         </p>
                         <div class="project-stats">
-                            <span class="project-stat"><i class="fas fa-database"></i> 5+ tablas</span>
                             <span class="project-stat"><i class="fas fa-lock"></i> JWT + Roles</span>
                             <span class="project-stat"><i class="fas fa-chart-line"></i> Dashboard</span>
                             <span class="project-stat"><i class="fas fa-docker"></i> Dockerizado</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://poo2-app-3hqw.onrender.com/" target="_blank" rel="noopener"><i
-                                    class="fas fa-external-link-alt"></i> Demo</a>
-                            <a href="https://github.com/gmmendoza/poo2-app" target="_blank" rel="noopener"><i
-                                    class="fab fa-github"></i> Código</a>
-                            <a href="#" target="_blank" rel="noopener"><i class="fas fa-file-alt"></i> Documentación</a>
+                            <a href="https://poo2-app-3hqw.onrender.com/" target="_blank" rel="noopener"
+                                class="contact-button"
+                                style="padding: 0.5rem 1rem; margin-top: 10px; font-size: 0.9rem; color: white;">
+                                <i class="fas fa-play-circle"></i> Ver Demo Agrosystem
+                            </a>
+                            <a href="https://github.com/gmmendoza/poo2-app" target="_blank" rel="noopener"
+                                style="margin-top: 10px; margin-left: 15px;"><i class="fab fa-github"></i> Código
+                                Fuente</a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Proyecto 2: Portfolio -->
+                <!-- Proyecto 2: Demo Panadería -->
                 <div class="project-card">
                     <div class="project-header">
-                        <h3>Portfolio Profesional</h3>
-                        <div style="font-size: 0.8rem; opacity: 0.9;">Frontend</div>
+                        <h3>Gestión de Panadería <span class="project-badge">Demo</span></h3>
+                        <div style="font-size: 0.8rem; opacity: 0.9;">Sistema de Producción</div>
                     </div>
                     <div class="project-content">
                         <div class="project-tech">
-                            <span>HTML5</span>
-                            <span>CSS3</span>
-                            <span>JavaScript</span>
-                            <span>Font Awesome</span>
-                        </div>
-                        <p class="project-description">
-                            Diseño y desarrollo de portfolio personal responsivo con diseño moderno, smooth scrolling, y
-                            secciones optimizadas para mostrar habilidades técnicas, proyectos y formación académica.
-                        </p>
-                        <div class="project-stats">
-                            <span class="project-stat"><i class="fas fa-mobile-alt"></i> Responsive</span>
-                            <span class="project-stat"><i class="fas fa-paint-brush"></i> UI/UX</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://gmmendoza.github.io/mi-portfolio/" target="_blank" rel="noopener"><i
-                                    class="fas fa-external-link-alt"></i> Demo</a>
-                            <a href="https://github.com/gmmendoza/mi-portfolio" target="_blank" rel="noopener"><i
-                                    class="fab fa-github"></i> Código</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Proyecto 3: API REST (sugerido como próximo) -->
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>API REST para E-commerce <span class="project-badge">Próximo</span></h3>
-                        <div style="font-size: 0.8rem; opacity: 0.9;">Backend + Docker</div>
-                    </div>
-                    <div class="project-content">
-                        <div class="project-tech">
-                            <span>Spring Boot</span>
-                            <span>Spring Security</span>
-                            <span>JWT</span>
                             <span>PostgreSQL</span>
-                            <span>Docker Compose</span>
+                            <span>Java Spring Boot</span>
+                            <span>Backend</span>
+                            <span>API REST</span>
                         </div>
                         <p class="project-description">
-                            API REST completa para un sistema de e-commerce con autenticación, roles de usuario, manejo
-                            de productos, órdenes y pagos. Containerizado con Docker para fácil despliegue.
+                            Sistema backend diseñado para la gestión de producción de la panadería "El Aromo". Incluye
+                            modelo de base de datos relacional para control de stock, gestión de proveedores y alertas
+                            automáticas de bajo inventario.
                         </p>
                         <div class="project-stats">
-                            <span class="project-stat"><i class="fas fa-route"></i> 15+ endpoints</span>
-                            <span class="project-stat"><i class="fas fa-shield-alt"></i> Spring Security</span>
-                            <span class="project-stat"><i class="fas fa-docker"></i> Docker</span>
+                            <span class="project-stat"><i class="fas fa-database"></i> bd2025</span>
+                            <span class="project-stat"><i class="fas fa-bell"></i> Alertas</span>
+                        </div>
+                        <div class="project-links" style="flex-wrap: wrap; gap: 0.75rem; align-items: center;">
+                            <a href="https://poo2-app-3hqw.onrender.com/" target="_blank" rel="noopener"
+                                class="contact-button" style="padding: 0.5rem 1rem; font-size: 0.9rem; color: white;">
+                                <i class="fas fa-play-circle"></i> Ver Demo
+                            </a>
+                            <a href="#" target="_blank" rel="noopener"><i class="fab fa-github"></i> Código Privado</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Proyecto 3: SGT -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Sistema de Gestión Textil (SGT)</h3>
+                        <div style="font-size: 0.8rem; opacity: 0.9;">Analista en Sistemas</div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tech">
+                            <span>PHP</span>
+                            <span>Laravel</span>
+                            <span>MySQL</span>
+                            <span>jQuery</span>
+                            <span>Bootstrap</span>
+                        </div>
+                        <p class="project-description">
+                            Sistema completo para gestión de procesos textiles. Trabajo final para Analista en Sistemas,
+                            cuenta con múltiples módulos para la gestión integral de operarios, producción, stock y
+                            reportes de control.
+                        </p>
+                        <div class="project-stats">
+                            <span class="project-stat"><i class="fas fa-sitemap"></i> Modular</span>
+                            <span class="project-stat"><i class="fas fa-file-invoice"></i> Reportes PDF</span>
                         </div>
                         <div class="project-links">
-                            <a href="#"><i class="fab fa-github"></i> En desarrollo</a>
+                            <a href="#" target="_blank" rel="noopener"><i class="fas fa-lock"></i> Repositorio
+                                Privado</a>
                         </div>
                     </div>
                 </div>
