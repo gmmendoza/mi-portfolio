@@ -686,6 +686,104 @@
             color: #1e3a8a;
             animation: none;
         }
+
+        /* Layout: Sobre Mí + Stack al lado */
+        .about-stack-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            align-items: start;
+        }
+
+        .about-stack-row .about {
+            margin-bottom: 0;
+        }
+
+        .about-stack-row .skills {
+            margin-bottom: 0;
+        }
+
+        @media (max-width: 900px) {
+            .about-stack-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Carrusel SGT */
+        .sgt-carousel {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            background: #0f172a;
+            border-bottom: 3px solid var(--primary-color);
+        }
+
+        .sgt-carousel-track {
+            display: flex;
+            transition: transform 0.4s ease;
+        }
+
+        .sgt-slide {
+            min-width: 100%;
+            height: 200px;
+            object-fit: cover;
+            object-position: top;
+            display: block;
+        }
+
+        .sgt-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(29, 78, 216, 0.85);
+            color: white;
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+            z-index: 10;
+        }
+
+        .sgt-btn:hover {
+            background: var(--primary-color);
+        }
+
+        .sgt-prev {
+            left: 8px;
+        }
+
+        .sgt-next {
+            right: 8px;
+        }
+
+        .sgt-dots {
+            position: absolute;
+            bottom: 6px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 5px;
+        }
+
+        .sgt-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .sgt-dot.active {
+            background: white;
+        }
     </style>
 </head>
 
@@ -733,110 +831,115 @@
     </section>
 
     <div class="container">
-        <!-- Sobre Mí -->
-        <section id="sobre-mi" class="about">
-            <h2 class="section-title">Sobre Mí</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>¡Hola! Soy Guadalupe, estudiante avanzada de dos carreras: Licenciatura en Sistemas de
-                        Información y Analista en Sistemas de Computación. Esta doble formación me ha dado una visión
-                        integral del desarrollo de software, desde la programación hasta el análisis y diseño de
-                        sistemas.</p>
-                    <p>Me especializo en el desarrollo backend con Java y Spring Boot, pero también tengo experiencia en
-                        frontend con Thymeleaf, Tailwind CSS y JavaScript. Me encanta trabajar con bases de datos
-                        relacionales y tengo conocimientos en contenedorización con Docker.</p>
-                    <p>Actualmente estoy buscando mi primera oportunidad profesional para aportar mis conocimientos,
-                        seguir aprendiendo y crecer en un equipo dinámico.</p>
-                </div>
-                <div class="sidebar-info">
-                    <div class="education">
-                        <div class="education-item">
-                            <h4>Licenciatura en Sistemas de Información</h4>
-                            <div class="place">Universidad Nacional de Misiones </div>
-                            <div class="date"> Presente</div>
+        <!-- Sobre Mí + Stack lado a lado -->
+        <div class="about-stack-row">
+            <!-- Sobre Mí -->
+            <section id="sobre-mi" class="about">
+                <h2 class="section-title">Sobre Mí</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>¡Hola! Soy Guadalupe, estudiante avanzada de dos carreras: Licenciatura en Sistemas de
+                            Información y Analista en Sistemas de Computación. Esta doble formación me ha dado una
+                            visión
+                            integral del desarrollo de software, desde la programación hasta el análisis y diseño de
+                            sistemas.</p>
+                        <p>Me especializo en el desarrollo backend con Java y Spring Boot, pero también tengo
+                            experiencia en
+                            frontend con Thymeleaf, Tailwind CSS y JavaScript. Me encanta trabajar con bases de datos
+                            relacionales y tengo conocimientos en contenedorización con Docker.</p>
+                        <p>Actualmente estoy buscando mi primera oportunidad profesional para aportar mis conocimientos,
+                            seguir aprendiendo y crecer en un equipo dinámico.</p>
+                    </div>
+                    <div class="sidebar-info">
+                        <div class="education">
+                            <div class="education-item">
+                                <h4>Licenciatura en Sistemas de Información</h4>
+                                <div class="place">Universidad Nacional de Misiones </div>
+                                <div class="date"> Presente</div>
+                            </div>
+                            <div class="education-item">
+                                <h4>Analista en Sistemas de Computación</h4>
+                                <div class="place">Universidad Nacional de Misiones </div>
+                                <div class="date"> Presente </div>
+                            </div>
+                            <div class="education-item">
+                                <h4>Analista Personal y Prof. en Informática</h4>
+                                <div class="place">EPET N° 1 - Misiones</div>
+                                <div class="date"> 2017 </div>
+                            </div>
                         </div>
-                        <div class="education-item">
-                            <h4>Analista en Sistemas de Computación</h4>
-                            <div class="place">Universidad Nacional de Misiones </div>
-                            <div class="date"> Presente </div>
-                        </div>
-                        <div class="education-item">
-                            <h4>Analista Personal y Prof. en Informática</h4>
-                            <div class="place">EPET N° 1 - Misiones</div>
-                            <div class="date"> 2017 </div>
+                        <div class="languages" style="margin-top: 2.5rem;">
+                            <h4
+                                style="font-size: 1.2rem; color: var(--text-dark); margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid #e2e8f0;">
+                                Idiomas</h4>
+                            <div style="margin-bottom: 0.8rem;">
+                                <span style="font-weight: 600; color: var(--primary-color);">Español:</span> Nativo
+                            </div>
+                            <div>
+                                <span style="font-weight: 600; color: var(--primary-color);">Inglés:</span> Técnico
+                                (Lectura)
+                            </div>
                         </div>
                     </div>
-                    <div class="languages" style="margin-top: 2.5rem;">
-                        <h4
-                            style="font-size: 1.2rem; color: var(--text-dark); margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid #e2e8f0;">
-                            Idiomas</h4>
-                        <div style="margin-bottom: 0.8rem;">
-                            <span style="font-weight: 600; color: var(--primary-color);">Español:</span> Nativo
-                        </div>
-                        <div>
-                            <span style="font-weight: 600; color: var(--primary-color);">Inglés:</span> Técnico
-                            (Lectura)
-                        </div>
-                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- Habilidades - ACTUALIZADAS con tu stack real -->
-        <section id="habilidades" class="skills">
-            <h2 class="section-title">Stack Tecnológico</h2>
-            <div class="skills-grid">
-                <!-- Backend -->
-                <div class="skill-category">
-                    <h3><i class="fas fa-server"></i> Backend</h3>
-                    <div class="skill-items">
-                        <span class="skill-tag highlight"><i class="fab fa-java"></i> Spring Boot 3.2.2 <span
-                                class="skill-version">v3.2.2</span></span>
-                        <span class="skill-tag"><i class="fas fa-database"></i> Spring Data JPA</span>
-                        <span class="skill-tag"><i class="fas fa-shield-alt"></i> Spring Security</span>
-                        <span class="skill-tag"><i class="fab fa-java"></i> Java 17</span>
-                        <span class="skill-tag"><i class="fas fa-lock"></i> JWT / OAuth2</span>
+            <!-- Stack Tecnológico -->
+            <section id="habilidades" class="skills">
+                <h2 class="section-title">Stack Tecnológico</h2>
+                <div class="skills-grid">
+                    <!-- Backend -->
+                    <div class="skill-category">
+                        <h3><i class="fas fa-server"></i> Backend</h3>
+                        <div class="skill-items">
+                            <span class="skill-tag highlight"><i class="fab fa-java"></i> Spring Boot 3.2.2 <span
+                                    class="skill-version">v3.2.2</span></span>
+                            <span class="skill-tag"><i class="fas fa-database"></i> Spring Data JPA</span>
+                            <span class="skill-tag"><i class="fas fa-shield-alt"></i> Spring Security</span>
+                            <span class="skill-tag"><i class="fab fa-java"></i> Java 17</span>
+                            <span class="skill-tag"><i class="fas fa-lock"></i> JWT / OAuth2</span>
+                        </div>
                     </div>
-                </div>
 
-                <!-- Base de Datos -->
-                <div class="skill-category">
-                    <h3><i class="fas fa-database"></i> Base de Datos</h3>
-                    <div class="skill-items">
-                        <span class="skill-tag highlight"><i class="fas fa-database"></i> PostgreSQL 15 <span
-                                class="skill-version">v15</span></span>
-                        <span class="skill-tag"><i class="fas fa-database"></i> MySQL</span>
-                        <span class="skill-tag"><i class="fas fa-chart-line"></i> Optimización SQL</span>
-                        <span class="skill-tag"><i class="fas fa-project-diagram"></i> Modelado de datos</span>
+                    <!-- Base de Datos -->
+                    <div class="skill-category">
+                        <h3><i class="fas fa-database"></i> Base de Datos</h3>
+                        <div class="skill-items">
+                            <span class="skill-tag highlight"><i class="fas fa-database"></i> PostgreSQL 15 <span
+                                    class="skill-version">v15</span></span>
+                            <span class="skill-tag"><i class="fas fa-database"></i> MySQL</span>
+                            <span class="skill-tag"><i class="fas fa-chart-line"></i> Optimización SQL</span>
+                            <span class="skill-tag"><i class="fas fa-project-diagram"></i> Modelado de datos</span>
+                        </div>
                     </div>
-                </div>
 
-                <!-- Frontend -->
-                <div class="skill-category">
-                    <h3><i class="fas fa-code"></i> Frontend</h3>
-                    <div class="skill-items">
-                        <span class="skill-tag"><i class="fab fa-java"></i> Thymeleaf</span>
-                        <span class="skill-tag highlight"><i class="fab fa-css3-alt"></i> Tailwind CSS</span>
-                        <span class="skill-tag"><i class="fab fa-js"></i> JavaScript</span>
-                        <span class="skill-tag"><i class="fas fa-chart-pie"></i> Chart.js</span>
-                        <span class="skill-tag"><i class="fab fa-html5"></i> HTML5</span>
-                        <span class="skill-tag"><i class="fab fa-css3"></i> CSS3</span>
+                    <!-- Frontend -->
+                    <div class="skill-category">
+                        <h3><i class="fas fa-code"></i> Frontend</h3>
+                        <div class="skill-items">
+                            <span class="skill-tag"><i class="fab fa-java"></i> Thymeleaf</span>
+                            <span class="skill-tag highlight"><i class="fab fa-css3-alt"></i> Tailwind CSS</span>
+                            <span class="skill-tag"><i class="fab fa-js"></i> JavaScript</span>
+                            <span class="skill-tag"><i class="fas fa-chart-pie"></i> Chart.js</span>
+                            <span class="skill-tag"><i class="fab fa-html5"></i> HTML5</span>
+                            <span class="skill-tag"><i class="fab fa-css3"></i> CSS3</span>
+                        </div>
                     </div>
-                </div>
 
-                <!-- Contenedorización -->
-                <div class="skill-category">
-                    <h3><i class="fab fa-docker"></i> DevOps</h3>
-                    <div class="skill-items">
-                        <span class="skill-tag highlight"><i class="fab fa-docker"></i> Docker</span>
-                        <span class="skill-tag"><i class="fab fa-docker"></i> Docker Compose</span>
-                        <span class="skill-tag"><i class="fas fa-code-branch"></i> Git</span>
-                        <span class="skill-tag"><i class="fab fa-github"></i> GitHub</span>
-                        <span class="skill-tag"><i class="fas fa-cloud"></i> Render</span>
+                    <!-- Contenedorización -->
+                    <div class="skill-category">
+                        <h3><i class="fab fa-docker"></i> DevOps</h3>
+                        <div class="skill-items">
+                            <span class="skill-tag highlight"><i class="fab fa-docker"></i> Docker</span>
+                            <span class="skill-tag"><i class="fab fa-docker"></i> Docker Compose</span>
+                            <span class="skill-tag"><i class="fas fa-code-branch"></i> Git</span>
+                            <span class="skill-tag"><i class="fab fa-github"></i> GitHub</span>
+                            <span class="skill-tag"><i class="fas fa-cloud"></i> Render</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        </div><!-- /.about-stack-row -->
 
         <!-- Certificaciones y Cursos -->
         <section id="certificaciones" class="certifications">
@@ -852,7 +955,8 @@
                         <div class="cert-issuer">Udemy</div>
                         <div class="cert-date"><i class="far fa-calendar-alt"></i> 2024</div>
                         <p class="project-description" style="margin-bottom: 0.5rem;">Desarrollo de aplicaciones
-                            empresariales con Spring Boot 3.2, Spring Data JPA, Spring Security y despliegue en la nube.
+                            empresariales con Spring Boot 3.2, Spring Data JPA, Spring Security y despliegue en la
+                            nube.
                         </p>
                         <div class="cert-skills">
                             <span>Spring Boot 3.2</span>
@@ -873,8 +977,10 @@
                         <h3 class="cert-title">Docker y Contenedores</h3>
                         <div class="cert-issuer">Platzi</div>
                         <div class="cert-date"><i class="far fa-calendar-alt"></i> 2024</div>
-                        <p class="project-description" style="margin-bottom: 0.5rem;">Contenedorización de aplicaciones,
-                            Docker Compose, networking y buenas prácticas para entornos de desarrollo y producción.</p>
+                        <p class="project-description" style="margin-bottom: 0.5rem;">Contenedorización de
+                            aplicaciones,
+                            Docker Compose, networking y buenas prácticas para entornos de desarrollo y producción.
+                        </p>
                         <div class="cert-skills">
                             <span>Docker</span>
                             <span>Docker Compose</span>
@@ -913,7 +1019,8 @@
                         <h3 class="cert-title">Tailwind CSS: Diseño Moderno</h3>
                         <div class="cert-issuer">Frontend Masters</div>
                         <div class="cert-date"><i class="far fa-calendar-alt"></i> 2023</div>
-                        <p class="project-description" style="margin-bottom: 0.5rem;">Diseño de interfaces responsivas
+                        <p class="project-description" style="margin-bottom: 0.5rem;">Diseño de interfaces
+                            responsivas
                             con Tailwind CSS, componentes reutilizables y mejores prácticas.</p>
                         <div class="cert-skills">
                             <span>Tailwind CSS</span>
@@ -985,7 +1092,8 @@
                             <span>Docker</span>
                         </div>
                         <p class="project-description">
-                            Sistema de gestión integral para pymes desarrollado como proyecto final. Incluye motor de
+                            Sistema de gestión integral para pymes desarrollado como proyecto final. Incluye motor
+                            de
                             autenticación propio vía JWT, control de roles (RBAC) y un panel principal de analítica
                             graficando datos en tiempo real.
                         </p>
@@ -1021,8 +1129,10 @@
                             <span>API REST</span>
                         </div>
                         <p class="project-description">
-                            Sistema backend diseñado para la gestión de producción de la panadería "El Aromo". Incluye
-                            modelo de base de datos relacional para control de stock, gestión de proveedores y alertas
+                            Sistema backend diseñado para la gestión de producción de la panadería "El Aromo".
+                            Incluye
+                            modelo de base de datos relacional para control de stock, gestión de proveedores y
+                            alertas
                             automáticas de bajo inventario.
                         </p>
                         <div class="project-stats">
@@ -1030,11 +1140,12 @@
                             <span class="project-stat"><i class="fas fa-bell"></i> Alertas</span>
                         </div>
                         <div class="project-links" style="flex-wrap: wrap; gap: 0.75rem; align-items: center;">
-                            <a href="https://poo2-app-3hqw.onrender.com/" target="_blank" rel="noopener"
-                                class="contact-button" style="padding: 0.5rem 1rem; font-size: 0.9rem; color: white;">
+                            <a href="demo-panaderia.html" target="_blank" rel="noopener" class="contact-button"
+                                style="padding: 0.5rem 1rem; font-size: 0.9rem; color: white;">
                                 <i class="fas fa-play-circle"></i> Ver Demo
                             </a>
-                            <a href="#" target="_blank" rel="noopener"><i class="fab fa-github"></i> Código Privado</a>
+                            <a href="#" target="_blank" rel="noopener"><i class="fab fa-github"></i> Código
+                                Privado</a>
                         </div>
                     </div>
                 </div>
@@ -1045,6 +1156,19 @@
                         <h3>Sistema de Gestión Textil (SGT)</h3>
                         <div style="font-size: 0.8rem; opacity: 0.9;">Analista en Sistemas</div>
                     </div>
+                    <!-- Carrusel de imágenes SGT -->
+                    <div class="sgt-carousel" id="sgtCarousel">
+                        <div class="sgt-carousel-track" id="sgtTrack">
+                            <img src="imagenes/sgt/sgt-panel.png" alt="SGT Control de Precios" class="sgt-slide">
+                            <img src="imagenes/sgt/sgt-dashboard.png" alt="SGT Panel de Control" class="sgt-slide">
+                            <img src="imagenes/sgt/sgt-tienda.png" alt="SGT Tienda Online" class="sgt-slide">
+                            <img src="imagenes/sgt/sgt-ventas.png" alt="SGT Ventas Online" class="sgt-slide">
+                            <img src="imagenes/sgt/sgt-proveedores.png" alt="SGT Ofertas Proveedores" class="sgt-slide">
+                        </div>
+                        <button class="sgt-btn sgt-prev" onclick="sgtMove(-1)">&#8249;</button>
+                        <button class="sgt-btn sgt-next" onclick="sgtMove(1)">&#8250;</button>
+                        <div class="sgt-dots" id="sgtDots"></div>
+                    </div>
                     <div class="project-content">
                         <div class="project-tech">
                             <span>PHP</span>
@@ -1054,13 +1178,15 @@
                             <span>Bootstrap</span>
                         </div>
                         <p class="project-description">
-                            Sistema completo para gestión de procesos textiles. Trabajo final para Analista en Sistemas,
+                            Sistema completo para gestión de procesos textiles. Trabajo final para Analista en
+                            Sistemas,
                             cuenta con múltiples módulos para la gestión integral de operarios, producción, stock y
                             reportes de control.
                         </p>
                         <div class="project-stats">
                             <span class="project-stat"><i class="fas fa-sitemap"></i> Modular</span>
                             <span class="project-stat"><i class="fas fa-file-invoice"></i> Reportes PDF</span>
+                            <span class="project-stat"><i class="fas fa-store"></i> Tienda Online</span>
                         </div>
                         <div class="project-links">
                             <a href="#" target="_blank" rel="noopener"><i class="fas fa-lock"></i> Repositorio
@@ -1085,7 +1211,8 @@
     <!-- Footer -->
     <footer>
         <p>© 2024 Guadalupe Mendoza. Todos los derechos reservados.</p>
-        <p style="margin-top: 0.5rem; font-size: 0.9rem; opacity: 0.8;">Diseñado y desarrollado con 💻 por Guadalupe</p>
+        <p style="margin-top: 0.5rem; font-size: 0.9rem; opacity: 0.8;">Diseñado y desarrollado con 💻 por Guadalupe
+        </p>
     </footer>
 
     <script>
@@ -1127,6 +1254,37 @@
                 }
             });
         });
+
+        // --- Carrusel SGT ---
+        (function () {
+            const track = document.getElementById('sgtTrack');
+            const dotsContainer = document.getElementById('sgtDots');
+            if (!track) return;
+            const slides = track.querySelectorAll('.sgt-slide');
+            let current = 0;
+            const total = slides.length;
+
+            // Crear dots
+            slides.forEach((_, i) => {
+                const dot = document.createElement('div');
+                dot.className = 'sgt-dot' + (i === 0 ? ' active' : '');
+                dot.onclick = () => goTo(i);
+                dotsContainer.appendChild(dot);
+            });
+
+            function goTo(n) {
+                current = (n + total) % total;
+                track.style.transform = `translateX(-${current * 100}%)`;
+                dotsContainer.querySelectorAll('.sgt-dot').forEach((d, i) => {
+                    d.classList.toggle('active', i === current);
+                });
+            }
+
+            window.sgtMove = (dir) => goTo(current + dir);
+
+            // Autoplay cada 3.5s
+            setInterval(() => goTo(current + 1), 3500);
+        })();
     </script>
 </body>
 
