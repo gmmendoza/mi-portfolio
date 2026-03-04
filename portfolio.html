@@ -4,54 +4,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guadalupe Mendoza | Portfolio en Sistemas</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Guadalupe Mendoza | Desarrolladora Full Stack</title>
+    <meta name="description"
+        content="Portfolio de Guadalupe Mendoza — Desarrolladora Full Stack, Analista en Sistemas. Spring Boot, PostgreSQL, Docker.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* ─── TOKENS ─────────────────────────────────────────── */
         :root {
-            --primary-color: #1d4ed8;
-            /* Blue 700 */
-            --secondary-color: #0f172a;
-            /* Slate 900 */
-            --accent-color: #0ea5e9;
-            /* Sky 500 */
-            --text-dark: #1e293b;
-            /* Slate 800 */
-            --text-light: #475569;
-            /* Slate 600 */
-            --bg-light: #f1f5f9;
-            /* Slate 100 */
-            --bg-white: #ffffff;
-            --shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
-            --shadow-hover: 0 10px 30px -5px rgba(0, 0, 0, 0.1);
-            --border-radius: 16px;
-            --success-color: #10b981;
-            --warning-color: #f59e0b;
+            --blue: #1d4ed8;
+            --blue-lt: #3b82f6;
+            --blue-xs: #eff6ff;
+            --sky: #0ea5e9;
+            --dark: #0f172a;
+            --text: #1e293b;
+            --muted: #64748b;
+            --border: #e2e8f0;
+            --bg: #f1f5f9;
+            --card: #ffffff;
+            --r: 18px;
+            --r-sm: 10px;
+            --sh: 0 2px 16px -4px rgba(0, 0, 0, .08);
+            --sh-lg: 0 8px 32px -8px rgba(0, 0, 0, .14);
+            --gap: 2rem;
         }
 
-        * {
+        /* ─── RESET & BASE ───────────────────────────────────── */
+        *,
+        *::before,
+        *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background-color: var(--bg-light);
-            color: var(--text-dark);
-            line-height: 1.6;
+        html {
+            scroll-behavior: smooth;
         }
 
-        /* Header/Navbar */
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.65;
+            font-size: 16px;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* ─── NAVBAR ─────────────────────────────────────────── */
         .navbar {
-            background-color: var(--bg-white);
-            box-shadow: var(--shadow);
+            background: var(--card);
+            border-bottom: 1px solid var(--border);
             position: sticky;
             top: 0;
             z-index: 1000;
-            padding: 1rem 0;
+            padding: .9rem 0;
         }
 
-        .nav-container {
+        .nav-inner {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 2rem;
@@ -61,113 +83,177 @@
         }
 
         .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary-color);
-            text-decoration: none;
+            font-size: 1.4rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--blue), var(--sky));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .nav-menu {
+        .nav-links {
             display: flex;
-            gap: 2rem;
+            gap: 1.75rem;
             list-style: none;
         }
 
-        .nav-menu a {
-            text-decoration: none;
-            color: var(--text-dark);
+        .nav-links a {
+            font-size: .9rem;
             font-weight: 500;
-            transition: color 0.3s;
-            font-size: 1rem;
+            color: var(--muted);
+            transition: color .25s;
         }
 
-        .nav-menu a:hover,
-        .nav-menu a.active {
-            color: var(--primary-color);
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--blue);
         }
 
-        /* Hero Section */
+        /* ─── HERO ───────────────────────────────────────────── */
         .hero {
-            background: linear-gradient(135deg, var(--bg-white) 0%, #e2e8f0 100%);
-            padding: 5rem 2rem 4rem;
+            background: linear-gradient(150deg, #fff 0%, #e8eef8 100%);
+            padding: 5rem 2rem 4.5rem;
             text-align: center;
-            border-bottom: 1px solid #cbd5e1;
+            border-bottom: 1px solid var(--border);
         }
 
-        .hero-content {
-            max-width: 800px;
+        .hero-inner {
+            max-width: 780px;
             margin: 0 auto;
         }
 
-        .profile-img {
-            width: 150px;
-            height: 150px;
+        .avatar {
+            width: 148px;
+            height: 148px;
             border-radius: 50%;
             object-fit: cover;
-            border: 4px solid var(--primary-color);
-            margin-bottom: 1.5rem;
-            box-shadow: var(--shadow);
+            border: 4px solid var(--blue);
+            box-shadow: 0 0 0 8px rgba(29, 78, 216, .1);
+            margin: 0 auto 1.5rem;
         }
 
         .hero h1 {
-            font-size: 2.5rem;
-            color: var(--text-dark);
-            margin-bottom: 0.5rem;
+            font-size: 2.6rem;
+            font-weight: 800;
+            color: var(--dark);
+            margin-bottom: .4rem;
         }
 
-        .hero h2 {
-            font-size: 1.25rem;
-            color: var(--primary-color);
-            font-weight: 500;
-            margin-bottom: 1rem;
+        .hero-role {
+            font-size: 1.15rem;
+            color: var(--blue);
+            font-weight: 600;
+            margin-bottom: .6rem;
         }
 
-        .hero p {
-            font-size: 1.1rem;
-            color: var(--text-light);
-            max-width: 600px;
-            margin: 0 auto 2rem;
-        }
-
-        .social-links {
+        .hero-meta {
             display: flex;
-            gap: 1.5rem;
+            gap: 1.25rem;
             justify-content: center;
+            color: var(--muted);
+            font-size: .9rem;
+            margin-bottom: 1.25rem;
         }
 
-        .social-links a {
-            color: var(--text-light);
-            font-size: 1.5rem;
-            transition: all 0.3s;
+        .hero-meta i {
+            margin-right: .3rem;
         }
 
-        .social-links a:hover {
-            color: var(--primary-color);
-            transform: translateY(-3px);
+        .hero-bio {
+            color: var(--muted);
+            font-size: 1.05rem;
+            margin-bottom: 2rem;
+            max-width: 560px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        /* Main Content */
+        .social-row {
+            display: flex;
+            gap: 1.2rem;
+            justify-content: center;
+            margin-bottom: 1.8rem;
+        }
+
+        .social-row a {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            color: var(--muted);
+            transition: all .25s;
+        }
+
+        .social-row a:hover {
+            background: var(--blue);
+            color: #fff;
+            border-color: var(--blue);
+            transform: translateY(-2px);
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+            padding: .7rem 1.6rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: .95rem;
+            transition: all .25s;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .btn-primary {
+            background: var(--blue);
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background: #1e3a8a;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--blue);
+            border-color: var(--blue);
+        }
+
+        .btn-outline:hover {
+            background: var(--blue-xs);
+            transform: translateY(-2px);
+        }
+
+        /* ─── LAYOUT ─────────────────────────────────────────── */
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 3rem 2rem;
+            padding: 4rem 2rem;
         }
 
-        /* Sección Sobre Mí */
-        .about {
-            background-color: var(--bg-white);
-            border-radius: var(--border-radius);
-            padding: 2.5rem;
-            margin-bottom: 3rem;
-            box-shadow: var(--shadow);
+        .section-gap {
+            margin-bottom: 4rem;
         }
 
         .section-title {
-            font-size: 2rem;
-            color: var(--text-dark);
-            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--dark);
+            margin-bottom: 2rem;
             position: relative;
-            padding-bottom: 0.5rem;
+            padding-bottom: .6rem;
         }
 
         .section-title::after {
@@ -175,455 +261,598 @@
             position: absolute;
             bottom: 0;
             left: 0;
-            width: 60px;
+            width: 48px;
             height: 4px;
-            background-color: var(--primary-color);
-            border-radius: 2px;
+            border-radius: 4px;
+            background: linear-gradient(90deg, var(--blue), var(--sky));
         }
 
-        .about-content {
+        /* ─── CARD ───────────────────────────────────────────── */
+        .card {
+            background: var(--card);
+            border-radius: var(--r);
+            box-shadow: var(--sh);
+            border: 1px solid var(--border);
+        }
+
+        .card-pad {
+            padding: 2.25rem;
+        }
+
+        /* ─── SOBRE MÍ ───────────────────────────────────────── */
+        .about-grid {
             display: grid;
             grid-template-columns: 2fr 1fr;
-            gap: 2rem;
-            align-items: center;
+            gap: var(--gap);
         }
 
         .about-text p {
+            color: var(--muted);
             margin-bottom: 1rem;
-            color: var(--text-light);
-            font-size: 1.05rem;
+            font-size: 1.02rem;
         }
 
-        .education-item {
-            margin-bottom: 1.5rem;
-            padding: 1rem;
-            background-color: var(--bg-light);
-            border-radius: 8px;
-            border-left: 4px solid var(--primary-color);
-        }
-
-        .education-item h4 {
-            color: var(--text-dark);
-            font-size: 1.1rem;
-            margin-bottom: 0.25rem;
-        }
-
-        .education-item .place {
-            color: var(--primary-color);
-            font-weight: 500;
-            font-size: 0.9rem;
-            margin-bottom: 0.25rem;
-        }
-
-        .education-item .date {
-            color: var(--text-light);
-            font-size: 0.85rem;
-        }
-
-        /* Sección Habilidades - MEJORADA */
-        .skills {
-            margin-bottom: 3rem;
-        }
-
-        .skills-grid {
+        /* ─── FORMACIÓN + ÁREAS ───────────────────────────────── */
+        .two-col {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--gap);
         }
 
-        .skill-category {
-            background-color: var(--bg-white);
-            padding: 1.5rem;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-        }
-
-        .skill-category h3 {
-            color: var(--text-dark);
-            font-size: 1.25rem;
-            margin-bottom: 1rem;
+        /* Timeline educación */
+        .edu-timeline {
             display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            border-bottom: 2px solid #e2e8f0;
-            padding-bottom: 0.5rem;
+            flex-direction: column;
+            gap: 1.2rem;
         }
 
-        .skill-category h3 i {
-            color: var(--primary-color);
+        .edu-item {
+            padding: 1.1rem 1.25rem;
+            border-radius: var(--r-sm);
+            background: var(--bg);
+            border-left: 4px solid var(--blue);
         }
 
-        .skill-items {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.75rem;
-        }
-
-        .skill-tag {
-            background-color: var(--bg-white);
-            color: var(--text-dark);
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            border: 1px solid #cbd5e1;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: all 0.3s ease;
-            cursor: default;
-        }
-
-        .skill-tag i {
-            font-size: 1.1rem;
-            color: var(--text-light);
-        }
-
-        .skill-tag:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px -3px rgba(0, 0, 0, 0.1);
-            border-color: var(--primary-color);
-            color: var(--primary-color);
-        }
-
-        .skill-tag:hover i {
-            color: var(--primary-color);
-        }
-
-        .skill-tag.highlight {
-            background-color: #eff6ff;
-            border-color: #bfdbfe;
-            color: var(--primary-color);
-        }
-
-        .skill-tag.highlight i {
-            color: var(--primary-color);
-        }
-
-        .skill-version {
-            font-size: 0.75rem;
-            opacity: 0.8;
-            margin-left: 0.2rem;
-            background: rgba(29, 78, 216, 0.1);
-            padding: 0.1rem 0.4rem;
-            border-radius: 10px;
-        }
-
-        /* Versiones específicas de tecnologías */
-        .skill-version {
-            font-size: 0.7rem;
-            background-color: rgba(37, 99, 235, 0.1);
-            padding: 0.2rem 0.4rem;
-            border-radius: 4px;
-            margin-left: 0.3rem;
-        }
-
-        .skill-tag:hover .skill-version {
-            background-color: rgba(255, 255, 255, 0.2);
-        }
-
-        /* Sección Certificaciones */
-        .certifications {
-            margin-bottom: 3rem;
-        }
-
-        .cert-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .cert-card {
-            background-color: var(--bg-white);
-            border-radius: var(--border-radius);
-            padding: 1.5rem;
-            box-shadow: var(--shadow);
-            display: flex;
-            gap: 1rem;
-            transition: transform 0.3s, box-shadow 0.3s;
-            border: 1px solid #e2e8f0;
-        }
-
-        .cert-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px -10px rgba(37, 99, 235, 0.2);
-            border-color: var(--primary-color);
-        }
-
-        .cert-icon {
-            font-size: 2rem;
-            color: var(--primary-color);
-            min-width: 50px;
-            text-align: center;
-        }
-
-        .cert-content {
-            flex: 1;
-        }
-
-        .cert-title {
-            font-size: 1.1rem;
+        .edu-item h4 {
+            font-size: 1rem;
             font-weight: 700;
-            color: var(--text-dark);
-            margin-bottom: 0.25rem;
+            color: var(--dark);
+            margin-bottom: .2rem;
         }
 
-        .cert-issuer {
-            color: var(--primary-color);
-            font-weight: 500;
-            font-size: 0.9rem;
-            margin-bottom: 0.25rem;
+        .edu-item .inst {
+            color: var(--blue);
+            font-size: .88rem;
+            font-weight: 600;
+            margin-bottom: .2rem;
         }
 
-        .cert-date {
-            color: var(--text-light);
-            font-size: 0.85rem;
-            margin-bottom: 0.5rem;
+        .edu-item .date {
+            color: var(--muted);
+            font-size: .82rem;
+        }
+
+        /* Idiomas */
+        .lang-row {
             display: flex;
-            align-items: center;
-            gap: 0.3rem;
-        }
-
-        .cert-skills {
-            display: flex;
+            gap: .75rem;
             flex-wrap: wrap;
-            gap: 0.4rem;
-            margin-top: 0.5rem;
+            margin-top: 1rem;
         }
 
-        .cert-skills span {
-            background-color: #dbeafe;
-            color: var(--primary-color);
-            padding: 0.2rem 0.6rem;
+        .lang-badge {
+            background: var(--blue-xs);
+            color: var(--blue);
+            padding: .35rem .9rem;
             border-radius: 50px;
-            font-size: 0.7rem;
+            font-size: .85rem;
             font-weight: 600;
         }
 
-        .cert-link {
-            display: inline-block;
-            margin-top: 0.5rem;
-            color: var(--text-light);
-            font-size: 0.85rem;
-            text-decoration: none;
-            transition: color 0.3s;
+        /* Áreas de desarrollo */
+        .areas-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
         }
 
-        .cert-link:hover {
-            color: var(--primary-color);
-            text-decoration: underline;
+        .area-card {
+            background: var(--bg);
+            border-radius: var(--r-sm);
+            padding: 1.1rem;
+            display: flex;
+            align-items: flex-start;
+            gap: .85rem;
+            border: 1px solid var(--border);
+            transition: all .25s;
         }
 
-        .cert-link i {
-            font-size: 0.8rem;
-            margin-left: 0.2rem;
+        .area-card:hover {
+            border-color: var(--blue);
+            background: var(--blue-xs);
+            transform: translateY(-2px);
         }
 
-        /* Sección Proyectos - MEJORADA */
-        .projects {
-            margin-bottom: 3rem;
+        .area-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--r-sm);
+            background: linear-gradient(135deg, var(--blue), var(--sky));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 1rem;
+            flex-shrink: 0;
         }
 
+        .area-card h4 {
+            font-size: .92rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: .2rem;
+        }
+
+        .area-card p {
+            font-size: .8rem;
+            color: var(--muted);
+            line-height: 1.4;
+        }
+
+        /* ─── PROYECTOS ──────────────────────────────────────── */
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
             gap: 2rem;
         }
 
-        .project-card {
-            background-color: var(--bg-white);
-            border-radius: var(--border-radius);
+        .proj-card {
+            background: var(--card);
+            border-radius: var(--r);
+            box-shadow: var(--sh);
+            border: 1px solid var(--border);
             overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid #e2e8f0;
+            transition: transform .3s, box-shadow .3s;
+            display: flex;
+            flex-direction: column;
         }
 
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-hover);
-            border-color: var(--accent-color);
+        .proj-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--sh-lg);
+            border-color: var(--blue-lt);
         }
 
-        .project-header {
-            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-            color: white;
+        /* carrusel */
+        .proj-carousel {
+            position: relative;
+            overflow: hidden;
+            background: #0f172a;
+        }
+
+        .proj-carousel-track {
+            display: flex;
+            transition: transform .4s ease;
+        }
+
+        .proj-slide {
+            min-width: 100%;
+            height: 210px;
+            object-fit: cover;
+            object-position: top;
+        }
+
+        .proj-placeholder {
+            min-width: 100%;
+            height: 210px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #1e3a8a, #0369a1);
+            color: rgba(255, 255, 255, .7);
+            gap: .5rem;
+        }
+
+        .proj-placeholder i {
+            font-size: 2.5rem;
+            opacity: .6;
+        }
+
+        .proj-placeholder span {
+            font-size: .85rem;
+            opacity: .7;
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(29, 78, 216, .8);
+            color: #fff;
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background .2s;
+            z-index: 5;
+        }
+
+        .carousel-btn:hover {
+            background: var(--blue);
+        }
+
+        .carousel-prev {
+            left: 8px;
+        }
+
+        .carousel-next {
+            right: 8px;
+        }
+
+        .carousel-dots {
+            position: absolute;
+            bottom: 7px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 5px;
+        }
+
+        .carousel-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, .4);
+            cursor: pointer;
+            transition: background .2s;
+        }
+
+        .carousel-dot.on {
+            background: #fff;
+        }
+
+        /* Encabezado tarjeta proyecto */
+        .proj-header {
+            background: linear-gradient(135deg, var(--blue), var(--sky));
+            color: #fff;
             padding: 1rem 1.5rem;
         }
 
-        .project-header h3 {
-            font-size: 1.25rem;
-            margin-bottom: 0.25rem;
+        .proj-header h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: .15rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
         }
 
-        .project-badge {
-            background-color: rgba(255, 255, 255, 0.2);
-            padding: 0.2rem 0.8rem;
+        .proj-badge {
+            background: rgba(255, 255, 255, .2);
             border-radius: 50px;
-            font-size: 0.7rem;
-            font-weight: 600;
-            letter-spacing: 0.5px;
+            font-size: .68rem;
+            padding: .2rem .7rem;
+            font-weight: 700;
+            letter-spacing: .4px;
         }
 
-        .project-content {
+        .proj-sub {
+            font-size: .8rem;
+            opacity: .85;
+        }
+
+        .proj-body {
             padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
         }
 
-        .project-description {
-            color: var(--text-light);
-            font-size: 0.95rem;
-            margin-bottom: 1rem;
+        .proj-desc {
+            color: var(--muted);
+            font-size: .92rem;
+            flex: 1;
         }
 
-        .project-tech {
+        .tech-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
+            gap: .45rem;
         }
 
-        .project-tech span {
-            background-color: #dbeafe;
-            color: var(--primary-color);
-            padding: 0.25rem 0.75rem;
+        .tech-tag {
+            background: var(--blue-xs);
+            color: var(--blue);
+            padding: .2rem .65rem;
             border-radius: 50px;
-            font-size: 0.8rem;
+            font-size: .78rem;
             font-weight: 600;
         }
 
-        .project-tech .tech-version {
-            font-size: 0.7rem;
-            opacity: 0.8;
-            margin-left: 0.2rem;
-        }
-
-        .project-links {
+        .proj-stats {
             display: flex;
             gap: 1rem;
-            border-top: 1px solid #e2e8f0;
-            padding-top: 1rem;
+            flex-wrap: wrap;
         }
 
-        .project-links a {
-            text-decoration: none;
-            color: var(--text-light);
-            font-size: 0.9rem;
+        .proj-stat {
             display: flex;
             align-items: center;
-            gap: 0.3rem;
-            transition: color 0.3s;
+            gap: .35rem;
+            font-size: .82rem;
+            color: var(--muted);
         }
 
-        .project-links a:hover {
-            color: var(--primary-color);
+        .proj-stat i {
+            color: var(--blue);
         }
 
-        .project-links i {
-            font-size: 1rem;
-        }
-
-        .project-stats {
+        .proj-links {
             display: flex;
-            gap: 1rem;
-            margin: 1rem 0;
-            font-size: 0.85rem;
-            color: var(--text-light);
-        }
-
-        .project-stat {
-            display: flex;
+            gap: .75rem;
+            padding-top: .75rem;
+            border-top: 1px solid var(--border);
+            flex-wrap: wrap;
             align-items: center;
-            gap: 0.3rem;
         }
 
-        .project-stat i {
-            color: var(--primary-color);
-        }
-
-        /* Sección Contacto */
-        .contact {
-            background-color: var(--bg-white);
-            border-radius: var(--border-radius);
-            padding: 2.5rem;
-            text-align: center;
-            box-shadow: var(--shadow);
-        }
-
-        .contact h2 {
-            margin-bottom: 1rem;
-        }
-
-        .contact p {
-            color: var(--text-light);
-            margin-bottom: 2rem;
-        }
-
-        .contact-button {
+        .proj-links a {
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
-            background-color: var(--primary-color);
-            color: white;
-            text-decoration: none;
-            padding: 0.75rem 2rem;
-            border-radius: 50px;
-            font-weight: 500;
-            transition: background-color 0.3s, transform 0.3s;
+            gap: .35rem;
+            font-size: .88rem;
+            color: var(--muted);
+            transition: color .25s;
         }
 
-        .contact-button:hover {
-            background-color: #1d4ed8;
+        .proj-links a:hover {
+            color: var(--blue);
+        }
+
+        /* ─── STACK ──────────────────────────────────────────── */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-cat {
+            background: var(--card);
+            border-radius: var(--r);
+            padding: 1.5rem;
+            box-shadow: var(--sh);
+            border: 1px solid var(--border);
+        }
+
+        .skill-cat h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            padding-bottom: .75rem;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .skill-cat h3 i {
+            color: var(--blue);
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .6rem;
+        }
+
+        .skill-tag {
+            background: var(--bg);
+            color: var(--text);
+            padding: .4rem .9rem;
+            border-radius: 50px;
+            font-size: .85rem;
+            font-weight: 500;
+            border: 1px solid var(--border);
+            display: inline-flex;
+            align-items: center;
+            gap: .4rem;
+            transition: all .25s;
+        }
+
+        .skill-tag i {
+            color: var(--blue);
+            font-size: .95rem;
+        }
+
+        .skill-tag:hover {
+            background: var(--blue);
+            color: #fff;
+            border-color: var(--blue);
             transform: translateY(-2px);
         }
 
-        /* Footer */
-        footer {
-            background-color: var(--secondary-color);
-            color: white;
-            text-align: center;
-            padding: 2rem;
-            margin-top: 3rem;
+        .skill-tag:hover i {
+            color: #fff;
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .nav-container {
-                flex-direction: column;
-                gap: 1rem;
-                padding: 1rem;
+        .skill-tag.hi {
+            background: var(--blue-xs);
+            border-color: #bfdbfe;
+            color: var(--blue);
+            font-weight: 700;
+        }
+
+        .skill-tag.hi i {
+            color: var(--blue);
+        }
+
+        /* ─── CERTIFICACIONES ────────────────────────────────── */
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+            gap: 1.4rem;
+        }
+
+        .cert-card {
+            background: var(--card);
+            border-radius: var(--r);
+            padding: 1.4rem;
+            box-shadow: var(--sh);
+            border: 1px solid var(--border);
+            display: flex;
+            gap: 1rem;
+            transition: all .25s;
+        }
+
+        .cert-card:hover {
+            border-color: var(--blue);
+            transform: translateY(-3px);
+            box-shadow: var(--sh-lg);
+        }
+
+        .cert-icon {
+            font-size: 1.8rem;
+            color: var(--blue);
+            min-width: 44px;
+            text-align: center;
+            padding-top: .1rem;
+        }
+
+        .cert-card h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: .2rem;
+        }
+
+        .cert-iss {
+            color: var(--blue);
+            font-size: .85rem;
+            font-weight: 600;
+            margin-bottom: .2rem;
+        }
+
+        .cert-date {
+            color: var(--muted);
+            font-size: .8rem;
+            margin-bottom: .5rem;
+        }
+
+        .cert-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .35rem;
+        }
+
+        .cert-pill {
+            background: var(--blue-xs);
+            color: var(--blue);
+            padding: .15rem .55rem;
+            border-radius: 50px;
+            font-size: .72rem;
+            font-weight: 600;
+        }
+
+        .section-sub {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin: 3rem 0 1.5rem;
+        }
+
+        /* ─── CONTACTO ───────────────────────────────────────── */
+        .contact-box {
+            background: linear-gradient(135deg, var(--blue) 0%, var(--sky) 100%);
+            border-radius: var(--r);
+            padding: 3.5rem 2.5rem;
+            text-align: center;
+            color: #fff;
+        }
+
+        .contact-box h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: .75rem;
+        }
+
+        .contact-box p {
+            opacity: .9;
+            margin-bottom: 2rem;
+            font-size: 1.05rem;
+        }
+
+        .btn-white {
+            background: #fff;
+            color: var(--blue);
+            font-weight: 700;
+        }
+
+        .btn-white:hover {
+            background: #e0e7ff;
+            transform: translateY(-2px);
+        }
+
+        /* ─── FOOTER ─────────────────────────────────────────── */
+        footer {
+            background: var(--dark);
+            color: rgba(255, 255, 255, .7);
+            text-align: center;
+            padding: 2rem;
+            font-size: .9rem;
+        }
+
+        footer a {
+            color: var(--blue-lt);
+        }
+
+        /* ─── RESPONSIVE ─────────────────────────────────────── */
+        @media (max-width: 900px) {
+
+            .two-col,
+            .about-grid {
+                grid-template-columns: 1fr;
             }
 
-            .nav-menu {
-                gap: 1rem;
-                flex-wrap: wrap;
-                justify-content: center;
+            .areas-grid {
+                grid-template-columns: 1fr;
             }
 
             .hero h1 {
                 font-size: 2rem;
             }
+        }
 
-            .about-content {
-                grid-template-columns: 1fr;
-            }
-
-            .cert-grid,
+        @media (max-width: 640px) {
             .projects-grid {
                 grid-template-columns: 1fr;
             }
 
+            .nav-links {
+                gap: .9rem;
+            }
+
+            .nav-links a {
+                font-size: .8rem;
+            }
+
             .container {
-                padding: 2rem 1rem;
+                padding: 2.5rem 1.2rem;
             }
         }
 
-        /* Animaciones */
-        @keyframes fadeInUp {
+        /* ─── ANIMATIONS ─────────────────────────────────────── */
+        @keyframes fadeUp {
             from {
                 opacity: 0;
-                transform: translateY(20px);
+                transform: translateY(18px);
             }
 
             to {
@@ -632,659 +861,531 @@
             }
         }
 
-        @keyframes pulseGlow {
-            0% {
-                box-shadow: 0 0 0 0 rgba(29, 78, 216, 0.4);
-            }
-
-            70% {
-                box-shadow: 0 0 0 10px rgba(29, 78, 216, 0);
-            }
-
-            100% {
-                box-shadow: 0 0 0 0 rgba(29, 78, 216, 0);
-            }
-        }
-
-        .skill-category,
+        .proj-card,
         .cert-card,
-        .project-card,
-        .about-content {
-            animation: fadeInUp 0.6s ease-out forwards;
-        }
-
-        .cta-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background-color: var(--primary-color);
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 50px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            box-shadow: var(--shadow);
-            border: 2px solid var(--primary-color);
-        }
-
-        .cta-button:hover {
-            background-color: #1e3a8a;
-            /* darker blue */
-            border-color: #1e3a8a;
-            transform: translateY(-2px);
-            animation: pulseGlow 1.5s infinite;
-        }
-
-        .cta-button-outline {
-            background-color: transparent;
-            color: var(--primary-color);
-        }
-
-        .cta-button-outline:hover {
-            background-color: rgba(29, 78, 216, 0.05);
-            color: #1e3a8a;
-            animation: none;
-        }
-
-        /* Layout: Sobre Mí + Stack al lado */
-        .about-stack-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin-bottom: 3rem;
-            align-items: start;
-        }
-
-        .about-stack-row .about {
-            margin-bottom: 0;
-        }
-
-        .about-stack-row .skills {
-            margin-bottom: 0;
-        }
-
-        @media (max-width: 900px) {
-            .about-stack-row {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Carrusel SGT */
-        .sgt-carousel {
-            position: relative;
-            width: 100%;
-            overflow: hidden;
-            background: #0f172a;
-            border-bottom: 3px solid var(--primary-color);
-        }
-
-        .sgt-carousel-track {
-            display: flex;
-            transition: transform 0.4s ease;
-        }
-
-        .sgt-slide {
-            min-width: 100%;
-            height: 200px;
-            object-fit: cover;
-            object-position: top;
-            display: block;
-        }
-
-        .sgt-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(29, 78, 216, 0.85);
-            color: white;
-            border: none;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            font-size: 1.2rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background 0.2s;
-            z-index: 10;
-        }
-
-        .sgt-btn:hover {
-            background: var(--primary-color);
-        }
-
-        .sgt-prev {
-            left: 8px;
-        }
-
-        .sgt-next {
-            right: 8px;
-        }
-
-        .sgt-dots {
-            position: absolute;
-            bottom: 6px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 5px;
-        }
-
-        .sgt-dot {
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.4);
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-
-        .sgt-dot.active {
-            background: white;
+        .skill-cat,
+        .area-card {
+            animation: fadeUp .5s ease-out both;
         }
     </style>
 </head>
 
 <body>
-    <!-- Navbar -->
+
+    <!-- ═══ NAVBAR ════════════════════════════════════════════ -->
     <nav class="navbar">
-        <div class="nav-container">
+        <div class="nav-inner">
             <a href="#" class="logo">GM</a>
-            <ul class="nav-menu">
+            <ul class="nav-links">
                 <li><a href="#inicio" class="active">Inicio</a></li>
                 <li><a href="#sobre-mi">Sobre Mí</a></li>
-                <li><a href="#habilidades">Habilidades</a></li>
-                <li><a href="#certificaciones">Cursos</a></li>
                 <li><a href="#proyectos">Proyectos</a></li>
+                <li><a href="#stack">Stack</a></li>
+                <li><a href="#cursos">Cursos</a></li>
                 <li><a href="#contacto">Contacto</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- ═══ HERO ══════════════════════════════════════════════ -->
     <section id="inicio" class="hero">
-        <div class="hero-content">
-            <img src="profile.jpg" alt="Guadalupe Mendoza" class="profile-img">
+        <div class="hero-inner">
+            <img src="profile.jpg" alt="Guadalupe Mendoza" class="avatar">
             <h1>Guadalupe Mendoza</h1>
-            <h2>Desarrolladora Full Stack | Analista en Sistemas</h2>
-            <div class="contact-info"
-                style="margin-bottom: 1.5rem; color: var(--text-light); display: flex; gap: 1rem; justify-content: center; font-size: 0.95rem; font-weight: 500;">
-                <span><i class="fas fa-map-marker-alt"></i> Misiones, Argentina</span>
-                <span><i class="fab fa-whatsapp"></i> +54 376 489-5145</span>
+            <div class="hero-role">Desarrolladora Full Stack · Analista en Sistemas</div>
+            <div class="hero-meta">
+                <span><i class="fas fa-map-marker-alt"></i>Misiones, Argentina</span>
+                <span><i class="fab fa-whatsapp"></i>+54 376 489-5145</span>
+                <span><i class="fas fa-envelope"></i>guuamendoza@gmail.com</span>
             </div>
-            <p>Desarrolladora full-stack con experiencia en Spring Boot, PostgreSQL, Docker y tecnologías modernas.
-                Apasionada por crear soluciones escalables y eficientes.</p>
-            <div class="social-links" style="margin-bottom: 2rem;">
-                <a href="https://github.com/gmmendoza" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
-                <a href="https://www.linkedin.com/in/gmmendoza/" target="_blank" rel="noopener"><i
-                        class="fab fa-linkedin"></i></a>
-                <a href="mailto:guuamendoza@gmail.com"><i class="fas fa-envelope"></i></a>
+            <p class="hero-bio">Desarrolladora full-stack apasionada por crear soluciones escalables y eficientes.
+                Especializada en el ecosistema Spring Boot y Java 17.</p>
+            <div class="social-row">
+                <a href="https://github.com/gmmendoza" target="_blank" rel="noopener" title="GitHub"><i
+                        class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/gmmendoza/" target="_blank" rel="noopener" title="LinkedIn"><i
+                        class="fab fa-linkedin-in"></i></a>
+                <a href="mailto:guuamendoza@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
             </div>
-            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-                <a href="#contacto" class="cta-button">Contrátame <i class="fas fa-paper-plane"></i></a>
-                <a href="cv.html" target="_blank" class="cta-button cta-button-outline">CV <i
-                        class="fas fa-external-link-alt"></i></a>
+            <div class="hero-btns">
+                <a href="#contacto" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Contrátame</a>
+                <a href="cv.html" target="_blank" class="btn btn-outline"><i class="fas fa-file-alt"></i> Ver CV</a>
             </div>
         </div>
     </section>
 
+    <!-- ═══ CONTENIDO PRINCIPAL ════════════════════════════════ -->
     <div class="container">
-        <!-- Sobre Mí + Stack lado a lado -->
-        <div class="about-stack-row">
-            <!-- Sobre Mí -->
-            <section id="sobre-mi" class="about">
-                <h2 class="section-title">Sobre Mí</h2>
-                <div class="about-content">
+
+        <!-- ── SOBRE MÍ ──────────────────────────────────────── -->
+        <section id="sobre-mi" class="section-gap">
+            <h2 class="section-title">Sobre Mí</h2>
+            <div class="card card-pad">
+                <div class="about-grid">
                     <div class="about-text">
-                        <p>¡Hola! Soy Guadalupe, estudiante avanzada de dos carreras: Licenciatura en Sistemas de
-                            Información y Analista en Sistemas de Computación. Esta doble formación me ha dado una
-                            visión
-                            integral del desarrollo de software, desde la programación hasta el análisis y diseño de
-                            sistemas.</p>
-                        <p>Me especializo en el desarrollo backend con Java y Spring Boot, pero también tengo
-                            experiencia en
-                            frontend con Thymeleaf, Tailwind CSS y JavaScript. Me encanta trabajar con bases de datos
-                            relacionales y tengo conocimientos en contenedorización con Docker.</p>
+                        <p>¡Hola! Soy Guadalupe, estudiante avanzada de dos carreras: <strong>Licenciatura en Sistemas
+                                de Información</strong> y <strong>Analista en Sistemas de Computación</strong>. Esta
+                            doble formación me ha dado una visión integral del desarrollo de software, desde la
+                            programación hasta el análisis y diseño de sistemas.</p>
+                        <p>Me especializo en el desarrollo backend con <strong>Java y Spring Boot</strong>, pero también
+                            tengo experiencia en frontend con Thymeleaf, Tailwind CSS y JavaScript. Me encanta trabajar
+                            con bases de datos relacionales y tengo conocimientos en contenedorización con Docker.</p>
                         <p>Actualmente estoy buscando mi primera oportunidad profesional para aportar mis conocimientos,
                             seguir aprendiendo y crecer en un equipo dinámico.</p>
                     </div>
-                    <div class="sidebar-info">
-                        <div class="education">
-                            <div class="education-item">
+                    <div>
+                        <h4
+                            style="font-size:1rem;font-weight:700;color:var(--dark);margin-bottom:.9rem;padding-bottom:.5rem;border-bottom:2px solid var(--border);">
+                            Idiomas</h4>
+                        <div class="lang-row">
+                            <span class="lang-badge">🇦🇷 Español — Nativo</span>
+                            <span class="lang-badge">🇬🇧 Inglés — Técnico</span>
+                        </div>
+                        <h4
+                            style="font-size:1rem;font-weight:700;color:var(--dark);margin:1.5rem 0 .9rem;padding-bottom:.5rem;border-bottom:2px solid var(--border);">
+                            Intereses</h4>
+                        <div class="lang-row">
+                            <span class="lang-badge">☁️ Cloud</span>
+                            <span class="lang-badge">🔒 Ciberseguridad</span>
+                            <span class="lang-badge">📊 Data Science</span>
+                            <span class="lang-badge">⚙️ DevOps</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── FORMACIÓN + ÁREAS ──────────────────────────────── -->
+        <section class="section-gap">
+            <div class="two-col">
+
+                <!-- Formación Académica -->
+                <div>
+                    <h2 class="section-title">Formación Académica</h2>
+                    <div class="card card-pad">
+                        <div class="edu-timeline">
+                            <div class="edu-item">
                                 <h4>Licenciatura en Sistemas de Información</h4>
-                                <div class="place">Universidad Nacional de Misiones </div>
-                                <div class="date"> Presente</div>
+                                <div class="inst">Universidad Nacional de Misiones</div>
+                                <div class="date"><i class="far fa-calendar-alt"></i> En curso — Presente</div>
                             </div>
-                            <div class="education-item">
+                            <div class="edu-item">
                                 <h4>Analista en Sistemas de Computación</h4>
-                                <div class="place">Universidad Nacional de Misiones </div>
-                                <div class="date"> Presente </div>
+                                <div class="inst">Universidad Nacional de Misiones</div>
+                                <div class="date"><i class="far fa-calendar-alt"></i> En curso — Presente</div>
                             </div>
-                            <div class="education-item">
+                            <div class="edu-item">
                                 <h4>Analista Personal y Prof. en Informática</h4>
-                                <div class="place">EPET N° 1 - Misiones</div>
-                                <div class="date"> 2017 </div>
-                            </div>
-                        </div>
-                        <div class="languages" style="margin-top: 2.5rem;">
-                            <h4
-                                style="font-size: 1.2rem; color: var(--text-dark); margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid #e2e8f0;">
-                                Idiomas</h4>
-                            <div style="margin-bottom: 0.8rem;">
-                                <span style="font-weight: 600; color: var(--primary-color);">Español:</span> Nativo
-                            </div>
-                            <div>
-                                <span style="font-weight: 600; color: var(--primary-color);">Inglés:</span> Técnico
-                                (Lectura)
+                                <div class="inst">EPET N° 1 — Misiones</div>
+                                <div class="date"><i class="far fa-calendar-alt"></i> 2017</div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </section>
 
-            <!-- Stack Tecnológico -->
-            <section id="habilidades" class="skills">
-                <h2 class="section-title">Stack Tecnológico</h2>
-                <div class="skills-grid">
-                    <!-- Backend -->
-                    <div class="skill-category">
-                        <h3><i class="fas fa-server"></i> Backend</h3>
-                        <div class="skill-items">
-                            <span class="skill-tag highlight"><i class="fab fa-java"></i> Spring Boot 3.2.2 <span
-                                    class="skill-version">v3.2.2</span></span>
-                            <span class="skill-tag"><i class="fas fa-database"></i> Spring Data JPA</span>
-                            <span class="skill-tag"><i class="fas fa-shield-alt"></i> Spring Security</span>
-                            <span class="skill-tag"><i class="fab fa-java"></i> Java 17</span>
-                            <span class="skill-tag"><i class="fas fa-lock"></i> JWT / OAuth2</span>
-                        </div>
-                    </div>
-
-                    <!-- Base de Datos -->
-                    <div class="skill-category">
-                        <h3><i class="fas fa-database"></i> Base de Datos</h3>
-                        <div class="skill-items">
-                            <span class="skill-tag highlight"><i class="fas fa-database"></i> PostgreSQL 15 <span
-                                    class="skill-version">v15</span></span>
-                            <span class="skill-tag"><i class="fas fa-database"></i> MySQL</span>
-                            <span class="skill-tag"><i class="fas fa-chart-line"></i> Optimización SQL</span>
-                            <span class="skill-tag"><i class="fas fa-project-diagram"></i> Modelado de datos</span>
-                        </div>
-                    </div>
-
-                    <!-- Frontend -->
-                    <div class="skill-category">
-                        <h3><i class="fas fa-code"></i> Frontend</h3>
-                        <div class="skill-items">
-                            <span class="skill-tag"><i class="fab fa-java"></i> Thymeleaf</span>
-                            <span class="skill-tag highlight"><i class="fab fa-css3-alt"></i> Tailwind CSS</span>
-                            <span class="skill-tag"><i class="fab fa-js"></i> JavaScript</span>
-                            <span class="skill-tag"><i class="fas fa-chart-pie"></i> Chart.js</span>
-                            <span class="skill-tag"><i class="fab fa-html5"></i> HTML5</span>
-                            <span class="skill-tag"><i class="fab fa-css3"></i> CSS3</span>
-                        </div>
-                    </div>
-
-                    <!-- Contenedorización -->
-                    <div class="skill-category">
-                        <h3><i class="fab fa-docker"></i> DevOps</h3>
-                        <div class="skill-items">
-                            <span class="skill-tag highlight"><i class="fab fa-docker"></i> Docker</span>
-                            <span class="skill-tag"><i class="fab fa-docker"></i> Docker Compose</span>
-                            <span class="skill-tag"><i class="fas fa-code-branch"></i> Git</span>
-                            <span class="skill-tag"><i class="fab fa-github"></i> GitHub</span>
-                            <span class="skill-tag"><i class="fas fa-cloud"></i> Render</span>
+                <!-- Áreas de Desarrollo -->
+                <div>
+                    <h2 class="section-title">Áreas de Desarrollo</h2>
+                    <div class="card card-pad">
+                        <div class="areas-grid">
+                            <div class="area-card">
+                                <div class="area-icon"><i class="fas fa-drafting-compass"></i></div>
+                                <div>
+                                    <h4>Ingeniería de Software</h4>
+                                    <p>Ciclo de vida, metodologías ágiles, pruebas, mantenimiento y documentación.</p>
+                                </div>
+                            </div>
+                            <div class="area-card">
+                                <div class="area-icon"><i class="fas fa-project-diagram"></i></div>
+                                <div>
+                                    <h4>Análisis de Sistemas</h4>
+                                    <p>Levantamiento de requerimientos, modelado UML, casos de uso y especificaciones.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="area-card">
+                                <div class="area-icon"><i class="fas fa-brain"></i></div>
+                                <div>
+                                    <h4>Algoritmos &amp; Estructuras</h4>
+                                    <p>Diseño de algoritmos eficientes, complejidad, ordenamiento y búsqueda.</p>
+                                </div>
+                            </div>
+                            <div class="area-card">
+                                <div class="area-icon"><i class="fas fa-cube"></i></div>
+                                <div>
+                                    <h4>Programación OOP</h4>
+                                    <p>Encapsulamiento, herencia, polimorfismo y abstracción aplicados en Java.</p>
+                                </div>
+                            </div>
+                            <div class="area-card" style="grid-column: 1 / -1;">
+                                <div class="area-icon"><i class="fas fa-shapes"></i></div>
+                                <div>
+                                    <h4>Patrones de Diseño</h4>
+                                    <p>GoF: Singleton, Factory, Builder, Observer, Strategy, Repository y MVC en
+                                        proyectos reales con Spring Boot.</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </section>
-        </div><!-- /.about-stack-row -->
 
-        <!-- Certificaciones y Cursos -->
-        <section id="certificaciones" class="certifications">
+            </div>
+        </section>
+
+        <!-- ── PROYECTOS DESTACADOS ───────────────────────────── -->
+        <section id="proyectos" class="section-gap">
+            <h2 class="section-title">Proyectos Destacados</h2>
+            <div class="projects-grid">
+
+                <!-- Proyecto: Agrosystem -->
+                <div class="proj-card">
+                    <div class="proj-carousel" id="agro-c">
+                        <div class="proj-carousel-track" id="agro-t">
+                            <div class="proj-placeholder">
+                                <i class="fas fa-seedling"></i>
+                                <span>Demo disponible online</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="proj-header">
+                        <h3>Agrosystem <span class="proj-badge">Completado v1.0</span></h3>
+                        <div class="proj-sub">Proyecto final — POO 2</div>
+                    </div>
+                    <div class="proj-body">
+                        <div class="tech-tags">
+                            <span class="tech-tag">Spring Boot 3.2</span>
+                            <span class="tech-tag">Spring Security</span>
+                            <span class="tech-tag">JWT</span>
+                            <span class="tech-tag">PostgreSQL 15</span>
+                            <span class="tech-tag">Tailwind CSS</span>
+                            <span class="tech-tag">Chart.js</span>
+                            <span class="tech-tag">Docker</span>
+                        </div>
+                        <p class="proj-desc">Sistema de gestión integral para pymes. Incluye motor de autenticación
+                            propio vía JWT, control de roles (RBAC) y un panel de analítica graficando datos en tiempo
+                            real.</p>
+                        <div class="proj-stats">
+                            <span class="proj-stat"><i class="fas fa-lock"></i> JWT + RBAC</span>
+                            <span class="proj-stat"><i class="fas fa-chart-line"></i> Dashboard</span>
+                            <span class="proj-stat"><i class="fab fa-docker"></i> Dockerizado</span>
+                        </div>
+                        <div class="proj-links">
+                            <a href="https://poo2-app-3hqw.onrender.com/" target="_blank" rel="noopener"
+                                class="btn btn-primary" style="padding:.45rem 1.1rem;font-size:.85rem;">
+                                <i class="fas fa-play-circle"></i> Ver Demo
+                            </a>
+                            <a href="https://github.com/gmmendoza/poo2-app" target="_blank" rel="noopener"><i
+                                    class="fab fa-github"></i> Código</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Proyecto: Panadería El Aromo -->
+                <div class="proj-card">
+                    <div class="proj-carousel" id="pan-c">
+                        <div class="proj-carousel-track" id="pan-t">
+                            <img src="imagenes/panaderia/pan-ventas.png" alt="El Aromo — Caja & Ventas"
+                                class="proj-slide">
+                            <img src="imagenes/panaderia/pan-ventas2.png" alt="El Aromo — Ventas detalle"
+                                class="proj-slide">
+                            <img src="imagenes/panaderia/pan-recetario.png" alt="El Aromo — Recetario"
+                                class="proj-slide">
+                            <img src="imagenes/panaderia/pan-home.png" alt="El Aromo — Panel de Control"
+                                class="proj-slide">
+                        </div>
+                        <button class="carousel-btn carousel-prev" onclick="cMove('pan',−1)">&#8249;</button>
+                        <button class="carousel-btn carousel-next" onclick="cMove('pan',1)">&#8250;</button>
+                        <div class="carousel-dots" id="pan-d"></div>
+                    </div>
+                    <div class="proj-header">
+                        <h3>Gestión de Panadería <span class="proj-badge">Demo</span></h3>
+                        <div class="proj-sub">Sistema de Producción — El Aromo</div>
+                    </div>
+                    <div class="proj-body">
+                        <div class="tech-tags">
+                            <span class="tech-tag">HTML/CSS/JS</span>
+                            <span class="tech-tag">LocalStorage</span>
+                            <span class="tech-tag">PostgreSQL</span>
+                            <span class="tech-tag">Spring Boot</span>
+                            <span class="tech-tag">API REST</span>
+                        </div>
+                        <p class="proj-desc">Sistema frontend completo para gestión de una panadería. Incluye punto de
+                            venta (POS) con carrito y ticket, recetario & calculadora de producción, inventario & stock
+                            e historial de clientes.</p>
+                        <div class="proj-stats">
+                            <span class="proj-stat"><i class="fas fa-cash-register"></i> POS</span>
+                            <span class="proj-stat"><i class="fas fa-book-open"></i> Recetario</span>
+                            <span class="proj-stat"><i class="fas fa-boxes"></i> Inventario</span>
+                        </div>
+                        <div class="proj-links">
+                            <a href="demo-panaderia.html" target="_blank" rel="noopener" class="btn btn-primary"
+                                style="padding:.45rem 1.1rem;font-size:.85rem;">
+                                <i class="fas fa-play-circle"></i> Ver Demo
+                            </a>
+                            <a href="#"><i class="fas fa-lock"></i> Código Privado</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Proyecto: SGT -->
+                <div class="proj-card">
+                    <div class="proj-carousel" id="sgt-c">
+                        <div class="proj-carousel-track" id="sgt-t">
+                            <img src="imagenes/sgt/sgt-dashboard.png" alt="SGT — Panel de Control" class="proj-slide">
+                            <img src="imagenes/sgt/sgt-tienda.png" alt="SGT — Tienda Online" class="proj-slide">
+                            <img src="imagenes/sgt/sgt-ventas.png" alt="SGT — Ventas Online" class="proj-slide">
+                            <img src="imagenes/sgt/sgt-panel.png" alt="SGT — Control Precios" class="proj-slide">
+                            <img src="imagenes/sgt/sgt-proveedores.png" alt="SGT — Proveedores" class="proj-slide">
+                        </div>
+                        <button class="carousel-btn carousel-prev" onclick="cMove('sgt',−1)">&#8249;</button>
+                        <button class="carousel-btn carousel-next" onclick="cMove('sgt',1)">&#8250;</button>
+                        <div class="carousel-dots" id="sgt-d"></div>
+                    </div>
+                    <div class="proj-header">
+                        <h3>Sistema de Gestión Textil <span class="proj-badge">SGT</span></h3>
+                        <div class="proj-sub">Trabajo Final — Analista en Sistemas</div>
+                    </div>
+                    <div class="proj-body">
+                        <div class="tech-tags">
+                            <span class="tech-tag">PHP</span>
+                            <span class="tech-tag">Laravel</span>
+                            <span class="tech-tag">MySQL</span>
+                            <span class="tech-tag">jQuery</span>
+                            <span class="tech-tag">Bootstrap</span>
+                        </div>
+                        <p class="proj-desc">Sistema completo para gestión de procesos textiles. Múltiples módulos para
+                            gestión integral de operarios, producción, stock, control de precios, tienda online y
+                            reportes en PDF.</p>
+                        <div class="proj-stats">
+                            <span class="proj-stat"><i class="fas fa-sitemap"></i> Modular</span>
+                            <span class="proj-stat"><i class="fas fa-store"></i> Tienda Online</span>
+                            <span class="proj-stat"><i class="fas fa-file-pdf"></i> Reportes PDF</span>
+                        </div>
+                        <div class="proj-links">
+                            <a href="#"><i class="fas fa-lock"></i> Repositorio Privado</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ── STACK TECNOLÓGICO ─────────────────────────────── -->
+        <section id="stack" class="section-gap">
+            <h2 class="section-title">Stack Tecnológico</h2>
+            <div class="skills-grid">
+                <div class="skill-cat">
+                    <h3><i class="fas fa-server"></i> Backend</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag hi"><i class="fab fa-java"></i> Spring Boot 3.2</span>
+                        <span class="skill-tag"><i class="fas fa-database"></i> Spring Data JPA</span>
+                        <span class="skill-tag"><i class="fas fa-shield-alt"></i> Spring Security</span>
+                        <span class="skill-tag"><i class="fab fa-java"></i> Java 17</span>
+                        <span class="skill-tag"><i class="fas fa-lock"></i> JWT / OAuth2</span>
+                    </div>
+                </div>
+                <div class="skill-cat">
+                    <h3><i class="fas fa-database"></i> Base de Datos</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag hi"><i class="fas fa-database"></i> PostgreSQL 15</span>
+                        <span class="skill-tag"><i class="fas fa-database"></i> MySQL</span>
+                        <span class="skill-tag"><i class="fas fa-chart-line"></i> Optimización SQL</span>
+                        <span class="skill-tag"><i class="fas fa-project-diagram"></i> Modelado de Datos</span>
+                    </div>
+                </div>
+                <div class="skill-cat">
+                    <h3><i class="fas fa-code"></i> Frontend</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag"><i class="fab fa-html5"></i> HTML5</span>
+                        <span class="skill-tag"><i class="fab fa-css3-alt"></i> CSS3</span>
+                        <span class="skill-tag"><i class="fab fa-js"></i> JavaScript</span>
+                        <span class="skill-tag hi"><i class="fab fa-css3-alt"></i> Tailwind CSS</span>
+                        <span class="skill-tag"><i class="fab fa-java"></i> Thymeleaf</span>
+                        <span class="skill-tag"><i class="fas fa-chart-pie"></i> Chart.js</span>
+                    </div>
+                </div>
+                <div class="skill-cat">
+                    <h3><i class="fab fa-docker"></i> DevOps &amp; Herramientas</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag hi"><i class="fab fa-docker"></i> Docker</span>
+                        <span class="skill-tag"><i class="fab fa-docker"></i> Docker Compose</span>
+                        <span class="skill-tag"><i class="fas fa-code-branch"></i> Git</span>
+                        <span class="skill-tag"><i class="fab fa-github"></i> GitHub</span>
+                        <span class="skill-tag"><i class="fas fa-cloud"></i> Render</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── CERTIFICACIONES Y CURSOS ──────────────────────── -->
+        <section id="cursos" class="section-gap">
             <h2 class="section-title">Certificaciones y Cursos</h2>
             <div class="cert-grid">
-                <!-- Curso 1: Spring Boot -->
                 <div class="cert-card">
-                    <div class="cert-icon">
-                        <i class="fab fa-java"></i>
-                    </div>
-                    <div class="cert-content">
-                        <h3 class="cert-title">Spring Boot 3: Desarrollo de APIs REST</h3>
-                        <div class="cert-issuer">Udemy</div>
+                    <div class="cert-icon"><i class="fab fa-java"></i></div>
+                    <div>
+                        <h4>Spring Boot 3: APIs REST</h4>
+                        <div class="cert-iss">Udemy</div>
                         <div class="cert-date"><i class="far fa-calendar-alt"></i> 2024</div>
-                        <p class="project-description" style="margin-bottom: 0.5rem;">Desarrollo de aplicaciones
-                            empresariales con Spring Boot 3.2, Spring Data JPA, Spring Security y despliegue en la
-                            nube.
-                        </p>
-                        <div class="cert-skills">
-                            <span>Spring Boot 3.2</span>
-                            <span>Spring Security</span>
-                            <span>JPA</span>
-                            <span>REST APIs</span>
-                        </div>
-                        <a href="#" class="cert-link">Ver certificado <i class="fas fa-external-link-alt"></i></a>
+                        <div class="cert-pills"><span class="cert-pill">Spring Boot 3.2</span><span
+                                class="cert-pill">Spring Security</span><span class="cert-pill">JPA</span></div>
                     </div>
                 </div>
-
-                <!-- Curso 2: Docker -->
                 <div class="cert-card">
-                    <div class="cert-icon">
-                        <i class="fab fa-docker"></i>
-                    </div>
-                    <div class="cert-content">
-                        <h3 class="cert-title">Docker y Contenedores</h3>
-                        <div class="cert-issuer">Platzi</div>
+                    <div class="cert-icon"><i class="fab fa-docker"></i></div>
+                    <div>
+                        <h4>Docker y Contenedores</h4>
+                        <div class="cert-iss">Platzi</div>
                         <div class="cert-date"><i class="far fa-calendar-alt"></i> 2024</div>
-                        <p class="project-description" style="margin-bottom: 0.5rem;">Contenedorización de
-                            aplicaciones,
-                            Docker Compose, networking y buenas prácticas para entornos de desarrollo y producción.
-                        </p>
-                        <div class="cert-skills">
-                            <span>Docker</span>
-                            <span>Docker Compose</span>
-                            <span>Contenedores</span>
-                        </div>
-                        <a href="#" class="cert-link">Ver certificado <i class="fas fa-external-link-alt"></i></a>
+                        <div class="cert-pills"><span class="cert-pill">Docker</span><span class="cert-pill">Docker
+                                Compose</span></div>
                     </div>
                 </div>
-
-                <!-- Curso 3: PostgreSQL -->
                 <div class="cert-card">
-                    <div class="cert-icon">
-                        <i class="fas fa-database"></i>
-                    </div>
-                    <div class="cert-content">
-                        <h3 class="cert-title">PostgreSQL 15: Administración y Optimización</h3>
-                        <div class="cert-issuer">Coursera</div>
+                    <div class="cert-icon"><i class="fas fa-database"></i></div>
+                    <div>
+                        <h4>PostgreSQL 15: Administración</h4>
+                        <div class="cert-iss">Coursera</div>
                         <div class="cert-date"><i class="far fa-calendar-alt"></i> 2023</div>
-                        <p class="project-description" style="margin-bottom: 0.5rem;">Diseño de bases de datos,
-                            consultas complejas, índices, optimización de rendimiento y administración.</p>
-                        <div class="cert-skills">
-                            <span>PostgreSQL 15</span>
-                            <span>SQL avanzado</span>
-                            <span>Optimización</span>
-                        </div>
-                        <a href="#" class="cert-link">Ver certificado <i class="fas fa-external-link-alt"></i></a>
+                        <div class="cert-pills"><span class="cert-pill">PostgreSQL 15</span><span class="cert-pill">SQL
+                                avanzado</span></div>
                     </div>
                 </div>
-
-                <!-- Curso 4: Tailwind CSS -->
                 <div class="cert-card">
-                    <div class="cert-icon">
-                        <i class="fab fa-css3-alt"></i>
-                    </div>
-                    <div class="cert-content">
-                        <h3 class="cert-title">Tailwind CSS: Diseño Moderno</h3>
-                        <div class="cert-issuer">Frontend Masters</div>
+                    <div class="cert-icon"><i class="fab fa-css3-alt"></i></div>
+                    <div>
+                        <h4>Tailwind CSS: Diseño Moderno</h4>
+                        <div class="cert-iss">Frontend Masters</div>
                         <div class="cert-date"><i class="far fa-calendar-alt"></i> 2023</div>
-                        <p class="project-description" style="margin-bottom: 0.5rem;">Diseño de interfaces
-                            responsivas
-                            con Tailwind CSS, componentes reutilizables y mejores prácticas.</p>
-                        <div class="cert-skills">
-                            <span>Tailwind CSS</span>
-                            <span>Responsive Design</span>
-                            <span>UI/UX</span>
-                        </div>
-                        <a href="#" class="cert-link">Ver certificado <i class="fas fa-external-link-alt"></i></a>
+                        <div class="cert-pills"><span class="cert-pill">Tailwind CSS</span><span
+                                class="cert-pill">Responsive Design</span></div>
                     </div>
                 </div>
             </div>
 
-            <h3
-                style="font-size: 1.5rem; color: var(--text-dark); margin: 4rem 0 2rem; text-align: center; font-weight: 700;">
-                Seminarios y Formación Complementaria</h3>
+            <p class="section-sub">Seminarios y Formación Complementaria</p>
             <div class="cert-grid">
                 <div class="cert-card">
                     <div class="cert-icon"><i class="fas fa-shield-alt"></i></div>
-                    <div class="cert-content">
-                        <h3 class="cert-title">Introducción a la Ciberseguridad</h3>
-                        <div class="cert-issuer">Silicon Misiones</div>
+                    <div>
+                        <h4>Introducción a la Ciberseguridad</h4>
+                        <div class="cert-iss">Silicon Misiones</div>
                         <div class="cert-date"><i class="far fa-calendar-alt"></i> 2024</div>
                     </div>
                 </div>
                 <div class="cert-card">
                     <div class="cert-icon"><i class="fas fa-chart-bar"></i></div>
-                    <div class="cert-content">
-                        <h3 class="cert-title">Fundamentos de Data Science</h3>
-                        <div class="cert-issuer">Santander</div>
+                    <div>
+                        <h4>Fundamentos de Data Science</h4>
+                        <div class="cert-iss">Santander</div>
                         <div class="cert-date"><i class="far fa-calendar-alt"></i> 2024</div>
                     </div>
                 </div>
                 <div class="cert-card">
                     <div class="cert-icon"><i class="fas fa-users-cog"></i></div>
-                    <div class="cert-content">
-                        <h3 class="cert-title">Metodologías Ágiles / Scrum</h3>
-                        <div class="cert-issuer">Santander</div>
+                    <div>
+                        <h4>Metodologías Ágiles / Scrum</h4>
+                        <div class="cert-iss">Santander</div>
                         <div class="cert-date"><i class="far fa-calendar-alt"></i> 2023</div>
                     </div>
                 </div>
                 <div class="cert-card">
                     <div class="cert-icon"><i class="fas fa-share-alt"></i></div>
-                    <div class="cert-content">
-                        <h3 class="cert-title">Community Manager</h3>
-                        <div class="cert-issuer">Silicon Misiones</div>
+                    <div>
+                        <h4>Community Manager</h4>
+                        <div class="cert-iss">Silicon Misiones</div>
                         <div class="cert-date"><i class="far fa-calendar-alt"></i> 2023</div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Proyectos - ACTUALIZADOS con tu proyecto real de POO2 -->
-        <section id="proyectos" class="projects">
-            <h2 class="section-title">Proyectos Destacados</h2>
-            <div class="projects-grid">
-                <!-- Proyecto 1: Agrosystem -->
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>Agrosystem - Sistema de Gestión <span class="project-badge">Completado v1.0</span></h3>
-                        <div style="font-size: 0.8rem; opacity: 0.9;">Proyecto final de POO2</div>
-                    </div>
-                    <div class="project-content">
-                        <div class="project-tech">
-                            <span>Spring Boot 3.2.2</span>
-                            <span>Spring Data JPA</span>
-                            <span>Spring Security</span>
-                            <span>PostgreSQL 15</span>
-                            <span>Tailwind CSS</span>
-                            <span>Chart.js</span>
-                            <span>Docker</span>
-                        </div>
-                        <p class="project-description">
-                            Sistema de gestión integral para pymes desarrollado como proyecto final. Incluye motor
-                            de
-                            autenticación propio vía JWT, control de roles (RBAC) y un panel principal de analítica
-                            graficando datos en tiempo real.
-                        </p>
-                        <div class="project-stats">
-                            <span class="project-stat"><i class="fas fa-lock"></i> JWT + Roles</span>
-                            <span class="project-stat"><i class="fas fa-chart-line"></i> Dashboard</span>
-                            <span class="project-stat"><i class="fas fa-docker"></i> Dockerizado</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://poo2-app-3hqw.onrender.com/" target="_blank" rel="noopener"
-                                class="contact-button"
-                                style="padding: 0.5rem 1rem; margin-top: 10px; font-size: 0.9rem; color: white;">
-                                <i class="fas fa-play-circle"></i> Ver Demo Agrosystem
-                            </a>
-                            <a href="https://github.com/gmmendoza/poo2-app" target="_blank" rel="noopener"
-                                style="margin-top: 10px; margin-left: 15px;"><i class="fab fa-github"></i> Código
-                                Fuente</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Proyecto 2: Demo Panadería -->
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>Gestión de Panadería <span class="project-badge">Demo</span></h3>
-                        <div style="font-size: 0.8rem; opacity: 0.9;">Sistema de Producción</div>
-                    </div>
-                    <div class="project-content">
-                        <div class="project-tech">
-                            <span>PostgreSQL</span>
-                            <span>Java Spring Boot</span>
-                            <span>Backend</span>
-                            <span>API REST</span>
-                        </div>
-                        <p class="project-description">
-                            Sistema backend diseñado para la gestión de producción de la panadería "El Aromo".
-                            Incluye
-                            modelo de base de datos relacional para control de stock, gestión de proveedores y
-                            alertas
-                            automáticas de bajo inventario.
-                        </p>
-                        <div class="project-stats">
-                            <span class="project-stat"><i class="fas fa-database"></i> bd2025</span>
-                            <span class="project-stat"><i class="fas fa-bell"></i> Alertas</span>
-                        </div>
-                        <div class="project-links" style="flex-wrap: wrap; gap: 0.75rem; align-items: center;">
-                            <a href="demo-panaderia.html" target="_blank" rel="noopener" class="contact-button"
-                                style="padding: 0.5rem 1rem; font-size: 0.9rem; color: white;">
-                                <i class="fas fa-play-circle"></i> Ver Demo
-                            </a>
-                            <a href="#" target="_blank" rel="noopener"><i class="fab fa-github"></i> Código
-                                Privado</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Proyecto 3: SGT -->
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>Sistema de Gestión Textil (SGT)</h3>
-                        <div style="font-size: 0.8rem; opacity: 0.9;">Analista en Sistemas</div>
-                    </div>
-                    <!-- Carrusel de imágenes SGT -->
-                    <div class="sgt-carousel" id="sgtCarousel">
-                        <div class="sgt-carousel-track" id="sgtTrack">
-                            <img src="imagenes/sgt/sgt-panel.png" alt="SGT Control de Precios" class="sgt-slide">
-                            <img src="imagenes/sgt/sgt-dashboard.png" alt="SGT Panel de Control" class="sgt-slide">
-                            <img src="imagenes/sgt/sgt-tienda.png" alt="SGT Tienda Online" class="sgt-slide">
-                            <img src="imagenes/sgt/sgt-ventas.png" alt="SGT Ventas Online" class="sgt-slide">
-                            <img src="imagenes/sgt/sgt-proveedores.png" alt="SGT Ofertas Proveedores" class="sgt-slide">
-                        </div>
-                        <button class="sgt-btn sgt-prev" onclick="sgtMove(-1)">&#8249;</button>
-                        <button class="sgt-btn sgt-next" onclick="sgtMove(1)">&#8250;</button>
-                        <div class="sgt-dots" id="sgtDots"></div>
-                    </div>
-                    <div class="project-content">
-                        <div class="project-tech">
-                            <span>PHP</span>
-                            <span>Laravel</span>
-                            <span>MySQL</span>
-                            <span>jQuery</span>
-                            <span>Bootstrap</span>
-                        </div>
-                        <p class="project-description">
-                            Sistema completo para gestión de procesos textiles. Trabajo final para Analista en
-                            Sistemas,
-                            cuenta con múltiples módulos para la gestión integral de operarios, producción, stock y
-                            reportes de control.
-                        </p>
-                        <div class="project-stats">
-                            <span class="project-stat"><i class="fas fa-sitemap"></i> Modular</span>
-                            <span class="project-stat"><i class="fas fa-file-invoice"></i> Reportes PDF</span>
-                            <span class="project-stat"><i class="fas fa-store"></i> Tienda Online</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="#" target="_blank" rel="noopener"><i class="fas fa-lock"></i> Repositorio
-                                Privado</a>
-                        </div>
-                    </div>
-                </div>
+        <!-- ── CONTACTO ──────────────────────────────────────── -->
+        <section id="contacto" class="section-gap">
+            <div class="contact-box">
+                <h2>¿Hablamos?</h2>
+                <p>Estoy abierta a nuevas oportunidades como desarrolladora backend Java o full-stack.<br>Si te interesa
+                    mi perfil, ¡escribime!</p>
+                <a href="mailto:guuamendoza@gmail.com" class="btn btn-white">
+                    <i class="fas fa-paper-plane"></i> guuamendoza@gmail.com
+                </a>
             </div>
         </section>
 
-        <!-- Contacto -->
-        <section id="contacto" class="contact">
-            <h2 class="section-title">¿Hablamos?</h2>
-            <p>Estoy abierta a nuevas oportunidades como desarrolladora backend Java o full-stack. Si te interesa mi
-                perfil, ¡escribime!</p>
-            <a href="mailto:guuamendoza@gmail.com" class="contact-button">
-                <i class="fas fa-paper-plane"></i> guuamendoza@gmail.com
-            </a>
-        </section>
-    </div>
+    </div><!-- /.container -->
 
-    <!-- Footer -->
     <footer>
-        <p>© 2024 Guadalupe Mendoza. Todos los derechos reservados.</p>
-        <p style="margin-top: 0.5rem; font-size: 0.9rem; opacity: 0.8;">Diseñado y desarrollado con 💻 por Guadalupe
+        <p>© 2025 Guadalupe Mendoza · Diseñado y desarrollado con 💙</p>
+        <p style="margin-top:.4rem;font-size:.8rem;">
+            <a href="https://github.com/gmmendoza" target="_blank" rel="noopener">GitHub</a> ·
+            <a href="https://www.linkedin.com/in/gmmendoza/" target="_blank" rel="noopener">LinkedIn</a>
         </p>
     </footer>
 
     <script>
-        // Smooth scrolling para los links del navbar
-        document.querySelectorAll('.nav-menu a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+        // ── Carruseles universales ─────────────────────────────────
+        const carousels = {};
 
-                    // Actualizar active class
-                    document.querySelectorAll('.nav-menu a').forEach(link => {
-                        link.classList.remove('active');
-                    });
-                    this.classList.add('active');
-                }
-            });
-        });
-
-        // Highlight del menú según scroll
-        window.addEventListener('scroll', () => {
-            const sections = document.querySelectorAll('section[id]');
-            const scrollY = window.pageYOffset;
-
-            sections.forEach(section => {
-                const sectionHeight = section.offsetHeight;
-                const sectionTop = section.offsetTop - 100;
-                const sectionId = section.getAttribute('id');
-                const navLink = document.querySelector(`.nav-menu a[href="#${sectionId}"]`);
-
-                if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-                    navLink?.classList.add('active');
-                } else {
-                    navLink?.classList.remove('active');
-                }
-            });
-        });
-
-        // --- Carrusel SGT ---
-        (function () {
-            const track = document.getElementById('sgtTrack');
-            const dotsContainer = document.getElementById('sgtDots');
+        function initCarousel(id, trackId, dotsId) {
+            const track = document.getElementById(trackId);
             if (!track) return;
-            const slides = track.querySelectorAll('.sgt-slide');
-            let current = 0;
+            const slides = track.querySelectorAll('.proj-slide, .proj-placeholder');
+            if (!slides.length) return;
+            let cur = 0;
             const total = slides.length;
+            const dotsEl = document.getElementById(dotsId);
 
-            // Crear dots
-            slides.forEach((_, i) => {
-                const dot = document.createElement('div');
-                dot.className = 'sgt-dot' + (i === 0 ? ' active' : '');
-                dot.onclick = () => goTo(i);
-                dotsContainer.appendChild(dot);
-            });
-
-            function goTo(n) {
-                current = (n + total) % total;
-                track.style.transform = `translateX(-${current * 100}%)`;
-                dotsContainer.querySelectorAll('.sgt-dot').forEach((d, i) => {
-                    d.classList.toggle('active', i === current);
+            if (dotsEl && total > 1) {
+                slides.forEach((_, i) => {
+                    const d = document.createElement('div');
+                    d.className = 'carousel-dot' + (i === 0 ? ' on' : '');
+                    d.onclick = () => go(i);
+                    dotsEl.appendChild(d);
                 });
             }
 
-            window.sgtMove = (dir) => goTo(current + dir);
+            function go(n) {
+                cur = (n + total) % total;
+                track.style.transform = `translateX(-${cur * 100}%)`;
+                if (dotsEl) {
+                    dotsEl.querySelectorAll('.carousel-dot').forEach((d, i) => {
+                        d.classList.toggle('on', i === cur);
+                    });
+                }
+            }
 
-            // Autoplay cada 3.5s
-            setInterval(() => goTo(current + 1), 3500);
-        })();
+            carousels[id] = { go, get cur() { return cur; }, total };
+            if (total > 1) setInterval(() => go(cur + 1), 4000);
+        }
+
+        function cMove(id, dir) {
+            if (carousels[id]) carousels[id].go(carousels[id].cur + dir);
+        }
+
+        initCarousel('agro', 'agro-t', 'agro-d');
+        initCarousel('pan', 'pan-t', 'pan-d');
+        initCarousel('sgt', 'sgt-t', 'sgt-d');
+
+        // ── Smooth scroll + active navbar ─────────────────────────
+        document.querySelectorAll('.nav-links a[href^="#"]').forEach(a => {
+            a.addEventListener('click', e => {
+                e.preventDefault();
+                const target = document.querySelector(a.getAttribute('href'));
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                document.querySelectorAll('.nav-links a').forEach(l => l.classList.remove('active'));
+                a.classList.add('active');
+            });
+        });
+
+        window.addEventListener('scroll', () => {
+            const sy = window.pageYOffset;
+            document.querySelectorAll('section[id]').forEach(sec => {
+                const top = sec.offsetTop - 110;
+                const bot = top + sec.offsetHeight;
+                const link = document.querySelector(`.nav-links a[href="#${sec.id}"]`);
+                if (link) link.classList.toggle('active', sy >= top && sy < bot);
+            });
+        });
     </script>
 </body>
 
