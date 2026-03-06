@@ -717,8 +717,7 @@
         .proj-links {
             display: flex;
             gap: .75rem;
-            padding-top: .75rem;
-            border-top: 1px solid var(--border);
+            padding-top: 1rem;
             flex-wrap: wrap;
             align-items: center;
         }
@@ -726,14 +725,31 @@
         .proj-links a {
             display: inline-flex;
             align-items: center;
-            gap: .35rem;
+            gap: .4rem;
             font-size: .88rem;
             color: var(--muted);
-            transition: color .25s;
+            transition: all .25s;
         }
 
         .proj-links a:hover {
             color: var(--blue);
+        }
+
+        .proj-demo-btn {
+            background: linear-gradient(135deg, var(--blue), var(--sky));
+            color: #fff !important;
+            padding: .55rem 1.4rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: .88rem;
+            box-shadow: 0 4px 14px rgba(29, 78, 216, .3);
+            transition: all .25s;
+        }
+
+        .proj-demo-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(29, 78, 216, .4);
+            color: #fff !important;
         }
 
         /* ─── CERTIFICACIONES ───────────────────────── */
@@ -1172,11 +1188,9 @@
                             </div>
                             <div class="proj-links">
                                 <a href="https://poo2-app-ayhz.onrender.com/" target="_blank" rel="noopener"
-                                    class="btn btn-primary" style="padding:.45rem 1.1rem;font-size:.85rem;">
+                                    class="proj-demo-btn">
                                     <i class="fas fa-play-circle"></i> Ver Demo
                                 </a>
-                                <a href="https://github.com/gmmendoza/poo2-app" target="_blank" rel="noopener"><i
-                                        class="fab fa-github"></i> Código</a>
                             </div>
                         </div>
                     </div>
@@ -1219,11 +1233,9 @@
                                 <span class="proj-stat"><i class="fas fa-boxes"></i> Inventario</span>
                             </div>
                             <div class="proj-links">
-                                <a href="demo-panaderia.html" target="_blank" rel="noopener" class="btn btn-primary"
-                                    style="padding:.45rem 1.1rem;font-size:.85rem;">
+                                <a href="demo-panaderia.html" target="_blank" rel="noopener" class="proj-demo-btn">
                                     <i class="fas fa-play-circle"></i> Ver Demo
                                 </a>
-                                <a href="#"><i class="fas fa-lock"></i> Código Privado</a>
                             </div>
                         </div>
                     </div>
@@ -1263,9 +1275,7 @@
                                 <span class="proj-stat"><i class="fas fa-store"></i> Tienda Online</span>
                                 <span class="proj-stat"><i class="fas fa-file-pdf"></i> Reportes PDF</span>
                             </div>
-                            <div class="proj-links">
-                                <a href="#"><i class="fas fa-lock"></i> Repositorio Privado</a>
-                            </div>
+
                         </div>
                     </div>
 

@@ -308,11 +308,19 @@
             background: linear-gradient(135deg, #1d4ed8 0%, #0ea5e9 100%);
             color: white;
             border: 2px solid white;
-        }
-
-        .btn-demo:hover {
-            color: white;
-            background: linear-gradient(135deg, #0ea5e9 0%, #1d4ed8 100%);
+            padding: 8px 18px;
+            font-size: 0.88rem;
+            border-radius: 50px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 10px;
+            width: fit-content;
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+            box-shadow: 0 4px 12px rgba(29, 78, 216, .25);
         }
 
         /* Responsive */
@@ -534,7 +542,6 @@
                 <div class="item-card">
                     <div class="item-header">
                         <span class="item-title">Agrosystem - Sistema de Gestión</span>
-                        <span class="item-date">2024</span>
                     </div>
                     <div class="tech-tags">
                         <span class="tech-tag">Spring Boot 3.2.2</span>
@@ -550,8 +557,7 @@
                             <li>Arquitectura en capas, Spring Data JPA para persistencia y containerización con Docker.
                             </li>
                         </ul>
-                        <a href="https://poo2-app-ayhz.onrender.com/" class="action-btn btn-demo" target="_blank"
-                            style="display: inline-flex; margin-top: 10px; width: fit-content;">
+                        <a href="https://poo2-app-ayhz.onrender.com/" class="btn-demo" target="_blank">
                             <i class="fas fa-play-circle"></i> Ver Demo Agrosystem
                         </a>
                     </div>
@@ -561,7 +567,6 @@
                 <div class="item-card">
                     <div class="item-header">
                         <span class="item-title">Sistema de Gestión Textil (SGT)</span>
-                        <span class="item-date">2023</span>
                     </div>
                     <div class="tech-tags">
                         <span class="tech-tag">PHP</span>
@@ -583,7 +588,6 @@
                 <div class="item-card">
                     <div class="item-header">
                         <span class="item-title">Portfolio Personal</span>
-                        <span class="item-date">2024</span>
                     </div>
                     <div class="tech-tags">
                         <span class="tech-tag">HTML5</span>
@@ -594,8 +598,8 @@
                         <ul>
                             <li>Diseño y desarrollo de portfolio responsivo con smooth scrolling y secciones
                                 optimizadas.</li>
-                            <li>Código: <a href="https://github.com/gmmendoza/mi-portfolio" class="project-link"
-                                    target="_blank">github.com/gmmendoza/mi-portfolio</a></li>
+                            <li>Ver: <a href="https://gmmendoza.github.io/mi-portfolio/" class="project-link"
+                                    target="_blank">gmmendoza.github.io/mi-portfolio</a></li>
                         </ul>
                     </div>
                 </div>
@@ -604,7 +608,6 @@
                 <div class="item-card" id="demo-panaderia">
                     <div class="item-header">
                         <span class="item-title">Backend API: Gestión de Panadería (Demo Integrada)</span>
-                        <span class="item-date">2026</span>
                     </div>
                     <div class="tech-tags">
                         <span class="tech-tag">Node.js</span>
@@ -620,8 +623,7 @@
                             <li>Prueba interactiva del agendamiento de turnos conectada al backend local.</li>
                         </ul>
 
-                        <a href="demo-panaderia.html" class="action-btn btn-demo" target="_blank"
-                            style="display: inline-flex; margin-top: 10px; width: fit-content;">
+                        <a href="demo-panaderia.html" class="btn-demo" target="_blank">
                             <i class="fas fa-play-circle"></i> Ver Demo API Panadería
                         </a>
                     </div>
