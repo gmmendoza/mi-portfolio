@@ -454,13 +454,47 @@
                     target="_blank">github.com/gmmendoza</a>
             </div>
 
-            <h2>💻 STACK TECNOLÓGICO</h2>
+            <h2>💻 BACKEND</h2>
             <ul class="skills-list">
-                <li><strong>Backend:</strong> Java, Spring Boot 3.2.2, Spring Security, JPA</li>
-                <li><strong>Bases de Datos:</strong> PostgreSQL 15, MySQL</li>
-                <li><strong>Frontend:</strong> Thymeleaf, Tailwind CSS, JavaScript, Chart.js</li>
-                <li><strong>DevOps:</strong> Docker, Docker Compose, Git, GitHub, Render</li>
-                <li><strong>Herramientas:</strong> VS Code, Eclipse, Postman</li>
+                <li>Java</li>
+                <li>Spring Boot</li>
+                <li>Spring Security</li>
+                <li>REST APIs</li>
+                <li>JPA / Hibernate</li>
+            </ul>
+
+            <h2>🗄 BASES DE DATOS</h2>
+            <ul class="skills-list">
+                <li>PostgreSQL</li>
+                <li>MySQL</li>
+                <li>SQL</li>
+                <li>Modelado relacional</li>
+                <li>Normalización</li>
+            </ul>
+
+            <h2>🌐 FRONTEND</h2>
+            <ul class="skills-list">
+                <li>JavaScript</li>
+                <li>Thymeleaf</li>
+                <li>Tailwind CSS</li>
+                <li>Chart.js</li>
+            </ul>
+
+            <h2>⚙️ DEVOPS</h2>
+            <ul class="skills-list">
+                <li>Docker</li>
+                <li>Docker Compose</li>
+                <li>Git</li>
+                <li>GitHub</li>
+            </ul>
+
+            <h2>🧠 ANÁLISIS DE SISTEMAS</h2>
+            <ul class="skills-list">
+                <li>Análisis de requerimientos</li>
+                <li>Diagramas UML</li>
+                <li>Modelado de datos</li>
+                <li>Arquitectura en capas</li>
+                <li>Diseño de APIs REST</li>
             </ul>
 
             <h2>🌐 IDIOMAS</h2>
@@ -486,11 +520,11 @@
                 <h2>PERFIL PROFESIONAL</h2>
                 <p class="profile-text">
                     Estudiante avanzada de Licenciatura en Sistemas de Información y Analista en Sistemas de
-                    Computación, especializada en desarrollo backend con Java y Spring Boot. Apasionada por crear
-                    soluciones escalables y eficientes, aplicando buenas prácticas de arquitectura, patrones de diseño y
-                    código limpio. Mi enfoque de trabajo se basa en la autonomía, el uso estratégico de herramientas de
-                    IA para optimizar el desarrollo y el compromiso con las buenas prácticas de ingeniería de software.
-                    En búsqueda de mi primera oportunidad profesional para aportar valor en un equipo dinámico.
+                    Computación con enfoque en análisis, diseño y desarrollo de sistemas.
+                    Experiencia en desarrollo backend con Java y Spring Boot, modelado de bases de datos relacionales
+                    y diseño de APIs REST.
+                    Interesada en roles de Analista de Sistemas o Backend Developer, aportando capacidad analítica,
+                    resolución de problemas y buenas prácticas de ingeniería de software.
                 </p>
             </section>
 
@@ -541,24 +575,26 @@
                 <!-- Proyecto 1: Agrosystem -->
                 <div class="item-card">
                     <div class="item-header">
-                        <span class="item-title">Agrosystem - Sistema de Gestión</span>
+                        <span class="item-title">Agrosystem – Sistema de Gestión Agropecuaria</span>
                     </div>
                     <div class="tech-tags">
-                        <span class="tech-tag">Spring Boot 3.2.2</span>
+                        <span class="tech-tag">Spring Boot</span>
                         <span class="tech-tag">Spring Security</span>
-                        <span class="tech-tag">PostgreSQL 15</span>
+                        <span class="tech-tag">PostgreSQL</span>
                         <span class="tech-tag">Docker</span>
-                        <span class="tech-tag">Tailwind CSS</span>
+                        <span class="tech-tag">Chart.js</span>
                     </div>
                     <div class="item-description">
                         <ul>
-                            <li>Aplicación web con autenticación JWT, dashboard interactivo con Chart.js y CRUD
-                                completo.</li>
-                            <li>Arquitectura en capas, Spring Data JPA para persistencia y containerización con Docker.
-                            </li>
+                            <li>Proyecto de desarrollo backend</li>
+                            <li>Diseño de arquitectura en capas utilizando Spring Boot y Spring Data JPA</li>
+                            <li>Implementación de API REST segura con Spring Security</li>
+                            <li>Modelado de base de datos relacional en PostgreSQL</li>
+                            <li>Containerización de la aplicación con Docker</li>
+                            <li>Desarrollo de dashboard interactivo utilizando Chart.js</li>
                         </ul>
                         <a href="https://poo2-app-ayhz.onrender.com/" class="btn-demo" target="_blank">
-                            <i class="fas fa-play-circle"></i> Ver Demo Agrosystem
+                            <i class="fas fa-play-circle"></i> Ver Demo
                         </a>
                     </div>
                 </div>
@@ -584,7 +620,30 @@
                     </div>
                 </div>
 
-                <!-- Proyecto 3: Portfolio -->
+                <!-- Proyecto 4: Demo API Panadería -->
+                <div class="item-card" id="demo-panaderia">
+                    <div class="item-header">
+                        <span class="item-title">Backend API: Gestión de Panadería (Demo Integrada)</span>
+                    </div>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Node.js</span>
+                        <span class="tech-tag">Express</span>
+                        <span class="tech-tag">Sequelize</span>
+                        <span class="tech-tag">SQLite</span>
+                    </div>
+                    <div class="item-description">
+                        <ul>
+                            <li>API REST demostrativa con modelo de datos relacional y validaciones de negocio
+                                estrictas.</li>
+                            <li>Prueba interactiva del agendamiento de turnos conectada al backend local.</li>
+                        </ul>
+                        <a href="demo-panaderia.html" class="btn-demo" target="_blank">
+                            <i class="fas fa-play-circle"></i> Ver Demo
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Proyecto 5: Portfolio -->
                 <div class="item-card">
                     <div class="item-header">
                         <span class="item-title">Portfolio Personal</span>
@@ -598,35 +657,28 @@
                         <ul>
                             <li>Diseño y desarrollo de portfolio responsivo con smooth scrolling y secciones
                                 optimizadas.</li>
-                            <li>Ver: <a href="https://gmmendoza.github.io/mi-portfolio/" class="project-link"
-                                    target="_blank">gmmendoza.github.io/mi-portfolio</a></li>
                         </ul>
-                    </div>
-                </div>
-
-                <!-- Proyecto 4: Demo API Panadería -->
-                <div class="item-card" id="demo-panaderia">
-                    <div class="item-header">
-                        <span class="item-title">Backend API: Gestión de Panadería (Demo Integrada)</span>
-                    </div>
-                    <div class="tech-tags">
-                        <span class="tech-tag">Node.js</span>
-                        <span class="tech-tag">Express</span>
-                        <span class="tech-tag">Sequelize</span>
-                        <span class="tech-tag">SQLite</span>
-                    </div>
-
-                    <div class="item-description">
-                        <ul>
-                            <li>API REST demostrativa con modelo de datos relacional y validaciones de negocio
-                                estrictas.</li>
-                            <li>Prueba interactiva del agendamiento de turnos conectada al backend local.</li>
-                        </ul>
-
-                        <a href="demo-panaderia.html" class="btn-demo" target="_blank">
-                            <i class="fas fa-play-circle"></i> Ver Demo API Panadería
+                        <a href="https://gmmendoza.github.io/mi-portfolio/" class="btn-demo" target="_blank"
+                            style="font-size:0.8rem;padding:6px 14px;">
+                            <i class="fas fa-external-link-alt"></i> Ver Portfolio
                         </a>
                     </div>
+                </div>
+            </section>
+
+            <!-- COMPETENCIAS DE ANÁLISIS -->
+            <section class="section">
+                <h2>COMPETENCIAS DE ANÁLISIS</h2>
+                <div class="item-description">
+                    <ul>
+                        <li>Análisis de requerimientos funcionales</li>
+                        <li>Modelado de datos (DER)</li>
+                        <li>Diagramas UML (casos de uso, clases)</li>
+                        <li>Diseño de APIs REST</li>
+                        <li>Arquitectura en capas</li>
+                        <li>Modelado de procesos de negocio</li>
+                        <li>Normalización de bases de datos</li>
+                    </ul>
                 </div>
             </section>
         </div>
