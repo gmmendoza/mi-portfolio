@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>La Panadería - Panel de Gestión</title>
+    <title>Panadería y Pastelería elAromo - Panel de Gestión</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link
         href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;1,600&display=swap"
@@ -12,39 +12,35 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         :root {
-            /* Vibrant Bakery Yellow Palette */
-            --primary: #FDB813;
-            /* Bright, buttery yellow */
-            --primary-hover: #E5A305;
-            --primary-light: #FFF4D9;
-            --secondary: #3D2C1E;
-            /* Rich coffee brown */
-            --accent: #E25E3E;
-            /* Warm terra cotta/raspberry */
+            /* Premium Bakery Palette */
+            --bg-body: #FDFBFA;
+            --bg-card: rgba(255, 255, 255, 0.85); /* Glass base */
+            --bg-hover: #FFF7F2;
 
-            --bg-body: #FFFCF5;
-            /* Very soft cream */
-            --bg-card: #FFFFFF;
-            --bg-hover: #FFF3EB;
+            --border: rgba(230, 222, 215, 0.6);
 
-            --text-main: #3D2C1E;
-            --text-muted: #8C7A6B;
+            --text-main: #2A1C14;
+            --text-muted: #8C7C73;
 
-            --border: #F0E3D1;
+            --primary: #E66A25; /* Vibrant Rust/Orange */
+            --primary-hover: #C55518;
+            --primary-light: #FFF0E6;
+            --secondary: #1F1510; /* Almost black coffee */
+            --accent: #F5A623;
 
-            --status-reservado: #447EEB;
-            --bg-reservado: #EBF2FE;
-            --status-completado: #2DB36F;
-            --bg-completado: #E5F7ED;
-            --status-cancelado: #E75A7C;
-            --bg-cancelado: #FDEDF0;
+            --status-reservado: #F59E0B;
+            --bg-reservado: #FEF3C7;
+            --status-completado: #10B981;
+            --bg-completado: #D1FAE5;
+            --status-cancelado: #EF4444;
+            --bg-cancelado: #FEE2E2;
 
             --sidebar-width: 280px;
-            --shadow-sm: 0 4px 6px -1px rgba(44, 54, 63, 0.05);
-            --shadow-md: 0 10px 25px -5px rgba(44, 54, 63, 0.08);
-            --shadow-modal: 0 25px 50px -12px rgba(44, 54, 63, 0.25);
-            --radius-md: 14px;
-            --radius-lg: 20px;
+            --shadow-sm: 0 6px 14px rgba(42, 28, 20, 0.04), 0 2px 4px rgba(42, 28, 20, 0.02);
+            --shadow-md: 0 16px 32px rgba(42, 28, 20, 0.08), 0 4px 8px rgba(42, 28, 20, 0.04);
+            --shadow-modal: 0 30px 60px -12px rgba(42, 28, 20, 0.15);
+            --radius-md: 16px;
+            --radius-lg: 24px;
         }
 
         * {
@@ -64,10 +60,11 @@
 
         /* Glassmorphism utility */
         .glass {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: var(--shadow-sm);
         }
 
         /* Custom Scrollbar */
@@ -134,14 +131,14 @@
         .brand-icon {
             width: 44px;
             height: 44px;
-            background: linear-gradient(135deg, #FDB813 0%, #E25E3E 100%);
-            border-radius: 14px;
+            background: var(--primary);
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             font-size: 1.2rem;
-            box-shadow: 0 4px 12px rgba(253, 184, 19, 0.35);
+            box-shadow: 0 4px 12px rgba(234, 88, 12, 0.3);
             flex-shrink: 0;
         }
 
@@ -2283,32 +2280,17 @@
             line-height: 1.4;
         }
 
-        /* --- SENIOR AESTHETICS OVERRIDES --- */
+        /* --- PREMIUM AESTHETICS OVERRIDES --- */
         body {
             transition: background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.4s;
         }
 
-        :root {
-            --primary: #D36721;
-            --primary-hover: #AB5015;
-            --primary-light: #FCECE3;
-            --secondary: #1F1916;
-            --bg-body: #F7F7F4;
-            --bg-card: #FFFFFF;
-            --border: #E8E5DF;
-            --text-main: #1F1916;
-            --text-muted: #7A6F69;
-            --shadow-sm: 0 4px 12px rgba(31, 25, 22, 0.03);
-            --shadow-md: 0 16px 40px rgba(31, 25, 22, 0.06);
-            --radius-lg: 24px;
-        }
-
         body.dark-theme {
-            --bg-body: #110E0C;
-            --bg-card: #181412;
-            --bg-hover: #211B18;
-            --border: #2C2420;
-            --text-main: #F4F0ED;
+            --bg-body: #0F0906;
+            --bg-card: rgba(26, 17, 13, 0.85);
+            --bg-hover: rgba(45, 28, 20, 0.6);
+            --border: rgba(65, 45, 33, 0.3);
+            --text-main: #FFF8F4;
             --text-muted: #A3968F;
             --primary-light: #3D2211;
             --secondary: #FFFFFF;
@@ -2746,11 +2728,12 @@
     <div id="login-screen">
         <div class="login-card">
             <div
-                style="width: 80px; height: 80px; border-radius: 24px; background: linear-gradient(135deg, var(--primary), var(--accent)); color: white; font-size: 2.5rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px;">
+                style="width: 80px; height: 80px; border-radius: 24px; background: var(--primary); color: white; font-size: 2.5rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; box-shadow: 0 10px 25px rgba(234, 88, 12, 0.4);">
                 <i class="fas fa-bread-slice"></i>
             </div>
-            <h1 style="font-family: 'Playfair Display', serif; color: var(--secondary); margin-bottom: 8px;">El Aromo
-                Bakery</h1>
+            <h1
+                style="font-family: inherit; font-weight: 700; color: var(--text-main); margin-bottom: 8px; font-size: 2.2rem; line-height: 1.1;">
+                Panadería y Pastelería<br />elAromo</h1>
             <p style="color: var(--text-muted); margin-bottom: 32px;">Selecciona tu rol operativo para ingresar al
                 sistema.</p>
 
@@ -2793,11 +2776,12 @@
         <!-- SIDEBAR -->
         <aside class="sidebar">
             <div class="brand">
-                <div class="brand-icon" style="background: linear-gradient(135deg, #FDB813, #E25E3E);"><i
-                        class="fas fa-bread-slice"></i></div>
+                <div class="brand-icon">
+                    <i class="fas fa-bread-slice"></i>
+                </div>
                 <div class="brand-text">
-                    <h2>El Aromo</h2>
-                    <span>Bakery System</span>
+                    <h2 style="font-family: inherit;">elAromo</h2>
+                    <span>Panadería y Pastelería</span>
                 </div>
             </div>
 

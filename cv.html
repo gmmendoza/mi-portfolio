@@ -367,11 +367,11 @@
 
             /* Adjust font sizes to prevent spilling to a second page */
             html {
-                font-size: 11px;
+                font-size: 10.5px;
             }
 
             .profile-header h1 {
-                font-size: 1.6rem;
+                font-size: 1.5rem;
             }
 
             .sidebar h2 {
@@ -383,17 +383,21 @@
             }
 
             .item-card {
-                margin-bottom: 0.8rem;
+                margin-bottom: 0.5rem;
                 break-inside: avoid;
                 page-break-inside: avoid;
             }
 
             .section {
-                margin-bottom: 1.2rem;
+                margin-bottom: 0.9rem;
             }
 
             .profile-text {
-                margin-bottom: 0.2rem;
+                margin-bottom: 0.1rem;
+            }
+
+            .btn-demo {
+                display: none !important;
             }
 
             /* Hide URL links entirely for a cleaner print OR format them nicely */
@@ -453,48 +457,50 @@
                 <span class="icon">🐙</span> <a href="https://github.com/gmmendoza"
                     target="_blank">github.com/gmmendoza</a>
             </div>
+            <div class="contact-item">
+                <span class="icon">🌍</span> <a href="https://gmmendoza.github.io/mi-portfolio-web/"
+                    target="_blank">Mi Portafolio Web</a>
+            </div>
 
             <h2>💻 BACKEND</h2>
             <ul class="skills-list">
-                <li>Java</li>
-                <li>Spring Boot</li>
-                <li>Spring Security</li>
-                <li>REST APIs</li>
+                <li>Java / Spring Boot</li>
+                <li>Node.js / Express</li>
+                <li>Spring Security (JWT)</li>
+                <li>Arquitectura APIs REST</li>
                 <li>JPA / Hibernate</li>
             </ul>
 
             <h2>🗄 BASES DE DATOS</h2>
             <ul class="skills-list">
-                <li>PostgreSQL</li>
-                <li>MySQL</li>
-                <li>SQL</li>
-                <li>Modelado relacional</li>
-                <li>Normalización</li>
+                <li>PostgreSQL / MySQL</li>
+                <li>SQLite</li>
+                <li>Modelado relacional DER</li>
+                <li>Bases de datos cloud</li>
             </ul>
 
             <h2>🌐 FRONTEND</h2>
             <ul class="skills-list">
-                <li>JavaScript</li>
-                <li>Thymeleaf</li>
+                <li>JavaScript / React</li>
+                <li>HTML5 & CSS3</li>
                 <li>Tailwind CSS</li>
-                <li>Chart.js</li>
+                <li>Thymeleaf</li>
             </ul>
 
-            <h2>⚙️ DEVOPS</h2>
+            <h2>⚙️ HERRAMIENTAS / DEVOPS</h2>
             <ul class="skills-list">
-                <li>Docker</li>
-                <li>Docker Compose</li>
-                <li>Git</li>
-                <li>GitHub</li>
+                <li>Git & GitHub</li>
+                <li>Docker & Compose</li>
+                <li>Postman / Swagger</li>
+                <li>Despliegues (Render)</li>
             </ul>
 
-            <h2>🧠 ANÁLISIS DE SISTEMAS</h2>
+            <h2>🧠 METODOLOGÍAS</h2>
             <ul class="skills-list">
-                <li>Análisis de requerimientos</li>
-                <li>Diagramas UML</li>
-                <li>Modelado de datos</li>
-                <li>Arquitectura en capas</li>
-                <li>Diseño de APIs REST</li>
+                <li>Patrones de Diseño (GoF)</li>
+                <li>Principios SOLID / Clean Code</li>
+                <li>Metodologías Ágiles (Scrum)</li>
+                <li>Arquitectura en capas (MVC)</li>
             </ul>
 
             <h2>🌐 IDIOMAS</h2>
@@ -505,11 +511,11 @@
 
             <h2>🎓 CERTIFICACIONES</h2>
             <ul class="skills-list">
-                <li><strong>Ciberseguridad:</strong> Silicon Misiones - 2024</li>
-                <li><strong>Data Science:</strong> Santander - 2024</li>
-                <li><strong>Scrum/Agile:</strong> Santander - 2023</li>
-                <li><strong>Community Mgr:</strong> Silicon Misiones - 2023</li>
-                <li><strong>Electrónica:</strong> UNaM (FCEQyN) - 2025</li>
+                <li><strong>Ciberseguridad:</strong> Silicon Misiones</li>
+                <li><strong>Data Science:</strong> Santander</li>
+                <li><strong>Scrum/Agile:</strong> Santander</li>
+                <li><strong>Community Mgr:</strong> Silicon Misiones</li>
+                <li><strong>Electrónica:</strong> UNaM (FCEQyN)</li>
             </ul>
         </div>
 
@@ -519,12 +525,9 @@
             <section class="section">
                 <h2>PERFIL PROFESIONAL</h2>
                 <p class="profile-text">
-                    Estudiante avanzada de Licenciatura en Sistemas de Información y Analista en Sistemas de
-                    Computación con enfoque en análisis, diseño y desarrollo de sistemas.
-                    Experiencia en desarrollo backend con Java y Spring Boot, modelado de bases de datos relacionales
-                    y diseño de APIs REST.
-                    Interesada en roles de Analista de Sistemas o Backend Developer, aportando capacidad analítica,
-                    resolución de problemas y buenas prácticas de ingeniería de software.
+                    Estudiante avanzada de Licenciatura en Sistemas de Información con formación en ingeniería de software y desarrollo Full Stack. Experiencia en desarrollo backend con Java y Spring Boot, diseño de APIs REST y modelado de bases de datos relacionales.
+                    <br><br>
+                    Interesada en roles de Backend Developer o Analista de Sistemas, aplicando principios de arquitectura en capas, patrones de diseño y buenas prácticas de desarrollo. También poseo interés en ciberseguridad aplicada al desarrollo de software y seguridad de APIs.
                 </p>
             </section>
 
@@ -572,28 +575,48 @@
             <section class="section">
                 <h2>PROYECTOS DESTACADOS</h2>
 
+                <!-- Proyecto SaaS ERP -->
+                <div class="item-card">
+                    <div class="item-header">
+                        <span class="item-title">SaaS ERP Cloud - Sistema de Gestión</span>
+                    </div>
+                    <div class="tech-tags">
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">Node.js</span>
+                        <span class="tech-tag">Express</span>
+                        <span class="tech-tag">SQLite</span>
+                    </div>
+                    <div class="item-description">
+                        <ul>
+                            <li>Desarrollo de ERP multi-tenant para gestión de inventarios y finanzas.</li>
+                            <li>Implementación de terminal POS y panel interactivo con alertas de stock.</li>
+                            <li>Arquitectura backend basada íntegramente en APIs REST.</li>
+                        </ul>
+                        <a href="demo-saas.html" class="btn-demo" target="_blank" style="margin-top: 6px;">
+                            <i class="fas fa-play-circle"></i> Ver Demo
+                        </a>
+                    </div>
+                </div>
+
                 <!-- Proyecto 1: Agrosystem -->
                 <div class="item-card">
                     <div class="item-header">
-                        <span class="item-title">Agrosystem – Sistema de Gestión Agropecuaria</span>
+                        <span class="item-title">Agrosystem – Plataforma Agropecuaria</span>
                     </div>
                     <div class="tech-tags">
+                        <span class="tech-tag">Java</span>
                         <span class="tech-tag">Spring Boot</span>
                         <span class="tech-tag">Spring Security</span>
                         <span class="tech-tag">PostgreSQL</span>
                         <span class="tech-tag">Docker</span>
-                        <span class="tech-tag">Chart.js</span>
                     </div>
                     <div class="item-description">
                         <ul>
-                            <li>Proyecto de desarrollo backend</li>
-                            <li>Diseño de arquitectura en capas utilizando Spring Boot y Spring Data JPA</li>
-                            <li>Implementación de API REST segura con Spring Security</li>
-                            <li>Modelado de base de datos relacional en PostgreSQL</li>
-                            <li>Containerización de la aplicación con Docker</li>
-                            <li>Desarrollo de dashboard interactivo utilizando Chart.js</li>
+                            <li>Diseño e implementación de API REST segura bajo el patrón MVC con Spring Data JPA.</li>
+                            <li>Autenticación mediante JWT y control de accesos basado en roles (RBAC).</li>
+                            <li>Despliegue de infraestructura en Docker y base de datos relacional PostgreSQL.</li>
                         </ul>
-                        <a href="https://poo2-app-ayhz.onrender.com/" class="btn-demo" target="_blank">
+                        <a href="https://agrosystem-1.onrender.com/" class="btn-demo" target="_blank">
                             <i class="fas fa-play-circle"></i> Ver Demo
                         </a>
                     </div>
@@ -605,80 +628,55 @@
                         <span class="item-title">Sistema de Gestión Textil (SGT)</span>
                     </div>
                     <div class="tech-tags">
-                        <span class="tech-tag">PHP</span>
-                        <span class="tech-tag">Laravel</span>
+                        <span class="tech-tag">PHP / Laravel</span>
                         <span class="tech-tag">MySQL</span>
-                        <span class="tech-tag">jQuery</span>
+                        <span class="tech-tag">JavaScript</span>
                         <span class="tech-tag">Bootstrap</span>
                     </div>
                     <div class="item-description">
                         <ul>
-                            <li>Aplicación web para la gestión de la tienda "Apóstoles Textil".</li>
-                            <li>Administración de pedidos, actualización automática de precios, comunicación con
-                                proveedores y venta online.</li>
+                            <li>Desarrollo de aplicación B2B y B2C para digitalizar procesos de tienda y ventas.</li>
+                            <li>Administración de inventario en tiempo real y actualización de catálogos.</li>
+                            <li>Registro y sincronización de comercio híbrido (preventas online y facturación local).</li>
                         </ul>
+                        <p style="font-weight: 600; color: #1d4ed8; margin-top: 5px; font-size: 0.85rem;">* Sistema desplegado en la Nube y actualmente operando para una Pyme local.</p>
                     </div>
                 </div>
 
-                <!-- Proyecto 4: Demo API Panadería -->
+                <!-- Proyecto 3: Panadería -->
                 <div class="item-card" id="demo-panaderia">
                     <div class="item-header">
-                        <span class="item-title">Backend API: Gestión de Panadería (Demo Integrada)</span>
+                        <span class="item-title">Backend API: Gestión de Panadería (Demo)</span>
                     </div>
                     <div class="tech-tags">
                         <span class="tech-tag">Node.js</span>
                         <span class="tech-tag">Express</span>
                         <span class="tech-tag">Sequelize</span>
-                        <span class="tech-tag">SQLite</span>
+                        <span class="tech-tag">React</span>
                     </div>
                     <div class="item-description">
                         <ul>
-                            <li>API REST demostrativa con modelo de datos relacional y validaciones de negocio
-                                estrictas.</li>
-                            <li>Prueba interactiva del agendamiento de turnos conectada al backend local.</li>
+                            <li>Arquitectura de backend orientada a validaciones estrictas de reglas de negocio para panificados.</li>
+                            <li>Desarrollo de Single Page Application (SPA) para interacción fluida de turnos en tiempo real.</li>
+                            <li>Implementación de base de datos relacional para control de recetas y dependencias.</li>
                         </ul>
+                        <p style="font-weight: 600; color: #1d4ed8; margin-top: 5px; font-size: 0.85rem;">* Sistema con panel e interfaz pública funcional para ambientes de simulación o pruebas unitarias.</p>
                         <a href="demo-panaderia.html" class="btn-demo" target="_blank">
                             <i class="fas fa-play-circle"></i> Ver Demo
                         </a>
                     </div>
                 </div>
-
-                <!-- Proyecto 5: Portfolio -->
-                <div class="item-card">
-                    <div class="item-header">
-                        <span class="item-title">Portfolio Personal</span>
-                    </div>
-                    <div class="tech-tags">
-                        <span class="tech-tag">HTML5</span>
-                        <span class="tech-tag">CSS3</span>
-                        <span class="tech-tag">JavaScript</span>
-                    </div>
-                    <div class="item-description">
-                        <ul>
-                            <li>Diseño y desarrollo de portfolio responsivo con smooth scrolling y secciones
-                                optimizadas.</li>
-                        </ul>
-                        <a href="https://gmmendoza.github.io/mi-portfolio/" class="btn-demo" target="_blank"
-                            style="font-size:0.8rem;padding:6px 14px;">
-                            <i class="fas fa-external-link-alt"></i> Ver Portfolio
-                        </a>
-                    </div>
-                </div>
             </section>
 
-            <!-- COMPETENCIAS DE ANÁLISIS -->
+            <!-- COMPETENCIAS DE INGENIERÍA -->
             <section class="section">
-                <h2>COMPETENCIAS DE ANÁLISIS</h2>
-                <div class="item-description">
-                    <ul>
-                        <li>Análisis de requerimientos funcionales</li>
-                        <li>Modelado de datos (DER)</li>
-                        <li>Diagramas UML (casos de uso, clases)</li>
-                        <li>Diseño de APIs REST</li>
-                        <li>Arquitectura en capas</li>
-                        <li>Modelado de procesos de negocio</li>
-                        <li>Normalización de bases de datos</li>
-                    </ul>
+                <h2>COMPETENCIAS TÉCNICAS Y METODOLÓGICAS</h2>
+                <div class="tech-tags" style="margin-top: 10px;">
+                    <span class="tech-tag">Levantamiento de Requerimientos</span>
+                    <span class="tech-tag">Modelado Relacional de Datos (DER)</span>
+                    <span class="tech-tag">UML (Casos Uso, Secuencia, Clases)</span>
+                    <span class="tech-tag">Arquitectura en Capas y MVC</span>
+                    <span class="tech-tag">Testing de APIs (Postman/Swagger)</span>
                 </div>
             </section>
         </div>
