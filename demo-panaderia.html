@@ -36,11 +36,13 @@
             --bg-cancelado: #FEE2E2;
 
             --sidebar-width: 280px;
-            --shadow-sm: 0 6px 14px rgba(42, 28, 20, 0.04), 0 2px 4px rgba(42, 28, 20, 0.02);
-            --shadow-md: 0 16px 32px rgba(42, 28, 20, 0.08), 0 4px 8px rgba(42, 28, 20, 0.04);
-            --shadow-modal: 0 30px 60px -12px rgba(42, 28, 20, 0.15);
-            --radius-md: 16px;
-            --radius-lg: 24px;
+            --shadow-sm: 0 4px 12px rgba(42, 28, 20, 0.03), 0 1px 2px rgba(42, 28, 20, 0.02);
+            --shadow-md: 0 12px 24px rgba(42, 28, 20, 0.06), 0 4px 8px rgba(42, 28, 20, 0.03);
+            --shadow-lg: 0 20px 48px rgba(42, 28, 20, 0.1), 0 8px 16px rgba(42, 28, 20, 0.05);
+            --shadow-modal: 0 32px 64px -12px rgba(42, 28, 20, 0.2);
+            --radius-md: 14px;
+            --radius-lg: 20px;
+            --radius-xl: 28px;
         }
 
         * {
@@ -170,43 +172,69 @@
         }
 
         .nav-link {
-            padding: 14px 20px;
+            padding: 10px 14px;
             display: flex;
             align-items: center;
-            gap: 14px;
+            gap: 12px;
             color: var(--text-muted);
             text-decoration: none;
             font-weight: 500;
-            border-radius: 12px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 14px;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
             position: relative;
-            overflow: hidden;
+            margin-bottom: 2px;
         }
 
         .nav-link:hover {
             color: var(--secondary);
             background-color: var(--bg-hover);
+            transform: translateX(4px);
         }
 
         .nav-link.active {
-            background: linear-gradient(90deg, rgba(253, 184, 19, 0.15) 0%, rgba(253, 184, 19, 0.04) 100%);
+            background-color: var(--primary-light);
             color: var(--primary);
             font-weight: 700;
-            box-shadow: none;
-            border-left: 3px solid var(--primary);
-            padding-left: 17px;
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            width: 4px;
+            height: 20px;
+            background: var(--primary);
+            border-radius: 0 4px 4px 0;
+        }
+
+        .nav-icon-wrapper {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(140, 124, 115, 0.08);
+            color: var(--text-muted);
+            transition: all 0.3s;
+            flex-shrink: 0;
+        }
+
+        .nav-link:hover .nav-icon-wrapper {
+            background: var(--primary-light);
+            color: var(--primary);
+            transform: scale(1.05);
+        }
+
+        .nav-link.active .nav-icon-wrapper {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 4px 12px rgba(230, 106, 37, 0.3);
         }
 
         .nav-link i {
-            font-size: 1.1rem;
-            width: 24px;
-            text-align: center;
-            transition: transform 0.3s;
-        }
-
-        .nav-link:hover i {
-            transform: scale(1.1);
+            font-size: 1rem;
         }
 
         .user-profile {
@@ -2458,6 +2486,148 @@
             border-bottom: 1px solid var(--border);
         }
 
+        /* POS REFINEMENTS */
+        .products-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 20px;
+            padding: 10px 0;
+        }
+
+        .product-card {
+            background: var(--bg-card);
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary);
+        }
+
+        .p-img-wrap {
+            height: 120px;
+            background: var(--bg-hover);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            font-size: 3.5rem;
+            transition: all 0.4s;
+        }
+
+        .product-card:hover .p-img-wrap {
+            background: var(--primary-light);
+        }
+
+        .p-emoji {
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
+            transition: transform 0.4s;
+        }
+
+        .product-card:hover .p-emoji {
+            transform: scale(1.2) rotate(5deg);
+        }
+
+        .p-weight-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--secondary);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 10px;
+            font-size: 0.7rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            z-index: 2;
+        }
+
+        .p-card-body {
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            flex: 1;
+        }
+
+        .p-name {
+            font-weight: 700;
+            color: var(--secondary);
+            font-size: 1rem;
+            line-height: 1.2;
+            margin-bottom: 4px;
+        }
+
+        .p-unit-hint {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .p-price {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-top: auto;
+            text-align: right;
+        }
+
+        /* CART REFINEMENTS */
+        .cart-panel {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            box-shadow: var(--shadow-md);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            height: 100%;
+        }
+
+        .cart-item {
+            padding: 16px;
+            border-bottom: 1px solid var(--border);
+            background: transparent;
+            transition: background 0.2s;
+        }
+
+        .cart-item:hover {
+            background: var(--bg-hover);
+        }
+
+        /* ANIMATIONS */
+        @keyframes entrance {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-in {
+            animation: entrance 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        .stagger-1 { animation-delay: 0.1s; }
+        .stagger-2 { animation-delay: 0.2s; }
+        .stagger-3 { animation-delay: 0.3s; }
+        .stagger-4 { animation-delay: 0.4s; }
+
+
         /* =====================
            RECETARIO LAYOUT
         ===================== */
@@ -2799,28 +2969,28 @@
 
             <nav class="nav-links">
                 <a class="nav-link role-admin role-ventas" id="nav-dashboard" onclick="switchView('dashboard')">
-                    <i class="fas fa-home"></i> Inicio
+                    <div class="nav-icon-wrapper"><i class="fas fa-columns"></i></div> Inicio
                 </a>
                 <a class="nav-link role-admin role-ventas" id="nav-ventas" onclick="switchView('ventas')">
-                    <i class="fas fa-cash-register"></i> Punto de Venta
+                    <div class="nav-icon-wrapper"><i class="fas fa-store"></i></div> Punto de Venta
                 </a>
                 <a class="nav-link role-admin role-ventas" id="nav-clientes" onclick="switchView('clientes')">
-                    <i class="fas fa-users"></i> Directorio Clientes
+                    <div class="nav-icon-wrapper"><i class="fas fa-user-group"></i></div> Directorio Clientes
                 </a>
                 <a class="nav-link role-admin role-ventas" id="nav-turnos" onclick="switchView('turnos')">
-                    <i class="fas fa-calendar-alt"></i> Agenda & Turnos
+                    <div class="nav-icon-wrapper"><i class="fas fa-calendar-check"></i></div> Agenda & Turnos
                 </a>
                 <a class="nav-link role-admin role-produccion" id="nav-stock" onclick="switchView('stock')">
-                    <i class="fas fa-boxes"></i> Inventario & Stock
+                    <div class="nav-icon-wrapper"><i class="fas fa-warehouse"></i></div> Inventario & Stock
                 </a>
                 <a class="nav-link role-admin role-produccion" id="nav-recetario" onclick="switchView('recetario')">
-                    <i class="fas fa-book-open"></i> Recetario & Producción
+                    <div class="nav-icon-wrapper"><i class="fas fa-mortar-pestle"></i></div> Recetario & Producción
                 </a>
                 <a class="nav-link role-admin" id="nav-estadisticas" onclick="switchView('estadisticas')">
-                    <i class="fas fa-chart-line"></i> Estadísticas
+                    <div class="nav-icon-wrapper"><i class="fas fa-chart-bar"></i></div> Estadísticas
                 </a>
                 <a class="nav-link role-admin" id="nav-auditoria" onclick="switchView('auditoria')">
-                    <i class="fas fa-shield-alt"></i> Auditoría
+                    <div class="nav-icon-wrapper"><i class="fas fa-eye"></i></div> Auditoría
                 </a>
             </nav>
 
@@ -2840,7 +3010,7 @@
 
             <!-- DASHBOARD VIEW -->
             <section id="view-dashboard" class="view-section active">
-                <div class="header" style="margin-bottom: 24px;">
+                <div class="header animate-in stagger-1" style="margin-bottom: 24px;">
                     <div class="header-title">
                         <h1 style="display: flex; align-items: center; gap: 12px;" id="dashboard-welcome">
                             Bienvenida, Admin <span style="font-size: 1.5rem;">👋</span>
@@ -2854,7 +3024,7 @@
                     </div>
                 </div>
 
-                <div class="hero-banner">
+                <div class="hero-banner animate-in stagger-2">
                     <div class="hero-text">
                         <h2>Panel de Control Central</h2>
                         <p>Gestiona ventas, inventario, clientes y turnos desde un único lugar.</p>
@@ -2873,7 +3043,7 @@
                 </div>
 
                 <!-- KPI Stats -->
-                <div class="stats-grid">
+                <div class="stats-grid animate-in stagger-3">
                     <div class="stat-card">
                         <div class="stat-icon"><i class="fas fa-users"></i></div>
                         <div class="stat-info">
@@ -2909,7 +3079,7 @@
                 </div>
 
                 <!-- Dashboard bottom grid -->
-                <div class="dashboard-grid" style="margin-top: 28px; grid-template-columns: 2fr 1fr;">
+                <div class="dashboard-grid animate-in stagger-4" style="margin-top: 28px; grid-template-columns: 2fr 1fr;">
                     <!-- Upcoming orders -->
                     <div class="card glass">
                         <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
@@ -3864,7 +4034,16 @@
             const activeView = document.getElementById('view-' + viewId);
             if (activeView) {
                 activeView.style.display = 'block';
-                // Trigger reflow to restart animation
+                
+                // Trigger staggered animations on children
+                const animates = activeView.querySelectorAll('.animate-in');
+                animates.forEach(el => {
+                    el.style.animation = 'none';
+                    void el.offsetWidth; // force reflow
+                    el.style.animation = '';
+                });
+
+                // Trigger reflow to restart animation on view itself if it had one
                 void activeView.offsetWidth;
                 activeView.classList.add('active');
             }
