@@ -3235,28 +3235,6 @@
                 <div class="cp-item" onclick="switchView('recetario'); closeCommandPalette()">
                     <i data-lucide="chef-hat"></i>
                     <div>
-                        <div style="font-weight: 600;">Ver Recetario</div>
-                        <div style="font-size: 0.75rem; color: var(--text-muted);">Gestionar recetas y costos de producción</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="notifications-panel" class="notifications-panel">
-        <div class="notif-header">
-            <h3 style="font-size: 1rem;">Notificaciones</h3>
-            <span style="font-size: 0.75rem; color: var(--primary); font-weight: 700; cursor: pointer;">Marca todo como leído</span>
-        </div>
-        <div class="notif-list">
-            <div class="notif-item">
-                <div class="notif-icon-box" style="background: var(--bg-cancelado); color: var(--status-cancelado);">
-                    <i data-lucide="alert-triangle" style="width: 18px;"></i>
-                </div>
-                <div>
-                    <div style="font-size: 0.85rem; font-weight: 700;">Stock Bajo: Harina 000</div>
-                    <div style="font-size: 0.75rem; color: var(--text-muted);">Quedan menos de 10kg en el depósito principal.</div>
-                </div>
             </div>
             <div class="notif-item">
                 <div class="notif-icon-box" style="background: var(--bg-completado); color: var(--status-completado);">
@@ -3265,56 +3243,7 @@
                 <div>
                     <div style="font-size: 0.85rem; font-weight: 700;">Nuevo Turno Agendado</div>
                     <div style="font-size: 0.75rem; color: var(--text-muted);">Cliente: Maria Lopez • Hoy 16:30hs</div>
-    <!-- CHECKOUT MODAL -->
-    <div id="modal-checkout" class="modal" onclick="if(event.target === this) closeModal('modal-checkout')">
-        <div class="modal-content" style="width: 450px;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
-                <h3 style="margin: 0; font-family: 'Playfair Display', serif; font-size: 1.5rem;">Caja & Cobranza</h3>
-                <button onclick="closeModal('modal-checkout')" style="background:none; border:none; cursor:pointer; font-size:1.2rem; color:var(--text-muted);"><i data-lucide="x"></i></button>
-            </div>
-            
-            <div style="background: var(--bg-body); border-radius: var(--radius-md); padding: 20px; border: 2px solid var(--primary); margin-bottom: 24px; text-align: center;">
-                <span style="display: block; font-size: 0.85rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase; margin-bottom: 4px;">Total a Cobrar</span>
-                <span id="checkout-total-display" style="font-size: 2.2rem; font-weight: 900; color: var(--secondary); font-family: 'Playfair Display', serif;">$0</span>
-            </div>
-
-            <div style="margin-bottom: 20px;">
-                <label style="display: block; font-size: 0.85rem; font-weight: 800; color: var(--text-muted); margin-bottom: 8px;">Método de Pago</label>
-                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">
-                    <button class="pm-btn active" onclick="setCheckoutPayMethod('efectivo', this)">💵 Efectivo</button>
-                    <button class="pm-btn" onclick="setCheckoutPayMethod('debito', this)">💳 Débito</button>
-                    <button class="pm-btn" onclick="setCheckoutPayMethod('credito', this)">💳 Crédito</button>
-                    <button class="pm-btn" onclick="setCheckoutPayMethod('qr', this)">📱 Mercado Pago / QR</button>
-                </div>
-            </div>
-
-            <div id="cash-payment-section" style="margin-bottom: 20px;">
-                <label style="display: block; font-size: 0.85rem; font-weight: 800; color: var(--text-muted); margin-bottom: 8px;">Monto Recibido</label>
-                <div style="position: relative; margin-bottom: 12px;">
-                    <span style="position: absolute; left: 14px; top: 12px; font-weight: 800; color: var(--text-muted);">$</span>
-                    <input type="number" id="received-amount" placeholder="0" 
-                        style="width: 100%; padding: 12px 12px 12px 32px; border: 1.5px solid var(--border); border-radius: var(--radius-md); font-family: inherit; font-size: 1.1rem; font-weight: 800; background: var(--bg-body); outline: none; transition: border-color 0.2s;"
-                        oninput="calculateChange()">
-                </div>
-                <!-- Quick Amount Buttons -->
-                <div style="display: flex; gap: 8px; margin-bottom: 16px;">
-                    <button class="btn btn-outline" style="flex:1; padding: 8px; font-size: 0.85rem;" onclick="addQuickAmount(1000)">+$1.000</button>
-                    <button class="btn btn-outline" style="flex:1; padding: 8px; font-size: 0.85rem;" onclick="addQuickAmount(2000)">+$2.000</button>
-                    <button class="btn btn-outline" style="flex:1; padding: 8px; font-size: 0.85rem;" onclick="addQuickAmount(5000)">+$5.000</button>
-                </div>
-                <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px; background: rgba(34, 197, 94, 0.1); border-radius: 8px; border: 1px dashed #22c55e;">
-                    <span style="font-size: 0.9rem; font-weight: 700; color: #166534;">Vuelto a entregar:</span>
-                    <span id="change-display" style="font-size: 1.1rem; font-weight: 900; color: #166534;">$0</span>
-                </div>
-            </div>
-
-            <button id="btn-finalizar-venta" class="btn" style="width: 100%; padding: 16px; font-size: 1.1rem; gap: 10px;" onclick="confirmarVenta()">
-                <i data-lucide="check-circle"></i> Finalizar y Ver Recibo
-            </button>
-        </div>
-    </div>
-
-    <!-- THERMAL RECEIPT MODAL -->
+    <!-- MAIN APP WRAPPER -->
     <div id="main-app" style="display: none; width: 100vw; height: 100vh;">
 
         <!-- TOP HEADER -->
@@ -4323,6 +4252,84 @@
             </div>
         </div>
 
+        <!-- Modal Checkout (Cobro) -->
+        <div class="modal-overlay" id="modal-checkout">
+            <div class="modal" style="max-width: 500px;">
+                <button class="modal-close" onclick="closeModal('modal-checkout')"><i class="fas fa-times"></i></button>
+                <h2 style="font-family: 'Playfair Display'; text-align: center; margin-bottom: 8px;">Finalizar Venta</h2>
+                <div style="background: var(--bg-hover); padding: 20px; border-radius: 16px; text-align: center; margin-bottom: 24px; border: 1px solid var(--border);">
+                    <span style="font-size: 0.9rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">Total a Cobrar</span>
+                    <div id="checkout-total-display" style="font-size: 3rem; font-weight: 800; color: var(--secondary); font-family: 'Playfair Display';">$0</div>
+                </div>
+
+                <div class="pay-methods-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 24px;">
+                    <button class="pm-btn active" onclick="setCheckoutPayMethod('efectivo', this)">
+                        <i class="fas fa-money-bill-wave"></i> Efectivo
+                    </button>
+                    <button class="pm-btn" onclick="setCheckoutPayMethod('tarjeta', this)">
+                        <i class="fas fa-credit-card"></i> Tarjeta
+                    </button>
+                    <button class="pm-btn" onclick="setCheckoutPayMethod('qr', this)">
+                        <i class="fas fa-qrcode"></i> Mercado Pago
+                    </button>
+                    <button class="pm-btn" onclick="setCheckoutPayMethod('cuenta_corriente', this)">
+                        <i class="fas fa-user-clock"></i> Cta. Cte.
+                    </button>
+                </div>
+
+                <div id="cash-payment-section">
+                    <div class="form-group">
+                        <label>Monto Recibido</label>
+                        <div style="position: relative;">
+                            <span style="position: absolute; left: 16px; top: 50%; transform: translateY(-50%); font-weight: 700; color: var(--text-muted);">$</span>
+                            <input type="number" id="received-amount" class="form-control" style="padding-left: 32px; font-size: 1.2rem; font-weight: 700;" oninput="calculateChange()">
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 8px; margin-bottom: 20px;">
+                        <button class="btn btn-outline" style="flex: 1; padding: 8px; font-size: 0.8rem;" onclick="addQuickAmount(1000)">+$1k</button>
+                        <button class="btn btn-outline" style="flex: 1; padding: 8px; font-size: 0.8rem;" onclick="addQuickAmount(5000)">+$5k</button>
+                        <button class="btn btn-outline" style="flex: 1; padding: 8px; font-size: 0.8rem;" onclick="addQuickAmount(10000)">+$10k</button>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 16px; background: var(--bg-completado); border-radius: 12px; margin-bottom: 24px;">
+                        <span style="font-weight: 700; color: var(--status-completado);">Cambio a devolver:</span>
+                        <span id="change-display" style="font-size: 1.4rem; font-weight: 800; color: var(--status-completado);">$0</span>
+                    </div>
+                </div>
+
+                <div class="modal-actions" style="margin-top: 0;">
+                    <button class="btn" style="width: 100%; padding: 16px; font-size: 1.1rem;" id="btn-finalizar-venta" onclick="confirmarVenta()">
+                        <i class="fas fa-check-circle"></i> Finalizar Venta
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Recibo (Receipt) -->
+        <div class="modal-overlay" id="modal-receipt">
+            <div class="modal" style="max-width: 400px; padding: 0; overflow: hidden;">
+                <div style="background: var(--secondary); padding: 30px; text-align: center; color: white;">
+                    <i class="fas fa-check-circle" style="font-size: 3.5rem; color: var(--accent); margin-bottom: 16px;"></i>
+                    <h2 style="color: white; margin-bottom: 4px;">¡Cobro Exitoso!</h2>
+                    <p style="opacity: 0.8; font-size: 0.9rem;">La operación fue registrada con éxito.</p>
+                </div>
+                
+                <div style="padding: 30px;">
+                    <div id="receipt-details" style="font-family: 'Courier New', Courier, monospace; background: #f9f9f9; padding: 20px; border-radius: 8px; border: 1px dashed #ccc; margin-bottom: 24px; font-size: 0.85rem; color: #333;">
+                        <!-- JS fills this -->
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                        <button class="btn btn-outline" onclick="closeModal('modal-receipt')">
+                            <i class="fas fa-times"></i> Cerrar
+                        </button>
+                        <button class="btn" onclick="window.print()">
+                            <i class="fas fa-print"></i> Imprimir
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Toast Notifications -->
         <div class="toast-container" id="toast-container"></div>
 
@@ -4360,7 +4367,7 @@
                 dashWelcome.innerHTML = `Bienvenid@, ${info.name} <span style="font-size: 1.5rem;">👋</span>`;
             }
             if (dashSubtitle) {
-                dashSubtitle.innerText = `Acceso operativo como ${info.role}. Aquí tienes el pulso de elAromo hoy.`;
+                dashSubtitle.innerText = `Acceso operativo como ${info.full}. Aquí tienes el pulso de elAromo hoy.`;
             }
 
 
@@ -4933,16 +4940,20 @@
         }
 
         function updateDashboardStats(clientes, turnos) {
-            document.getElementById('dash-clientes').innerText = clientes.length;
+            const cliEl = document.getElementById('stat-clientes-mes');
+            if (cliEl) cliEl.innerText = clientes.length;
+
             const activos = turnos.filter(t => t.estado === 'reservado').length;
             const completados = turnos.filter(t => t.estado === 'completado').length;
-            document.getElementById('dash-turnos').innerText = activos;
+
+            const turnosEl = document.getElementById('stat-pedidos-hoy');
+            if (turnosEl) turnosEl.innerText = activos;
+
             try {
-                document.getElementById('dash-completados').innerText = completados;
                 const todayStr = new Date().toISOString().split('T')[0];
                 const turnosHoy = turnos.filter(t => t.fecha === todayStr);
 
-                // Timeline Hoy
+                // Timeline Hoy (if it exists)
                 const tl = document.getElementById('timeline-hoy');
                 if (tl) {
                     tl.innerHTML = '';
@@ -4965,7 +4976,7 @@
                         });
                     }
                 }
-            } catch (e) { } // Optional element
+            } catch (e) { console.error("Error updating dashboard stats:", e); }
         }
 
 
