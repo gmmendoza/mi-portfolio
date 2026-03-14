@@ -129,6 +129,9 @@
             <a onclick="switchView('inventory', this)" class="nav-item flex items-center gap-3 px-3 py-2 rounded-lg cursor-pointer hover:bg-slate-800 transition-colors">
                 <i class="fas fa-box-open w-5 text-center"></i> <span>Inventario</span>
             </a>
+            <a onclick="switchView('history', this)" class="nav-item flex items-center gap-3 px-3 py-2 rounded-lg cursor-pointer hover:bg-slate-800 transition-colors">
+                <i class="fas fa-history w-5 text-center"></i> <span>Historial Ventas</span>
+            </a>
             <a onclick="showToast('Módulo en desarrollo para v2.1', 'warning')" class="nav-item flex items-center gap-3 px-3 py-2 rounded-lg cursor-pointer hover:bg-slate-800 transition-colors opacity-60">
                 <i class="fas fa-users w-5 text-center"></i> <span>Clientes CRM</span>
             </a>
@@ -376,64 +379,33 @@
             </section>
 
             <!-- Inventory View -->
-            <section id="inventory" class="view-section max-w-7xl mx-auto h-full flex flex-col pt-4">
+            </section>
+
+            <!-- Sales History View -->
+            <section id="history" class="view-section max-w-7xl mx-auto h-full flex flex-col pt-4">
                 <div class="flex justify-between items-end mb-6">
                     <div>
-                        <h2 class="text-2xl font-bold text-slate-800 dark:text-white">Gestión de Inventario</h2>
-                        <p class="text-slate-500 text-sm mt-1">Control de catálogo, stock y márgenes.</p>
+                        <h2 class="text-2xl font-bold text-slate-800 dark:text-white">Historial de Ventas</h2>
+                        <p class="text-slate-500 text-sm mt-1">Registro de todas las transacciones procesadas.</p>
                     </div>
-                    <button class="px-5 py-2.5 bg-primary-600 hover:bg-primary-700 text-white rounded-lg font-medium shadow-md transition-colors flex items-center gap-2" onclick="openModal('newItemModal')">
-                        <i class="fas fa-plus"></i> Nuevo Artículo
-                    </button>
                 </div>
 
                 <div class="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 flex-1 flex flex-col overflow-hidden">
-                    <div class="p-4 border-b border-slate-200 dark:border-slate-700 flex flex-wrap gap-4 items-center bg-slate-50 dark:bg-slate-900 justify-between">
-                        <div class="flex gap-4 flex-1 max-w-lg">
-                            <div class="relative flex-1">
-                                <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
-                                <input type="text" placeholder="Filtrar catálogo..." class="w-full pl-9 pr-4 py-2 text-sm bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-lg focus:outline-none focus:border-primary-500 dark:text-white">
-                            </div>
-                            <select class="px-3 py-2 text-sm bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-lg outline-none cursor-pointer dark:text-white">
-                                <option>Todas las Categorías</option>
-                                <option>Periféricos</option>
-                                <option>Componentes PC</option>
-                            </select>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <span class="text-sm font-medium text-slate-500">Ordenar por:</span>
-                            <button class="text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-primary-600 flex items-center gap-1">Stock <i class="fas fa-sort-amount-down"></i></button>
-                        </div>
-                    </div>
-                    
                     <div class="flex-1 overflow-auto">
                         <table class="w-full text-left text-sm text-slate-600 dark:text-slate-400 whitespace-nowrap">
                             <thead class="bg-slate-100 dark:bg-slate-800/50 text-slate-500 dark:text-slate-400 font-semibold text-xs uppercase sticky top-0 z-10">
                                 <tr>
-                                    <th class="px-6 py-4">Código / Ref</th>
-                                    <th class="px-6 py-4">Descripción de Artículo</th>
-                                    <th class="px-6 py-4">Precio Venta</th>
-                                    <th class="px-6 py-4">Stock Actual</th>
+                                    <th class="px-6 py-4">ID Transacción</th>
+                                    <th class="px-6 py-4">Fecha/Hora</th>
+                                    <th class="px-6 py-4">Items</th>
+                                    <th class="px-6 py-4">Total</th>
                                     <th class="px-6 py-4">Estado</th>
-                                    <th class="px-6 py-4 text-center">Acciones</th>
                                 </tr>
                             </thead>
-                            <tbody class="divide-y divide-slate-100 dark:divide-slate-700/50" id="invTableBody">
-                                <!-- Populated dynamically -->
+                            <tbody class="divide-y divide-slate-100 dark:divide-slate-700/50" id="historyTableBody">
+                                <tr class="text-slate-400"><td colspan="5" class="px-6 py-10 text-center italic">No hay ventas registradas aún.</td></tr>
                             </tbody>
                         </table>
-                    </div>
-                    
-                    <!-- Pagination simulation -->
-                    <div class="p-3 border-t border-slate-200 dark:border-slate-700 flex justify-between items-center text-sm">
-                        <span class="text-slate-500">Mostrando 1-10 de 128 resultados</span>
-                        <div class="flex gap-1">
-                            <button class="px-3 py-1 border border-slate-200 dark:border-slate-600 rounded cursor-not-allowed opacity-50 dark:text-slate-300">Anterior</button>
-                            <button class="px-3 py-1 bg-primary-600 text-white rounded">1</button>
-                            <button class="px-3 py-1 border border-slate-200 dark:border-slate-600 rounded hover:bg-slate-50 dark:hover:bg-slate-700 dark:text-slate-300">2</button>
-                            <button class="px-3 py-1 border border-slate-200 dark:border-slate-600 rounded hover:bg-slate-50 dark:hover:bg-slate-700 dark:text-slate-300">3</button>
-                            <button class="px-3 py-1 border border-slate-200 dark:border-slate-600 rounded hover:bg-slate-50 dark:hover:bg-slate-700 dark:text-slate-300">Siguiente</button>
-                        </div>
                     </div>
                 </div>
             </section>
@@ -482,6 +454,50 @@
                 <div class="flex justify-end gap-3 mt-6">
                     <button type="button" class="px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800" onclick="closeModal('newItemModal')">Cancelar</button>
                     <button type="submit" class="px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-lg text-sm font-medium shadow-md">Crear Artículo</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Editar Artículo Modal -->
+    <div id="editItemModal" class="modal">
+        <div class="modal-content bg-white dark:bg-slate-800 rounded-xl w-full max-w-lg shadow-2xl">
+            <div class="p-6 border-b border-slate-200 dark:border-slate-700 flex justify-between items-center">
+                <h2 class="text-xl font-bold dark:text-white">Editar Artículo</h2>
+                <button onclick="closeModal('editItemModal')" class="text-slate-400 hover:text-slate-600 dark:hover:text-white"><i class="fas fa-times text-xl"></i></button>
+            </div>
+            <form id="editItemForm" onsubmit="handleEditItem(event)" class="p-6 space-y-4">
+                <input type="hidden" id="editItemId">
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="col-span-2">
+                        <label class="block text-sm font-medium mb-1 text-slate-600 dark:text-slate-400">Descripción</label>
+                        <input type="text" id="editItemName" required class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-lg outline-none focus:border-primary-500 dark:text-white">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-1 text-slate-600 dark:text-slate-400">Referencia</label>
+                        <input type="text" id="editItemRef" required class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-lg outline-none focus:border-primary-500 dark:text-white">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-1 text-slate-600 dark:text-slate-400">Categoría</label>
+                        <select id="editItemCat" class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-lg outline-none cursor-pointer dark:text-white">
+                            <option>Periféricos</option>
+                            <option>Componentes PC</option>
+                            <option>Audio</option>
+                            <option>Video</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-1 text-slate-600 dark:text-slate-400">Precio</label>
+                        <input type="number" id="editItemPrice" required class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-lg outline-none focus:border-primary-500 dark:text-white">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-1 text-slate-600 dark:text-slate-400">Stock</label>
+                        <input type="number" id="editItemStock" required class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-lg outline-none focus:border-primary-500 dark:text-white">
+                    </div>
+                </div>
+                <div class="flex justify-end gap-3 mt-6">
+                    <button type="button" class="px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800" onclick="closeModal('editItemModal')">Cancelar</button>
+                    <button type="submit" class="px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-lg text-sm font-medium shadow-md">Guardar Cambios</button>
                 </div>
             </form>
         </div>
@@ -556,13 +572,14 @@
         ];
 
         let cart = [];
+        let history = [];
         let myChart;
 
         // Init App Flow
         window.addEventListener('load', () => {
             // Remove skeleton from chart after 1.5s
             setTimeout(() => {
-                document.getElementById('chartSkeleton').remove();
+                if(document.getElementById('chartSkeleton')) document.getElementById('chartSkeleton').remove();
                 initChart();
             }, 1000);
 
@@ -574,6 +591,7 @@
 
             renderPOS();
             renderInventory();
+            renderHistory();
         });
 
         // Handlers
@@ -636,6 +654,44 @@
 
         function openModal(id) { document.getElementById(id).classList.add('active'); }
         function closeModal(id) { document.getElementById(id).classList.remove('active'); }
+
+        function openEditModal(id) {
+            const item = db.find(p => p.id === id);
+            if(!item) return;
+            document.getElementById('editItemId').value = item.id;
+            document.getElementById('editItemName').value = item.name;
+            document.getElementById('editItemRef').value = item.ref;
+            document.getElementById('editItemCat').value = item.cat;
+            document.getElementById('editItemPrice').value = item.price;
+            document.getElementById('editItemStock').value = item.stock;
+            openModal('editItemModal');
+        }
+
+        function handleEditItem(e) {
+            e.preventDefault();
+            const id = document.getElementById('editItemId').value;
+            const item = db.find(p => p.id === id);
+            if(item) {
+                item.name = document.getElementById('editItemName').value;
+                item.ref = document.getElementById('editItemRef').value;
+                item.cat = document.getElementById('editItemCat').value;
+                item.price = parseFloat(document.getElementById('editItemPrice').value);
+                item.stock = parseInt(document.getElementById('editItemStock').value);
+                renderInventory();
+                renderPOS();
+                closeModal('editItemModal');
+                showToast('Artículo actualizado', 'success');
+            }
+        }
+
+        function deleteItem(id) {
+            if(confirm('¿Estás seguro de eliminar este artículo?')) {
+                db = db.filter(p => p.id !== id);
+                renderInventory();
+                renderPOS();
+                showToast('Artículo eliminado', 'warning');
+            }
+        }
 
         function handleNewItem(e) {
             e.preventDefault();
@@ -786,10 +842,23 @@
 
         function processPayment() {
             if(cart.length === 0) return;
+            const sub = cart.reduce((acc, c) => acc + (c.price * c.qty), 0);
+            const total = sub * 1.21;
+            
+            // Record History
+            const entry = {
+                id: 'TRX-' + (Math.floor(Math.random() * 9000) + 1000),
+                date: new Date().toLocaleString(),
+                items: cart.length,
+                total: total
+            };
+            history.unshift(entry);
+            renderHistory();
+
             // Descontar inventario real (simulado)
             cart.forEach(c => {
                 const p = db.find(x => x.id === c.id);
-                p.stock -= c.qty;
+                if(p) p.stock -= c.qty;
             });
             showToast('Ticket cobrado exitosamente e inventario descontado.', 'success');
             
@@ -799,14 +868,37 @@
             clearTicket();
             
             // Add trick visual to Dashboard KPI
-            document.getElementById('kpi-orders').innerText = "855";
+            document.getElementById('kpi-orders').innerText = parseInt(document.getElementById('kpi-orders').innerText) + 1;
             document.getElementById('kpi-orders').classList.add('text-primary-600');
             setTimeout(()=>document.getElementById('kpi-orders').classList.remove('text-primary-600'), 1000);
+        }
+
+        // Feature: Render History
+        function renderHistory() {
+            const tb = document.getElementById('historyTableBody');
+            if(!tb) return;
+            if(history.length === 0) {
+                tb.innerHTML = '<tr class="text-slate-400"><td colspan="5" class="px-6 py-10 text-center italic">No hay ventas registradas aún.</td></tr>';
+                return;
+            }
+            tb.innerHTML = '';
+            history.forEach(h => {
+                tb.innerHTML += `
+                    <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors">
+                        <td class="px-6 py-4 font-mono text-xs font-bold text-primary-600 dark:text-primary-400">${h.id}</td>
+                        <td class="px-6 py-4 text-xs dark:text-slate-400">${h.date}</td>
+                        <td class="px-6 py-4 dark:text-slate-300">${h.items} ítems</td>
+                        <td class="px-6 py-4 font-bold dark:text-slate-100">${formatMoney(h.total)}</td>
+                        <td class="px-6 py-4"><span class="bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400 py-1 px-2 rounded-md text-xs font-semibold">Pagado</span></td>
+                    </tr>
+                `;
+            });
         }
 
         // Feature: Render Inventory
         function renderInventory() {
             const tb = document.getElementById('invTableBody');
+            if(!tb) return;
             tb.innerHTML = '';
             db.forEach(p => {
                 const stat = p.stock > 10 ? `<span class="bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400 py-1 px-2 rounded-md text-xs font-semibold">Óptimo</span>` : 
@@ -825,7 +917,10 @@
                         </td>
                         <td class="px-6 py-4">${stat}</td>
                         <td class="px-6 py-4 text-center">
-                            <button class="text-slate-400 hover:text-primary-600 opacity-0 group-hover:opacity-100 transition-opacity"><i class="fas fa-edit"></i></button>
+                            <div class="flex justify-center gap-2">
+                                <button onclick="openEditModal('${p.id}')" class="w-8 h-8 flex items-center justify-center rounded-lg text-slate-400 hover:text-primary-600 hover:bg-primary-50 dark:hover:bg-primary-900/30 transition-all opacity-0 group-hover:opacity-100"><i class="fas fa-edit"></i></button>
+                                <button onclick="deleteItem('${p.id}')" class="w-8 h-8 flex items-center justify-center rounded-lg text-slate-400 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-900/30 transition-all opacity-0 group-hover:opacity-100"><i class="fas fa-trash-alt"></i></button>
+                            </div>
                         </td>
                     </tr>
                 `;
