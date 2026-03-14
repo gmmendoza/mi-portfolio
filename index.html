@@ -1,1398 +1,1024 @@
 <!DOCTYPE html>
-<html lang="es">
-
+<html lang="es" class="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guadalupe Mendoza | Desarrolladora Full Stack</title>
-    <meta name="description"
-        content="Portfolio de Guadalupe Mendoza — Desarrolladora Full Stack, Analista en Sistemas. Spring Boot, PostgreSQL, Docker.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
+    <title>SaaS ERP Cloud - Workspace Demo</title>
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: { extend: { colors: { primary: {"50":"#eff6ff","100":"#dbeafe","200":"#bfdbfe","300":"#93c5fd","400":"#60a5fa","500":"#3b82f6","600":"#2563eb","700":"#1d4ed8","800":"#1e40af","900":"#1e3a8a"} } } }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <style>
-        :root {
-            --blue: #2563eb;
-            --blue-dark: #1e3a8a;
-            --blue-lt: #60a5fa;
-            --blue-xs: #f0f9ff;
-            --sky: #0ea5e9;
-            --dark: #0f172a;
-            --text: #334155;
-            --text-dark: #1e293b;
-            --muted: #64748b;
-            --border: #e2e8f0;
-            --bg: #f8fafc;
-            --card: #ffffff;
-            --r: 24px;
-            --r-sm: 14px;
-            --sh: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-            --sh-lg: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-            --accent: #10b981; /* Emerald for a fresh professional look */
-            --gap: 3.5rem;
-        }
-
-        *,
-        *::before,
-        *::after {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Inter', system-ui, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.8;
-            font-size: 16.5px;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        img {
-            display: block;
-            max-width: 100%;
-        }
-
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        /* ─── NAVBAR ────────────────────────────────── */
-        .navbar {
-            background: rgba(255, 255, 255, .85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            padding: .85rem 0;
-        }
-
-        .nav-inner {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.45rem;
-            font-weight: 900;
-            background: linear-gradient(135deg, var(--blue), var(--sky));
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 1.6rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            font-size: .88rem;
-            font-weight: 500;
-            color: var(--muted);
-            transition: color .2s;
-            position: relative;
-        }
-
-        .nav-links a:hover,
-        .nav-links a.active {
-            color: var(--blue);
-        }
-
-        .nav-links a.active::after {
-            content: '';
-            position: absolute;
-            bottom: -6px;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: var(--blue);
-            border-radius: 2px;
-        }
-
-        /* ─── HERO ──────────────────────────────────── */
-        .hero {
-            background: linear-gradient(160deg, #fff 0%, #e0e9f8 50%, #dbeafe 100%);
-            padding: 5.5rem 2rem 5rem;
-            text-align: center;
-            border-bottom: 1px solid var(--border);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -160px;
-            right: -160px;
-            width: 400px;
-            height: 400px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(29, 78, 216, .06) 0%, transparent 70%);
-        }
-
-        .hero-inner {
-            max-width: 800px;
-            margin: 0 auto;
-            position: relative;
-        }
-
-        .avatar {
-            width: 156px;
-            height: 156px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 5px solid var(--blue);
-            box-shadow: 0 0 0 10px rgba(29, 78, 216, .08), 0 20px 40px -15px rgba(29, 78, 216, .2);
-            margin: 0 auto 1.8rem;
-        }
-
-        .hero h1 {
-            font-size: 2.8rem;
-            font-weight: 900;
-            color: var(--dark);
-            margin-bottom: .35rem;
-            letter-spacing: -.02em;
-        }
-
-        .hero-role {
-            font-size: 1.15rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--blue), var(--sky));
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: .8rem;
-        }
-
-        .hero-meta {
-            display: flex;
-            gap: 1.4rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            color: var(--muted);
-            font-size: .88rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .hero-meta i {
-            margin-right: .3rem;
-            color: var(--blue-lt);
-        }
-
-        .hero-bio {
-            color: var(--muted);
-            font-size: 1.02rem;
-            margin-bottom: 2.2rem;
-            max-width: 620px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.8;
-        }
-
-        .hero-bio strong {
-            color: var(--text);
-        }
-
-        .social-row {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            margin-bottom: 2rem;
-        }
-
-        .social-row a {
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            background: var(--card);
-            border: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.1rem;
-            color: var(--muted);
-            transition: all .25s;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, .04);
-        }
-
-        .social-row a:hover {
-            background: var(--blue);
-            color: #fff;
-            border-color: var(--blue);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(29, 78, 216, .25);
-        }
-
-        .hero-btns {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: .5rem;
-            padding: .75rem 1.8rem;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: .95rem;
-            transition: all .25s;
-            cursor: pointer;
-            border: 2px solid transparent;
-        }
-
-        .btn-primary {
-            background: var(--blue);
-            color: #fff;
-            box-shadow: 0 4px 14px rgba(29, 78, 216, .3);
-        }
-
-        .btn-primary:hover {
-            background: #1e3a8a;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(29, 78, 216, .4);
-        }
-
-        .btn-outline {
-            background: transparent;
-            color: var(--blue);
-            border-color: var(--blue);
-        }
-
-        .btn-outline:hover {
-            background: var(--blue-xs);
-            transform: translateY(-2px);
-        }
-
-        /* ─── LAYOUT ────────────────────────────────── */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .section-gap {
-            padding: 6rem 0;
-        }
-
-        .section-alt {
-            background: var(--card);
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
-        }
-
-        .section-title {
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: var(--dark);
-            margin-bottom: 2.5rem;
-            position: relative;
-            padding-bottom: .65rem;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 48px;
-            height: 4px;
-            border-radius: 4px;
-            background: linear-gradient(90deg, var(--blue), var(--sky));
-        }
-
-        .section-title.center {
-            text-align: center;
-        }
-
-        .section-title.center::after {
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        /* ─── CARD ──────────────────────────────────── */
-        .card {
-            background: var(--card);
-            border-radius: var(--r);
-            box-shadow: var(--sh);
-            border: 1px solid var(--border);
-        }
-
-        .card-pad {
-            padding: 2.25rem;
-        }
-
-        /* ─── SOBRE MÍ ──────────────────────────────── */
-        .about-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: var(--gap);
-        }
-
-        .about-text p {
-            color: var(--muted);
-            margin-bottom: 1rem;
-            font-size: 1rem;
-        }
-
-        .about-text p strong {
-            color: var(--text);
-        }
-
-        .lang-row {
-            display: flex;
-            gap: .6rem;
-            flex-wrap: wrap;
-            margin-top: .75rem;
-        }
-
-        .lang-badge {
-            background: var(--blue-xs);
-            color: var(--blue);
-            padding: .35rem .85rem;
-            border-radius: 50px;
-            font-size: .83rem;
-            font-weight: 600;
-        }
-
-        /* ─── FORMACIÓN + ÁREAS ────────────────────── */
-        .two-col {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: var(--gap);
-        }
-
-        .edu-timeline {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .edu-item {
-            padding: 1.1rem 1.3rem;
-            border-radius: var(--r-sm);
-            background: var(--bg);
-            border-left: 4px solid var(--blue);
-            transition: transform .2s;
-        }
-
-        .edu-item:hover {
-            transform: translateX(4px);
-        }
-
-        .edu-item h4 {
-            font-size: .98rem;
-            font-weight: 700;
-            color: var(--dark);
-            margin-bottom: .15rem;
-        }
-
-        .edu-item .inst {
-            color: var(--blue);
-            font-size: .86rem;
-            font-weight: 600;
-        }
-
-        .edu-item .date {
-            color: var(--muted);
-            font-size: .8rem;
-        }
-
-        .areas-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: .9rem;
-        }
-
-        .area-card {
-            background: var(--bg);
-            border-radius: var(--r-sm);
-            padding: 1rem;
-            display: flex;
-            align-items: flex-start;
-            gap: .8rem;
-            border: 1px solid var(--border);
-            transition: all .25s;
-        }
-
-        .area-card:hover {
-            border-color: var(--blue);
-            background: var(--blue-xs);
-            transform: translateY(-3px);
-            box-shadow: 0 4px 12px rgba(29, 78, 216, .08);
-        }
-
-        .area-icon {
-            width: 38px;
-            height: 38px;
-            border-radius: var(--r-sm);
-            background: linear-gradient(135deg, var(--blue), var(--sky));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            font-size: .95rem;
-            flex-shrink: 0;
-        }
-
-        .area-card h4 {
-            font-size: .88rem;
-            font-weight: 700;
-            color: var(--dark);
-            margin-bottom: .15rem;
-        }
-
-        .area-card p {
-            font-size: .78rem;
-            color: var(--muted);
-            line-height: 1.45;
-        }
-
-        /* ─── STACK TECNOLÓGICO ──────────────────────── */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .skill-cat {
-            background: var(--card);
-            border-radius: var(--r);
-            padding: 1.6rem;
-            box-shadow: var(--sh);
-            border: 1px solid var(--border);
-            transition: transform .25s, box-shadow .25s;
-        }
-
-        .skill-cat:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--sh-lg);
-        }
-
-        .skill-cat h3 {
-            font-size: .98rem;
-            font-weight: 700;
-            color: var(--dark);
-            display: flex;
-            align-items: center;
-            gap: .5rem;
-            padding-bottom: .7rem;
-            margin-bottom: 1rem;
-            border-bottom: 2px solid var(--border);
-        }
-
-        .skill-cat h3 i {
-            color: var(--blue);
-        }
-
-        .skill-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: .55rem;
-        }
-
-        .skill-tag {
-            background: var(--bg);
-            color: var(--text);
-            padding: .35rem .85rem;
-            border-radius: 50px;
-            font-size: .83rem;
-            font-weight: 500;
-            border: 1px solid var(--border);
-            display: inline-flex;
-            align-items: center;
-            gap: .35rem;
-            transition: all .25s;
-        }
-
-        .skill-tag i {
-            color: var(--blue);
-            font-size: .9rem;
-        }
-
-        .skill-tag:hover {
-            background: var(--blue);
-            color: #fff;
-            border-color: var(--blue);
-            transform: translateY(-2px);
-        }
-
-        .skill-tag:hover i {
-            color: #fff;
-        }
-
-        .skill-tag.hi {
-            background: var(--blue-xs);
-            border-color: #bfdbfe;
-            color: var(--blue);
-            font-weight: 700;
-        }
-
-        /* ─── PROYECTOS ─────────────────────────────── */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-        }
-
-        .proj-card {
-            background: var(--card);
-            border-radius: var(--r);
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            box-shadow: var(--sh);
-            transition: transform .3s ease, box-shadow .3s ease;
-            height: 100%;
-            border: 1px solid var(--border);
-        }
-
-        .proj-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--sh-lg);
-            border-color: var(--blue-lt);
-        }
-
-        .proj-desc-list {
-            list-style: none;
-            margin-bottom: 1.5rem;
-        }
-
-        .proj-desc-list li {
-            position: relative;
-            padding-left: 1.5rem;
-            margin-bottom: 0.6rem;
-            font-size: 0.95rem;
-        }
-
-        .proj-desc-list li::before {
-            content: "→";
-            position: absolute;
-            left: 0;
-            color: var(--blue);
-            font-weight: 700;
-        }
-
-        .proj-carousel {
-            position: relative;
-            overflow: hidden;
-            background: #0f172a;
-        }
-
-        .proj-carousel-track {
-            display: flex;
-            transition: transform .45s ease;
-        }
-
-        .proj-slide {
-            min-width: 100%;
-            height: 220px;
-            object-fit: cover;
-            object-position: top;
-            cursor: zoom-in;
-        }
-
-        .carousel-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(29, 78, 216, .8);
-            color: #fff;
-            border: none;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            font-size: 1.1rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background .2s;
-            z-index: 5;
-        }
-
-        .carousel-btn:hover {
-            background: var(--blue);
-        }
-
-        .carousel-prev {
-            left: 8px;
-        }
-
-        .carousel-next {
-            right: 8px;
-        }
-
-        .carousel-dots {
-            position: absolute;
-            bottom: 8px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 5px;
-        }
-
-        .carousel-dot {
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, .35);
-            cursor: pointer;
-            transition: background .2s;
-        }
-
-        .carousel-dot.on {
-            background: #fff;
-        }
-
-        .proj-header {
-            background: linear-gradient(135deg, var(--blue), var(--sky));
-            color: #fff;
-            padding: 1rem 1.5rem;
-        }
-
-        .proj-header h3 {
-            font-size: 1.1rem;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .proj-badge {
-            background: rgba(255, 255, 255, .2);
-            border-radius: 50px;
-            font-size: .68rem;
-            padding: .2rem .7rem;
-            font-weight: 700;
-            letter-spacing: .4px;
-        }
-
-        .proj-sub {
-            font-size: .8rem;
-            opacity: .85;
-        }
-
-        .proj-body {
-            padding: 1.5rem;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .proj-desc {
-            color: var(--muted);
-            font-size: .9rem;
-            flex: 1;
-            line-height: 1.7;
-        }
-
-        .tech-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: .4rem;
-        }
-
-        .tech-tag {
-            background: var(--blue-xs);
-            color: var(--blue);
-            padding: .2rem .6rem;
-            border-radius: 50px;
-            font-size: .76rem;
-            font-weight: 600;
-        }
-
-        .proj-stats {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .proj-stat {
-            display: flex;
-            align-items: center;
-            gap: .3rem;
-            font-size: .82rem;
-            color: var(--muted);
-        }
-
-        .proj-stat i {
-            color: var(--blue);
-        }
-
-        .proj-links {
-            display: flex;
-            gap: .75rem;
-            padding-top: 1rem;
-            flex-wrap: wrap;
-            align-items: center;
-        }
-
-        .proj-links a {
-            display: inline-flex;
-            align-items: center;
-            gap: .4rem;
-            font-size: .88rem;
-            color: var(--muted);
-            transition: all .25s;
-        }
-
-        .proj-links a:hover {
-            color: var(--blue);
-        }
-
-        .proj-demo-btn {
-            background: linear-gradient(135deg, var(--blue), var(--sky));
-            color: #fff !important;
-            padding: .55rem 1.4rem;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: .88rem;
-            box-shadow: 0 4px 14px rgba(29, 78, 216, .3);
-            transition: all .25s;
-        }
-
-        .proj-demo-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(29, 78, 216, .4);
-            color: #fff !important;
-        }
-
-        /* ─── CERTIFICACIONES ───────────────────────── */
-        .cert-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-            gap: 1.3rem;
-        }
-
-        .cert-card {
-            background: var(--card);
-            border-radius: var(--r);
-            padding: 1.4rem;
-            box-shadow: var(--sh);
-            border: 1px solid var(--border);
-            display: flex;
-            gap: 1rem;
-            transition: all .25s;
-        }
-
-        .cert-card:hover {
-            border-color: var(--blue);
-            transform: translateY(-3px);
-            box-shadow: var(--sh-lg);
-        }
-
-        .cert-icon {
-            font-size: 1.8rem;
-            color: var(--blue);
-            min-width: 44px;
-            text-align: center;
-        }
-
-        .cert-card h4 {
-            font-size: .98rem;
-            font-weight: 700;
-            color: var(--dark);
-            margin-bottom: .15rem;
-        }
-
-        .cert-iss {
-            color: var(--blue);
-            font-size: .84rem;
-            font-weight: 600;
-        }
-
-        .cert-date {
-            color: var(--muted);
-            font-size: .8rem;
-            margin-bottom: .4rem;
-        }
-
-        .cert-pills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: .3rem;
-        }
-
-        .cert-pill {
-            background: var(--blue-xs);
-            color: var(--blue);
-            padding: .15rem .55rem;
-            border-radius: 50px;
-            font-size: .72rem;
-            font-weight: 600;
-        }
-
-        .section-sub {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: var(--dark);
-            margin: 3rem 0 1.5rem;
-        }
-
-        /* ─── CONTACTO ──────────────────────────────── */
-        .contact-box {
-            background: linear-gradient(135deg, var(--blue) 0%, var(--sky) 100%);
-            border-radius: var(--r);
-            padding: 4rem 2.5rem;
-            text-align: center;
-            color: #fff;
-            box-shadow: 0 20px 60px -15px rgba(29, 78, 216, .35);
-        }
-
-        .contact-box h2 {
-            font-size: 2.2rem;
-            font-weight: 800;
-            margin-bottom: .75rem;
-        }
-
-        .contact-box p {
-            opacity: .9;
-            margin-bottom: 2rem;
-            font-size: 1.05rem;
-        }
-
-        .btn-white {
-            background: #fff;
-            color: var(--blue);
-            font-weight: 700;
-        }
-
-        .btn-white:hover {
-            background: #e0e7ff;
-            transform: translateY(-2px);
-        }
-
-        /* ─── FOOTER ────────────────────────────────── */
-        footer {
-            background: var(--dark);
-            color: rgba(255, 255, 255, .6);
-            text-align: center;
-            padding: 2.5rem 2rem;
-            font-size: .88rem;
-        }
-
-        footer a {
-            color: var(--blue-lt);
-            transition: color .2s;
-        }
-
-        footer a:hover {
-            color: #fff;
-        }
-
-        /* ─── RESPONSIVE ────────────────────────────── */
-        @media (max-width: 900px) {
-
-            .two-col,
-            .about-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .areas-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .hero h1 {
-                font-size: 2rem;
-            }
-        }
-
-        @media (max-width: 640px) {
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .nav-links {
-                gap: .8rem;
-            }
-
-            .nav-links a {
-                font-size: .78rem;
-            }
-        }
-
-        @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(16px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .proj-card,
-        .cert-card,
-        .skill-cat,
-        .area-card {
-            animation: fadeUp .5s ease-out both;
-        }
+        body { font-family: 'Inter', sans-serif; overflow: hidden; }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        .dark ::-webkit-scrollbar-thumb { background: #475569; }
+
+        /* Loader & Skeleton */
+        .skeleton { animation: pulse 1.5s infinite ease-in-out; background-color: #e2e8f0; border-radius: 4px; }
+        .dark .skeleton { background-color: #334155; }
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
+        
+        .loading-overlay { position: fixed; inset: 0; background: rgba(255,255,255,0.9); z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        .dark .loading-overlay { background: rgba(15,23,42,0.9); }
+        .spinner { width: 40px; height: 40px; border: 4px solid #f3f3f3; border-top: 4px solid #2563eb; border-radius: 50%; animation: spin 1s linear infinite; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        /* Toasts */
+        .toast-container { position: fixed; bottom: 20px; right: 20px; z-index: 10000; display: flex; flex-direction: column; gap: 10px; }
+        .toast { background: white; border-left: 4px solid; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); padding: 12px 16px; border-radius: 6px; display: flex; align-items: center; gap: 12px; min-width: 300px; transform: translateX(120%); transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .dark .toast { background: #1e293b; color: white; }
+        .toast.show { transform: translateX(0); }
+        .toast-success { border-color: #10b981; } .toast-success i { color: #10b981; }
+        .toast-warning { border-color: #f59e0b; } .toast-warning i { color: #f59e0b; }
+
+        /* Side Transition */
+        .view-section { display: none; opacity: 0; transition: opacity 0.3s ease; }
+        .view-section.active { display: block; opacity: 1; }
+
+        /* Fancy Elements */
+        .nav-item.active { background: #334155; color: white; border-left: 3px solid #60a5fa; }
+        .stat-card:hover { transform: translateY(-2px); transition: transform 0.2s; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05); }
+        .dark .stat-card:hover { box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3); }
+
+        /* Modals */
+        .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); backdrop-filter: blur(4px); z-index: 9998; align-items: center; justify-content: center; }
+        .modal.active { display: flex; animation: fadeIn 0.2s ease; }
+        .modal-content { animation: scaleIn 0.2s ease; }
+        @keyframes fadeIn { from{opacity:0;} to{opacity:1;} }
+        @keyframes scaleIn { from{transform:scale(0.95);opacity:0;} to{transform:scale(1);opacity:1;} }
     </style>
 </head>
+<body class="bg-slate-50 text-slate-900 dark:bg-slate-900 dark:text-slate-100 flex h-screen select-none">
 
-<body>
-
-    <!-- ═══ NAVBAR ════════════════════════════════════════════ -->
-    <nav class="navbar">
-        <div class="nav-inner">
-            <a href="#" class="logo">GM</a>
-            <ul class="nav-links">
-                <li><a href="#inicio" class="active">Inicio</a></li>
-                <li><a href="#sobre-mi">Sobre Mí</a></li>
-                <li><a href="#stack">Stack</a></li>
-                <li><a href="#proyectos">Proyectos</a></li>
-                <li><a href="#cursos">Cursos</a></li>
-                <li><a href="#contacto">Contacto</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <!-- ═══ HERO ══════════════════════════════════════════════ -->
-    <section id="inicio" class="hero">
-        <div class="hero-inner">
-            <img src="profile.jpg" alt="Guadalupe Mendoza" class="avatar">
-            <h1>Guadalupe Mendoza</h1>
-            <div class="hero-role">Full Stack Developer | Analista de Sistemas</div>
-            <div class="hero-meta">
-                <span><i class="fas fa-map-marker-alt"></i>Misiones, Argentina</span>
-                <span><i class="fab fa-whatsapp"></i>+54 376 489-5145</span>
-                <span><i class="fas fa-envelope"></i>guuamendoza@gmail.com</span>
-            </div>
-            <p class="hero-bio">
-                Estudiante avanzada de Licenciatura en Sistemas de Información. Especialista en construir soluciones <strong>Full Stack</strong> de alto impacto, integrando un análisis técnico riguroso con arquitecturas escalables en Java y React. Disponible para oportunidades como <strong>Full Stack Developer</strong> o <strong>Analista de Sistemas</strong>.
-            </p>
-            <div class="social-row">
-                <a href="https://github.com/gmmendoza" target="_blank" rel="noopener" title="GitHub"><i
-                        class="fab fa-github"></i></a>
-                <a href="https://www.linkedin.com/in/gmmendoza/" target="_blank" rel="noopener" title="LinkedIn"><i
-                        class="fab fa-linkedin-in"></i></a>
-                <a href="mailto:guuamendoza@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
-            </div>
-            <div class="hero-btns">
-                <a href="#contacto" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Contrátame</a>
-                <a href="cv/" target="_blank" class="btn btn-outline"><i class="fas fa-file-alt"></i> Ver CV</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- ═══ CONTENIDO PRINCIPAL ════════════════════════════════ -->
-
-    <!-- ── SOBRE MÍ ──────────────────────────────────────── -->
-    <section id="sobre-mi" class="section-gap">
-        <div class="container">
-            <h2 class="section-title">Sobre Mí</h2>
-            <div class="card card-pad">
-                <div class="about-grid">
-                    <div class="about-text">
-                        <p>Soy estudiante avanzada de Licenciatura en Sistemas de Información y Analista en Sistemas de Computación, con enfoque en el análisis, diseño y desarrollo de sistemas.</p>
-                        <p>Me especializo en desarrollo backend con <strong>Java y Spring Boot</strong>, creación de APIs REST y modelado de bases de datos relacionales, complementando con frontend en <strong>React</strong> para construir aplicaciones full stack.</p>
-                        <p>Mi formación como Analista me permite abordar el desarrollo desde una visión integral del ciclo de vida del software, diseñando soluciones escalables orientadas a procesos y alineadas con las necesidades del negocio.</p>
-                        <p>Me interesa desarrollarme profesionalmente como <strong>Analista de Sistemas</strong> o <strong>Full Stack Developer</strong>, con interés en arquitectura de software y ciberseguridad.</p>
-                    </div>
-                    <div>
-                        <h4
-                            style="font-size: 0.95rem; font-weight: 700; color: var(--text-dark); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.4rem;">
-                            <i class="fas fa-star"></i> Áreas de interés
-                        </h4>
-                        <ul style="list-style: none; font-size: 0.95rem; color: var(--text); padding: 0.5rem 0;">
-                            <li style="margin-bottom: 0.8rem; display: flex; align-items: center; gap: 0.75rem;">
-                                <i class="fas fa-server" style="color: var(--blue); width: 20px; text-align: center;"></i>
-                                <span>Backend Development (Java / Spring Boot)</span>
-                            </li>
-                            <li style="margin-bottom: 0.8rem; display: flex; align-items: center; gap: 0.75rem;">
-                                <i class="fas fa-project-diagram" style="color: var(--blue); width: 20px; text-align: center;"></i>
-                                <span>Análisis y modelado de sistemas</span>
-                            </li>
-                            <li style="margin-bottom: 0.8rem; display: flex; align-items: center; gap: 0.75rem;">
-                                <i class="fas fa-cubes" style="color: var(--blue); width: 20px; text-align: center;"></i>
-                                <span>Arquitectura de software</span>
-                            </li>
-                            <li style="margin-bottom: 0.8rem; display: flex; align-items: center; gap: 0.75rem;">
-                                <i class="fas fa-database" style="color: var(--blue); width: 20px; text-align: center;"></i>
-                                <span>Bases de datos relacionales</span>
-                            </li>
-                            <li style="margin-bottom: 0.8rem; display: flex; align-items: center; gap: 0.75rem;">
-                                <i class="fas fa-shield-alt" style="color: var(--blue); width: 20px; text-align: center;"></i>
-                                <span>Ciberseguridad</span>
-                            </li>
-                        </ul>
-                        <h4
-                            style="font-size:.95rem;font-weight:700;color:var(--dark);margin-bottom:.75rem;padding-bottom:.45rem;border-bottom:2px solid var(--border);">
-                            Idiomas</h4>
-                        <div class="lang-row">
-                            <span class="lang-badge">🇦🇷 Español — Nativo</span>
-                            <span class="lang-badge">🇬🇧 Inglés — Técnico</span>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ── FORMACIÓN + ÁREAS ──────────────────────────────── -->
-    <!-- ── PROYECTOS DESTACADOS ───────────────────────────── -->
-    <div class="section-alt">
-        <section id="proyectos" class="section-gap">
-            <div class="container">
-                <h2 class="section-title">Experiencia Laboral & Proyectos</h2>
-                <div class="projects-grid">
-
-                    <!-- SaaS ERP -->
-                    <div class="proj-card">
-                        <div class="proj-carousel" id="saas-c">
-                            <div class="proj-carousel-track" id="saas-t">
-                                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" alt="SaaS ERP — Dashboard Real" class="proj-slide">
-                                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" alt="SaaS ERP — Analítica" class="proj-slide">
-                            </div>
-                            <button class="carousel-btn carousel-prev" onclick="cMove('saas',-1)">&#8249;</button>
-                            <button class="carousel-btn carousel-next" onclick="cMove('saas',1)">&#8250;</button>
-                        </div>
-                        <div class="proj-header">
-                            <h3>SaaS ERP Cloud <span class="proj-badge">Destacado</span></h3>
-                            <div class="proj-sub">Sistema de Gestión Multi-tenant</div>
-                        </div>
-                        <div class="proj-body">
-                            <div class="tech-tags">
-                                <span class="tech-tag">React</span>
-                                <span class="tech-tag">Node.js</span>
-                                <span class="tech-tag">Express</span>
-                                <span class="tech-tag">SQLite</span>
-                            </div>
-                            <ul class="proj-desc-list">
-                                <li><strong>Arquitecto Backend:</strong> Diseñé e implementé la lógica multi-tenant asegurando el aislamiento de datos por empresa.</li>
-                                <li>Desarrollé un panel interactivo con <strong>Chart.js</strong> para alertas críticas de stock y métricas financieras.</li>
-                                <li>Integré una terminal POS con facturación offline/online sincronizada mediante APIs REST específicas.</li>
-                            </ul>
-                            <div class="proj-links">
-                                <a href="Saas.app/" target="_blank" rel="noopener" class="proj-demo-btn">
-                                    <i class="fas fa-play-circle"></i> Ver Demo
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Agrosystem -->
-                    <div class="proj-card">
-                        <div class="proj-carousel" id="agro-c">
-                            <div class="proj-carousel-track" id="agro-t">
-                                <img src="imagenes/agrosystem/agro-dashboard.png" alt="Agrosystem — Dashboard" class="proj-slide">
-                                <img src="imagenes/agrosystem/agro-liquidaciones.png" alt="Agrosystem — Liquidaciones" class="proj-slide">
-                            </div>
-                            <button class="carousel-btn carousel-prev" onclick="cMove('agro',-1)">&#8249;</button>
-                            <button class="carousel-btn carousel-next" onclick="cMove('agro',1)">&#8250;</button>
-                        </div>
-                        <div class="proj-header">
-                            <h3>Agrosystem <span class="proj-badge">Backend Robust</span></h3>
-                            <div class="proj-sub">Plataforma Agropecuaria</div>
-                        </div>
-                        <div class="proj-body">
-                            <div class="tech-tags">
-                                <span class="tech-tag">Spring Boot</span>
-                                <span class="tech-tag">Spring Security</span>
-                                <span class="tech-tag">JWT</span>
-                                <span class="tech-tag">PostgreSQL</span>
-                                <span class="tech-tag">Docker</span>
-                            </div>
-                            <ul class="proj-desc-list">
-                                <li><strong>Seguridad de APIs:</strong> Implementé autenticación robusta mediante <strong>JWT</strong> y control de accesos basado en roles (RBAC).</li>
-                                <li>Optimicé el acceso a datos mediante <strong>Spring Data JPA</strong> y modelado relacional complejo en PostgreSQL.</li>
-                                <li>Orquesté el despliegue del ecosistema completo usando <strong>Docker Compose</strong> para asegurar portabilidad.</li>
-                            </ul>
-                            <div class="proj-links">
-                                <a href="https://agrosystem-1.onrender.com/" target="_blank" rel="noopener" class="proj-demo-btn">
-                                    <i class="fas fa-play-circle"></i> Ver Demo
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Panadería El Aromo -->
-                    <div class="proj-card">
-                        <div class="proj-carousel" id="pan-c">
-                            <div class="proj-carousel-track" id="pan-t">
-                                <img src="imagenes/panaderia/pan-ventas.png" alt="El Aromo — Caja & Ventas" class="proj-slide">
-                            </div>
-                        </div>
-                        <div class="proj-header">
-                            <h3>Gestión El Aromo</h3>
-                            <div class="proj-sub">Producción y Punto de Venta</div>
-                        </div>
-                        <div class="proj-body">
-                            <div class="tech-tags">
-                                <span class="tech-tag">Spring Boot</span>
-                                <span class="tech-tag">API REST</span>
-                                <span class="tech-tag">JavaScript</span>
-                            </div>
-                            <ul class="proj-desc-list">
-                                <li><strong>Análisis Funcional:</strong> Modelé reglas de negocio críticas para la validación automática de mermas y producción diaria.</li>
-                                <li>Desarrollé una interfaz SPA para agilizar el proceso de caja en el punto de venta local.</li>
-                                <li><strong>Logro:</strong> API REST para gestión de usuarios con autenticación JWT desarrollada con Spring Boot y PostgreSQL.</li>
-                            </ul>
-                            <div class="proj-links">
-                                <a href="demo-panaderia/" target="_blank" rel="noopener" class="proj-demo-btn">
-                                    <i class="fas fa-play-circle"></i> Ver Demo
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- SGT -->
-                    <div class="proj-card">
-                        <div class="proj-carousel" id="sgt-c">
-                            <div class="proj-carousel-track" id="sgt-t">
-                                <img src="imagenes/sgt/sgt-dashboard.png" alt="SGT — Panel de Control"
-                                    class="proj-slide">
-                                <img src="imagenes/sgt/sgt-tienda.png" alt="SGT — Tienda Online" class="proj-slide">
-                                <img src="imagenes/sgt/sgt-ventas.png" alt="SGT — Ventas Online" class="proj-slide">
-                                <img src="imagenes/sgt/sgt-panel.png" alt="SGT — Control Precios" class="proj-slide">
-                                <img src="imagenes/sgt/sgt-proveedores.png" alt="SGT — Proveedores" class="proj-slide">
-                            </div>
-                            <button class="carousel-btn carousel-prev" onclick="cMove('sgt',-1)">&#8249;</button>
-                            <button class="carousel-btn carousel-next" onclick="cMove('sgt',1)">&#8250;</button>
-                            <div class="carousel-dots" id="sgt-d"></div>
-                        </div>
-                        <div class="proj-header">
-                            <h3>Sistema de Gestión Textil <span class="proj-badge">SGT</span></h3>
-                            <div class="proj-sub">Trabajo Final — Analista en Sistemas</div>
-                        </div>
-                        <div class="proj-body">
-                            <div class="tech-tags">
-                                <span class="tech-tag">PHP</span>
-                                <span class="tech-tag">Laravel</span>
-                                <span class="tech-tag">MySQL</span>
-                                <span class="tech-tag">jQuery</span>
-                                <span class="tech-tag">Bootstrap</span>
-                            </div>
-                            <ul class="proj-desc-list">
-                                <li><strong>Analista Funcional:</strong> Digitalización de procesos operativos, gestión de pedidos y ventas online.</li>
-                                <li>Administración de inventario centralizada y actualización automática de precios.</li>
-                                <li>Registro y sincronización de facturación local y preventas digitales.</li>
-                            </ul>
-                            <div style="margin-top:0.75rem; font-size:0.85rem; font-weight:600; color:var(--blue);"><i class="fas fa-check-circle"></i> Sistema que está actualmente en funcionamiento</div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </section>
+    <!-- Preloader Simulador -->
+    <div id="appLoader" class="loading-overlay">
+        <div class="spinner mb-4"></div>
+        <h2 class="text-lg font-bold text-slate-800 dark:text-white">Cargando Workspace...</h2>
+        <p class="text-sm text-slate-500 mt-2">Sincronizando base de datos local</p>
     </div>
 
-    <!-- ── STACK TECNOLÓGICO ─────────────────────────────── -->
-    <section id="stack" class="section-gap">
-        <div class="container">
-            <h2 class="section-title">Stack Tecnológico</h2>
-            <div class="skills-grid">
+    <!-- Login Modal Simulado -->
+    <div id="loginModal" class="modal bg-slate-900/80">
+        <div class="modal-content bg-white dark:bg-slate-800 p-8 rounded-2xl w-full max-w-sm shadow-2xl relative">
+            <div class="text-center mb-6">
+                <div class="w-12 h-12 bg-primary-600 rounded-xl mx-auto flex items-center justify-center text-white mb-4">
+                    <i class="fas fa-layer-group text-xl"></i>
+                </div>
+                <h3 class="text-2xl font-bold dark:text-white">SaaS ERP Demo</h3>
+                <p class="text-slate-500 text-sm mt-1">Accede para probar el sistema</p>
+            </div>
+            <form onsubmit="handleLogin(event)">
+                <div class="mb-4">
+                    <label class="block text-sm font-medium mb-1 dark:text-slate-300">Email Comercial</label>
+                    <input type="email" value="demo@empresa.com" class="w-full px-4 py-2 border rounded-lg dark:bg-slate-700 dark:border-slate-600 dark:text-white focus:ring-2 focus:ring-primary-500 outline-none" required>
+                </div>
+                <div class="mb-6">
+                    <label class="block text-sm font-medium mb-1 dark:text-slate-300">Contraseña</label>
+                    <input type="password" value="********" class="w-full px-4 py-2 border rounded-lg dark:bg-slate-700 dark:border-slate-600 dark:text-white focus:ring-2 focus:ring-primary-500 outline-none" required>
+                </div>
+                <button type="submit" class="w-full bg-primary-600 hover:bg-primary-700 text-white font-medium py-2 rounded-lg flex justify-center items-center gap-2 transition-colors">
+                    <i class="fas fa-sign-in-alt"></i> Iniciar Sesión Demo
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Sidebar -->
+    <aside class="w-64 bg-slate-900 text-slate-300 flex flex-col transition-all z-20">
+        <div class="h-16 flex items-center px-6 border-b border-slate-700">
+            <div class="w-8 h-8 bg-primary-600 rounded flex items-center justify-center text-white mr-3">
+                <i class="fas fa-layer-group"></i>
+            </div>
+            <span class="font-bold text-lg text-white">SaaS Cloud</span>
+        </div>
+
+        <div class="px-6 py-4 border-b border-slate-700 mb-2">
+            <div class="text-xs uppercase text-slate-500 font-bold mb-2">Perfil Completado</div>
+            <div class="h-2 w-full bg-slate-700 rounded-full overflow-hidden">
+                <div class="h-full bg-green-500 w-3/4"></div>
+            </div>
+            <div class="text-xs text-right mt-1 text-slate-400">75%</div>
+        </div>
+
+        <nav class="flex-1 px-4 py-2 space-y-1 overflow-y-auto">
+            <div class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2 mt-4 px-2">Core</div>
+            <a onclick="switchView('dashboard', this)" class="nav-item active flex items-center gap-3 px-3 py-2 rounded-lg cursor-pointer hover:bg-slate-800 transition-colors">
+                <i class="fas fa-chart-line w-5 text-center"></i> <span>Dashboard</span>
+            </a>
+            <a onclick="switchView('pos', this)" class="nav-item flex items-center gap-3 px-3 py-2 rounded-lg cursor-pointer hover:bg-slate-800 transition-colors">
+                <i class="fas fa-cash-register w-5 text-center"></i> <span>Punto de Venta</span>
+            </a>
+            
+            <div class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2 mt-6 px-2">Gestión</div>
+            <a onclick="switchView('inventory', this)" class="nav-item flex items-center gap-3 px-3 py-2 rounded-lg cursor-pointer hover:bg-slate-800 transition-colors">
+                <i class="fas fa-box-open w-5 text-center"></i> <span>Inventario</span>
+            </a>
+            <a onclick="switchView('history', this)" class="nav-item flex items-center gap-3 px-3 py-2 rounded-lg cursor-pointer hover:bg-slate-800 transition-colors">
+                <i class="fas fa-history w-5 text-center"></i> <span>Historial Ventas</span>
+            </a>
+            <a onclick="showToast('Módulo en desarrollo para v2.1', 'warning')" class="nav-item flex items-center gap-3 px-3 py-2 rounded-lg cursor-pointer hover:bg-slate-800 transition-colors opacity-60">
+                <i class="fas fa-users w-5 text-center"></i> <span>Clientes CRM</span>
+            </a>
+            
+            <div class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2 mt-6 px-2">Configuración</div>
+            <a onclick="openModal('settingsModal')" class="nav-item flex items-center gap-3 px-3 py-2 rounded-lg cursor-pointer hover:bg-slate-800 transition-colors">
+                <i class="fas fa-cog w-5 text-center"></i> <span>Ajustes</span>
+            </a>
+        </nav>
+
+        <div class="p-4 border-t border-slate-700 group cursor-pointer relative" onclick="toggleProfileMenu()">
+            <div class="flex items-center gap-3">
+                <img src="https://ui-avatars.com/api/?name=Guadalupe+M&background=2563eb&color=fff" class="w-10 h-10 rounded-full">
+                <div>
+                    <h4 class="text-sm font-semibold text-white">Guadalupe M.</h4>
+                    <span class="text-xs text-green-400"><i class="fas fa-circle text-[8px]"></i> Online</span>
+                </div>
+            </div>
+            <!-- Popover -->
+            <div id="profilePopover" class="hidden absolute bottom-full left-4 mb-2 w-56 bg-white dark:bg-slate-800 rounded-lg shadow-xl border border-slate-200 dark:border-slate-700 py-1 text-slate-700 dark:text-slate-300 z-50">
+                <a href="#" class="block px-4 py-2 text-sm hover:bg-slate-100 dark:hover:bg-slate-700"><i class="fas fa-user mr-2"></i> Mi Perfil</a>
+                <a href="#" class="block px-4 py-2 text-sm hover:bg-slate-100 dark:hover:bg-slate-700"><i class="fas fa-shield-alt mr-2"></i> Privacidad</a>
+                <div class="border-t border-slate-200 dark:border-slate-700 my-1"></div>
+                <a href="../" class="block px-4 py-2 text-sm text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20"><i class="fas fa-sign-out-alt mr-2"></i> Cerrar Sesión</a>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 flex flex-col font-sans relative">
+        <!-- Top Header -->
+        <header class="h-16 bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 flex items-center justify-between px-6 z-10 shadow-sm">
+            <div class="flex items-center gap-4">
+                <span class="text-slate-400 dark:text-slate-500 text-sm font-medium" id="breadcrumbs">Workspace / <span class="text-primary-600 dark:text-primary-400">Dashboard</span></span>
+                <span class="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">DEMO</span>
+            </div>
+            
+            <div class="flex items-center gap-4">
+                <!-- Search -->
+                <div class="relative hidden sm:block">
+                    <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                    <input type="text" placeholder="CMD + K para buscar..." class="pl-9 pr-4 py-1.5 text-sm bg-slate-100 dark:bg-slate-700 border-transparent rounded-full focus:bg-white dark:focus:bg-slate-900 focus:border-primary-500 focus:ring-2 focus:ring-primary-500 outline-none w-64 transition-all dark:text-white placeholder-slate-400">
+                </div>
                 
-                <div class="skill-cat">
-                    <h3><i class="fas fa-server"></i> Backend</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag hi"><i class="devicon-java-plain"></i> Java</span>
-                        <span class="skill-tag hi"><i class="devicon-spring-original"></i> Spring Boot</span>
-                        <span class="skill-tag"><i class="devicon-nodejs-plain"></i> Node.js</span>
-                        <span class="skill-tag"><i class="devicon-express-original"></i> Express</span>
-                        <span class="skill-tag"><i class="fas fa-shield-alt"></i> Spring Security</span>
-                    </div>
-                </div>
+                <!-- Dark Mode -->
+                <button onclick="toggleTheme()" class="w-8 h-8 rounded-full hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center justify-center text-slate-500 transition-colors" title="Cambiar Tema">
+                    <i id="themeIcon" class="fas fa-moon"></i>
+                </button>
 
-                <div class="skill-cat">
-                    <h3><i class="fas fa-database"></i> Bases de Datos</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag hi"><i class="devicon-postgresql-plain"></i> PostgreSQL</span>
-                        <span class="skill-tag"><i class="devicon-mysql-plain"></i> MySQL</span>
-                        <span class="skill-tag"><i class="devicon-sqlite-plain"></i> SQLite</span>
-                        <span class="skill-tag"><i class="fas fa-project-diagram"></i> Modelado DER</span>
-                    </div>
-                </div>
-
-                <div class="skill-cat">
-                    <h3><i class="fas fa-desktop"></i> Frontend</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag hi"><i class="devicon-react-original"></i> React</span>
-                        <span class="skill-tag"><i class="devicon-javascript-plain"></i> JavaScript</span>
-                        <span class="skill-tag hi"><i class="devicon-tailwindcss-plain"></i> Tailwind CSS</span>
-                        <span class="skill-tag"><i class="devicon-html5-plain"></i> HTML5/CSS3</span>
-                    </div>
-                </div>
-
-                <div class="skill-cat">
-                    <h3><i class="fas fa-tools"></i> Herramientas / DevOps</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag hi"><i class="devicon-docker-plain"></i> Docker</span>
-                        <span class="skill-tag"><i class="devicon-git-plain"></i> Git</span>
-                        <span class="skill-tag"><i class="devicon-github-original"></i> GitHub</span>
-                        <span class="skill-tag"><i class="devicon-postman-plain"></i> Postman</span>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- ── ÁREAS DE DIFERENCIACIÓN ────────────────────────── -->
-    <div class="section-alt">
-        <section class="section-gap">
-            <div class="container">
-                <h2 class="section-title">Diferencial & Especialidad</h2>
-                <div class="areas-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
-                    <div class="card card-pad" style="text-align: center; border-bottom: 4px solid var(--blue);">
-                        <div class="area-icon" style="font-size: 2.5rem; margin-bottom: 1rem; color: var(--blue);"><i class="fas fa-project-diagram"></i></div>
-                        <h4 style="margin-bottom: 0.8rem; color: var(--text-dark);">Análisis de Sistemas</h4>
-                        <p style="font-size: 0.9rem;">Sólida capacidad para entender requerimientos complejos y traducirlos en modelos técnicos viables (UML, DER).</p>
-                    </div>
-                    <div class="card card-pad" style="text-align: center; border-bottom: 4px solid var(--accent);">
-                        <div class="area-icon" style="font-size: 2.5rem; margin-bottom: 1rem; color: var(--accent);"><i class="fas fa-shield-alt"></i></div>
-                        <h4 style="margin-bottom: 0.8rem; color: var(--text-dark);">Seguridad & APIs</h4>
-                        <p style="font-size: 0.9rem;">Enfoque en la protección de datos mediante JWT, OAuth2 y mejores prácticas en el diseño de arquitecturas REST.</p>
-                    </div>
-                    <div class="card card-pad" style="text-align: center; border-bottom: 4px solid var(--sky);">
-                        <div class="area-icon" style="font-size: 2.5rem; margin-bottom: 1rem; color: var(--sky);"><i class="fas fa-cubes"></i></div>
-                        <h4 style="margin-bottom: 0.8rem; color: var(--text-dark);">Software Engineering</h4>
-                        <p style="font-size: 0.9rem;">Aplicación rigurosa de principios SOLID, Clean Code y Patrones de Diseño para software mantenible.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <!-- ── FORMACIÓN ────────────────────────────────────── -->
-    <div class="section-alt">
-        <section id="formacion" class="section-gap">
-            <div class="container">
-                <div class="two-col">
-                    <div>
-                        <h2 class="section-title">Formación Académica</h2>
-                        <div class="card card-pad">
-                            <ul class="proj-desc-list">
-                                <li>
-                                    <strong>Licenciatura en Sistemas de Información</strong><br>
-                                    <span style="font-size:0.85rem; color:var(--muted);">Universidad Nacional de Misiones | En curso</span>
-                                </li>
-                                <li>
-                                    <strong>Analista en Sistemas de Computación</strong><br>
-                                    <span style="font-size:0.85rem; color:var(--muted);">Universidad Nacional de Misiones | En curso</span>
-                                </li>
-                                <li>
-                                    <strong>Analista Personal y Prof. en Informática</strong><br>
-                                    <span style="font-size:0.85rem; color:var(--muted);">EPET N° 1 — Misiones | 2017</span>
-                                </li>
-                            </ul>
+                <!-- Notifications -->
+                <div class="relative">
+                    <button onclick="toggleNotifs()" class="w-8 h-8 rounded-full hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center justify-center text-slate-500 transition-colors relative">
+                        <i class="fas fa-bell"></i>
+                        <span class="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full animate-ping"></span>
+                        <span class="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
+                    </button>
+                    <!-- Notifs Dropdown -->
+                    <div id="notifsDropdown" class="hidden absolute top-full right-0 mt-2 w-80 bg-white dark:bg-slate-800 rounded-xl shadow-2xl border border-slate-200 dark:border-slate-700 z-50 overflow-hidden">
+                        <div class="p-3 border-b border-slate-200 dark:border-slate-700 font-semibold flex justify-between items-center text-slate-800 dark:text-white">
+                            Notificaciones <span class="text-xs font-normal text-primary-600 cursor-pointer" onclick="showToast('Todas marcadas como leídas', 'success')">Marcar leídas</span>
                         </div>
-                    </div>
-                    <div>
-                        <h2 class="section-title">Certificaciones</h2>
-                        <div class="card card-pad">
-                            <ul class="proj-desc-list">
-                                <li><strong>Fundamentos de Data Science</strong> (Santander)</li>
-                                <li><strong>Introducción a la Ciencia de Datos</strong> (Santander)</li>
-                                <li><strong>Community Manager</strong> (Silicon Misiones)</li>
-                                <li><strong>CIBERSEGURIDAD: Amenaza, Consejos y Buenas Prácticas</strong> (Silicon Misiones)</li>
-                                <li><strong>Ciberseguridad para Desarrolladores</strong> (Silicon Misiones)</li>
-                                <li><strong>Ciberseguridad & DevOps</strong> (Formación Continua)</li>
-                            </ul>
+                        <div class="max-h-64 overflow-y-auto">
+                            <div class="p-3 border-b border-slate-100 dark:border-slate-700/50 hover:bg-slate-50 dark:hover:bg-slate-700/50 cursor-pointer transition-colors">
+                                <p class="text-sm text-slate-800 dark:text-slate-200"><span class="font-semibold text-primary-500">Nuevo Ingreso:</span> Se generó el Ticket #TRX-1029</p>
+                                <span class="text-xs text-slate-400">Hace 2 minutos</span>
+                            </div>
+                            <div class="p-3 hover:bg-slate-50 dark:hover:bg-slate-700/50 cursor-pointer transition-colors">
+                                <p class="text-sm text-slate-800 dark:text-slate-200"><i class="fas fa-exclamation-triangle text-amber-500 mr-1"></i> Stock Crítico: "Monitor 24 IPS"</p>
+                                <span class="text-xs text-slate-400">Hace 1 hora</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
-    </div>
 
-    <!-- ── CONTACTO ──────────────────────────────────────── -->
-    <section id="contacto" class="section-gap">
-        <div class="container" style="max-width: 800px;">
-            <div class="contact-box" style="background: var(--blue-dark); color: white; padding: 4rem 2rem; border-radius: var(--r);">
-                <h2 style="color: white; margin-bottom: 1rem;">¿Tenés un proyecto en mente?</h2>
-                <p style="opacity: 0.9; margin-bottom: 2.5rem; font-size: 1.1rem;">
-                    Buscando mi próxima oportunidad como <strong>Backend Developer</strong> o <strong>Analista</strong>.<br>
-                    Si te interesa mi perfil técnico y analítico, contactame.
-                </p>
-                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-                    <a href="mailto:guuamendoza@gmail.com" class="btn btn-white" style="background: white; color: var(--blue-dark); padding: 1rem 2rem; border-radius: var(--r-sm); font-weight: 700; text-decoration: none;">
-                        <i class="fas fa-envelope"></i> Enviar Email
-                    </a>
-                    <a href="cv/" class="btn" style="background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.4); padding: 1rem 2rem; border-radius: var(--r-sm); font-weight: 700; text-decoration: none;">
-                        <i class="fas fa-file-pdf"></i> Ver CV Digital
-                    </a>
+                <!-- Live Monitor Status -->
+                <div class="flex items-center gap-2 text-xs font-medium text-slate-500 pl-4 border-l border-slate-200 dark:border-slate-700">
+                    <span class="w-2 h-2 rounded-full bg-green-500"></span> API Online
                 </div>
             </div>
+        </header>
+
+        <!-- Content Area -->
+        <div class="flex-1 overflow-y-auto p-6 relative">
+            
+            <!-- Dashboard View -->
+            <section id="dashboard" class="view-section active max-w-7xl mx-auto">
+                <div class="flex justify-between items-end mb-6">
+                    <div>
+                        <h2 class="text-2xl font-bold text-slate-800 dark:text-white">Resumen General</h2>
+                        <p class="text-slate-500 text-sm mt-1">Monitorea el estado financiero en tiempo real.</p>
+                    </div>
+                    <div class="flex gap-2">
+                        <select class="px-3 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm text-slate-700 dark:text-slate-200 outline-none hover:border-primary-500 shadow-sm transition-colors cursor-pointer" onchange="updateChartData(this.value)">
+                            <option value="7">Últimos 7 días</option>
+                            <option value="30">Últimos 30 días</option>
+                            <option value="365">Este año</option>
+                        </select>
+                        <button onclick="simulateExport()" class="px-4 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700 shadow-sm transition-colors flex items-center gap-2">
+                            <i class="fas fa-download"></i> Exportar
+                        </button>
+                    </div>
+                </div>
+
+                <!-- KPI Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+                    <div class="stat-card bg-white dark:bg-slate-800 p-5 rounded-xl border border-slate-200 dark:border-slate-700">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-slate-500 dark:text-slate-400 text-sm font-medium">Ingresos Totales</h3>
+                            <div class="p-2 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-lg"><i class="fas fa-dollar-sign"></i></div>
+                        </div>
+                        <h2 class="text-2xl font-bold text-slate-800 dark:text-white" id="kpi-revenue">$ 2.4M</h2>
+                        <div class="mt-2 text-sm text-green-500 font-medium flex items-center gap-1">
+                            <i class="fas fa-arrow-up"></i> 14% <span class="text-slate-400 dark:text-slate-500 font-normal">vs mes pasado</span>
+                        </div>
+                    </div>
+                    <div class="stat-card bg-white dark:bg-slate-800 p-5 rounded-xl border border-slate-200 dark:border-slate-700">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-slate-500 dark:text-slate-400 text-sm font-medium">Órdenes</h3>
+                            <div class="p-2 bg-purple-50 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 rounded-lg"><i class="fas fa-shopping-bag"></i></div>
+                        </div>
+                        <h2 class="text-2xl font-bold text-slate-800 dark:text-white" id="kpi-orders">854</h2>
+                        <div class="mt-2 text-sm text-green-500 font-medium flex items-center gap-1">
+                            <i class="fas fa-arrow-up"></i> 5% <span class="text-slate-400 dark:text-slate-500 font-normal">vs mes pasado</span>
+                        </div>
+                    </div>
+                    <div class="stat-card bg-white dark:bg-slate-800 p-5 rounded-xl border border-slate-200 dark:border-slate-700">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-slate-500 dark:text-slate-400 text-sm font-medium">Ticket Promedio</h3>
+                            <div class="p-2 bg-amber-50 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400 rounded-lg"><i class="fas fa-receipt"></i></div>
+                        </div>
+                        <h2 class="text-2xl font-bold text-slate-800 dark:text-white">$ 2,850</h2>
+                        <div class="mt-2 text-sm text-slate-400 dark:text-slate-500 font-normal flex items-center gap-1">
+                            Estable
+                        </div>
+                    </div>
+                    <div class="stat-card bg-white dark:bg-slate-800 p-5 rounded-xl border border-slate-200 dark:border-slate-700">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-slate-500 dark:text-slate-400 text-sm font-medium">Base Clientes</h3>
+                            <div class="p-2 bg-green-50 dark:bg-green-900/30 text-green-600 dark:text-green-400 rounded-lg"><i class="fas fa-users"></i></div>
+                        </div>
+                        <h2 class="text-2xl font-bold text-slate-800 dark:text-white">1,240</h2>
+                        <div class="mt-2 text-sm text-green-500 font-medium flex items-center gap-1">
+                            <i class="fas fa-arrow-up"></i> 12 nuevos <span class="text-slate-400">hoy</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <!-- Main Chart -->
+                    <div class="lg:col-span-2 bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-200 dark:border-slate-700">
+                        <div class="flex justify-between items-center mb-6">
+                            <h3 class="font-bold text-slate-800 dark:text-white">Análisis de Flujo</h3>
+                            <button class="text-slate-400 hover:text-primary-500" title="Refrescar" onclick="simulateLoad(this)"><i class="fas fa-sync-alt"></i></button>
+                        </div>
+                        <div class="h-72 w-full relative">
+                            <!-- Skeleton Overlay -->
+                            <div id="chartSkeleton" class="absolute inset-0 bg-white dark:bg-slate-800 z-10 flex items-end gap-4 pb-4 px-2">
+                                <div class="w-1/6 skeleton h-full rounded-t"></div>
+                                <div class="w-1/6 skeleton h-3/4 rounded-t"></div>
+                                <div class="w-1/6 skeleton h-1/2 rounded-t"></div>
+                                <div class="w-1/6 skeleton h-full rounded-t"></div>
+                                <div class="w-1/6 skeleton h-5/6 rounded-t"></div>
+                                <div class="w-1/6 skeleton h-2/3 rounded-t"></div>
+                            </div>
+                            <canvas id="mainChart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <!-- Activity Feed / Recent -->
+                    <div class="bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-200 dark:border-slate-700 overflow-hidden flex flex-col">
+                        <h3 class="font-bold text-slate-800 dark:text-white mb-6">Actividad Reciente</h3>
+                        <div class="flex-1 overflow-y-auto pr-2 space-y-4" id="recentActivity">
+                            <!-- Populated -->
+                            <div class="flex gap-4">
+                                <div class="mt-1 w-2 h-2 rounded-full bg-blue-500 flex-shrink-0"></div>
+                                <div><p class="text-sm dark:text-slate-300">Venta procesada <span class="font-bold">#TRX-0912</span> por $14,500</p><span class="text-xs text-slate-500">Hace 5 min</span></div>
+                            </div>
+                            <div class="flex gap-4">
+                                <div class="mt-1 w-2 h-2 rounded-full bg-amber-500 flex-shrink-0"></div>
+                                <div><p class="text-sm dark:text-slate-300">Ajuste manual de inventario en "Teclados"</p><span class="text-xs text-slate-500">Hace 32 min</span></div>
+                            </div>
+                            <div class="flex gap-4">
+                                <div class="mt-1 w-2 h-2 rounded-full bg-green-500 flex-shrink-0"></div>
+                                <div><p class="text-sm dark:text-slate-300">Nuevo cliente "Corp IT" registrado</p><span class="text-xs text-slate-500">Hace 1 hora</span></div>
+                            </div>
+                            <div class="flex gap-4">
+                                <div class="mt-1 w-2 h-2 rounded-full bg-blue-500 flex-shrink-0"></div>
+                                <div><p class="text-sm dark:text-slate-300">Venta procesada <span class="font-bold">#TRX-0911</span> por $2,100</p><span class="text-xs text-slate-500">Hace 2 horas</span></div>
+                            </div>
+                        </div>
+                        <button class="w-full mt-4 py-2 text-sm text-primary-600 dark:text-primary-400 font-medium hover:bg-slate-50 dark:hover:bg-slate-700/50 rounded-lg transition-colors">Ver bitácora completa</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- POS View -->
+            <section id="pos" class="view-section max-w-7xl mx-auto h-full flex flex-col">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-xl font-bold text-slate-800 dark:text-white">Terminal Punto de Venta</h2>
+                    <div class="flex items-center gap-2">
+                        <span class="text-sm text-slate-500 hidden sm:block">Sucursal: <strong class="text-slate-700 dark:text-slate-300">Principal</strong></span>
+                        <div class="w-px h-4 bg-slate-300 mx-2 hidden sm:block"></div>
+                        <button onclick="clearTicket()" class="text-red-500 text-sm hover:underline"><i class="fas fa-trash-alt mr-1"></i> Limpiar Ticket</button>
+                    </div>
+                </div>
+
+                <div class="flex-1 flex gap-6 min-h-0">
+                    <!-- Products -->
+                    <div class="flex-1 flex flex-col min-w-0 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4">
+                        <div class="mb-4 flex gap-2">
+                            <input type="text" placeholder="Buscar producto o escanear código de barras..." class="flex-1 px-4 py-2 bg-slate-100 dark:bg-slate-700 border-transparent rounded-lg text-sm text-slate-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500" onkeyup="filterPos(this.value)">
+                            <button class="px-4 py-2 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 rounded-lg text-slate-600 dark:text-slate-300 transition-colors" title="Filtros avanzados"><i class="fas fa-filter"></i></button>
+                        </div>
+                        
+                        <div class="flex-1 overflow-y-auto pr-2">
+                            <div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4" id="posGrid">
+                                <!-- Populated dynamically -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cart -->
+                    <div class="w-80 flex flex-col bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden flex-shrink-0">
+                        <div class="p-4 bg-slate-50 dark:bg-slate-900 border-b border-slate-200 dark:border-slate-700">
+                            <h3 class="font-bold text-slate-800 dark:text-white">Ticket Vigente</h3>
+                            <p class="text-xs text-slate-500">Caja #1 - Operador: Guadalupe</p>
+                        </div>
+                        
+                        <div class="flex-1 overflow-y-auto p-2" id="cartContainer">
+                            <!-- Items -->
+                        </div>
+
+                        <div class="p-4 bg-slate-50 dark:bg-slate-900 border-t border-slate-200 dark:border-slate-700">
+                            <div class="flex justify-between text-sm text-slate-500 mb-2"><span>Subtotal</span> <span id="valSub">$0</span></div>
+                            <div class="flex justify-between text-sm text-slate-500 mb-4"><span>IVA (21%)</span> <span id="valTax">$0</span></div>
+                            <div class="flex justify-between text-xl font-bold text-slate-800 dark:text-white mb-4"><span>Total AR$</span> <span id="valTotal">$0</span></div>
+                            
+                            <div class="grid grid-cols-2 gap-2">
+                                <button class="py-3 bg-white dark:bg-slate-800 border-2 border-slate-200 dark:border-slate-600 hover:border-amber-500 rounded-lg font-bold text-slate-700 dark:text-slate-200 transition-colors" onclick="showToast('Suspendido en borrador', 'warning')">Suspender</button>
+                                <button class="py-3 bg-primary-600 hover:bg-primary-700 text-white shadow-lg shadow-primary-500/30 rounded-lg font-bold transition-transform transform active:scale-95" onclick="processPayment()">Cobrar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Inventory View -->
+            <section id="inventory" class="view-section max-w-7xl mx-auto h-full flex flex-col pt-4">
+                <div class="flex justify-between items-end mb-6">
+                    <div>
+                        <h2 class="text-2xl font-bold text-slate-800 dark:text-white">Gestión de Inventario</h2>
+                        <p class="text-slate-500 text-sm mt-1">Control de catálogo, stock y márgenes.</p>
+                    </div>
+                    <button class="px-5 py-2.5 bg-primary-600 hover:bg-primary-700 text-white rounded-lg font-medium shadow-md transition-colors flex items-center gap-2" onclick="openModal('newItemModal')">
+                        <i class="fas fa-plus"></i> Nuevo Artículo
+                    </button>
+                </div>
+
+                <div class="flex-1 flex flex-col overflow-hidden">
+                    <div class="p-4 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 mb-4 flex flex-wrap gap-4 items-center bg-slate-50 dark:bg-slate-900 justify-between">
+                        <div class="flex gap-4 flex-1 max-w-lg">
+                            <div class="relative flex-1">
+                                <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                                <input type="text" placeholder="Filtrar catálogo..." class="w-full pl-9 pr-4 py-2 text-sm bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-lg focus:outline-none focus:border-primary-500 dark:text-white">
+                            </div>
+                            <select class="px-3 py-2 text-sm bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-lg outline-none cursor-pointer dark:text-white">
+                                <option>Todas las Categorías</option>
+                                <option>Periféricos</option>
+                                <option>Componentes PC</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="flex-1 overflow-auto pr-2">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4" id="invGrid">
+                            <!-- Populated dynamically as cards -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sales History View -->
+            <section id="history" class="view-section max-w-7xl mx-auto h-full flex flex-col pt-4">
+                <div class="flex justify-between items-end mb-6">
+                    <div>
+                        <h2 class="text-2xl font-bold text-slate-800 dark:text-white">Historial de Ventas</h2>
+                        <p class="text-slate-500 text-sm mt-1">Registro de todas las transacciones procesadas.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 flex-1 flex flex-col overflow-hidden">
+                    <div class="flex-1 overflow-auto">
+                        <table class="w-full text-left text-sm text-slate-600 dark:text-slate-400 whitespace-nowrap">
+                            <thead class="bg-slate-100 dark:bg-slate-800/50 text-slate-500 dark:text-slate-400 font-semibold text-xs uppercase sticky top-0 z-10">
+                                <tr>
+                                    <th class="px-6 py-4">ID Transacción</th>
+                                    <th class="px-6 py-4">Fecha/Hora</th>
+                                    <th class="px-6 py-4">Items</th>
+                                    <th class="px-6 py-4">Total</th>
+                                    <th class="px-6 py-4">Estado</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100 dark:divide-slate-700/50" id="historyTableBody">
+                                <tr class="text-slate-400"><td colspan="5" class="px-6 py-10 text-center italic">No hay ventas registradas aún.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
         </div>
-    </section>
 
-    <footer>
-        <p>© 2025 Guadalupe Mendoza · Diseñado y desarrollado con 💙</p>
-        <p style="margin-top:.4rem;font-size:.8rem;">
-            <a href="https://github.com/gmmendoza" target="_blank" rel="noopener">GitHub</a> ·
-            <a href="https://www.linkedin.com/in/gmmendoza/" target="_blank" rel="noopener">LinkedIn</a>
-        </p>
-    </footer>
+    </main>
 
-    <!-- Lightbox -->
-    <div id="lb" onclick="closeLB()"
-        style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out;padding:1.5rem;">
-        <div style="position:relative;max-width:1100px;width:100%;">
-            <button onclick="event.stopPropagation();closeLB()"
-                style="position:absolute;top:-44px;right:0;background:none;border:none;color:#fff;font-size:1.75rem;cursor:pointer;opacity:.8;"
-                title="Cerrar">&#10005;</button>
-            <img id="lb-img" src="" alt=""
-                style="width:100%;max-height:85vh;object-fit:contain;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,.5);display:block;">
-            <p id="lb-cap" style="text-align:center;color:rgba(255,255,255,.55);margin-top:.75rem;font-size:.88rem;">
-            </p>
+    <!-- Modals & Toasts Area -->
+    <div id="toastArea" class="toast-container"></div>
+
+    <!-- Nuevo Artículo Modal -->
+    <div id="newItemModal" class="modal">
+        <div class="modal-content bg-white dark:bg-slate-800 rounded-xl w-full max-w-lg shadow-2xl">
+            <div class="p-6 border-b border-slate-200 dark:border-slate-700 flex justify-between items-center">
+                <h2 class="text-xl font-bold dark:text-white">Nuevo Artículo</h2>
+                <button onclick="closeModal('newItemModal')" class="text-slate-400 hover:text-slate-600 dark:hover:text-white"><i class="fas fa-times text-xl"></i></button>
+            </div>
+            <form id="newItemForm" onsubmit="handleNewItem(event)" class="p-6 space-y-4">
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="col-span-2">
+                        <label class="block text-sm font-medium mb-1 text-slate-600 dark:text-slate-400">Descripción</label>
+                        <input type="text" id="itemName" required class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-lg outline-none focus:border-primary-500 dark:text-white">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-1 text-slate-600 dark:text-slate-400">Referencia</label>
+                        <input type="text" id="itemRef" required class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-lg outline-none focus:border-primary-500 dark:text-white">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-1 text-slate-600 dark:text-slate-400">Categoría</label>
+                        <select id="itemCat" class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-lg outline-none cursor-pointer dark:text-white">
+                            <option>Periféricos</option>
+                            <option>Componentes PC</option>
+                            <option>Audio</option>
+                            <option>Video</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-1 text-slate-600 dark:text-slate-400">Precio</label>
+                        <input type="number" id="itemPrice" required class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-lg outline-none focus:border-primary-500 dark:text-white">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-1 text-slate-600 dark:text-slate-400">Stock Inicial</label>
+                        <input type="number" id="itemStock" required class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-lg outline-none focus:border-primary-500 dark:text-white">
+                    </div>
+                </div>
+                <div class="flex justify-end gap-3 mt-6">
+                    <button type="button" class="px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800" onclick="closeModal('newItemModal')">Cancelar</button>
+                    <button type="submit" class="px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-lg text-sm font-medium shadow-md">Crear Artículo</button>
+                </div>
+            </form>
         </div>
     </div>
 
+    <!-- Editar Artículo Modal -->
+    <div id="editItemModal" class="modal">
+        <div class="modal-content bg-white dark:bg-slate-800 rounded-xl w-full max-w-lg shadow-2xl">
+            <div class="p-6 border-b border-slate-200 dark:border-slate-700 flex justify-between items-center">
+                <h2 class="text-xl font-bold dark:text-white">Editar Artículo</h2>
+                <button onclick="closeModal('editItemModal')" class="text-slate-400 hover:text-slate-600 dark:hover:text-white"><i class="fas fa-times text-xl"></i></button>
+            </div>
+            <form id="editItemForm" onsubmit="handleEditItem(event)" class="p-6 space-y-4">
+                <input type="hidden" id="editItemId">
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="col-span-2">
+                        <label class="block text-sm font-medium mb-1 text-slate-600 dark:text-slate-400">Descripción</label>
+                        <input type="text" id="editItemName" required class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-lg outline-none focus:border-primary-500 dark:text-white">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-1 text-slate-600 dark:text-slate-400">Referencia</label>
+                        <input type="text" id="editItemRef" required class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-lg outline-none focus:border-primary-500 dark:text-white">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-1 text-slate-600 dark:text-slate-400">Categoría</label>
+                        <select id="editItemCat" class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-lg outline-none cursor-pointer dark:text-white">
+                            <option>Periféricos</option>
+                            <option>Componentes PC</option>
+                            <option>Audio</option>
+                            <option>Video</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-1 text-slate-600 dark:text-slate-400">Precio</label>
+                        <input type="number" id="editItemPrice" required class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-lg outline-none focus:border-primary-500 dark:text-white">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-1 text-slate-600 dark:text-slate-400">Stock</label>
+                        <input type="number" id="editItemStock" required class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-lg outline-none focus:border-primary-500 dark:text-white">
+                    </div>
+                </div>
+                <div class="flex justify-end gap-3 mt-6">
+                    <button type="button" class="px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800" onclick="closeModal('editItemModal')">Cancelar</button>
+                    <button type="submit" class="px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-lg text-sm font-medium shadow-md">Guardar Cambios</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Settings Modal -->
+    <div id="settingsModal" class="modal">
+        <div class="modal-content bg-white dark:bg-slate-800 rounded-xl w-full max-w-2xl max-h-[80vh] flex flex-col shadow-2xl">
+            <div class="p-6 border-b border-slate-200 dark:border-slate-700 flex justify-between items-center">
+                <h2 class="text-xl font-bold dark:text-white">Ajustes del Sistema</h2>
+                <button onclick="closeModal('settingsModal')" class="text-slate-400 hover:text-slate-600 dark:hover:text-white"><i class="fas fa-times text-xl"></i></button>
+            </div>
+            <div class="p-6 flex-1 overflow-y-auto flex gap-6">
+                <!-- Sidebar tabs config -->
+                <div class="w-48 space-y-2 border-r border-slate-200 dark:border-slate-700 pr-4">
+                    <button class="w-full text-left px-3 py-2 bg-primary-50 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 font-medium rounded-lg">General</button>
+                    <button class="w-full text-left px-3 py-2 text-slate-600 hover:bg-slate-50 dark:text-slate-400 dark:hover:bg-slate-700 rounded-lg">Impresión POS</button>
+                    <button class="w-full text-left px-3 py-2 text-slate-600 hover:bg-slate-50 dark:text-slate-400 dark:hover:bg-slate-700 rounded-lg">Notificaciones</button>
+                    <button class="w-full text-left px-3 py-2 text-slate-600 hover:bg-slate-50 dark:text-slate-400 dark:hover:bg-slate-700 rounded-lg">Usuarios y Roles</button>
+                </div>
+                <!-- Content -->
+                <div class="flex-1 space-y-6">
+                    <div>
+                        <h4 class="font-bold text-sm mb-4 text-slate-800 dark:text-white uppercase tracking-wider">Localización</h4>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium mb-1 text-slate-600 dark:text-slate-400">Idioma Interfaz</label>
+                                <select class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-lg outline-none cursor-pointer dark:text-white">
+                                    <option>Español (Argentina)</option>
+                                    <option>Inglés (US)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-1 text-slate-600 dark:text-slate-400">Moneda Base</label>
+                                <select class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-lg outline-none cursor-pointer dark:text-white">
+                                    <option>ARS ($) - Peso Argentino</option>
+                                    <option>USD ($) - Dólar Estadounidense</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-sm mb-4 text-slate-800 dark:text-white uppercase tracking-wider">Apariencia UI</h4>
+                        <label class="flex items-center gap-3 cursor-pointer">
+                            <div class="relative">
+                                <input type="checkbox" id="settingsDarkToggle" class="sr-only" onchange="toggleTheme()">
+                                <div class="block bg-slate-600 w-10 h-6 rounded-full"></div>
+                                <div class="dot absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition transform"></div>
+                            </div>
+                            <span class="text-sm font-medium text-slate-600 dark:text-slate-300">Forzar Modo Oscuro Global</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="p-6 border-t border-slate-200 dark:border-slate-700 flex justify-end gap-3 bg-slate-50 dark:bg-slate-900 rounded-b-xl">
+                <button class="px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800" onclick="closeModal('settingsModal')">Cancelar</button>
+                <button class="px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-lg text-sm font-medium shadow-md shadow-primary-500/20" onclick="closeModal('settingsModal'); showToast('Configuración guardada', 'success')">Guardar Cambios</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Application Script -->
     <script>
-        // Lightbox
-        function openLB(s, a) { const l = document.getElementById('lb'); document.getElementById('lb-img').src = s; document.getElementById('lb-cap').textContent = a || ''; l.style.display = 'flex'; document.body.style.overflow = 'hidden'; }
-        function closeLB() { document.getElementById('lb').style.display = 'none'; document.body.style.overflow = ''; }
-        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLB(); });
+        // Core DB
+        let db = [
+            { id: '10293', ref: 'PROD-01', name: 'Mouse Inalámbrico G305', price: 45000, stock: 12, cat: 'Periféricos', img: 'fa-mouse' },
+            { id: '10294', ref: 'PROD-02', name: 'Teclado Mecánico RGB', price: 82000, stock: 4, cat: 'Periféricos', img: 'fa-keyboard' },
+            { id: '10295', ref: 'PROD-03', name: 'Monitor IPS 24" 144Hz', price: 215000, stock: 0, cat: 'Componentes', img: 'fa-desktop' },
+            { id: '10296', ref: 'PROD-04', name: 'Auriculares Headset 7.1', price: 65000, stock: 8, cat: 'Audio', img: 'fa-headphones' },
+            { id: '10297', ref: 'PROD-05', name: 'Pad Mouse XXL Speed', price: 15000, stock: 35, cat: 'Periféricos', img: 'fa-vector-square' },
+            { id: '10298', ref: 'PROD-06', name: 'Webcam 1080p 60fps', price: 54000, stock: 2, cat: 'Video', img: 'fa-video' }
+        ];
 
-        // Carruseles
-        const carousels = {};
-        function initCarousel(id, trackId, dotsId) {
-            const track = document.getElementById(trackId); if (!track) return;
-            const slides = track.querySelectorAll('.proj-slide'); if (!slides.length) return;
-            let cur = 0; const total = slides.length; const dotsEl = document.getElementById(dotsId);
-            if (dotsEl && total > 1) { slides.forEach((_, i) => { const d = document.createElement('div'); d.className = 'carousel-dot' + (i === 0 ? ' on' : ''); d.onclick = () => go(i); dotsEl.appendChild(d); }); }
-            function go(n) { cur = (n + total) % total; track.style.transform = `translateX(-${cur * 100}%)`; if (dotsEl) dotsEl.querySelectorAll('.carousel-dot').forEach((d, i) => { d.classList.toggle('on', i === cur); }); }
-            slides.forEach(img => { img.addEventListener('click', () => openLB(img.src, img.alt)); });
-            carousels[id] = { go, get cur() { return cur; }, total };
-            if (total > 1) setInterval(() => go(cur + 1), 4000);
-        }
-        function cMove(id, dir) { if (carousels[id]) carousels[id].go(carousels[id].cur + dir); }
-        initCarousel('saas', 'saas-t', 'saas-d');
-        initCarousel('agro', 'agro-t', 'agro-d');
-        initCarousel('pan', 'pan-t', 'pan-d');
-        initCarousel('sgt', 'sgt-t', 'sgt-d');
+        let cart = [];
+        let history = [];
+        let myChart;
 
-        // Nav scroll
-        document.querySelectorAll('.nav-links a[href^="#"]').forEach(a => {
-            a.addEventListener('click', e => { e.preventDefault(); const t = document.querySelector(a.getAttribute('href')); if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' }); document.querySelectorAll('.nav-links a').forEach(l => l.classList.remove('active')); a.classList.add('active'); });
+        // Init App Flow
+        window.addEventListener('load', () => {
+            // Remove skeleton from chart after 1.5s
+            setTimeout(() => {
+                if(document.getElementById('chartSkeleton')) document.getElementById('chartSkeleton').remove();
+                initChart();
+            }, 1000);
+
+            // Hide app loader, show login modal
+            setTimeout(() => {
+                document.getElementById('appLoader').style.display = 'none';
+                document.getElementById('loginModal').classList.add('active');
+            }, 1200);
+
+            renderPOS();
+            renderInventory();
+            renderHistory();
         });
-        window.addEventListener('scroll', () => { const sy = window.pageYOffset; document.querySelectorAll('section[id]').forEach(sec => { const top = sec.offsetTop - 110; const bot = top + sec.offsetHeight; const link = document.querySelector(`.nav-links a[href="#${sec.id}"]`); if (link) link.classList.toggle('active', sy >= top && sy < bot); }); });
+
+        // Handlers
+        function handleLogin(e) {
+            e.preventDefault();
+            document.getElementById('loginModal').classList.remove('active');
+            showToast('Sesión validada. Bienvenido al Workspace.', 'success');
+        }
+
+        // UX Interactions
+        function showToast(msg, type = 'success') {
+            const container = document.getElementById('toastArea');
+            const el = document.createElement('div');
+            const icon = type === 'success' ? 'fa-check-circle' : 'fa-exclamation-triangle';
+            el.className = `toast toast-${type}`;
+            el.innerHTML = `<i class="fas ${icon} text-lg"></i> <div class="text-sm font-medium dark:text-slate-200">${msg}</div>`;
+            container.appendChild(el);
+            setTimeout(() => el.classList.add('show'), 50);
+            setTimeout(() => { el.classList.remove('show'); setTimeout(() => el.remove(), 300); }, 3500);
+        }
+
+        function toggleTheme() {
+            const html = document.documentElement;
+            const icon = document.getElementById('themeIcon');
+            const chk = document.getElementById('settingsDarkToggle');
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                icon.className = 'fas fa-moon';
+                if(chk) chk.checked = false;
+            } else {
+                html.classList.add('dark');
+                icon.className = 'fas fa-sun';
+                if(chk) chk.checked = true;
+            }
+            // Update chart theme dynamically if instantiated
+            if(myChart) initChart(); 
+        }
+
+        function switchView(view, btn) {
+            document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
+            document.getElementById(view).classList.add('active');
+            
+            document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+            if(btn) btn.classList.add('active');
+
+            // Actualizar migas de pan
+            const names = {'dashboard': 'Dashboard', 'pos': 'Punto de Venta', 'inventory': 'Inventario', 'history': 'Historial Ventas'};
+            document.getElementById('breadcrumbs').innerHTML = `Workspace / <span class="text-primary-600 dark:text-primary-400">${names[view]}</span>`;
+        }
+
+        function toggleNotifs() {
+            const el = document.getElementById('notifsDropdown');
+            el.classList.toggle('hidden');
+        }
+
+        function toggleProfileMenu() {
+            const el = document.getElementById('profilePopover');
+            el.classList.toggle('hidden');
+        }
+
+        function openModal(id) { document.getElementById(id).classList.add('active'); }
+        function closeModal(id) { document.getElementById(id).classList.remove('active'); }
+
+        function openEditModal(id) {
+            const item = db.find(p => p.id === id);
+            if(!item) return;
+            document.getElementById('editItemId').value = item.id;
+            document.getElementById('editItemName').value = item.name;
+            document.getElementById('editItemRef').value = item.ref;
+            document.getElementById('editItemCat').value = item.cat;
+            document.getElementById('editItemPrice').value = item.price;
+            document.getElementById('editItemStock').value = item.stock;
+            openModal('editItemModal');
+        }
+
+        function handleEditItem(e) {
+            e.preventDefault();
+            const id = document.getElementById('editItemId').value;
+            const item = db.find(p => p.id === id);
+            if(item) {
+                item.name = document.getElementById('editItemName').value;
+                item.ref = document.getElementById('editItemRef').value;
+                item.cat = document.getElementById('editItemCat').value;
+                item.price = parseFloat(document.getElementById('editItemPrice').value);
+                item.stock = parseInt(document.getElementById('editItemStock').value);
+                renderInventory();
+                renderPOS();
+                closeModal('editItemModal');
+                showToast('Artículo actualizado', 'success');
+            }
+        }
+
+        function deleteItem(id) {
+            if(confirm('¿Estás seguro de eliminar este artículo?')) {
+                db = db.filter(p => p.id !== id);
+                renderInventory();
+                renderPOS();
+                showToast('Artículo eliminado', 'warning');
+            }
+        }
+
+        function handleNewItem(e) {
+            e.preventDefault();
+            const newItem = {
+                id: Math.floor(Math.random() * 90000) + 10000 + '',
+                ref: document.getElementById('itemRef').value,
+                name: document.getElementById('itemName').value,
+                price: parseFloat(document.getElementById('itemPrice').value),
+                stock: parseInt(document.getElementById('itemStock').value),
+                cat: document.getElementById('itemCat').value,
+                img: 'fa-cube'
+            };
+            db.unshift(newItem);
+            renderInventory();
+            renderPOS();
+            closeModal('newItemModal');
+            document.getElementById('newItemForm').reset();
+            showToast('Artículo creado exitosamente', 'success');
+        }
+
+        function simulateExport() {
+            const btn = event.currentTarget;
+            const originalHTML = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generando...';
+            btn.disabled = true;
+            
+            setTimeout(() => {
+                btn.innerHTML = originalHTML;
+                btn.disabled = false;
+                showToast('Reporte descargado correctamente en XLS.', 'success');
+            }, 1200);
+        }
+
+        function simulateLoad(btn) {
+            btn.classList.add('fa-spin');
+            setTimeout(() => {
+                btn.classList.remove('fa-spin');
+                showToast('Datos sincronizados', 'success');
+            }, 800);
+        }
+
+        const formatMoney = (n) => new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS', minimumFractionDigits:0 }).format(n);
+
+        // Feature: Render POS
+        function renderPOS(query='') {
+            const grid = document.getElementById('posGrid');
+            grid.innerHTML = '';
+            const list = query ? db.filter(i => i.name.toLowerCase().includes(query.toLowerCase())) : db;
+
+            list.forEach(p => {
+                if(p.stock <= 0) return; // Hide out of stock in POS
+                grid.innerHTML += `
+                    <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 p-4 rounded-xl cursor-pointer hover:border-primary-500 hover:shadow-md transition-all text-center group" onclick="addToCart('${p.id}')">
+                        <div class="w-12 h-12 bg-slate-50 dark:bg-slate-800 rounded-full mx-auto flex items-center justify-center text-primary-500 mb-3 group-hover:scale-110 transition-transform">
+                            <i class="fas ${p.img} text-xl"></i>
+                        </div>
+                        <h4 class="text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1 leading-tight h-8 overflow-hidden">${p.name}</h4>
+                        <p class="text-primary-600 dark:text-primary-400 font-bold">${formatMoney(p.price)}</p>
+                    </div>
+                `;
+            });
+        }
+        function filterPos(val) { renderPOS(val); }
+
+        function addToCart(id) {
+            const prod = db.find(p => p.id === id);
+            const exist = cart.find(c => c.id === id);
+            if(exist) {
+                if(exist.qty < prod.stock) exist.qty++;
+                else showToast('No hay más stock disponible', 'warning');
+            } else {
+                cart.push({...prod, qty: 1});
+            }
+            renderCart();
+        }
+
+        function modQty(id, delta) {
+            const item = cart.find(c => c.id === id);
+            if(item) {
+                item.qty += delta;
+                if(item.qty <= 0) cart = cart.filter(c => c.id !== id);
+            }
+            renderCart();
+        }
+
+        function clearTicket() { cart = []; renderCart(); }
+
+        function renderCart() {
+            const panel = document.getElementById('cartContainer');
+            if(cart.length === 0) {
+                panel.innerHTML = `
+                    <div class="flex flex-col items-center justify-center h-full text-slate-400 dark:text-slate-600">
+                        <i class="fas fa-barcode text-4xl mb-3 opacity-30"></i>
+                        <p class="text-sm font-medium">Bip, Bip... Agrega artículos.</p>
+                    </div>`;
+                updateCartTotals();
+                return;
+            }
+            panel.innerHTML = '';
+            cart.forEach(c => {
+                panel.innerHTML += `
+                    <div class="p-3 bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-700 rounded-lg mb-2 shadow-sm animate-[scaleIn_0.1s_ease]">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="text-xs font-bold text-slate-800 dark:text-slate-200 line-clamp-1">${c.name}</h4>
+                            <button onclick="modQty('${c.id}', -c.qty)" class="text-slate-400 hover:text-red-500"><i class="fas fa-times"></i></button>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <div class="flex items-center gap-1 bg-slate-100 dark:bg-slate-800 rounded p-1 border border-slate-200 dark:border-slate-700">
+                                <button onclick="modQty('${c.id}', -1)" class="w-6 h-6 rounded bg-white dark:bg-slate-700 shadow-sm text-slate-600 dark:text-slate-300 font-bold hover:text-primary-500">-</button>
+                                <span class="text-xs font-bold w-6 text-center dark:text-white">${c.qty}</span>
+                                <button onclick="modQty('${c.id}', 1)" class="w-6 h-6 rounded bg-white dark:bg-slate-700 shadow-sm text-slate-600 dark:text-slate-300 font-bold hover:text-primary-500">+</button>
+                            </div>
+                            <span class="font-bold text-sm text-primary-600 dark:text-primary-400">${formatMoney(c.price * c.qty)}</span>
+                        </div>
+                    </div>
+                `;
+            });
+            updateCartTotals();
+        }
+
+        function updateCartTotals() {
+            const sub = cart.reduce((acc, c) => acc + (c.price * c.qty), 0);
+            const tax = sub * 0.21;
+            const total = sub + tax;
+            document.getElementById('valSub').innerText = formatMoney(sub);
+            document.getElementById('valTax').innerText = formatMoney(tax);
+            document.getElementById('valTotal').innerText = formatMoney(total);
+        }
+
+        function processPayment() {
+            if(cart.length === 0) return;
+            const sub = cart.reduce((acc, c) => acc + (c.price * c.qty), 0);
+            const total = sub * 1.21;
+            
+            // Record History
+            const entry = {
+                id: 'TRX-' + (Math.floor(Math.random() * 9000) + 1000),
+                date: new Date().toLocaleString(),
+                items: cart.length,
+                total: total
+            };
+            history.unshift(entry);
+            renderHistory();
+
+            // Descontar inventario real (simulado)
+            cart.forEach(c => {
+                const p = db.find(x => x.id === c.id);
+                if(p) p.stock -= c.qty;
+            });
+            showToast('Ticket cobrado exitosamente e inventario descontado.', 'success');
+            
+            // Re-render inventory
+            renderInventory();
+            renderPOS();
+            clearTicket();
+            
+            // Add trick visual to Dashboard KPI
+            document.getElementById('kpi-orders').innerText = parseInt(document.getElementById('kpi-orders').innerText) + 1;
+            document.getElementById('kpi-orders').classList.add('text-primary-600');
+            setTimeout(()=>document.getElementById('kpi-orders').classList.remove('text-primary-600'), 1000);
+        }
+
+        // Feature: Render History
+        function renderHistory() {
+            const tb = document.getElementById('historyTableBody');
+            if(!tb) return;
+            if(history.length === 0) {
+                tb.innerHTML = '<tr class="text-slate-400"><td colspan="5" class="px-6 py-10 text-center italic">No hay ventas registradas aún.</td></tr>';
+                return;
+            }
+            tb.innerHTML = '';
+            history.forEach(h => {
+                tb.innerHTML += `
+                    <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors">
+                        <td class="px-6 py-4 font-mono text-xs font-bold text-primary-600 dark:text-primary-400">${h.id}</td>
+                        <td class="px-6 py-4 text-xs dark:text-slate-400">${h.date}</td>
+                        <td class="px-6 py-4 dark:text-slate-300">${h.items} ítems</td>
+                        <td class="px-6 py-4 font-bold dark:text-slate-100">${formatMoney(h.total)}</td>
+                        <td class="px-6 py-4"><span class="bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400 py-1 px-2 rounded-md text-xs font-semibold">Pagado</span></td>
+                    </tr>
+                `;
+            });
+        }
+
+        // Feature: Render Inventory
+        function renderInventory() {
+            const grid = document.getElementById('invGrid');
+            if(!grid) return;
+            grid.innerHTML = '';
+            db.forEach(p => {
+                const statColor = p.stock > 10 ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400' : 
+                                p.stock > 0 ? 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400' : 
+                                'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400';
+                
+                const statText = p.stock > 10 ? 'Óptimo' : p.stock > 0 ? 'Bajo' : 'Agotado';
+
+                grid.innerHTML += `
+                    <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-5 rounded-xl shadow-sm hover:shadow-md transition-all group relative overflow-hidden">
+                        <!-- Card Header -->
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="w-12 h-12 bg-slate-50 dark:bg-slate-900 rounded-lg flex items-center justify-center text-primary-500 text-xl">
+                                <i class="fas ${p.img || 'fa-box'}"></i>
+                            </div>
+                            <span class="text-[10px] font-bold py-0.5 px-2 rounded-full uppercase tracking-tighter ${statColor}">
+                                ${statText}
+                            </span>
+                        </div>
+
+                        <!-- Card Body -->
+                        <div class="mb-4">
+                            <div class="text-[10px] text-slate-400 font-mono mb-1">${p.ref}</div>
+                            <h3 class="font-bold text-slate-800 dark:text-white line-clamp-1 mb-1">${p.name}</h3>
+                            <div class="text-xs text-slate-500 dark:text-slate-400">${p.cat}</div>
+                        </div>
+
+                        <!-- Price and Stock -->
+                        <div class="flex justify-between items-end">
+                            <div>
+                                <div class="text-[10px] text-slate-400 uppercase font-semibold">Precio</div>
+                                <div class="text-lg font-bold text-primary-600 dark:text-primary-400 leading-none">${formatMoney(p.price)}</div>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-[10px] text-slate-400 uppercase font-semibold">Stock</div>
+                                <div class="text-sm font-bold dark:text-slate-200">${p.stock} <span class="text-[10px] font-normal text-slate-400">Uds.</span></div>
+                            </div>
+                        </div>
+
+                        <!-- Actions Overlay -->
+                        <div class="absolute inset-0 bg-primary-600/95 opacity-0 group-hover:opacity-100 transition-all flex items-center justify-center gap-4">
+                            <button onclick="openEditModal('${p.id}')" class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-primary-600 hover:scale-110 transition-transform active:scale-90 shadow-lg" title="Editar">
+                                <i class="fas fa-edit text-lg"></i>
+                            </button>
+                            <button onclick="deleteItem('${p.id}')" class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-red-600 hover:scale-110 transition-transform active:scale-90 shadow-lg" title="Eliminar">
+                                <i class="fas fa-trash-alt text-lg"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        // Dashboard Chart Setup
+        function initChart(days = 7) {
+            const ctx = document.getElementById('mainChart').getContext('2d');
+            const isDark = document.documentElement.classList.contains('dark');
+            const txtCo = isDark ? '#94a3b8' : '#64748b';
+            const gridCo = isDark ? '#334155' : '#e2e8f0';
+
+            if(myChart) myChart.destroy();
+            
+            // Dynamic data simulation
+            const totalStock = db.reduce((acc, p) => acc + p.stock, 0);
+            const labels = [];
+            const data = [];
+            for(let i=days; i>0; i--) {
+                labels.push(`Día ${days-i+1}`);
+                // Simulate daily sales flux
+                data.push(Math.floor(Math.random() * 200) + (totalStock / 2));
+            }
+
+            myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Gross Volume',
+                        data: data,
+                        borderColor: '#2563eb',
+                        backgroundColor: 'rgba(37, 99, 235, 0.1)',
+                        borderWidth: 3,
+                        pointBackgroundColor: '#ffffff',
+                        pointBorderColor: '#2563eb',
+                        pointBorderWidth: 2,
+                        pointRadius: 4,
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false }, tooltip: { mode: 'index', intersect: false } },
+                    scales: {
+                        x: { grid: { display: false }, ticks: { color: txtCo } },
+                        y: { grid: { color: gridCo, borderDash: [5, 5] }, ticks: { color: txtCo } }
+                    },
+                    interaction: { mode: 'nearest', axis: 'x', intersect: false }
+                }
+            });
+        }
+
+        function updateChartData(val) {
+            initChart(parseInt(val));
+            showToast('Gráfico filtrado según el período seleccionado.', 'success');
+        }
     </script>
 </body>
-
 </html>
