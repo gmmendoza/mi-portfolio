@@ -1385,6 +1385,13 @@
         ];
         let myChart, statCatChartInst, statStockChartInst;
 
+        let invoicesDb = [
+            { id: 'FAC-001', client: 'Corp IT S.A.', date: '2024-03-10', total: 125000, status: 'Pendiente' },
+            { id: 'FAC-002', client: 'TecnoHogar', date: '2024-03-12', total: 45000, status: 'Pagado' },
+            { id: 'FAC-003', client: 'Sebastián Ruiz', date: '2024-03-14', total: 15000, status: 'Vencido' },
+            { id: 'FAC-004', client: 'Distribuidora Paraná', date: '2024-03-15', total: 82000, status: 'Pendiente' }
+        ];
+
         // Init App Flow
         window.addEventListener('load', () => {
             setTimeout(() => {
@@ -1457,9 +1464,11 @@
             document.getElementById('breadcrumbs').innerHTML = `Workspace / <span class="text-primary-600 dark:text-primary-400">${names[view]}</span>`;
 
             // Refresh stats when switching to that view
-            if (view === 'stats') renderStats();
-            if (view === 'crm') renderCRM();
-            if (view === 'categories') renderCategories();
+            const v = view.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            if (v === 'stats') renderStats();
+            if (v === 'crm') renderCRM();
+            if (v === 'categories') renderCategories();
+            if (v === 'facturacion' || v === 'billing') renderInvoices();
         }
 
         function toggleNotifs() {
@@ -1644,6 +1653,54 @@
                 btn.classList.remove('fa-spin');
                 showToast('Datos sincronizados', 'success');
             }, 800);
+        }
+
+        // ═══════════════ FACTURACIÓN REAL ═══════════════
+        function renderInvoices() {
+            const tb = document.getElementById('billingTableBody');
+            if (!tb) return;
+            tb.innerHTML = '';
+            invoicesDb.forEach(inv => {
+                const sCls = inv.status === 'Pagado' ? 'bg-green-100 text-green-700' :
+                             inv.status === 'Vencido' ? 'bg-red-100 text-red-700' :
+                             'bg-amber-100 text-amber-700';
+                
+                tb.innerHTML += `
+                    <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors border-b border-slate-100 dark:border-slate-800">
+                        <td class="px-6 py-4 font-mono text-xs font-bold text-primary-600">${inv.id}</td>
+                        <td class="px-6 py-4 text-sm font-semibold dark:text-slate-200">${inv.client}</td>
+                        <td class="px-6 py-4 text-xs dark:text-slate-400">${inv.date}</td>
+                        <td class="px-6 py-4 font-bold dark:text-slate-100">${formatMoney(inv.total)}</td>
+                        <td class="px-6 py-4"><span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase ${sCls}">${inv.status}</span></td>
+                        <td class="px-6 py-4 text-right flex gap-2 justify-end">
+                            <button onclick="showInvoiceDetail('${inv.id}')" class="p-2 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-lg text-slate-500 transition-colors" title="Detalles">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            ${inv.status !== 'Pagado' ? `
+                            <button onclick="registerPayment('${inv.id}')" class="p-2 hover:bg-green-50 dark:hover:bg-green-900/20 rounded-lg text-green-600 transition-colors" title="Registrar Pago">
+                                <i class="fas fa-check-double"></i>
+                            </button>` : ''}
+                        </td>
+                    </tr>
+                `;
+            });
+        }
+
+        function showInvoiceDetail(id) {
+            const inv = invoicesDb.find(x => x.id === id);
+            if (!inv) return;
+            // Simulated detail view
+            alert(`--- DETALLE DE FACTURA ---\nID: ${inv.id}\nCliente: ${inv.client}\nFecha: ${inv.date}\nTotal: ${formatMoney(inv.total)}\nEstado: ${inv.status}\n\n(En una versión productiva aquí se cargaría un modal con el desglose de ítems)`);
+        }
+
+        function registerPayment(id) {
+            const inv = invoicesDb.find(x => x.id === id);
+            if (inv) {
+                inv.status = 'Pagado';
+                renderInvoices();
+                showToast(`Cobro registrado para ${inv.id}`, 'success');
+                addActivity(`Factura ${inv.id} marcada como PAGADA`, 'bg-green-500');
+            }
         }
 
         const formatMoney = (n) => new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS', minimumFractionDigits: 0 }).format(n);
