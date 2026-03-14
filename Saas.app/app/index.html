@@ -420,32 +420,17 @@
                     <button onclick="toggleNotifs()"
                         class="w-8 h-8 rounded-full hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center justify-center text-slate-500 transition-colors relative">
                         <i class="fas fa-bell"></i>
-                        <span class="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full animate-ping"></span>
-                        <span class="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
+                        <span id="notifBadgePing" class="hidden absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full animate-ping"></span>
+                        <span id="notifBadge" class="hidden absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
                     </button>
                     <!-- Notifs Dropdown -->
                     <div id="notifsDropdown"
                         class="hidden absolute top-full right-0 mt-2 w-80 bg-white dark:bg-slate-800 rounded-xl shadow-2xl border border-slate-200 dark:border-slate-700 z-50 overflow-hidden">
-                        <div
-                            class="p-3 border-b border-slate-200 dark:border-slate-700 font-semibold flex justify-between items-center text-slate-800 dark:text-white">
-                            Notificaciones <span class="text-xs font-normal text-primary-600 cursor-pointer"
-                                onclick="showToast('Todas marcadas como leídas', 'success')">Marcar leídas</span>
+                        <div class="p-3 border-b border-slate-200 dark:border-slate-700 font-semibold flex justify-between items-center text-slate-800 dark:text-white">
+                            Notificaciones <span class="text-xs font-normal text-primary-600 cursor-pointer hover:underline" onclick="clearNotifs()">Marcar le&#237;das</span>
                         </div>
-                        <div class="max-h-64 overflow-y-auto">
-                            <div
-                                class="p-3 border-b border-slate-100 dark:border-slate-700/50 hover:bg-slate-50 dark:hover:bg-slate-700/50 cursor-pointer transition-colors">
-                                <p class="text-sm text-slate-800 dark:text-slate-200"><span
-                                        class="font-semibold text-primary-500">Nuevo Ingreso:</span> Se generó el Ticket
-                                    #TRX-1029</p>
-                                <span class="text-xs text-slate-400">Hace 2 minutos</span>
-                            </div>
-                            <div
-                                class="p-3 hover:bg-slate-50 dark:hover:bg-slate-700/50 cursor-pointer transition-colors">
-                                <p class="text-sm text-slate-800 dark:text-slate-200"><i
-                                        class="fas fa-exclamation-triangle text-amber-500 mr-1"></i> Stock Crítico:
-                                    "Monitor 24 IPS"</p>
-                                <span class="text-xs text-slate-400">Hace 1 hora</span>
-                            </div>
+                        <div class="max-h-64 overflow-y-auto" id="notifsList">
+                            <div class="p-6 text-center text-slate-400 text-sm">No hay notificaciones nuevas.</div>
                         </div>
                     </div>
                 </div>
@@ -572,37 +557,7 @@
                             class="bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-200 dark:border-slate-700 overflow-hidden flex flex-col h-[400px]">
                             <h3 class="font-bold text-slate-800 dark:text-white mb-6">Actividad Reciente</h3>
                             <div class="flex-1 overflow-y-auto pr-2 space-y-4" id="recentActivity">
-                                <!-- Populated -->
-                                <div class="flex gap-4">
-                                    <div class="mt-1 w-2 h-2 rounded-full bg-blue-500 flex-shrink-0"></div>
-                                    <div>
-                                        <p class="text-sm dark:text-slate-300">Venta procesada <span
-                                                class="font-bold">#TRX-0912</span> por $14,500</p><span
-                                            class="text-xs text-slate-500">Hace 5 min</span>
-                                    </div>
-                                </div>
-                                <div class="flex gap-4">
-                                    <div class="mt-1 w-2 h-2 rounded-full bg-amber-500 flex-shrink-0"></div>
-                                    <div>
-                                        <p class="text-sm dark:text-slate-300">Ajuste manual de inventario en "Teclados"
-                                        </p><span class="text-xs text-slate-500">Hace 32 min</span>
-                                    </div>
-                                </div>
-                                <div class="flex gap-4">
-                                    <div class="mt-1 w-2 h-2 rounded-full bg-green-500 flex-shrink-0"></div>
-                                    <div>
-                                        <p class="text-sm dark:text-slate-300">Nuevo cliente "Corp IT" registrado</p>
-                                        <span class="text-xs text-slate-500">Hace 1 hora</span>
-                                    </div>
-                                </div>
-                                <div class="flex gap-4">
-                                    <div class="mt-1 w-2 h-2 rounded-full bg-blue-500 flex-shrink-0"></div>
-                                    <div>
-                                        <p class="text-sm dark:text-slate-300">Venta procesada <span
-                                                class="font-bold">#TRX-0911</span> por $2,100</p><span
-                                            class="text-xs text-slate-500">Hace 2 horas</span>
-                                    </div>
-                                </div>
+                                <!-- Populated dynamically by JS -->
                             </div>
                             <button
                                 class="w-full mt-4 py-2 text-sm text-primary-600 dark:text-primary-400 font-medium hover:bg-slate-50 dark:hover:bg-slate-700/50 rounded-lg transition-colors">Ver
@@ -703,11 +658,20 @@
                             </div>
                             <select id="invCategorySelect" onchange="filterInventory()"
                                 class="px-3 py-2 text-sm bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-600 rounded-lg outline-none focus:border-primary-500 cursor-pointer transition-colors dark:text-white">
-                                <option value="">Todas las Categorías</option>
-                                <option value="Periféricos">Periféricos</option>
+                                <option value="">Todas las Categor&#237;as</option>
+                                <option value="Periféricos">Perif&#233;ricos</option>
                                 <option value="Componentes">Componentes</option>
                                 <option value="Audio">Audio</option>
                                 <option value="Video">Video</option>
+                            </select>
+                            <select id="invSortSelect" onchange="filterInventory()"
+                                class="px-3 py-2 text-sm bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-600 rounded-lg outline-none focus:border-primary-500 cursor-pointer transition-colors dark:text-white">
+                                <option value="name_asc">A-Z</option>
+                                <option value="name_desc">Z-A</option>
+                                <option value="price_desc">Mayor Precio</option>
+                                <option value="price_asc">Menor Precio</option>
+                                <option value="stock_desc">Mayor Stock</option>
+                                <option value="stock_asc">Menor Stock</option>
                             </select>
                         </div>
                     </div>
@@ -1002,7 +966,7 @@
             <form id="newCatForm" onsubmit="handleNewCat(event)" class="p-6 space-y-4">
                 <div>
                     <label class="block text-sm font-medium mb-1 text-slate-600 dark:text-slate-400">Nombre</label>
-                    <input type="text" id="newCatName" required class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-lg outline-none focus:border-primary-500 dark:text-white">
+                    <input type="text" id="newCatName" required class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-lg outline-none focus:border-primary-500 dark:text-white transition-colors focus:invalid:border-red-500 focus:invalid:ring-1 focus:invalid:ring-red-500">
                 </div>
                 <div>
                     <label class="block text-sm font-medium mb-1 text-slate-600 dark:text-slate-400">Descripci&#243;n</label>
@@ -1026,11 +990,11 @@
             <form id="newClientForm" onsubmit="handleNewClient(event)" class="p-6 space-y-4">
                 <div>
                     <label class="block text-sm font-medium mb-1 text-slate-600 dark:text-slate-400">Nombre / Empresa</label>
-                    <input type="text" id="cliName" required class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-lg outline-none focus:border-primary-500 dark:text-white">
+                    <input type="text" id="cliName" required class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-lg outline-none focus:border-primary-500 dark:text-white transition-colors focus:invalid:border-red-500 focus:invalid:ring-1 focus:invalid:ring-red-500">
                 </div>
                 <div>
                     <label class="block text-sm font-medium mb-1 text-slate-600 dark:text-slate-400">Email</label>
-                    <input type="email" id="cliEmail" required class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-lg outline-none focus:border-primary-500 dark:text-white">
+                    <input type="email" id="cliEmail" required class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-lg outline-none focus:border-primary-500 dark:text-white transition-colors focus:invalid:border-red-500 focus:invalid:ring-1 focus:invalid:ring-red-500">
                 </div>
                 <div>
                     <label class="block text-sm font-medium mb-1 text-slate-600 dark:text-slate-400">Tel&#233;fono</label>
@@ -1152,6 +1116,12 @@
 
         let cart = [];
         let history = [];
+        let notifications = [
+            { id: 1, title: 'Stock Crítico', desc: '"Monitor 24 IPS" se quedó sin stock', time: new Date(), type: 'warning' }
+        ];
+        let activity = [
+            { id: 1, text: 'Venta inicial procesada', time: new Date(), type: 'sale', color: 'bg-blue-500' }
+        ];
         let myChart, statCatChartInst, statStockChartInst;
 
         // Init App Flow
@@ -1170,6 +1140,8 @@
             renderCategories();
             renderCRM();
             renderStats();
+            renderNotifs();
+            renderActivity();
         });
 
         // Handlers
@@ -1239,6 +1211,61 @@
             el.classList.toggle('hidden');
         }
 
+        // Feature: Notifications & Activity
+        function renderNotifs() {
+            const list = document.getElementById('notifsList');
+            if(!list) return;
+            const badge = document.getElementById('notifBadge');
+            const ping = document.getElementById('notifBadgePing');
+            if(notifications.length > 0) {
+                badge.classList.remove('hidden');
+                ping.classList.remove('hidden');
+                list.innerHTML = notifications.sort((a,b)=>b.time-a.time).map(n => `
+                    <div class="p-3 border-b border-slate-100 dark:border-slate-700/50 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors">
+                        <p class="text-sm text-slate-800 dark:text-slate-200">
+                            ${n.type === 'warning' ? '<i class="fas fa-exclamation-triangle text-amber-500 mr-1"></i>' : '<span class="font-semibold text-primary-500">' + n.title + ':</span>'} 
+                            ${n.desc}
+                        </p>
+                        <span class="text-xs text-slate-400">Recién</span>
+                    </div>`).join('');
+            } else {
+                badge.classList.add('hidden');
+                ping.classList.add('hidden');
+                list.innerHTML = '<div class="p-6 text-center text-slate-400 text-sm">No hay notificaciones nuevas.</div>';
+            }
+        }
+
+        function clearNotifs() {
+            notifications = [];
+            renderNotifs();
+            showToast('Notificaciones limpiadas.', 'success');
+        }
+
+        function addNotification(type, title, desc) {
+            notifications.push({ id: Date.now(), title, desc, time: new Date(), type });
+            renderNotifs();
+        }
+
+        function renderActivity() {
+            const feed = document.getElementById('recentActivity');
+            if(!feed) return;
+            feed.innerHTML = activity.sort((a,b)=>b.time-a.time).map(a => `
+                <div class="flex gap-4">
+                    <div class="mt-1 w-2 h-2 rounded-full ${a.color} flex-shrink-0"></div>
+                    <div>
+                        <p class="text-sm dark:text-slate-300">${a.text}</p>
+                        <span class="text-xs text-slate-500">Recién</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function addActivity(text, color) {
+            activity.push({ id: Date.now(), text, time: new Date(), color });
+            if(activity.length > 10) activity.shift();
+            renderActivity();
+        }
+
         function openModal(id) { document.getElementById(id).classList.add('active'); }
         function closeModal(id) { document.getElementById(id).classList.remove('active'); }
 
@@ -1302,14 +1329,25 @@
         function simulateExport() {
             const btn = event.currentTarget;
             const originalHTML = btn.innerHTML;
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generando...';
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Exportando...';
             btn.disabled = true;
 
             setTimeout(() => {
+                const headers = ["ID Transaccion", "Fecha", "Items", "Total"];
+                const csvData = history.map(h => `${h.id},"${h.date}",${h.items},${h.total}`).join("\\n");
+                const csvStr = headers.join(",") + "\\n" + csvData;
+                const blob = new Blob([csvStr], { type: 'text/csv;charset=utf-8;' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `SaaS_Ventas_${Date.now()}.csv`;
+                a.click();
+                URL.revokeObjectURL(url);
+
                 btn.innerHTML = originalHTML;
                 btn.disabled = false;
-                showToast('Reporte descargado correctamente en XLS.', 'success');
-            }, 1200);
+                showToast('Reporte CSV descargado.', 'success');
+            }, 800);
         }
 
         function simulateLoad(btn) {
@@ -1426,9 +1464,15 @@
             // Descontar inventario real (simulado)
             cart.forEach(c => {
                 const p = db.find(x => x.id === c.id);
-                if (p) p.stock -= c.qty;
+                if (p) {
+                    p.stock -= c.qty;
+                    if(p.stock === 0) addNotification('warning', 'Stock Agotado', `El artículo "${p.name}" se ha agotado.`);
+                }
             });
+            
             showToast('Ticket cobrado exitosamente e inventario descontado.', 'success');
+            addNotification('info', 'Venta Registrada', `Se generó el ticket ${entry.id}`);
+            addActivity(`Venta procesada <span class="font-bold">${entry.id}</span> por ${formatMoney(entry.total)}`, 'bg-blue-500');
 
             // Re-render inventory
             renderInventory();
@@ -1436,9 +1480,12 @@
             clearTicket();
 
             // Add trick visual to Dashboard KPI
-            document.getElementById('kpi-orders').innerText = parseInt(document.getElementById('kpi-orders').innerText) + 1;
-            document.getElementById('kpi-orders').classList.add('text-primary-600');
-            setTimeout(() => document.getElementById('kpi-orders').classList.remove('text-primary-600'), 1000);
+            const orderEl = document.getElementById('kpi-orders');
+            if (orderEl) {
+                orderEl.innerText = parseInt(orderEl.innerText) + 1;
+                orderEl.classList.add('text-primary-600');
+                setTimeout(() => orderEl.classList.remove('text-primary-600'), 1000);
+            }
         }
 
         // Feature: Render History
@@ -1523,15 +1570,26 @@
         function filterInventory() {
             const query = document.getElementById('invSearchInput').value.toLowerCase();
             const cat = document.getElementById('invCategorySelect').value;
+            const sort = document.getElementById('invSortSelect') ? document.getElementById('invSortSelect').value : null;
             const grid = document.getElementById('invGrid');
             if (!grid) return;
 
-            let filteredDb = db;
+            let filteredDb = [...db];
             if (query) {
                 filteredDb = filteredDb.filter(i => i.name.toLowerCase().includes(query) || i.ref.toLowerCase().includes(query));
             }
-            if (cat && cat !== "Todas las Categorías") {
-                filteredDb = filteredDb.filter(i => i.cat.toLowerCase().includes(cat.toLowerCase()));
+            if (cat && cat !== "Todas las Categorías" && cat !== "Todas las Categor\u00EDas") {
+                filteredDb = filteredDb.filter(i => i.cat.toLowerCase() === cat.toLowerCase());
+            }
+
+            // Apply Sorting
+            if (sort) {
+                if (sort === 'name_asc') filteredDb.sort((a,b) => a.name.localeCompare(b.name));
+                else if (sort === 'name_desc') filteredDb.sort((a,b) => b.name.localeCompare(a.name));
+                else if (sort === 'price_asc') filteredDb.sort((a,b) => a.price - b.price);
+                else if (sort === 'price_desc') filteredDb.sort((a,b) => b.price - a.price);
+                else if (sort === 'stock_asc') filteredDb.sort((a,b) => a.stock - b.stock);
+                else if (sort === 'stock_desc') filteredDb.sort((a,b) => b.stock - a.stock);
             }
 
             grid.innerHTML = '';
@@ -1776,6 +1834,7 @@
             closeModal('newClientModal');
             document.getElementById('newClientForm').reset();
             showToast(`Cliente ${newClient.name} agregado al CRM.`, 'success');
+            addActivity(`Nuevo CRM: cliente "${newClient.name}" registrado`, 'bg-green-500');
         }
 
         // ═══════════════ ESTADÍSTICAS ═══════════════
