@@ -330,26 +330,34 @@
                 class="nav-item active flex items-center gap-3 px-3 py-2 rounded-lg cursor-pointer hover:bg-slate-800 transition-colors">
                 <i class="fas fa-chart-line w-5 text-center"></i> <span>Dashboard</span>
             </a>
+            <a onclick="switchView('stats', this)"
+                class="nav-item flex items-center gap-3 px-3 py-2 rounded-lg cursor-pointer hover:bg-slate-800 transition-colors">
+                <i class="fas fa-chart-bar w-5 text-center"></i> <span>Estad&#237;sticas</span>
+            </a>
             <a onclick="switchView('pos', this)"
                 class="nav-item flex items-center gap-3 px-3 py-2 rounded-lg cursor-pointer hover:bg-slate-800 transition-colors">
                 <i class="fas fa-cash-register w-5 text-center"></i> <span>Punto de Venta</span>
             </a>
 
-            <div class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2 mt-6 px-2">Gestión</div>
+            <div class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2 mt-6 px-2">Gesti&#243;n</div>
             <a onclick="switchView('inventory', this)"
                 class="nav-item flex items-center gap-3 px-3 py-2 rounded-lg cursor-pointer hover:bg-slate-800 transition-colors">
                 <i class="fas fa-box-open w-5 text-center"></i> <span>Inventario</span>
+            </a>
+            <a onclick="switchView('categories', this)"
+                class="nav-item flex items-center gap-3 px-3 py-2 rounded-lg cursor-pointer hover:bg-slate-800 transition-colors">
+                <i class="fas fa-tags w-5 text-center"></i> <span>Categor&#237;as</span>
             </a>
             <a onclick="switchView('history', this)"
                 class="nav-item flex items-center gap-3 px-3 py-2 rounded-lg cursor-pointer hover:bg-slate-800 transition-colors">
                 <i class="fas fa-history w-5 text-center"></i> <span>Historial Ventas</span>
             </a>
-            <a onclick="showToast('Módulo en desarrollo para v2.1', 'warning')"
-                class="nav-item flex items-center gap-3 px-3 py-2 rounded-lg cursor-pointer hover:bg-slate-800 transition-colors opacity-60">
+            <a onclick="switchView('crm', this)"
+                class="nav-item flex items-center gap-3 px-3 py-2 rounded-lg cursor-pointer hover:bg-slate-800 transition-colors">
                 <i class="fas fa-users w-5 text-center"></i> <span>Clientes CRM</span>
             </a>
 
-            <div class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2 mt-6 px-2">Configuración
+            <div class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2 mt-6 px-2">Configuraci&#243;n
             </div>
             <a onclick="openModal('settingsModal')"
                 class="nav-item flex items-center gap-3 px-3 py-2 rounded-lg cursor-pointer hover:bg-slate-800 transition-colors">
@@ -745,6 +753,122 @@
                     </div>
                 </div>
             </section>
+
+            <!-- ========  CATEGORÍAS VIEW  ======== -->
+            <section id="categories" class="view-section">
+                <div class="flex justify-between items-end mb-6">
+                    <div>
+                        <h2 class="text-2xl font-bold text-slate-800 dark:text-white">Categor&#237;as</h2>
+                        <p class="text-slate-500 text-sm mt-1">Organiza tu cat&#225;logo por categor&#237;as.</p>
+                    </div>
+                    <button onclick="openModal('newCatModal')" class="px-5 py-2.5 bg-primary-600 hover:bg-primary-700 text-white rounded-lg font-medium shadow-md transition-colors flex items-center gap-2">
+                        <i class="fas fa-plus"></i> Nueva Categor&#237;a
+                    </button>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4" id="catGrid">
+                    <!-- populated by renderCategories() -->
+                </div>
+            </section>
+
+            <!-- ========  CRM CLIENTES VIEW  ======== -->
+            <section id="crm" class="view-section">
+                <div class="flex justify-between items-end mb-6">
+                    <div>
+                        <h2 class="text-2xl font-bold text-slate-800 dark:text-white">Clientes CRM</h2>
+                        <p class="text-slate-500 text-sm mt-1">Gesti&#243;n de clientes y relaciones comerciales.</p>
+                    </div>
+                    <button onclick="openModal('newClientModal')" class="px-5 py-2.5 bg-primary-600 hover:bg-primary-700 text-white rounded-lg font-medium shadow-md transition-colors flex items-center gap-2">
+                        <i class="fas fa-user-plus"></i> Nuevo Cliente
+                    </button>
+                </div>
+                <!-- Search bar -->
+                <div class="p-4 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 mb-4 shadow-sm">
+                    <div class="relative max-w-sm">
+                        <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                        <input type="text" id="crmSearchInput" oninput="filterCRM()" placeholder="Buscar cliente..."
+                            class="w-full pl-9 pr-4 py-2 text-sm bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-600 rounded-lg focus:outline-none focus:border-primary-500 focus:bg-white dark:focus:bg-slate-700 transition-colors dark:text-white">
+                    </div>
+                </div>
+                <!-- Table -->
+                <div class="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 overflow-hidden">
+                    <table class="w-full text-left text-sm">
+                        <thead class="bg-slate-50 dark:bg-slate-800/50 text-slate-500 text-xs uppercase font-semibold border-b border-slate-200 dark:border-slate-700">
+                            <tr>
+                                <th class="px-6 py-3">Cliente</th>
+                                <th class="px-6 py-3">Email</th>
+                                <th class="px-6 py-3">Tel&#233;fono</th>
+                                <th class="px-6 py-3">Compras</th>
+                                <th class="px-6 py-3">Estado</th>
+                                <th class="px-6 py-3">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="crmTableBody" class="divide-y divide-slate-100 dark:divide-slate-700/50">
+                            <!-- populated by renderCRM() -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- ========  ESTADÍSTICAS VIEW  ======== -->
+            <section id="stats" class="view-section">
+                <div class="flex justify-between items-end mb-6">
+                    <div>
+                        <h2 class="text-2xl font-bold text-slate-800 dark:text-white">Estad&#237;sticas</h2>
+                        <p class="text-slate-500 text-sm mt-1">An&#225;lisis profundo del negocio en tiempo real.</p>
+                    </div>
+                    <button onclick="simulateExport()" class="px-4 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-50 shadow-sm transition-colors flex items-center gap-2">
+                        <i class="fas fa-download"></i> Exportar Reporte
+                    </button>
+                </div>
+
+                <!-- KPI Row -->
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                    <div class="bg-gradient-to-br from-blue-500 to-blue-700 text-white p-5 rounded-xl shadow-lg">
+                        <div class="text-xs uppercase font-semibold opacity-75 mb-1">Ventas Totales</div>
+                        <div class="text-3xl font-bold" id="stat-totalSales">0</div>
+                        <div class="text-xs mt-1 opacity-80">transacciones</div>
+                    </div>
+                    <div class="bg-gradient-to-br from-emerald-500 to-emerald-700 text-white p-5 rounded-xl shadow-lg">
+                        <div class="text-xs uppercase font-semibold opacity-75 mb-1">Ingresos</div>
+                        <div class="text-2xl font-bold" id="stat-totalRevenue">$0</div>
+                        <div class="text-xs mt-1 opacity-80">facturado (c/IVA)</div>
+                    </div>
+                    <div class="bg-gradient-to-br from-violet-500 to-violet-700 text-white p-5 rounded-xl shadow-lg">
+                        <div class="text-xs uppercase font-semibold opacity-75 mb-1">Productos</div>
+                        <div class="text-3xl font-bold" id="stat-totalProducts">0</div>
+                        <div class="text-xs mt-1 opacity-80">en cat&#225;logo activo</div>
+                    </div>
+                    <div class="bg-gradient-to-br from-amber-500 to-orange-600 text-white p-5 rounded-xl shadow-lg">
+                        <div class="text-xs uppercase font-semibold opacity-75 mb-1">Stock Cr&#237;tico</div>
+                        <div class="text-3xl font-bold" id="stat-criticalStock">0</div>
+                        <div class="text-xs mt-1 opacity-80">art&#237;culos agotados</div>
+                    </div>
+                </div>
+
+                <!-- Charts Row -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+                    <!-- Ventas por categoría -->
+                    <div class="bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-200 dark:border-slate-700">
+                        <h3 class="font-bold text-slate-800 dark:text-white mb-4">Ventas por Categor&#237;a</h3>
+                        <div class="h-56"><canvas id="statCatChart"></canvas></div>
+                    </div>
+                    <!-- Distribución de stock -->
+                    <div class="bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-200 dark:border-slate-700">
+                        <h3 class="font-bold text-slate-800 dark:text-white mb-4">Estado de Stock</h3>
+                        <div class="h-56"><canvas id="statStockChart"></canvas></div>
+                    </div>
+                </div>
+
+                <!-- Top productos -->
+                <div class="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700">
+                    <div class="p-5 border-b border-slate-200 dark:border-slate-700">
+                        <h3 class="font-bold text-slate-800 dark:text-white">Top Productos por Valor de Stock</h3>
+                    </div>
+                    <div class="p-4" id="statsTopProducts">
+                        <!-- populated by renderStats() -->
+                    </div>
+                </div>
+            </section>
         </div>
 
     </main>
@@ -868,6 +992,58 @@
         </div>
     </div>
 
+    <!-- Nueva Categoría Modal -->
+    <div id="newCatModal" class="modal">
+        <div class="modal-content bg-white dark:bg-slate-800 rounded-xl w-full max-w-md shadow-2xl">
+            <div class="p-6 border-b border-slate-200 dark:border-slate-700 flex justify-between items-center">
+                <h2 class="text-xl font-bold dark:text-white">Nueva Categor&#237;a</h2>
+                <button onclick="closeModal('newCatModal')" class="text-slate-400 hover:text-slate-600 dark:hover:text-white"><i class="fas fa-times text-xl"></i></button>
+            </div>
+            <form id="newCatForm" onsubmit="handleNewCat(event)" class="p-6 space-y-4">
+                <div>
+                    <label class="block text-sm font-medium mb-1 text-slate-600 dark:text-slate-400">Nombre</label>
+                    <input type="text" id="newCatName" required class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-lg outline-none focus:border-primary-500 dark:text-white">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium mb-1 text-slate-600 dark:text-slate-400">Descripci&#243;n</label>
+                    <input type="text" id="newCatDesc" placeholder="Descripci&#243;n breve..." class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-lg outline-none focus:border-primary-500 dark:text-white">
+                </div>
+                <div class="flex justify-end gap-3 mt-4">
+                    <button type="button" onclick="closeModal('newCatModal')" class="px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">Cancelar</button>
+                    <button type="submit" class="px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-lg text-sm font-medium shadow-md">Crear Categor&#237;a</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Nuevo Cliente Modal -->
+    <div id="newClientModal" class="modal">
+        <div class="modal-content bg-white dark:bg-slate-800 rounded-xl w-full max-w-md shadow-2xl">
+            <div class="p-6 border-b border-slate-200 dark:border-slate-700 flex justify-between items-center">
+                <h2 class="text-xl font-bold dark:text-white">Nuevo Cliente CRM</h2>
+                <button onclick="closeModal('newClientModal')" class="text-slate-400 hover:text-slate-600 dark:hover:text-white"><i class="fas fa-times text-xl"></i></button>
+            </div>
+            <form id="newClientForm" onsubmit="handleNewClient(event)" class="p-6 space-y-4">
+                <div>
+                    <label class="block text-sm font-medium mb-1 text-slate-600 dark:text-slate-400">Nombre / Empresa</label>
+                    <input type="text" id="cliName" required class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-lg outline-none focus:border-primary-500 dark:text-white">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium mb-1 text-slate-600 dark:text-slate-400">Email</label>
+                    <input type="email" id="cliEmail" required class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-lg outline-none focus:border-primary-500 dark:text-white">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium mb-1 text-slate-600 dark:text-slate-400">Tel&#233;fono</label>
+                    <input type="text" id="cliPhone" placeholder="376 400-0000" class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-lg outline-none focus:border-primary-500 dark:text-white">
+                </div>
+                <div class="flex justify-end gap-3 mt-4">
+                    <button type="button" onclick="closeModal('newClientModal')" class="px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">Cancelar</button>
+                    <button type="submit" class="px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-lg text-sm font-medium shadow-md">Guardar Cliente</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <!-- Settings Modal -->
     <div id="settingsModal" class="modal">
         <div
@@ -960,27 +1136,40 @@
             { id: '10298', ref: 'PROD-06', name: 'Webcam 1080p 60fps', price: 54000, stock: 2, cat: 'Video', img: 'fa-video' }
         ];
 
+        let categoriesDb = [
+            { id: 'c1', name: 'Periféricos', icon: 'fa-mouse-pointer', color: 'from-blue-500 to-blue-700', desc: 'Mouse, teclados, pads y accesorios.' },
+            { id: 'c2', name: 'Componentes', icon: 'fa-microchip', color: 'from-violet-500 to-violet-700', desc: 'Hardware interno y periféricos de PC.' },
+            { id: 'c3', name: 'Audio', icon: 'fa-headphones', color: 'from-green-500 to-green-700', desc: 'Auriculares, parlantes y micrófonos.' },
+            { id: 'c4', name: 'Video', icon: 'fa-video', color: 'from-amber-500 to-orange-600', desc: 'Cámaras, capturadoras y streaming.' }
+        ];
+
+        let clientsDb = [
+            { id: 'cli001', name: 'Corp IT S.A.', email: 'compras@corpit.com.ar', phone: '376 424-1234', purchases: 14, status: 'Activo' },
+            { id: 'cli002', name: 'TecnoHogar', email: 'info@tecnohogar.com', phone: '376 415-9900', purchases: 8, status: 'Activo' },
+            { id: 'cli003', name: 'Sebastián Ruiz', email: 'sruiz@gmail.com', phone: '376 400-5523', purchases: 3, status: 'Inactivo' },
+            { id: 'cli004', name: 'Distribuidora Paraná', email: 'ventas@dpna.com', phone: '343 490-1100', purchases: 22, status: 'Activo' }
+        ];
+
         let cart = [];
         let history = [];
-        let myChart;
+        let myChart, statCatChartInst, statStockChartInst;
 
         // Init App Flow
         window.addEventListener('load', () => {
-            // Remove skeleton from chart after 1.5s
             setTimeout(() => {
                 if (document.getElementById('chartSkeleton')) document.getElementById('chartSkeleton').remove();
                 initChart();
             }, 1000);
-
-            // Hide app loader, show login modal
             setTimeout(() => {
                 document.getElementById('appLoader').style.display = 'none';
                 document.getElementById('loginModal').classList.add('active');
             }, 1200);
-
             renderPOS();
             renderInventory();
             renderHistory();
+            renderCategories();
+            renderCRM();
+            renderStats();
         });
 
         // Handlers
@@ -1027,8 +1216,17 @@
             if (btn) btn.classList.add('active');
 
             // Actualizar migas de pan
-            const names = { 'dashboard': 'Dashboard', 'pos': 'Punto de Venta', 'inventory': 'Inventario', 'history': 'Historial Ventas' };
+            const names = {
+                'dashboard': 'Dashboard', 'pos': 'Punto de Venta',
+                'inventory': 'Inventario', 'history': 'Historial Ventas',
+                'categories': 'Categorías', 'crm': 'Clientes CRM', 'stats': 'Estadísticas'
+            };
             document.getElementById('breadcrumbs').innerHTML = `Workspace / <span class="text-primary-600 dark:text-primary-400">${names[view]}</span>`;
+
+            // Refresh stats when switching to that view
+            if (view === 'stats') renderStats();
+            if (view === 'crm') renderCRM();
+            if (view === 'categories') renderCategories();
         }
 
         function toggleNotifs() {
@@ -1442,6 +1640,195 @@
         function updateChartData(val) {
             initChart(parseInt(val));
             showToast('Gráfico filtrado según el período seleccionado.', 'success');
+        }
+
+        // ═══════════════ CATEGORÍAS ═══════════════
+        function renderCategories() {
+            const grid = document.getElementById('catGrid');
+            if (!grid) return;
+            grid.innerHTML = '';
+            categoriesDb.forEach(c => {
+                const count = db.filter(p => p.cat === c.name).length;
+                grid.innerHTML += `
+                    <div class="bg-gradient-to-br ${c.color} text-white p-6 rounded-2xl shadow-lg relative overflow-hidden group">
+                        <div class="absolute top-3 right-3 opacity-20 text-6xl pointer-events-none"><i class="fas ${c.icon}"></i></div>
+                        <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mb-4">
+                            <i class="fas ${c.icon} text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-1">${c.name}</h3>
+                        <p class="text-sm opacity-80 mb-3">${c.desc}</p>
+                        <span class="inline-block bg-white/20 rounded-full text-xs font-semibold px-3 py-1">${count} producto${count !== 1 ? 's' : ''}</span>
+                        <div class="absolute bottom-3 right-3 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                            <button onclick="deleteCat('${c.id}')" class="w-8 h-8 bg-white/20 hover:bg-red-500 rounded-full flex items-center justify-center text-xs" title="Eliminar"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>`;
+            });
+        }
+
+        function deleteCat(id) {
+            if (confirm('¿Eliminar esta categoría?')) {
+                categoriesDb = categoriesDb.filter(c => c.id !== id);
+                renderCategories();
+                showToast('Categoría eliminada', 'warning');
+            }
+        }
+
+        function handleNewCat(e) {
+            e.preventDefault();
+            const name = document.getElementById('newCatName').value.trim();
+            const desc = document.getElementById('newCatDesc').value.trim();
+            const icons = ['fa-tags','fa-cube','fa-star','fa-bolt','fa-fire','fa-gem'];
+            const colors = ['from-blue-500 to-blue-700','from-violet-500 to-violet-700','from-green-500 to-green-700','from-amber-500 to-orange-600','from-pink-500 to-rose-600','from-cyan-500 to-cyan-700'];
+            const idx = Math.floor(Math.random() * icons.length);
+            categoriesDb.push({
+                id: 'c' + Date.now(), name, desc: desc || 'Sin descripción.',
+                icon: icons[idx], color: colors[idx]
+            });
+            // also add to inventory filter selectS
+            ['invCategorySelect','itemCat','editItemCat'].forEach(selId => {
+                const sel = document.getElementById(selId);
+                if (sel && ![...sel.options].some(o => o.value === name)) {
+                    const opt = document.createElement('option');
+                    opt.value = name;
+                    opt.textContent = name;
+                    sel.appendChild(opt);
+                }
+            });
+            renderCategories();
+            closeModal('newCatModal');
+            document.getElementById('newCatForm').reset();
+            showToast(`Categoría "${name}" creada`, 'success');
+        }
+
+        // ═══════════════ CRM CLIENTES ═══════════════
+        function renderCRM(query = '') {
+            const tb = document.getElementById('crmTableBody');
+            if (!tb) return;
+            const list = query
+                ? clientsDb.filter(c => c.name.toLowerCase().includes(query) || c.email.toLowerCase().includes(query))
+                : clientsDb;
+
+            if (!list.length) {
+                tb.innerHTML = '<tr><td colspan="6" class="px-6 py-10 text-center text-slate-400 italic">No se encontraron clientes.</td></tr>';
+                return;
+            }
+            tb.innerHTML = '';
+            list.forEach(c => {
+                const badge = c.status === 'Activo'
+                    ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400'
+                    : 'bg-slate-100 text-slate-500 dark:bg-slate-700 dark:text-slate-400';
+                tb.innerHTML += `
+                    <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors">
+                        <td class="px-6 py-4">
+                            <div class="flex items-center gap-3">
+                                <div class="w-9 h-9 rounded-full bg-primary-100 dark:bg-primary-900/30 text-primary-600 flex items-center justify-center text-sm font-bold">${c.name.charAt(0)}</div>
+                                <span class="font-semibold dark:text-slate-200">${c.name}</span>
+                            </div>
+                        </td>
+                        <td class="px-6 py-4 text-xs text-slate-500 dark:text-slate-400">${c.email}</td>
+                        <td class="px-6 py-4 text-xs dark:text-slate-300">${c.phone}</td>
+                        <td class="px-6 py-4 text-center font-bold dark:text-slate-200">${c.purchases}</td>
+                        <td class="px-6 py-4"><span class="px-2.5 py-1 rounded-full text-xs font-semibold ${badge}">${c.status}</span></td>
+                        <td class="px-6 py-4">
+                            <button onclick="toggleClientStatus('${c.id}')" class="text-xs text-primary-600 dark:text-primary-400 hover:underline mr-3">
+                                ${c.status === 'Activo' ? 'Desactivar' : 'Activar'}
+                            </button>
+                            <button onclick="deleteClient('${c.id}')" class="text-xs text-red-500 hover:underline">Eliminar</button>
+                        </td>
+                    </tr>`;
+            });
+        }
+
+        function filterCRM() {
+            const q = document.getElementById('crmSearchInput').value.toLowerCase();
+            renderCRM(q);
+        }
+
+        function toggleClientStatus(id) {
+            const c = clientsDb.find(x => x.id === id);
+            if (c) {
+                c.status = c.status === 'Activo' ? 'Inactivo' : 'Activo';
+                renderCRM();
+                showToast(`Estado de ${c.name} actualizado.`, 'success');
+            }
+        }
+
+        function deleteClient(id) {
+            if (confirm('¿Eliminar este cliente del CRM?')) {
+                clientsDb = clientsDb.filter(x => x.id !== id);
+                renderCRM();
+                showToast('Cliente eliminado', 'warning');
+            }
+        }
+
+        function handleNewClient(e) {
+            e.preventDefault();
+            const newClient = {
+                id: 'cli' + Date.now(),
+                name: document.getElementById('cliName').value,
+                email: document.getElementById('cliEmail').value,
+                phone: document.getElementById('cliPhone').value,
+                purchases: 0,
+                status: 'Activo'
+            };
+            clientsDb.unshift(newClient);
+            renderCRM();
+            closeModal('newClientModal');
+            document.getElementById('newClientForm').reset();
+            showToast(`Cliente ${newClient.name} agregado al CRM.`, 'success');
+        }
+
+        // ═══════════════ ESTADÍSTICAS ═══════════════
+        function renderStats() {
+            // KPIs
+            const totalRevenue = history.reduce((acc, h) => acc + h.total, 0);
+            const criticalStock = db.filter(p => p.stock === 0).length;
+            document.getElementById('stat-totalSales').textContent = history.length;
+            document.getElementById('stat-totalRevenue').textContent = formatMoney(totalRevenue);
+            document.getElementById('stat-totalProducts').textContent = db.length;
+            document.getElementById('stat-criticalStock').textContent = criticalStock;
+
+            // Category pie chart
+            const catNames = [...new Set(db.map(p => p.cat))];
+            const catCounts = catNames.map(cat => db.filter(p => p.cat === cat).length);
+            const catColors = ['#3b82f6','#8b5cf6','#10b981','#f59e0b','#ef4444','#06b6d4'];
+            if (statCatChartInst) statCatChartInst.destroy();
+            const ctx1 = document.getElementById('statCatChart').getContext('2d');
+            statCatChartInst = new Chart(ctx1, {
+                type: 'doughnut',
+                data: { labels: catNames, datasets: [{ data: catCounts, backgroundColor: catColors, borderWidth: 0 }] },
+                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'right', labels: { color: document.documentElement.classList.contains('dark') ? '#94a3b8' : '#64748b', font: { size: 11 } } } } }
+            });
+
+            // Stock status bar chart
+            const opt = db.filter(p => p.stock > 10).length;
+            const low = db.filter(p => p.stock > 0 && p.stock <= 10).length;
+            const out = db.filter(p => p.stock === 0).length;
+            if (statStockChartInst) statStockChartInst.destroy();
+            const ctx2 = document.getElementById('statStockChart').getContext('2d');
+            statStockChartInst = new Chart(ctx2, {
+                type: 'bar',
+                data: {
+                    labels: ['Óptimo', 'Stock Bajo', 'Agotado'],
+                    datasets: [{ data: [opt, low, out], backgroundColor: ['#10b981','#f59e0b','#ef4444'], borderRadius: 6 }]
+                },
+                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, ticks: { stepSize: 1, color: '#94a3b8' }, grid: { color: '#e2e8f0' } }, x: { ticks: { color: '#94a3b8' }, grid: { display: false } } } }
+            });
+
+            // Top products by stock value
+            const sorted = [...db].sort((a, b) => (b.price * b.stock) - (a.price * a.stock)).slice(0, 5);
+            const topEl = document.getElementById('statsTopProducts');
+            if (topEl) {
+                topEl.innerHTML = sorted.map((p, i) => `
+                    <div class="flex items-center gap-4 py-3 ${i < sorted.length - 1 ? 'border-b border-slate-100 dark:border-slate-700' : ''}">
+                        <span class="w-7 h-7 rounded-full bg-primary-50 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 font-bold text-sm flex items-center justify-center">${i+1}</span>
+                        <div class="flex-1 min-w-0">
+                            <div class="font-semibold text-sm text-slate-800 dark:text-slate-200 truncate">${p.name}</div>
+                            <div class="text-xs text-slate-400">${p.cat} &bull; Stock: ${p.stock} uds.</div>
+                        </div>
+                        <div class="text-sm font-bold text-primary-600 dark:text-primary-400">${formatMoney(p.price * p.stock)}</div>
+                    </div>`).join('');
+            }
         }
     </script>
 </body>
