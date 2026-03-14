@@ -376,8 +376,7 @@
             </section>
 
             <!-- Inventory View -->
-            </section>
-        </div><section id="inventory" class="view-section max-w-7xl mx-auto h-full flex flex-col">
+            <section id="inventory" class="view-section max-w-7xl mx-auto h-full flex flex-col pt-4">
                 <div class="flex justify-between items-end mb-6">
                     <div>
                         <h2 class="text-2xl font-bold text-slate-800 dark:text-white">Gestión de Inventario</h2>
@@ -444,6 +443,49 @@
 
     <!-- Modals & Toasts Area -->
     <div id="toastArea" class="toast-container"></div>
+
+    <!-- Nuevo Artículo Modal -->
+    <div id="newItemModal" class="modal">
+        <div class="modal-content bg-white dark:bg-slate-800 rounded-xl w-full max-w-lg shadow-2xl">
+            <div class="p-6 border-b border-slate-200 dark:border-slate-700 flex justify-between items-center">
+                <h2 class="text-xl font-bold dark:text-white">Nuevo Artículo</h2>
+                <button onclick="closeModal('newItemModal')" class="text-slate-400 hover:text-slate-600 dark:hover:text-white"><i class="fas fa-times text-xl"></i></button>
+            </div>
+            <form id="newItemForm" onsubmit="handleNewItem(event)" class="p-6 space-y-4">
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="col-span-2">
+                        <label class="block text-sm font-medium mb-1 text-slate-600 dark:text-slate-400">Descripción</label>
+                        <input type="text" id="itemName" required class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-lg outline-none focus:border-primary-500 dark:text-white">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-1 text-slate-600 dark:text-slate-400">Referencia</label>
+                        <input type="text" id="itemRef" required class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-lg outline-none focus:border-primary-500 dark:text-white">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-1 text-slate-600 dark:text-slate-400">Categoría</label>
+                        <select id="itemCat" class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-lg outline-none cursor-pointer dark:text-white">
+                            <option>Periféricos</option>
+                            <option>Componentes PC</option>
+                            <option>Audio</option>
+                            <option>Video</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-1 text-slate-600 dark:text-slate-400">Precio</label>
+                        <input type="number" id="itemPrice" required class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-lg outline-none focus:border-primary-500 dark:text-white">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-1 text-slate-600 dark:text-slate-400">Stock Inicial</label>
+                        <input type="number" id="itemStock" required class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-lg outline-none focus:border-primary-500 dark:text-white">
+                    </div>
+                </div>
+                <div class="flex justify-end gap-3 mt-6">
+                    <button type="button" class="px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800" onclick="closeModal('newItemModal')">Cancelar</button>
+                    <button type="submit" class="px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-lg text-sm font-medium shadow-md">Crear Artículo</button>
+                </div>
+            </form>
+        </div>
+    </div>
     
     <!-- Settings Modal -->
     <div id="settingsModal" class="modal">
@@ -594,6 +636,25 @@
 
         function openModal(id) { document.getElementById(id).classList.add('active'); }
         function closeModal(id) { document.getElementById(id).classList.remove('active'); }
+
+        function handleNewItem(e) {
+            e.preventDefault();
+            const newItem = {
+                id: Math.floor(Math.random() * 90000) + 10000 + '',
+                ref: document.getElementById('itemRef').value,
+                name: document.getElementById('itemName').value,
+                price: parseFloat(document.getElementById('itemPrice').value),
+                stock: parseInt(document.getElementById('itemStock').value),
+                cat: document.getElementById('itemCat').value,
+                img: 'fa-cube'
+            };
+            db.unshift(newItem);
+            renderInventory();
+            renderPOS();
+            closeModal('newItemModal');
+            document.getElementById('newItemForm').reset();
+            showToast('Artículo creado exitosamente', 'success');
+        }
 
         function handleNewItem(e) {
             e.preventDefault();
