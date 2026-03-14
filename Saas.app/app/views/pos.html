@@ -1,0 +1,65 @@
+<!--
+  ╔══════════════════════════════════════════════════════╗
+  ║   VISTA: Punto de Venta (POS)                        ║
+  ║   Archivo: views/pos.html                            ║
+  ║   Uso: cargado dinámicamente en #content-area        ║
+  ╚══════════════════════════════════════════════════════╝
+  El JS que lo controla está en js/pos.js
+-->
+
+<section id="pos" class="view-section">
+    <!-- ── HEADER ──────────────────────────────────────── -->
+    <div class="flex justify-between items-center mb-4">
+        <h2 class="text-xl font-bold text-slate-800 dark:text-white">Terminal Punto de Venta</h2>
+        <div class="flex items-center gap-2">
+            <span class="text-sm text-slate-500 hidden sm:block">Sucursal: <strong class="text-slate-700 dark:text-slate-300">Principal</strong></span>
+            <div class="w-px h-4 bg-slate-300 mx-2 hidden sm:block"></div>
+            <button onclick="clearTicket()" class="text-red-500 text-sm hover:underline"><i class="fas fa-trash-alt mr-1"></i> Limpiar Ticket</button>
+        </div>
+    </div>
+
+    <!-- ── LAYOUT: PRODUCTOS + CARRITO ────────────────── -->
+    <div class="flex gap-6 h-[calc(100vh-180px)]">
+
+        <!-- Cuadrícula de Productos -->
+        <div class="flex-1 flex flex-col min-w-0 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4">
+            <div class="mb-4 flex gap-2">
+                <input type="text" placeholder="Buscar producto o escanear código de barras..."
+                    class="flex-1 px-4 py-2 bg-slate-100 dark:bg-slate-700 border-transparent rounded-lg text-sm text-slate-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500"
+                    onkeyup="filterPos(this.value)">
+                <button class="px-4 py-2 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 rounded-lg text-slate-600 dark:text-slate-300 transition-colors" title="Filtros avanzados"><i class="fas fa-filter"></i></button>
+            </div>
+            <div class="flex-1 overflow-y-auto pr-2">
+                <div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4" id="posGrid">
+                    <!-- Populated dynamically by js/pos.js -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Carrito / Ticket -->
+        <div class="w-80 flex flex-col bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden flex-shrink-0">
+            <div class="p-4 bg-slate-50 dark:bg-slate-900 border-b border-slate-200 dark:border-slate-700">
+                <h3 class="font-bold text-slate-800 dark:text-white">Ticket Vigente</h3>
+                <p class="text-xs text-slate-500">Caja #1 - Operador: Guadalupe</p>
+            </div>
+
+            <div class="flex-1 overflow-y-auto p-2" id="cartContainer">
+                <!-- Items added dynamically -->
+            </div>
+
+            <div class="p-4 bg-slate-50 dark:bg-slate-900 border-t border-slate-200 dark:border-slate-700">
+                <div class="flex justify-between text-sm text-slate-500 mb-2"><span>Subtotal</span> <span id="valSub">$0</span></div>
+                <div class="flex justify-between text-sm text-slate-500 mb-4"><span>IVA (21%)</span> <span id="valTax">$0</span></div>
+                <div class="flex justify-between text-xl font-bold text-slate-800 dark:text-white mb-4">
+                    <span>Total AR$</span> <span id="valTotal">$0</span>
+                </div>
+                <div class="grid grid-cols-2 gap-2">
+                    <button class="py-3 bg-white dark:bg-slate-800 border-2 border-slate-200 dark:border-slate-600 hover:border-amber-500 rounded-lg font-bold text-slate-700 dark:text-slate-200 transition-colors"
+                        onclick="showToast('Suspendido en borrador', 'warning')">Suspender</button>
+                    <button class="py-3 bg-primary-600 hover:bg-primary-700 text-white shadow-lg shadow-primary-500/30 rounded-lg font-bold transition-transform transform active:scale-95"
+                        onclick="processPayment()">Cobrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

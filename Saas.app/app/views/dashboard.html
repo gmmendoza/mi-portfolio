@@ -1,0 +1,118 @@
+<!--
+  ╔══════════════════════════════════════════════════════╗
+  ║   VISTA: Dashboard / Resumen General                 ║
+  ║   Archivo: views/dashboard.html                      ║
+  ║   Uso: cargado dinámicamente en #content-area        ║
+  ╚══════════════════════════════════════════════════════╝
+  Este archivo contiene el HTML de la sección Dashboard.
+  El JS que lo controla está en js/dashboard.js
+-->
+
+<section id="dashboard" class="view-section active">
+    <div class="dashboard-content">
+        <!-- ── HEADER ──────────────────────────────────── -->
+        <div class="flex justify-between items-end mb-6">
+            <div>
+                <h2 class="text-2xl font-bold text-slate-800 dark:text-white">Resumen General</h2>
+                <p class="text-slate-500 text-sm mt-1">Monitorea el estado financiero en tiempo real.</p>
+            </div>
+            <div class="flex gap-2">
+                <select class="px-3 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm text-slate-700 dark:text-slate-200 outline-none hover:border-primary-500 shadow-sm transition-colors cursor-pointer"
+                    onchange="updateChartData(this.value)">
+                    <option value="7">Últimos 7 días</option>
+                    <option value="30">Últimos 30 días</option>
+                    <option value="365">Este año</option>
+                </select>
+                <button onclick="simulateExport()"
+                    class="px-4 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700 shadow-sm transition-colors flex items-center gap-2">
+                    <i class="fas fa-download"></i> Exportar
+                </button>
+            </div>
+        </div>
+
+        <!-- ── KPI CARDS ───────────────────────────────── -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+            <div class="stat-card bg-white dark:bg-slate-800 p-5 rounded-xl border border-slate-200 dark:border-slate-700">
+                <div class="flex justify-between items-start mb-4">
+                    <h3 class="text-slate-500 dark:text-slate-400 text-sm font-medium">Ingresos Totales</h3>
+                    <div class="p-2 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-lg"><i class="fas fa-dollar-sign"></i></div>
+                </div>
+                <h2 class="text-2xl font-bold text-slate-800 dark:text-white" id="kpi-revenue">$ 2.4M</h2>
+                <div class="mt-2 text-sm text-green-500 font-medium flex items-center gap-1">
+                    <i class="fas fa-arrow-up"></i> 14% <span class="text-slate-400 dark:text-slate-500 font-normal">vs mes pasado</span>
+                </div>
+            </div>
+            <div class="stat-card bg-white dark:bg-slate-800 p-5 rounded-xl border border-slate-200 dark:border-slate-700">
+                <div class="flex justify-between items-start mb-4">
+                    <h3 class="text-slate-500 dark:text-slate-400 text-sm font-medium">Órdenes</h3>
+                    <div class="p-2 bg-purple-50 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 rounded-lg"><i class="fas fa-shopping-bag"></i></div>
+                </div>
+                <h2 class="text-2xl font-bold text-slate-800 dark:text-white" id="kpi-orders">854</h2>
+                <div class="mt-2 text-sm text-green-500 font-medium flex items-center gap-1">
+                    <i class="fas fa-arrow-up"></i> 5% <span class="text-slate-400 dark:text-slate-500 font-normal">vs mes pasado</span>
+                </div>
+            </div>
+            <div class="stat-card bg-white dark:bg-slate-800 p-5 rounded-xl border border-slate-200 dark:border-slate-700">
+                <div class="flex justify-between items-start mb-4">
+                    <h3 class="text-slate-500 dark:text-slate-400 text-sm font-medium">Ticket Promedio</h3>
+                    <div class="p-2 bg-amber-50 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400 rounded-lg"><i class="fas fa-receipt"></i></div>
+                </div>
+                <h2 class="text-2xl font-bold text-slate-800 dark:text-white">$ 2,850</h2>
+                <div class="mt-2 text-sm text-slate-400 dark:text-slate-500 font-normal flex items-center gap-1">Estable</div>
+            </div>
+            <div class="stat-card bg-white dark:bg-slate-800 p-5 rounded-xl border border-slate-200 dark:border-slate-700">
+                <div class="flex justify-between items-start mb-4">
+                    <h3 class="text-slate-500 dark:text-slate-400 text-sm font-medium">Base Clientes</h3>
+                    <div class="p-2 bg-green-50 dark:bg-green-900/30 text-green-600 dark:text-green-400 rounded-lg"><i class="fas fa-users"></i></div>
+                </div>
+                <h2 class="text-2xl font-bold text-slate-800 dark:text-white">1,240</h2>
+                <div class="mt-2 text-sm text-green-500 font-medium flex items-center gap-1">
+                    <i class="fas fa-arrow-up"></i> 12 nuevos <span class="text-slate-400">hoy</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── CHART + ACTIVITY ────────────────────────── -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div class="lg:col-span-2 bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-200 dark:border-slate-700">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="font-bold text-slate-800 dark:text-white">Análisis de Flujo</h3>
+                    <button class="text-slate-400 hover:text-primary-500" title="Refrescar" onclick="simulateLoad(this)"><i class="fas fa-sync-alt"></i></button>
+                </div>
+                <div class="h-72 w-full relative">
+                    <div id="chartSkeleton" class="absolute inset-0 bg-white dark:bg-slate-800 z-10 flex items-end gap-4 pb-4 px-2">
+                        <div class="w-1/6 skeleton h-full rounded-t"></div>
+                        <div class="w-1/6 skeleton h-3/4 rounded-t"></div>
+                        <div class="w-1/6 skeleton h-1/2 rounded-t"></div>
+                        <div class="w-1/6 skeleton h-full rounded-t"></div>
+                        <div class="w-1/6 skeleton h-5/6 rounded-t"></div>
+                        <div class="w-1/6 skeleton h-2/3 rounded-t"></div>
+                    </div>
+                    <canvas id="mainChart"></canvas>
+                </div>
+            </div>
+            <div class="bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-200 dark:border-slate-700 overflow-hidden flex flex-col h-[400px]">
+                <h3 class="font-bold text-slate-800 dark:text-white mb-6">Actividad Reciente</h3>
+                <div class="flex-1 overflow-y-auto pr-2 space-y-4" id="recentActivity">
+                    <div class="flex gap-4">
+                        <div class="mt-1 w-2 h-2 rounded-full bg-blue-500 flex-shrink-0"></div>
+                        <div><p class="text-sm dark:text-slate-300">Venta procesada <span class="font-bold">#TRX-0912</span> por $14,500</p><span class="text-xs text-slate-500">Hace 5 min</span></div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="mt-1 w-2 h-2 rounded-full bg-amber-500 flex-shrink-0"></div>
+                        <div><p class="text-sm dark:text-slate-300">Ajuste manual de inventario en "Teclados"</p><span class="text-xs text-slate-500">Hace 32 min</span></div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="mt-1 w-2 h-2 rounded-full bg-green-500 flex-shrink-0"></div>
+                        <div><p class="text-sm dark:text-slate-300">Nuevo cliente "Corp IT" registrado</p><span class="text-xs text-slate-500">Hace 1 hora</span></div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="mt-1 w-2 h-2 rounded-full bg-blue-500 flex-shrink-0"></div>
+                        <div><p class="text-sm dark:text-slate-300">Venta procesada <span class="font-bold">#TRX-0911</span> por $2,100</p><span class="text-xs text-slate-500">Hace 2 horas</span></div>
+                    </div>
+                </div>
+                <button class="w-full mt-4 py-2 text-sm text-primary-600 dark:text-primary-400 font-medium hover:bg-slate-50 dark:hover:bg-slate-700/50 rounded-lg transition-colors">Ver bitácora completa</button>
+            </div>
+        </div>
+    </div>
+</section>

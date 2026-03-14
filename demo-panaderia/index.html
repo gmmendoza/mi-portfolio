@@ -4360,7 +4360,7 @@
                 dashWelcome.innerHTML = `Bienvenid@, ${info.name} <span style="font-size: 1.5rem;">👋</span>`;
             }
             if (dashSubtitle) {
-                dashSubtitle.innerText = `Acceso operativo como ${info.role}. Aquí tienes el pulso de elAromo hoy.`;
+                dashSubtitle.innerText = `Acceso operativo como ${info.full}. Aquí tienes el pulso de elAromo hoy.`;
             }
 
 
@@ -4933,10 +4933,12 @@
         }
 
         function updateDashboardStats(clientes, turnos) {
-            document.getElementById('dash-clientes').innerText = clientes.length;
+            const elCli = document.getElementById('dash-clientes') || document.getElementById('stat-clientes-mes');
+            if (elCli) elCli.innerText = clientes.length;
             const activos = turnos.filter(t => t.estado === 'reservado').length;
             const completados = turnos.filter(t => t.estado === 'completado').length;
-            document.getElementById('dash-turnos').innerText = activos;
+            const elTurnos = document.getElementById('dash-turnos') || document.getElementById('stat-pedidos-hoy');
+            if (elTurnos) elTurnos.innerText = activos;
             try {
                 document.getElementById('dash-completados').innerText = completados;
                 const todayStr = new Date().toISOString().split('T')[0];

@@ -1,0 +1,44 @@
+<!--
+  ╔══════════════════════════════════════════════════════╗
+  ║   VISTA: Historial de Ventas                         ║
+  ║   Archivo: views/history.html                        ║
+  ║   Uso: cargado dinámicamente en #content-area        ║
+  ╚══════════════════════════════════════════════════════╝
+  El JS que lo controla está en js/history.js
+-->
+
+<section id="history" class="view-section">
+    <!-- ── HEADER ──────────────────────────────────────── -->
+    <div class="flex justify-between items-end mb-6">
+        <div>
+            <h2 class="text-2xl font-bold text-slate-800 dark:text-white">Historial de Ventas</h2>
+            <p class="text-slate-500 text-sm mt-1">Registro de todas las transacciones procesadas.</p>
+        </div>
+        <button onclick="simulateExport()"
+            class="px-4 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700 shadow-sm transition-colors flex items-center gap-2">
+            <i class="fas fa-file-csv"></i> Exportar CSV
+        </button>
+    </div>
+
+    <!-- ── TABLA ───────────────────────────────────────── -->
+    <div class="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 h-[calc(100vh-200px)] flex flex-col overflow-hidden">
+        <div class="flex-1 overflow-auto">
+            <table class="w-full text-left text-sm text-slate-600 dark:text-slate-400">
+                <thead class="bg-slate-100 dark:bg-slate-800/50 text-slate-500 dark:text-slate-400 font-semibold text-xs uppercase sticky top-0 z-10">
+                    <tr>
+                        <th class="px-6 py-4">ID Transacción</th>
+                        <th class="px-6 py-4">Fecha/Hora</th>
+                        <th class="px-6 py-4">Items</th>
+                        <th class="px-6 py-4">Total</th>
+                        <th class="px-6 py-4">Estado</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100 dark:divide-slate-700/50" id="historyTableBody">
+                    <tr class="text-slate-400">
+                        <td colspan="5" class="px-6 py-10 text-center italic">No hay ventas registradas aún.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
