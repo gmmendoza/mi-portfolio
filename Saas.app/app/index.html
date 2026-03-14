@@ -379,7 +379,7 @@
             </section>
 
             <!-- Inventory View -->
-            <section id="inventory" class="view-section max-w-7xl mx-auto h-full flex flex-col pt-4">
+            <section id="inventory" class="view-section max-w-7xl mx-auto h-full flex flex-col">
                 <div class="flex justify-between items-end mb-6">
                     <div>
                         <h2 class="text-2xl font-bold text-slate-800 dark:text-white">Gestión de Inventario</h2>
@@ -395,12 +395,14 @@
                         <div class="flex gap-4 flex-1 max-w-lg">
                             <div class="relative flex-1">
                                 <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
-                                <input type="text" placeholder="Filtrar catálogo..." class="w-full pl-9 pr-4 py-2 text-sm bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-lg focus:outline-none focus:border-primary-500 dark:text-white">
+                                <input type="text" id="invSearchInput" oninput="filterInventory()" placeholder="Filtrar catálogo..." class="w-full pl-9 pr-4 py-2 text-sm bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-lg focus:outline-none focus:border-primary-500 dark:text-white">
                             </div>
-                            <select class="px-3 py-2 text-sm bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-lg outline-none cursor-pointer dark:text-white">
-                                <option>Todas las Categorías</option>
-                                <option>Periféricos</option>
-                                <option>Componentes PC</option>
+                            <select id="invCategorySelect" onchange="filterInventory()" class="px-3 py-2 text-sm bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-lg outline-none cursor-pointer dark:text-white">
+                                <option value="">Todas las Categorías</option>
+                                <option value="Periféricos">Periféricos</option>
+                                <option value="Componentes">Componentes</option>
+                                <option value="Audio">Audio</option>
+                                <option value="Video">Video</option>
                             </select>
                         </div>
                     </div>
@@ -414,7 +416,7 @@
             </section>
 
             <!-- Sales History View -->
-            <section id="history" class="view-section max-w-7xl mx-auto h-full flex flex-col pt-4">
+            <section id="history" class="view-section max-w-7xl mx-auto h-full flex flex-col">
                 <div class="flex justify-between items-end mb-6">
                     <div>
                         <h2 class="text-2xl font-bold text-slate-800 dark:text-white">Historial de Ventas</h2>
@@ -914,6 +916,73 @@
             if(!grid) return;
             grid.innerHTML = '';
             db.forEach(p => {
+                const statColor = p.stock > 10 ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400' : 
+                                p.stock > 0 ? 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400' : 
+                                'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400';
+                
+                const statText = p.stock > 10 ? 'Óptimo' : p.stock > 0 ? 'Bajo' : 'Agotado';
+
+                grid.innerHTML += `
+                    <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-5 rounded-xl shadow-sm hover:shadow-md transition-all group relative overflow-hidden">
+                        <!-- Card Header -->
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="w-12 h-12 bg-slate-50 dark:bg-slate-900 rounded-lg flex items-center justify-center text-primary-500 text-xl">
+                                <i class="fas ${p.img || 'fa-box'}"></i>
+                            </div>
+                            <span class="text-[10px] font-bold py-0.5 px-2 rounded-full uppercase tracking-tighter ${statColor}">
+                                ${statText}
+                            </span>
+                        </div>
+
+                        <!-- Card Body -->
+                        <div class="mb-4">
+                            <div class="text-[10px] text-slate-400 font-mono mb-1">${p.ref}</div>
+                            <h3 class="font-bold text-slate-800 dark:text-white line-clamp-1 mb-1">${p.name}</h3>
+                            <div class="text-xs text-slate-500 dark:text-slate-400">${p.cat}</div>
+                        </div>
+
+                        <!-- Price and Stock -->
+                        <div class="flex justify-between items-end">
+                            <div>
+                                <div class="text-[10px] text-slate-400 uppercase font-semibold">Precio</div>
+                                <div class="text-lg font-bold text-primary-600 dark:text-primary-400 leading-none">${formatMoney(p.price)}</div>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-[10px] text-slate-400 uppercase font-semibold">Stock</div>
+                                <div class="text-sm font-bold dark:text-slate-200">${p.stock} <span class="text-[10px] font-normal text-slate-400">Uds.</span></div>
+                            </div>
+                        </div>
+
+                        <!-- Actions Overlay -->
+                        <div class="absolute inset-0 bg-primary-600/95 opacity-0 group-hover:opacity-100 transition-all flex items-center justify-center gap-4">
+                            <button onclick="openEditModal('${p.id}')" class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-primary-600 hover:scale-110 transition-transform active:scale-90 shadow-lg" title="Editar">
+                                <i class="fas fa-edit text-lg"></i>
+                            </button>
+                            <button onclick="deleteItem('${p.id}')" class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-red-600 hover:scale-110 transition-transform active:scale-90 shadow-lg" title="Eliminar">
+                                <i class="fas fa-trash-alt text-lg"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function filterInventory() {
+            const query = document.getElementById('invSearchInput').value.toLowerCase();
+            const cat = document.getElementById('invCategorySelect').value;
+            const grid = document.getElementById('invGrid');
+            if(!grid) return;
+            
+            let filteredDb = db;
+            if(query) {
+                filteredDb = filteredDb.filter(i => i.name.toLowerCase().includes(query) || i.ref.toLowerCase().includes(query));
+            }
+            if(cat && cat !== "Todas las Categorías") {
+                filteredDb = filteredDb.filter(i => i.cat.toLowerCase().includes(cat.toLowerCase()));
+            }
+
+            grid.innerHTML = '';
+            filteredDb.forEach(p => {
                 const statColor = p.stock > 10 ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400' : 
                                 p.stock > 0 ? 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400' : 
                                 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400';
