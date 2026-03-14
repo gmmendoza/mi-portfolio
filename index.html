@@ -985,16 +985,11 @@
             <div class="card card-pad">
                 <div class="about-grid">
                     <div class="about-text">
-                        <p>¡Hola! Soy Guadalupe, estudiante avanzada de <strong>Licenciatura en Sistemas de
-                                Información</strong> y <strong>Analista en Sistemas de Computación</strong> en la
-                            Universidad Nacional de Misiones. Esta doble formación me otorga una visión integral del
-                            desarrollo de software, desde el análisis y diseño hasta la implementación y despliegue.</p>
-                        <p>Me especializo en desarrollo backend con <strong>Java y Spring Boot</strong>, con experiencia
-                            en frontend (Thymeleaf, Tailwind CSS, JavaScript) y bases de datos relacionales (PostgreSQL,
-                            MySQL). Manejo contenedorización con <strong>Docker</strong> y despliegue en la nube.</p>
-                        <p>Busco mi primera oportunidad profesional para aportar mis conocimientos, seguir aprendiendo y
-                            crecer en un equipo dinámico. Valoro la <strong>autonomía, el aprendizaje continuo</strong>
-                            y el uso inteligente de herramientas modernas para maximizar la productividad.</p>
+                        <p>Desarrolladora Full Stack apasionada por crear soluciones escalables, eficientes y seguras, con especialización en el ecosistema <strong>Java 17 y Spring Boot</strong>.</p>
+                        <p>Cuento con experiencia en desarrollo backend, diseño de APIs REST, modelado de bases de datos relacionales y arquitectura en capas, aplicando buenas prácticas de ingeniería de software, patrones de diseño y principios de código limpio.</p>
+                        <p>Mi enfoque de trabajo se basa en la autonomía, el uso estratégico de herramientas de IA para optimizar el desarrollo y la mejora continua de la calidad del software.</p>
+                        <p>También tengo interés en áreas complementarias como ciberseguridad y análisis de datos, aplicando prácticas orientadas a la seguridad de aplicaciones, validación de datos, protección de APIs y análisis de información para la toma de decisiones.</p>
+                        <p>Interesada en participar en proyectos donde pueda combinar desarrollo de software, análisis de sistemas y tecnologías modernas para construir soluciones robustas y de alto impacto.</p>
                     </div>
                     <div>
                         <h4
@@ -1157,6 +1152,46 @@
                 <h2 class="section-title">Proyectos Destacados</h2>
                 <div class="projects-grid">
 
+                    <!-- SaaS ERP -->
+                    <div class="proj-card">
+                        <div class="proj-carousel" id="saas-c">
+                            <div class="proj-carousel-track" id="saas-t">
+                                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" alt="SaaS ERP — Dashboard Real" class="proj-slide">
+                                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" alt="SaaS ERP — Analítica" class="proj-slide">
+                            </div>
+                            <button class="carousel-btn carousel-prev" onclick="cMove('saas',-1)">&#8249;</button>
+                            <button class="carousel-btn carousel-next" onclick="cMove('saas',1)">&#8250;</button>
+                            <div class="carousel-dots" id="saas-d"></div>
+                        </div>
+                        <div class="proj-header">
+                            <h3>SaaS ERP Cloud <span class="proj-badge">Nuevo</span></h3>
+                            <div class="proj-sub">Sistema Integral de Gestión</div>
+                        </div>
+                        <div class="proj-body">
+                            <div class="tech-tags">
+                                <span class="tech-tag">React</span>
+                                <span class="tech-tag">Node.js</span>
+                                <span class="tech-tag">Express</span>
+                                <span class="tech-tag">SQLite</span>
+                                <span class="tech-tag">Glassmorphism</span>
+                            </div>
+                            <p class="proj-desc">Sistema de planificación de recursos empresariales moderno en modelo
+                                SaaS. Incluye punto de venta (POS) con recibos imprimibles, gestión de inventario con
+                                alertas de stock, control de proveedores, historial de ventas con exportación a CSV y
+                                dashboard analítico en tiempo real.</p>
+                            <div class="proj-stats">
+                                <span class="proj-stat"><i class="fas fa-cash-register"></i> POS & Tickets</span>
+                                <span class="proj-stat"><i class="fas fa-boxes"></i> Control Stock</span>
+                                <span class="proj-stat"><i class="fas fa-chart-pie"></i> Analítica</span>
+                            </div>
+                            <div class="proj-links" style="display: flex; gap: 10px;">
+                                <a href="demo-saas.html" target="_blank" rel="noopener" class="proj-demo-btn">
+                                    <i class="fas fa-play-circle"></i> Descubrir el SaaS
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- Agrosystem -->
                     <div class="proj-card">
                         <div class="proj-carousel" id="agro-c">
@@ -1195,7 +1230,7 @@
                                 <span class="proj-stat"><i class="fab fa-docker"></i> Dockerizado</span>
                             </div>
                             <div class="proj-links">
-                                <a href="https://poo2-app-ayhz.onrender.com/" target="_blank" rel="noopener"
+                                <a href="https://agrosystem-1.onrender.com/" target="_blank" rel="noopener"
                                     class="proj-demo-btn">
                                     <i class="fas fa-play-circle"></i> Ver Demo
                                 </a>
@@ -1235,6 +1270,7 @@
                             <p class="proj-desc">Sistema frontend completo para gestión de panadería. Incluye punto de
                                 venta (POS) con carrito y ticket, recetario & calculadora de producción, inventario &
                                 stock e historial de clientes.</p>
+                            <div style="margin-top:0.75rem; font-size:0.85rem; font-weight:600; color:var(--blue);"><i class="fas fa-check-circle"></i> Sistema que está actualmente en funcionamiento</div>
                             <div class="proj-stats">
                                 <span class="proj-stat"><i class="fas fa-cash-register"></i> POS</span>
                                 <span class="proj-stat"><i class="fas fa-book-open"></i> Recetario</span>
@@ -1278,6 +1314,7 @@
                             <p class="proj-desc">Desarrollé una aplicación web para la gestión de la tienda "Apóstoles
                                 Textil", facilitando la administración de pedidos, actualización automática de precios,
                                 comunicación eficaz con proveedores y venta online.</p>
+                            <div style="margin-top:0.75rem; font-size:0.85rem; font-weight:600; color:var(--blue);"><i class="fas fa-check-circle"></i> Sistema que está actualmente en funcionamiento</div>
                             <div class="proj-stats">
                                 <span class="proj-stat"><i class="fas fa-sitemap"></i> Modular</span>
                                 <span class="proj-stat"><i class="fas fa-store"></i> Tienda Online</span>
@@ -1430,6 +1467,7 @@
             if (total > 1) setInterval(() => go(cur + 1), 4000);
         }
         function cMove(id, dir) { if (carousels[id]) carousels[id].go(carousels[id].cur + dir); }
+        initCarousel('saas', 'saas-t', 'saas-d');
         initCarousel('agro', 'agro-t', 'agro-d');
         initCarousel('pan', 'pan-t', 'pan-d');
         initCarousel('sgt', 'sgt-t', 'sgt-d');
