@@ -12,23 +12,27 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
     <style>
         :root {
-            --blue: #1d4ed8;
-            --blue-lt: #3b82f6;
-            --blue-xs: #eff6ff;
+            --blue: #2563eb;
+            --blue-dark: #1e3a8a;
+            --blue-lt: #60a5fa;
+            --blue-xs: #f0f9ff;
             --sky: #0ea5e9;
             --dark: #0f172a;
-            --text: #1e293b;
+            --text: #334155;
+            --text-dark: #1e293b;
             --muted: #64748b;
             --border: #e2e8f0;
             --bg: #f8fafc;
             --card: #ffffff;
-            --r: 20px;
-            --r-sm: 12px;
-            --sh: 0 1px 3px rgba(0, 0, 0, .05), 0 4px 16px -4px rgba(0, 0, 0, .08);
-            --sh-lg: 0 10px 40px -10px rgba(0, 0, 0, .18);
-            --gap: 2rem;
+            --r: 24px;
+            --r-sm: 14px;
+            --sh: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --sh-lg: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            --accent: #10b981; /* Emerald for a fresh professional look */
+            --gap: 3.5rem;
         }
 
         *,
@@ -47,8 +51,9 @@
             font-family: 'Inter', system-ui, sans-serif;
             background: var(--bg);
             color: var(--text);
-            line-height: 1.7;
-            font-size: 16px;
+            line-height: 1.8;
+            font-size: 16.5px;
+            -webkit-font-smoothing: antialiased;
         }
 
         img {
@@ -286,7 +291,7 @@
         }
 
         .section-gap {
-            padding: 4.5rem 0;
+            padding: 6rem 0;
         }
 
         .section-alt {
@@ -552,18 +557,39 @@
         .proj-card {
             background: var(--card);
             border-radius: var(--r);
-            box-shadow: var(--sh);
-            border: 1px solid var(--border);
             overflow: hidden;
-            transition: transform .3s, box-shadow .3s;
             display: flex;
             flex-direction: column;
+            box-shadow: var(--sh);
+            transition: transform .3s ease, box-shadow .3s ease;
+            height: 100%;
+            border: 1px solid var(--border);
         }
 
         .proj-card:hover {
-            transform: translateY(-6px);
+            transform: translateY(-8px);
             box-shadow: var(--sh-lg);
             border-color: var(--blue-lt);
+        }
+
+        .proj-desc-list {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .proj-desc-list li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.6rem;
+            font-size: 0.95rem;
+        }
+
+        .proj-desc-list li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--blue);
+            font-weight: 700;
         }
 
         .proj-carousel {
@@ -949,14 +975,16 @@
         <div class="hero-inner">
             <img src="profile.jpg" alt="Guadalupe Mendoza" class="avatar">
             <h1>Guadalupe Mendoza</h1>
-            <div class="hero-role">Full Stack Developer | Analista de Sistemas</div>
+            <div class="hero-role">Backend Developer (Java/Spring) | Analista de Sistemas</div>
             <div class="hero-meta">
                 <span><i class="fas fa-map-marker-alt"></i>Misiones, Argentina</span>
                 <span><i class="fab fa-whatsapp"></i>+54 376 489-5145</span>
                 <span><i class="fas fa-envelope"></i>guuamendoza@gmail.com</span>
             </div>
             <p class="hero-bio">
-                Estudiante avanzada de Licenciatura en Sistemas de Información con formación en ingeniería de software y desarrollo Full Stack. Especializada en desarrollo backend con <strong>Java y Spring Boot</strong>, APIs REST y seguridad informática.
+                Transformo requerimientos de negocio en arquitecturas backend <strong>robustas y escalables</strong>. 
+                Combinando la precisión del <strong>análisis de sistemas</strong> con la potencia de 
+                <strong>Java y Spring Boot</strong> para construir soluciones eficientes y seguras.
             </p>
             <div class="social-row">
                 <a href="https://github.com/gmmendoza" target="_blank" rel="noopener" title="GitHub"><i
@@ -981,8 +1009,8 @@
             <div class="card card-pad">
                 <div class="about-grid">
                     <div class="about-text">
-                        <p>Estudiante avanzada de Licenciatura en Sistemas de Información con formación en ingeniería de software y desarrollo Full Stack. Experiencia en desarrollo backend con Java y Spring Boot, diseño de APIs REST y modelado de bases de datos relacionales.</p>
-                        <p>Interesada en roles de Backend Developer o Analista de Sistemas, aplicando principios de arquitectura en capas, patrones de diseño y buenas prácticas de desarrollo. También tengo interés en ciberseguridad aplicada al desarrollo de software y seguridad de APIs.</p>
+                        <p>Mi diferencial radica en la intersección entre el <strong>análisis funcional</strong> y el <strong>desarrollo técnico</strong>. Como Analista de Sistemas, no solo codifico soluciones; diseño y modelo el problema de raíz para asegurar que el software responda verdaderamente a la necesidad del negocio.</p>
+                        <p>Me especializo en el ecosistema <strong>Java y Spring Boot</strong>, con un fuerte enfoque en la seguridad de APIs, arquitecturas en capas y modelado de datos relacionales complejo. Mi metodología combina autonomía técnica con el uso estratégico de herramientas de IA para acelerar la entrega sin comprometer la calidad del código limpio.</p>
                     </div>
                     <div>
                         <h4
@@ -1008,141 +1036,11 @@
     </section>
 
     <!-- ── FORMACIÓN + ÁREAS ──────────────────────────────── -->
-    <div class="section-alt">
-        <section class="section-gap">
-            <div class="container">
-                <div class="two-col">
-                    <div>
-                        <h2 class="section-title">Formación Académica</h2>
-                        <div class="card card-pad">
-                            <div class="edu-timeline">
-                                <div class="edu-item">
-                                    <h4>Licenciatura en Sistemas de Información</h4>
-                                    <div class="inst">Universidad Nacional de Misiones</div>
-                                    <div class="date"><i class="far fa-calendar-alt"></i> En curso — Presente</div>
-                                </div>
-                                <div class="edu-item">
-                                    <h4>Analista en Sistemas de Computación</h4>
-                                    <div class="inst">Universidad Nacional de Misiones</div>
-                                    <div class="date"><i class="far fa-calendar-alt"></i> En curso — Presente</div>
-                                </div>
-                                <div class="edu-item">
-                                    <h4>Analista Personal y Prof. en Informática</h4>
-                                    <div class="inst">EPET N° 1 — Misiones</div>
-                                    <div class="date"><i class="far fa-calendar-alt"></i> 2017</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <h2 class="section-title">Áreas de Desarrollo</h2>
-                        <div class="card card-pad">
-                            <div class="areas-grid">
-                                <div class="area-card">
-                                    <div class="area-icon"><i class="fas fa-drafting-compass"></i></div>
-                                    <div>
-                                        <h4>Ingeniería de Software</h4>
-                                        <p>Ciclo de vida, metodologías ágiles, testing y documentación.</p>
-                                    </div>
-                                </div>
-                                <div class="area-card">
-                                    <div class="area-icon"><i class="fas fa-project-diagram"></i></div>
-                                    <div>
-                                        <h4>Análisis de Sistemas</h4>
-                                        <p>Requerimientos, modelado UML, casos de uso y especificaciones.</p>
-                                    </div>
-                                </div>
-                                <div class="area-card">
-                                    <div class="area-icon"><i class="fas fa-brain"></i></div>
-                                    <div>
-                                        <h4>Algoritmos &amp; Estructuras</h4>
-                                        <p>Algoritmos eficientes, complejidad, ordenamiento y búsqueda.</p>
-                                    </div>
-                                </div>
-                                <div class="area-card">
-                                    <div class="area-icon"><i class="fas fa-cube"></i></div>
-                                    <div>
-                                        <h4>Programación OOP</h4>
-                                        <p>Encapsulamiento, herencia, polimorfismo y abstracción en Java.</p>
-                                    </div>
-                                </div>
-                                <div class="area-card" style="grid-column:1/-1;">
-                                    <div class="area-icon"><i class="fas fa-shapes"></i></div>
-                                    <div>
-                                        <h4>Patrones de Diseño</h4>
-                                        <p>GoF: Singleton, Factory, Builder, Observer, Strategy, Repository y MVC.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <!-- ── STACK TECNOLÓGICO ─────────────────────────────── -->
-    <section id="stack" class="section-gap">
-        <div class="container">
-            <h2 class="section-title">Stack Tecnológico</h2>
-            <div class="skills-grid">
-                <div class="skill-cat">
-                    <h3><i class="fas fa-server"></i> Backend</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag hi"><i class="fab fa-java"></i> Java</span>
-                        <span class="skill-tag hi"><i class="fab fa-java"></i> Spring Boot</span>
-                        <span class="skill-tag"><i class="fas fa-shield-alt"></i> Spring Security</span>
-                        <span class="skill-tag"><i class="fas fa-exchange-alt"></i> REST APIs</span>
-                        <span class="skill-tag"><i class="fas fa-database"></i> JPA / Hibernate</span>
-                    </div>
-                </div>
-                <div class="skill-cat">
-                    <h3><i class="fas fa-database"></i> Bases de Datos</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag hi"><i class="fas fa-database"></i> PostgreSQL</span>
-                        <span class="skill-tag"><i class="fas fa-database"></i> MySQL</span>
-                        <span class="skill-tag"><i class="fas fa-code"></i> SQL</span>
-                        <span class="skill-tag"><i class="fas fa-project-diagram"></i> Modelado relacional</span>
-                        <span class="skill-tag"><i class="fas fa-layer-group"></i> Normalización</span>
-                    </div>
-                </div>
-                <div class="skill-cat">
-                    <h3><i class="fas fa-code"></i> Frontend</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag"><i class="fab fa-js"></i> JavaScript</span>
-                        <span class="skill-tag"><i class="fab fa-java"></i> Thymeleaf</span>
-                        <span class="skill-tag hi"><i class="fab fa-css3-alt"></i> Tailwind CSS</span>
-                        <span class="skill-tag"><i class="fas fa-chart-pie"></i> Chart.js</span>
-                    </div>
-                </div>
-                <div class="skill-cat">
-                    <h3><i class="fab fa-docker"></i> DevOps</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag hi"><i class="fab fa-docker"></i> Docker</span>
-                        <span class="skill-tag"><i class="fab fa-docker"></i> Docker Compose</span>
-                        <span class="skill-tag"><i class="fas fa-code-branch"></i> Git</span>
-                        <span class="skill-tag"><i class="fab fa-github"></i> GitHub</span>
-                    </div>
-                </div>
-                <div class="skill-cat">
-                    <h3><i class="fas fa-brain"></i> Análisis de Sistemas</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag"><i class="fas fa-clipboard-list"></i> Análisis de requerimientos</span>
-                        <span class="skill-tag"><i class="fas fa-sitemap"></i> Diagramas UML</span>
-                        <span class="skill-tag"><i class="fas fa-project-diagram"></i> Modelado de datos</span>
-                        <span class="skill-tag"><i class="fas fa-layer-group"></i> Arquitectura en capas</span>
-                        <span class="skill-tag"><i class="fas fa-exchange-alt"></i> Diseño de APIs REST</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- ── PROYECTOS DESTACADOS ───────────────────────────── -->
     <div class="section-alt">
         <section id="proyectos" class="section-gap">
             <div class="container">
-                <h2 class="section-title">Proyectos Destacados</h2>
+                <h2 class="section-title">Experiencia Laboral & Proyectos</h2>
                 <div class="projects-grid">
 
                     <!-- SaaS ERP -->
@@ -1154,11 +1052,10 @@
                             </div>
                             <button class="carousel-btn carousel-prev" onclick="cMove('saas',-1)">&#8249;</button>
                             <button class="carousel-btn carousel-next" onclick="cMove('saas',1)">&#8250;</button>
-                            <div class="carousel-dots" id="saas-d"></div>
                         </div>
                         <div class="proj-header">
-                            <h3>SaaS ERP Cloud <span class="proj-badge">Nuevo</span></h3>
-                            <div class="proj-sub">Sistema Integral de Gestión</div>
+                            <h3>SaaS ERP Cloud <span class="proj-badge">Destacado</span></h3>
+                            <div class="proj-sub">Sistema de Gestión Multi-tenant</div>
                         </div>
                         <div class="proj-body">
                             <div class="tech-tags">
@@ -1166,21 +1063,15 @@
                                 <span class="tech-tag">Node.js</span>
                                 <span class="tech-tag">Express</span>
                                 <span class="tech-tag">SQLite</span>
-                                <span class="tech-tag">Glassmorphism</span>
                             </div>
-                            <ul class="proj-desc" style="list-style: disc; margin-left: 1.2rem; margin-bottom: 1rem;">
-                                <li>Desarrollo de ERP multi-tenant para gestión de inventarios y finanzas.</li>
-                                <li>Implementación de terminal POS y panel interactivo con alertas de stock.</li>
-                                <li>Arquitectura backend basada íntegramente en APIs REST.</li>
+                            <ul class="proj-desc-list">
+                                <li><strong>Arquitecto Backend:</strong> Diseñé e implementé la lógica multi-tenant asegurando el aislamiento de datos por empresa.</li>
+                                <li>Desarrollé un panel interactivo con <strong>Chart.js</strong> para alertas críticas de stock y métricas financieras.</li>
+                                <li>Integré una terminal POS con facturación offline/online sincronizada mediante APIs REST específicas.</li>
                             </ul>
-                            <div class="proj-stats">
-                                <span class="proj-stat"><i class="fas fa-cash-register"></i> POS & Tickets</span>
-                                <span class="proj-stat"><i class="fas fa-boxes"></i> Control Stock</span>
-                                <span class="proj-stat"><i class="fas fa-chart-pie"></i> Analítica</span>
-                            </div>
-                            <div class="proj-links" style="display: flex; gap: 10px;">
+                            <div class="proj-links">
                                 <a href="demo-saas.html" target="_blank" rel="noopener" class="proj-demo-btn">
-                                    <i class="fas fa-play-circle"></i> Ver Demo
+                                    <i class="fas fa-play-circle"></i> Explorar Demo
                                 </a>
                             </div>
                         </div>
@@ -1190,45 +1081,32 @@
                     <div class="proj-card">
                         <div class="proj-carousel" id="agro-c">
                             <div class="proj-carousel-track" id="agro-t">
-                                <img src="imagenes/agrosystem/agro-login.png" alt="Agrosystem — Login"
-                                    class="proj-slide">
-                                <img src="imagenes/agrosystem/agro-dashboard.png" alt="Agrosystem — Dashboard"
-                                    class="proj-slide">
-                                <img src="imagenes/agrosystem/agro-liquidaciones.png" alt="Agrosystem — Liquidaciones"
-                                    class="proj-slide">
+                                <img src="imagenes/agrosystem/agro-dashboard.png" alt="Agrosystem — Dashboard" class="proj-slide">
+                                <img src="imagenes/agrosystem/agro-liquidaciones.png" alt="Agrosystem — Liquidaciones" class="proj-slide">
                             </div>
                             <button class="carousel-btn carousel-prev" onclick="cMove('agro',-1)">&#8249;</button>
                             <button class="carousel-btn carousel-next" onclick="cMove('agro',1)">&#8250;</button>
-                            <div class="carousel-dots" id="agro-d"></div>
                         </div>
                         <div class="proj-header">
-                            <h3>Agrosystem <span class="proj-badge">Completado v1.0</span></h3>
-                            <div class="proj-sub">Proyecto final — POO 2</div>
+                            <h3>Agrosystem <span class="proj-badge">Backend Robust</span></h3>
+                            <div class="proj-sub">Plataforma Agropecuaria</div>
                         </div>
                         <div class="proj-body">
                             <div class="tech-tags">
-                                <span class="tech-tag">Spring Boot 3.2</span>
+                                <span class="tech-tag">Spring Boot</span>
                                 <span class="tech-tag">Spring Security</span>
                                 <span class="tech-tag">JWT</span>
-                                <span class="tech-tag">PostgreSQL 15</span>
-                                <span class="tech-tag">Tailwind CSS</span>
-                                <span class="tech-tag">Chart.js</span>
+                                <span class="tech-tag">PostgreSQL</span>
                                 <span class="tech-tag">Docker</span>
                             </div>
-                            <ul class="proj-desc" style="list-style: disc; margin-left: 1.2rem; margin-bottom: 1rem;">
-                                <li>API REST segura bajo patrón MVC con Spring Data JPA.</li>
-                                <li>Autenticación mediante JWT y control de accesos por roles (RBAC).</li>
-                                <li>Despliegue en Docker con base de datos PostgreSQL 15.</li>
+                            <ul class="proj-desc-list">
+                                <li><strong>Seguridad de APIs:</strong> Implementé autenticación robusta mediante <strong>JWT</strong> y control de accesos basado en roles (RBAC).</li>
+                                <li>Optimicé el acceso a datos mediante <strong>Spring Data JPA</strong> y modelado relacional complejo en PostgreSQL.</li>
+                                <li>Orquesté el despliegue del ecosistema completo usando <strong>Docker Compose</strong> para asegurar portabilidad.</li>
                             </ul>
-                            <div class="proj-stats">
-                                <span class="proj-stat"><i class="fas fa-lock"></i> JWT + RBAC</span>
-                                <span class="proj-stat"><i class="fas fa-chart-line"></i> Dashboard</span>
-                                <span class="proj-stat"><i class="fab fa-docker"></i> Dockerizado</span>
-                            </div>
                             <div class="proj-links">
-                                <a href="https://agrosystem-1.onrender.com/" target="_blank" rel="noopener"
-                                    class="proj-demo-btn">
-                                    <i class="fas fa-play-circle"></i> Ver Demo
+                                <a href="https://agrosystem-1.onrender.com/" target="_blank" rel="noopener" class="proj-demo-btn">
+                                    <i class="fas fa-play-circle"></i> Ver Demo en Vivo
                                 </a>
                             </div>
                         </div>
@@ -1238,42 +1116,24 @@
                     <div class="proj-card">
                         <div class="proj-carousel" id="pan-c">
                             <div class="proj-carousel-track" id="pan-t">
-                                <img src="imagenes/panaderia/pan-ventas.png" alt="El Aromo — Caja & Ventas"
-                                    class="proj-slide">
-                                <img src="imagenes/panaderia/pan-ventas2.png" alt="El Aromo — Ventas detalle"
-                                    class="proj-slide">
-                                <img src="imagenes/panaderia/pan-recetario.png" alt="El Aromo — Recetario"
-                                    class="proj-slide">
-                                <img src="imagenes/panaderia/pan-home.png" alt="El Aromo — Panel de Control"
-                                    class="proj-slide">
+                                <img src="imagenes/panaderia/pan-ventas.png" alt="El Aromo — Caja & Ventas" class="proj-slide">
                             </div>
-                            <button class="carousel-btn carousel-prev" onclick="cMove('pan',-1)">&#8249;</button>
-                            <button class="carousel-btn carousel-next" onclick="cMove('pan',1)">&#8250;</button>
-                            <div class="carousel-dots" id="pan-d"></div>
                         </div>
                         <div class="proj-header">
-                            <h3>Gestión de Panadería <span class="proj-badge">Demo</span></h3>
-                            <div class="proj-sub">Sistema de Producción — El Aromo</div>
+                            <h3>Gestión El Aromo</h3>
+                            <div class="proj-sub">Producción y Punto de Venta</div>
                         </div>
                         <div class="proj-body">
                             <div class="tech-tags">
-                                <span class="tech-tag">HTML/CSS/JS</span>
-                                <span class="tech-tag">LocalStorage</span>
-                                <span class="tech-tag">PostgreSQL</span>
                                 <span class="tech-tag">Spring Boot</span>
                                 <span class="tech-tag">API REST</span>
+                                <span class="tech-tag">JavaScript</span>
                             </div>
-                            <ul class="proj-desc" style="list-style: disc; margin-left: 1.2rem; margin-bottom: 1rem;">
-                                <li>Arquitectura backend orientada a validaciones estrictas de reglas de negocio.</li>
-                                <li>Desarrollo de SPA (Single Page Application) para interacción fluida de turnos.</li>
-                                <li>Implementación de base de datos relacional para control de recetas y stock.</li>
+                            <ul class="proj-desc-list">
+                                <li><strong>Análisis Funcional:</strong> Modelé reglas de negocio críticas para la validación automática de mermas y producción diaria.</li>
+                                <li>Desarrollé una interfaz SPA para agilizar el proceso de caja en el punto de venta local.</li>
+                                <li><strong>Estado:</strong> Actualmente operativo en producción real para la Pyme.</li>
                             </ul>
-                            <div style="margin-top:0.75rem; font-size:0.85rem; font-weight:600; color:var(--blue);"><i class="fas fa-check-circle"></i> Sistema que está actualmente en funcionamiento</div>
-                            <div class="proj-stats">
-                                <span class="proj-stat"><i class="fas fa-cash-register"></i> POS</span>
-                                <span class="proj-stat"><i class="fas fa-book-open"></i> Recetario</span>
-                                <span class="proj-stat"><i class="fas fa-boxes"></i> Inventario</span>
-                            </div>
                             <div class="proj-links">
                                 <a href="demo-panaderia.html" target="_blank" rel="noopener" class="proj-demo-btn">
                                     <i class="fas fa-play-circle"></i> Ver Demo
@@ -1282,146 +1142,146 @@
                         </div>
                     </div>
 
-                    <!-- SGT -->
-                    <div class="proj-card">
-                        <div class="proj-carousel" id="sgt-c">
-                            <div class="proj-carousel-track" id="sgt-t">
-                                <img src="imagenes/sgt/sgt-dashboard.png" alt="SGT — Panel de Control"
-                                    class="proj-slide">
-                                <img src="imagenes/sgt/sgt-tienda.png" alt="SGT — Tienda Online" class="proj-slide">
-                                <img src="imagenes/sgt/sgt-ventas.png" alt="SGT — Ventas Online" class="proj-slide">
-                                <img src="imagenes/sgt/sgt-panel.png" alt="SGT — Control Precios" class="proj-slide">
-                                <img src="imagenes/sgt/sgt-proveedores.png" alt="SGT — Proveedores" class="proj-slide">
-                            </div>
-                            <button class="carousel-btn carousel-prev" onclick="cMove('sgt',-1)">&#8249;</button>
-                            <button class="carousel-btn carousel-next" onclick="cMove('sgt',1)">&#8250;</button>
-                            <div class="carousel-dots" id="sgt-d"></div>
-                        </div>
-                        <div class="proj-header">
-                            <h3>Sistema de Gestión Textil <span class="proj-badge">SGT</span></h3>
-                            <div class="proj-sub">Trabajo Final — Analista en Sistemas</div>
-                        </div>
-                        <div class="proj-body">
-                            <div class="tech-tags">
-                                <span class="tech-tag">PHP</span>
-                                <span class="tech-tag">Laravel</span>
-                                <span class="tech-tag">MySQL</span>
-                                <span class="tech-tag">jQuery</span>
-                                <span class="tech-tag">Bootstrap</span>
-                            </div>
-                            <ul class="proj-desc" style="list-style: disc; margin-left: 1.2rem; margin-bottom: 1rem;">
-                                <li>Digitalización de procesos operativos, gestión de pedidos y ventas online.</li>
-                                <li>Administración de inventario centralizada y actualización automática de precios.</li>
-                                <li>Registro y sincronización de facturación local y preventas digitales.</li>
-                            </ul>
-                            <div style="margin-top:0.75rem; font-size:0.85rem; font-weight:600; color:var(--blue);"><i class="fas fa-check-circle"></i> Sistema que está actualmente en funcionamiento</div>
-                            <div class="proj-stats">
-                                <span class="proj-stat"><i class="fas fa-sitemap"></i> Modular</span>
-                                <span class="proj-stat"><i class="fas fa-store"></i> Tienda Online</span>
-                                <span class="proj-stat"><i class="fas fa-file-pdf"></i> Reportes PDF</span>
-                            </div>
-
-                        </div>
-                    </div>
-
                 </div>
             </div>
         </section>
     </div>
 
-    <!-- ── CERTIFICACIONES ───────────────────────────────── -->
-    <section id="cursos" class="section-gap">
+    <!-- ── STACK TECNOLÓGICO ─────────────────────────────── -->
+    <section id="stack" class="section-gap">
         <div class="container">
-            <h2 class="section-title">Certificaciones y Cursos</h2>
-            <div class="cert-grid">
-                <div class="cert-card">
-                    <div class="cert-icon"><i class="fab fa-java"></i></div>
-                    <div>
-                        <h4>Spring Boot 3: APIs REST</h4>
-                        <div class="cert-iss">Udemy</div>
-                        <div class="cert-date"><i class="far fa-calendar-alt"></i> 2024</div>
-                        <div class="cert-pills"><span class="cert-pill">Spring Boot 3.2</span><span
-                                class="cert-pill">Spring Security</span><span class="cert-pill">JPA</span></div>
+            <h2 class="section-title">Stack Tecnológico</h2>
+            <div class="skills-grid">
+                
+                <div class="skill-cat">
+                    <h3><i class="fas fa-server"></i> Backend</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag hi"><i class="devicon-java-plain"></i> Java</span>
+                        <span class="skill-tag hi"><i class="devicon-spring-original"></i> Spring Boot</span>
+                        <span class="skill-tag"><i class="devicon-nodejs-plain"></i> Node.js</span>
+                        <span class="skill-tag"><i class="devicon-express-original"></i> Express</span>
+                        <span class="skill-tag"><i class="fas fa-shield-alt"></i> Spring Security</span>
                     </div>
                 </div>
-                <div class="cert-card">
-                    <div class="cert-icon"><i class="fab fa-docker"></i></div>
-                    <div>
-                        <h4>Docker y Contenedores</h4>
-                        <div class="cert-iss">Platzi</div>
-                        <div class="cert-date"><i class="far fa-calendar-alt"></i> 2024</div>
-                        <div class="cert-pills"><span class="cert-pill">Docker</span><span class="cert-pill">Docker
-                                Compose</span></div>
+
+                <div class="skill-cat">
+                    <h3><i class="fas fa-database"></i> Bases de Datos</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag hi"><i class="devicon-postgresql-plain"></i> PostgreSQL</span>
+                        <span class="skill-tag"><i class="devicon-mysql-plain"></i> MySQL</span>
+                        <span class="skill-tag"><i class="devicon-sqlite-plain"></i> SQLite</span>
+                        <span class="skill-tag"><i class="fas fa-project-diagram"></i> Modelado DER</span>
                     </div>
                 </div>
-                <div class="cert-card">
-                    <div class="cert-icon"><i class="fas fa-database"></i></div>
-                    <div>
-                        <h4>PostgreSQL 15: Administración</h4>
-                        <div class="cert-iss">Coursera</div>
-                        <div class="cert-date"><i class="far fa-calendar-alt"></i> 2023</div>
-                        <div class="cert-pills"><span class="cert-pill">PostgreSQL 15</span><span class="cert-pill">SQL
-                                avanzado</span></div>
+
+                <div class="skill-cat">
+                    <h3><i class="fas fa-desktop"></i> Frontend</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag hi"><i class="devicon-react-original"></i> React</span>
+                        <span class="skill-tag"><i class="devicon-javascript-plain"></i> JavaScript</span>
+                        <span class="skill-tag hi"><i class="devicon-tailwindcss-plain"></i> Tailwind CSS</span>
+                        <span class="skill-tag"><i class="devicon-html5-plain"></i> HTML5/CSS3</span>
                     </div>
                 </div>
-                <div class="cert-card">
-                    <div class="cert-icon"><i class="fab fa-css3-alt"></i></div>
-                    <div>
-                        <h4>Tailwind CSS: Diseño Moderno</h4>
-                        <div class="cert-iss">Frontend Masters</div>
-                        <div class="cert-date"><i class="far fa-calendar-alt"></i> 2023</div>
-                        <div class="cert-pills"><span class="cert-pill">Tailwind CSS</span><span
-                                class="cert-pill">Responsive</span></div>
+
+                <div class="skill-cat">
+                    <h3><i class="fas fa-tools"></i> Herramientas / DevOps</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag hi"><i class="devicon-docker-plain"></i> Docker</span>
+                        <span class="skill-tag"><i class="devicon-git-plain"></i> Git</span>
+                        <span class="skill-tag"><i class="devicon-github-original"></i> GitHub</span>
+                        <span class="skill-tag"><i class="devicon-postman-plain"></i> Postman</span>
                     </div>
                 </div>
-            </div>
-            <p class="section-sub">Seminarios y Formación Complementaria</p>
-            <div class="cert-grid">
-                <div class="cert-card">
-                    <div class="cert-icon"><i class="fas fa-shield-alt"></i></div>
-                    <div>
-                        <h4>Introducción a la Ciberseguridad</h4>
-                        <div class="cert-iss">Silicon Misiones</div>
-                        <div class="cert-date"><i class="far fa-calendar-alt"></i> 2024</div>
-                    </div>
-                </div>
-                <div class="cert-card">
-                    <div class="cert-icon"><i class="fas fa-chart-bar"></i></div>
-                    <div>
-                        <h4>Fundamentos de Data Science</h4>
-                        <div class="cert-iss">Santander</div>
-                        <div class="cert-date"><i class="far fa-calendar-alt"></i> 2024</div>
-                    </div>
-                </div>
-                <div class="cert-card">
-                    <div class="cert-icon"><i class="fas fa-users-cog"></i></div>
-                    <div>
-                        <h4>Metodologías Ágiles / Scrum</h4>
-                        <div class="cert-iss">Santander</div>
-                        <div class="cert-date"><i class="far fa-calendar-alt"></i> 2023</div>
-                    </div>
-                </div>
-                <div class="cert-card">
-                    <div class="cert-icon"><i class="fas fa-share-alt"></i></div>
-                    <div>
-                        <h4>Community Manager</h4>
-                        <div class="cert-iss">Silicon Misiones</div>
-                        <div class="cert-date"><i class="far fa-calendar-alt"></i> 2023</div>
-                    </div>
-                </div>
+
             </div>
         </div>
     </section>
 
+    <!-- ── ÁREAS DE DIFERENCIACIÓN ────────────────────────── -->
+    <div class="section-alt">
+        <section class="section-gap">
+            <div class="container">
+                <h2 class="section-title">Diferencial & Especialidad</h2>
+                <div class="areas-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+                    <div class="card card-pad" style="text-align: center; border-bottom: 4px solid var(--blue);">
+                        <div class="area-icon" style="font-size: 2.5rem; margin-bottom: 1rem; color: var(--blue);"><i class="fas fa-project-diagram"></i></div>
+                        <h4 style="margin-bottom: 0.8rem; color: var(--text-dark);">Análisis de Sistemas</h4>
+                        <p style="font-size: 0.9rem;">Sólida capacidad para entender requerimientos complejos y traducirlos en modelos técnicos viables (UML, DER).</p>
+                    </div>
+                    <div class="card card-pad" style="text-align: center; border-bottom: 4px solid var(--accent);">
+                        <div class="area-icon" style="font-size: 2.5rem; margin-bottom: 1rem; color: var(--accent);"><i class="fas fa-shield-alt"></i></div>
+                        <h4 style="margin-bottom: 0.8rem; color: var(--text-dark);">Seguridad & APIs</h4>
+                        <p style="font-size: 0.9rem;">Enfoque en la protección de datos mediante JWT, OAuth2 y mejores prácticas en el diseño de arquitecturas REST.</p>
+                    </div>
+                    <div class="card card-pad" style="text-align: center; border-bottom: 4px solid var(--sky);">
+                        <div class="area-icon" style="font-size: 2.5rem; margin-bottom: 1rem; color: var(--sky);"><i class="fas fa-cubes"></i></div>
+                        <h4 style="margin-bottom: 0.8rem; color: var(--text-dark);">Software Engineering</h4>
+                        <p style="font-size: 0.9rem;">Aplicación rigurosa de principios SOLID, Clean Code y Patrones de Diseño para software mantenible.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ── FORMACIÓN ────────────────────────────────────── -->
+    <div class="section-alt">
+        <section id="formacion" class="section-gap">
+            <div class="container">
+                <div class="two-col">
+                    <div>
+                        <h2 class="section-title">Formación Académica</h2>
+                        <div class="card card-pad">
+                            <ul class="proj-desc-list">
+                                <li>
+                                    <strong>Licenciatura en Sistemas de Información</strong><br>
+                                    <span style="font-size:0.85rem; color:var(--muted);">Universidad Nacional de Misiones | En curso</span>
+                                </li>
+                                <li>
+                                    <strong>Analista en Sistemas de Computación</strong><br>
+                                    <span style="font-size:0.85rem; color:var(--muted);">Universidad Nacional de Misiones | En curso</span>
+                                </li>
+                                <li>
+                                    <strong>Analista Personal y Prof. en Informática</strong><br>
+                                    <span style="font-size:0.85rem; color:var(--muted);">EPET N° 1 — Misiones | 2017</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div>
+                        <h2 class="section-title">Certificaciones</h2>
+                        <div class="card card-pad">
+                            <ul class="proj-desc-list">
+                                <li><strong>Spring Boot 3: APIs REST</strong> (Udemy, 2024)</li>
+                                <li><strong>Docker & Contenedores</strong> (Platzi, 2024)</li>
+                                <li><strong>PostgreSQL 15: Admin</strong> (Coursera, 2023)</li>
+                                <li><strong>Tailwind CSS Mastery</strong> (Frontend Masters, 2023)</li>
+                                <li><strong>Ciberseguridad & DevOps</strong> (Formación Continua)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
     <!-- ── CONTACTO ──────────────────────────────────────── -->
     <section id="contacto" class="section-gap">
-        <div class="container">
-            <div class="contact-box">
-                <h2>¿Hablamos?</h2>
-                <p>Estoy abierta a nuevas oportunidades como desarrolladora backend Java o full-stack.<br>Si te interesa
-                    mi perfil, ¡escribime!</p>
-                <a href="mailto:guuamendoza@gmail.com" class="btn btn-white"><i class="fas fa-paper-plane"></i>
-                    guuamendoza@gmail.com</a>
+        <div class="container" style="max-width: 800px;">
+            <div class="contact-box" style="background: var(--blue-dark); color: white; padding: 4rem 2rem; border-radius: var(--r);">
+                <h2 style="color: white; margin-bottom: 1rem;">¿Tenés un proyecto en mente?</h2>
+                <p style="opacity: 0.9; margin-bottom: 2.5rem; font-size: 1.1rem;">
+                    Buscando mi próxima oportunidad como <strong>Backend Developer</strong> o <strong>Analista</strong>.<br>
+                    Si te interesa mi perfil técnico y analítico, contactame.
+                </p>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="mailto:guuamendoza@gmail.com" class="btn btn-white" style="background: white; color: var(--blue-dark); padding: 1rem 2rem; border-radius: var(--r-sm); font-weight: 700; text-decoration: none;">
+                        <i class="fas fa-envelope"></i> Enviar Email
+                    </a>
+                    <a href="cv.html" class="btn" style="background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.4); padding: 1rem 2rem; border-radius: var(--r-sm); font-weight: 700; text-decoration: none;">
+                        <i class="fas fa-file-pdf"></i> Ver CV Digital
+                    </a>
+                </div>
             </div>
         </div>
     </section>
