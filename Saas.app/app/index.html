@@ -1011,79 +1011,208 @@
     <!-- Settings Modal -->
     <div id="settingsModal" class="modal">
         <div
-            class="modal-content bg-white dark:bg-slate-800 rounded-xl w-full max-w-2xl max-h-[80vh] flex flex-col shadow-2xl">
-            <div class="p-6 border-b border-slate-200 dark:border-slate-700 flex justify-between items-center">
-                <h2 class="text-xl font-bold dark:text-white">Ajustes del Sistema</h2>
+            class="modal-content bg-white dark:bg-slate-800 rounded-xl w-full max-w-3xl max-h-[85vh] flex flex-col shadow-2xl">
+            <div class="p-6 border-b border-slate-200 dark:border-slate-700 flex justify-between items-center bg-slate-50 dark:bg-slate-900 rounded-t-xl">
+                <h2 class="text-xl font-bold dark:text-white flex items-center gap-2"><i class="fas fa-sliders-h text-primary-500"></i> Ajustes del Sistema</h2>
                 <button onclick="closeModal('settingsModal')"
                     class="text-slate-400 hover:text-slate-600 dark:hover:text-white"><i
                         class="fas fa-times text-xl"></i></button>
             </div>
-            <div class="p-6 flex-1 overflow-y-auto flex gap-6">
+            <div class="p-0 flex-1 overflow-hidden flex">
                 <!-- Sidebar tabs config -->
-                <div class="w-48 space-y-2 border-r border-slate-200 dark:border-slate-700 pr-4">
-                    <button
-                        class="w-full text-left px-3 py-2 bg-primary-50 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 font-medium rounded-lg">General</button>
-                    <button
-                        class="w-full text-left px-3 py-2 text-slate-600 hover:bg-slate-50 dark:text-slate-400 dark:hover:bg-slate-700 rounded-lg">Impresión
-                        POS</button>
-                    <button
-                        class="w-full text-left px-3 py-2 text-slate-600 hover:bg-slate-50 dark:text-slate-400 dark:hover:bg-slate-700 rounded-lg">Notificaciones</button>
-                    <button
-                        class="w-full text-left px-3 py-2 text-slate-600 hover:bg-slate-50 dark:text-slate-400 dark:hover:bg-slate-700 rounded-lg">Usuarios
-                        y Roles</button>
+                <div class="w-56 bg-white dark:bg-slate-800 flex flex-col border-r border-slate-200 dark:border-slate-700">
+                    <button onclick="switchSettingsTab('tabGeneral', this)"
+                        class="settings-tab-btn active w-full text-left px-5 py-4 border-l-4 border-primary-500 bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400 font-medium transition-colors">
+                        <i class="fas fa-globe mr-2 w-4 text-center"></i> General
+                    </button>
+                    <button onclick="switchSettingsTab('tabPOS', this)"
+                        class="settings-tab-btn w-full text-left px-5 py-4 border-l-4 border-transparent text-slate-600 hover:bg-slate-50 dark:text-slate-400 dark:hover:bg-slate-700/50 transition-colors">
+                        <i class="fas fa-print mr-2 w-4 text-center"></i> Impresi&#243;n POS
+                    </button>
+                    <button onclick="switchSettingsTab('tabNotifs', this)"
+                        class="settings-tab-btn w-full text-left px-5 py-4 border-l-4 border-transparent text-slate-600 hover:bg-slate-50 dark:text-slate-400 dark:hover:bg-slate-700/50 transition-colors">
+                        <i class="fas fa-bell mr-2 w-4 text-center"></i> Notificaciones
+                    </button>
+                    <button onclick="switchSettingsTab('tabUsers', this)"
+                        class="settings-tab-btn w-full text-left px-5 py-4 border-l-4 border-transparent text-slate-600 hover:bg-slate-50 dark:text-slate-400 dark:hover:bg-slate-700/50 transition-colors mt-auto border-t border-slate-100 dark:border-slate-700">
+                        <i class="fas fa-users-cog mr-2 w-4 text-center"></i> Usuarios y Roles
+                    </button>
                 </div>
-                <!-- Content -->
-                <div class="flex-1 space-y-6">
-                    <div>
-                        <h4 class="font-bold text-sm mb-4 text-slate-800 dark:text-white uppercase tracking-wider">
-                            Localización</h4>
-                        <div class="space-y-4">
-                            <div>
-                                <label class="block text-sm font-medium mb-1 text-slate-600 dark:text-slate-400">Idioma
-                                    Interfaz</label>
-                                <select
-                                    class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-lg outline-none cursor-pointer dark:text-white">
-                                    <option>Español (Argentina)</option>
-                                    <option>Inglés (US)</option>
-                                </select>
+                <!-- Content Area -->
+                <div class="flex-1 overflow-y-auto p-8 bg-slate-50 dark:bg-slate-900/50 relative">
+                    
+                    <!-- TAB: General -->
+                    <div id="tabGeneral" class="settings-tab block space-y-8 animate-[fadeIn_0.2s_ease-out]">
+                        <div class="bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-200 dark:border-slate-700">
+                            <h4 class="font-bold text-sm mb-5 text-slate-800 dark:text-white uppercase tracking-wider flex items-center gap-2">
+                                <i class="fas fa-map-marker-alt text-slate-400"></i> Localizaci&#243;n
+                            </h4>
+                            <div class="grid grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-sm font-medium mb-1 text-slate-600 dark:text-slate-400">Idioma Interfaz</label>
+                                    <select
+                                        class="w-full px-3 py-2.5 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-600 rounded-lg outline-none cursor-pointer dark:text-white focus:border-primary-500 transition-colors">
+                                        <option>Espa&#241;ol (Argentina)</option>
+                                        <option>Ingl&#233;s (US)</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium mb-1 text-slate-600 dark:text-slate-400">Moneda Base</label>
+                                    <select
+                                        class="w-full px-3 py-2.5 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-600 rounded-lg outline-none cursor-pointer dark:text-white focus:border-primary-500 transition-colors">
+                                        <option>ARS ($) - Peso Argentino</option>
+                                        <option>USD ($) - D&#243;lar Estadounidense</option>
+                                    </select>
+                                </div>
                             </div>
+                        </div>
+
+                        <div class="bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-200 dark:border-slate-700">
+                            <h4 class="font-bold text-sm mb-5 text-slate-800 dark:text-white uppercase tracking-wider flex items-center gap-2">
+                                <i class="fas fa-paint-brush text-slate-400"></i> Apariencia UI
+                            </h4>
+                            <label class="flex items-center justify-between cursor-pointer p-4 border border-slate-100 dark:border-slate-700 rounded-lg hover:border-primary-500 transition-colors">
+                                <div>
+                                    <span class="block text-sm font-bold text-slate-800 dark:text-white">Forzar Modo Oscuro</span>
+                                    <span class="text-xs text-slate-500 dark:text-slate-400">Aplica el tema oscuro sin respetar la configuraci&#243;n del sistema</span>
+                                </div>
+                                <div class="relative">
+                                    <input type="checkbox" id="settingsDarkToggle" class="sr-only" onchange="toggleTheme()">
+                                    <div class="block bg-slate-200 dark:bg-slate-600 w-12 h-7 rounded-full transition-colors"></div>
+                                    <div class="dot absolute left-1 top-1 bg-white w-5 h-5 rounded-full transition-transform duration-300"></div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- TAB: Impresión POS -->
+                    <div id="tabPOS" class="settings-tab hidden space-y-6 animate-[fadeIn_0.2s_ease-out]">
+                        <div class="bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-200 dark:border-slate-700">
+                            <h4 class="font-bold text-sm mb-5 text-slate-800 dark:text-white uppercase tracking-wider flex items-center gap-2">
+                                <i class="fas fa-receipt text-slate-400"></i> Tickets y Facturas
+                            </h4>
+                            <label class="flex items-center justify-between cursor-pointer p-4 border border-slate-100 dark:border-slate-700 rounded-lg hover:border-primary-500 transition-colors mb-4">
+                                <div>
+                                    <span class="block text-sm font-bold text-slate-800 dark:text-white">Auto-imprimir al cobrar</span>
+                                    <span class="text-xs text-slate-500 dark:text-slate-400">Env&#237;a la orden a la impresora t&#233;rmica autom&#225;ticamente.</span>
+                                </div>
+                                <div class="relative">
+                                    <input type="checkbox" id="autoPrintToggle" class="sr-only">
+                                    <div class="block bg-slate-200 dark:bg-slate-600 w-12 h-7 rounded-full transition-colors toggle-bg"></div>
+                                    <div class="dot absolute left-1 top-1 bg-white w-5 h-5 rounded-full transition-transform duration-300"></div>
+                                </div>
+                            </label>
+                            
                             <div>
-                                <label class="block text-sm font-medium mb-1 text-slate-600 dark:text-slate-400">Moneda
-                                    Base</label>
-                                <select
-                                    class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-lg outline-none cursor-pointer dark:text-white">
-                                    <option>ARS ($) - Peso Argentino</option>
-                                    <option>USD ($) - Dólar Estadounidense</option>
+                                <label class="block text-sm font-medium mb-1 text-slate-600 dark:text-slate-400">Impresora Predeterminada</label>
+                                <select class="w-full px-3 py-2.5 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-600 rounded-lg outline-none cursor-pointer dark:text-white focus:border-primary-500 transition-colors">
+                                    <option>EPSON TM-T88VI (USB)</option>
+                                    <option>Bixolon SRP-350 (Red)</option>
+                                    <option>Guardar como PDF</option>
                                 </select>
                             </div>
                         </div>
                     </div>
-                    <div>
-                        <h4 class="font-bold text-sm mb-4 text-slate-800 dark:text-white uppercase tracking-wider">
-                            Apariencia UI</h4>
-                        <label class="flex items-center gap-3 cursor-pointer">
-                            <div class="relative">
-                                <input type="checkbox" id="settingsDarkToggle" class="sr-only" onchange="toggleTheme()">
-                                <div class="block bg-slate-600 w-10 h-6 rounded-full"></div>
-                                <div
-                                    class="dot absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition transform">
-                                </div>
+
+                    <!-- TAB: Notificaciones -->
+                    <div id="tabNotifs" class="settings-tab hidden space-y-6 animate-[fadeIn_0.2s_ease-out]">
+                        <div class="bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-200 dark:border-slate-700">
+                             <h4 class="font-bold text-sm mb-5 text-slate-800 dark:text-white uppercase tracking-wider flex items-center gap-2">
+                                <i class="fas fa-bell-slash text-slate-400"></i> Alertas del Sistema
+                            </h4>
+                            <div class="space-y-3">
+                                <label class="flex items-center justify-between cursor-pointer p-4 border border-slate-100 dark:border-slate-700 rounded-lg hover:border-primary-500 transition-colors">
+                                    <div>
+                                        <span class="block text-sm font-bold text-slate-800 dark:text-white">Silenciar alertas de Stock</span>
+                                        <span class="text-xs text-slate-500 dark:text-slate-400">No mostrar notificaciones cuando un art&#237;culo llegue a 0.</span>
+                                    </div>
+                                    <div class="relative">
+                                        <input type="checkbox" id="muteStockToggle" class="sr-only">
+                                        <div class="block bg-slate-200 dark:bg-slate-600 w-12 h-7 rounded-full transition-colors toggle-bg"></div>
+                                        <div class="dot absolute left-1 top-1 bg-white w-5 h-5 rounded-full transition-transform duration-300"></div>
+                                    </div>
+                                </label>
+                                <label class="flex items-center justify-between cursor-pointer p-4 border border-slate-100 dark:border-slate-700 rounded-lg hover:border-primary-500 transition-colors">
+                                    <div>
+                                        <span class="block text-sm font-bold text-slate-800 dark:text-white">Silenciar alertas de Ventas</span>
+                                        <span class="text-xs text-slate-500 dark:text-slate-400">No registrar la actividad de ventas nuevas.</span>
+                                    </div>
+                                    <div class="relative">
+                                        <input type="checkbox" id="muteSalesToggle" class="sr-only">
+                                        <div class="block bg-slate-200 dark:bg-slate-600 w-12 h-7 rounded-full transition-colors toggle-bg"></div>
+                                        <div class="dot absolute left-1 top-1 bg-white w-5 h-5 rounded-full transition-transform duration-300"></div>
+                                    </div>
+                                </label>
                             </div>
-                            <span class="text-sm font-medium text-slate-600 dark:text-slate-300">Forzar Modo Oscuro
-                                Global</span>
-                        </label>
+                        </div>
                     </div>
+
+                    <!-- TAB: Usuarios y Roles -->
+                    <div id="tabUsers" class="settings-tab hidden space-y-6 animate-[fadeIn_0.2s_ease-out]">
+                        <div class="flex justify-between items-center mb-4">
+                            <h4 class="font-bold text-sm text-slate-800 dark:text-white uppercase tracking-wider flex items-center gap-2">
+                                <i class="fas fa-users text-slate-400"></i> Personal Autorizado
+                            </h4>
+                            <button class="px-3 py-1.5 bg-primary-100 text-primary-700 dark:bg-primary-900/40 dark:text-primary-400 text-xs font-bold rounded hover:bg-primary-200 transition-colors">
+                                <i class="fas fa-plus mr-1"></i> Nuevo
+                            </button>
+                        </div>
+                        
+                        <div class="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 overflow-hidden">
+                            <table class="w-full text-left">
+                                <thead class="bg-slate-50 dark:bg-slate-900/50 border-b border-slate-200 dark:border-slate-700">
+                                    <tr>
+                                        <th class="px-4 py-3 text-xs font-semibold text-slate-500 uppercase">Usuario</th>
+                                        <th class="px-4 py-3 text-xs font-semibold text-slate-500 uppercase">Rol</th>
+                                        <th class="px-4 py-3 text-xs font-semibold text-slate-500 uppercase text-right">Acci&#243;n</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="border-b border-slate-100 dark:border-slate-700">
+                                        <td class="px-4 py-3">
+                                            <div class="flex items-center gap-2">
+                                                <div class="w-8 h-8 rounded-full bg-blue-500 text-white flex items-center justify-center text-xs font-bold">GM</div>
+                                                <div>
+                                                    <div class="text-sm font-bold dark:text-white">Guadalupe Mendoza</div>
+                                                    <div class="text-xs text-slate-500">gmendoza@demo.com</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="px-4 py-3"><span class="bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400 text-xs px-2 py-1 rounded-md font-semibold">Administrador</span></td>
+                                        <td class="px-4 py-3 text-right">
+                                            <button class="text-slate-400 hover:text-primary-500"><i class="fas fa-edit"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-3">
+                                            <div class="flex items-center gap-2">
+                                                <div class="w-8 h-8 rounded-full bg-slate-300 dark:bg-slate-600 text-slate-600 dark:text-slate-300 flex items-center justify-center text-xs font-bold">CJ</div>
+                                                <div>
+                                                    <div class="text-sm font-bold dark:text-white">Caja Mostrador 1</div>
+                                                    <div class="text-xs text-slate-500">caja1@demo.com</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="px-4 py-3"><span class="bg-slate-100 text-slate-600 dark:bg-slate-700 dark:text-slate-300 text-xs px-2 py-1 rounded-md font-semibold">Cajero</span></td>
+                                        <td class="px-4 py-3 text-right">
+                                            <button class="text-slate-400 hover:text-primary-500"><i class="fas fa-edit"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
                 </div>
             </div>
             <div
-                class="p-6 border-t border-slate-200 dark:border-slate-700 flex justify-end gap-3 bg-slate-50 dark:bg-slate-900 rounded-b-xl">
+                class="p-5 border-t border-slate-200 dark:border-slate-700 flex justify-end gap-3 bg-white dark:bg-slate-800 rounded-b-xl">
                 <button
-                    class="px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800"
-                    onclick="closeModal('settingsModal')">Cancelar</button>
+                    class="px-5 py-2 border border-slate-200 dark:border-slate-600 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors"
+                    onclick="closeModal('settingsModal')">Cerrar</button>
                 <button
-                    class="px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-lg text-sm font-medium shadow-md shadow-primary-500/20"
-                    onclick="closeModal('settingsModal'); showToast('Configuración guardada', 'success')">Guardar
-                    Cambios</button>
+                    class="px-6 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-lg text-sm font-semibold shadow-md shadow-primary-500/20 transition-transform active:scale-95"
+                    onclick="closeModal('settingsModal'); showToast('Ajustes guardados correctamente', 'success')">Guardar Cambios</button>
             </div>
         </div>
     </div>
@@ -1211,6 +1340,27 @@
             el.classList.toggle('hidden');
         }
 
+        // Feature: Settings Tabs
+        function switchSettingsTab(tabId, btn) {
+            // Hide all tabs
+            document.querySelectorAll('.settings-tab').forEach(el => {
+                el.classList.remove('block');
+                el.classList.add('hidden');
+            });
+            // Show target
+            document.getElementById(tabId).classList.remove('hidden');
+            document.getElementById(tabId).classList.add('block');
+            
+            // Update buttons
+            document.querySelectorAll('.settings-tab-btn').forEach(el => {
+                el.classList.remove('active', 'border-primary-500', 'bg-primary-50', 'dark:bg-primary-900/20', 'text-primary-600', 'dark:text-primary-400');
+                el.classList.add('border-transparent', 'text-slate-600', 'dark:text-slate-400');
+            });
+            
+            btn.classList.add('active', 'border-primary-500', 'bg-primary-50', 'dark:bg-primary-900/20', 'text-primary-600', 'dark:text-primary-400');
+            btn.classList.remove('border-transparent', 'text-slate-600', 'dark:text-slate-400');
+        }
+
         // Feature: Notifications & Activity
         function renderNotifs() {
             const list = document.getElementById('notifsList');
@@ -1242,6 +1392,9 @@
         }
 
         function addNotification(type, title, desc) {
+            const muteStock = document.getElementById('muteStockToggle')?.checked;
+            if(muteStock && title === 'Stock Agotado') return; // Respect mute setting
+
             notifications.push({ id: Date.now(), title, desc, time: new Date(), type });
             renderNotifs();
         }
@@ -1261,6 +1414,9 @@
         }
 
         function addActivity(text, color) {
+            const muteSales = document.getElementById('muteSalesToggle')?.checked;
+            if(muteSales && text.includes('Venta')) return; // Respect mute setting
+
             activity.push({ id: Date.now(), text, time: new Date(), color });
             if(activity.length > 10) activity.shift();
             renderActivity();
@@ -1471,8 +1627,18 @@
             });
             
             showToast('Ticket cobrado exitosamente e inventario descontado.', 'success');
+            
+            // Notification checks (handled inside addNotification/addActivity if muted)
             addNotification('info', 'Venta Registrada', `Se generó el ticket ${entry.id}`);
             addActivity(`Venta procesada <span class="font-bold">${entry.id}</span> por ${formatMoney(entry.total)}`, 'bg-blue-500');
+
+            // Auto-Print Feature Option
+            const autoPrint = document.getElementById('autoPrintToggle')?.checked;
+            if(autoPrint) {
+                setTimeout(() => {
+                    showToast(`🖨️ Imprimiendo ticket ${entry.id}...`, 'info');
+                }, 500);
+            }
 
             // Re-render inventory
             renderInventory();
