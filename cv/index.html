@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - Guadalupe Mendoza</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Inter', -apple-system, sans-serif;
+            background: linear-gradient(135deg, #1d4ed8 0%, #0ea5e9 100%);
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            padding: 10px;
+            line-height: 1.35;
+            color: #2d3748;
+        }
+
+        /* Contenedor del CV - Tamaño carta */
+        .cv-container {
+            max-width: 1000px;
+            width: 100%;
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            display: grid;
+            grid-template-columns: 30% 70%;
+            overflow: hidden;
+        }
+
+        /* COLUMNA IZQUIERDA */
+        .sidebar {
+            background: linear-gradient(180deg, #1a202c 0%, #2d3748 100%);
+            color: rgba(255, 255, 255, 0.9);
+            padding: 1.5rem 1.25rem;
+        }
+
+        .sidebar h2 {
+            color: white;
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin: 0.6rem 0 0.4rem 0;
+            padding-bottom: 0.2rem;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .sidebar h2:first-of-type {
+            margin-top: 0;
+        }
+
+        .profile-img-container {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .profile-img {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 12px -3px rgba(0, 0, 0, 0.1);
+            background-color: #cbd5e0;
+        }
+
+        .profile-header {
+            text-align: left;
+            margin-bottom: 1rem;
+        }
+
+        .profile-header h1 {
+            color: white;
+            font-size: 1.8rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 0.5rem;
+        }
+
+        .profile-header .title {
+            color: #cbd5e0;
+            font-size: 1rem;
+            font-weight: 400;
+            background: rgba(255, 255, 255, 0.1);
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.5rem;
+            font-size: 0.85rem;
+            color: #cbd5e0;
+            word-break: break-word;
+        }
+
+        .contact-item a {
+            color: #cbd5e0;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .contact-item a:hover {
+            color: white;
+        }
+
+        .icon {
+            font-size: 1.1rem;
+            min-width: 20px;
+            text-align: center;
+        }
+
+        .skills-list {
+            list-style: none;
+            margin-top: 0.5rem;
+        }
+
+        .skills-list li {
+            margin-bottom: 0.2rem;
+            font-size: 0.85rem;
+            color: #cbd5e0;
+        }
+
+        .skills-list li strong {
+            color: white;
+            font-weight: 600;
+            display: inline-block;
+            min-width: 100px;
+        }
+
+        /* COLUMNA DERECHA */
+        .main-content {
+            background-color: white;
+            padding: 1.5rem 1.8rem 1.5rem 1.5rem;
+        }
+
+        .main-content h2 {
+            color: #1a202c;
+            font-size: 1.05rem;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            margin: 0.5rem 0 0.4rem 0;
+            padding-bottom: 0.15rem;
+            border-bottom: 3px solid #1d4ed8;
+            display: inline-block;
+        }
+
+        .main-content h2:first-of-type {
+            margin-top: 0;
+        }
+
+        .section {
+            margin-bottom: 0.5rem;
+        }
+
+        .profile-text {
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 0.5rem;
+            text-align: justify;
+        }
+
+        .item-card {
+            margin-bottom: 0.4rem;
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .item-title {
+            font-weight: 700;
+            color: #1a202c;
+            font-size: 1.05rem;
+        }
+
+        .item-subtitle {
+            font-weight: 600;
+            color: #4a5568;
+            font-size: 0.95rem;
+        }
+
+        .item-date {
+            color: #718096;
+            font-size: 0.85rem;
+            font-weight: 400;
+            background: #edf2f7;
+            padding: 0.2rem 0.8rem;
+            border-radius: 50px;
+        }
+
+        .item-place {
+            color: #1d4ed8;
+            font-weight: 500;
+            font-size: 0.9rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .item-description {
+            color: #4a5568;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-top: 0.25rem;
+            padding-left: 0rem;
+        }
+
+        .item-description ul {
+            list-style: none;
+            margin-top: 0.25rem;
+        }
+
+        .item-description li {
+            margin-bottom: 0.3rem;
+            position: relative;
+            padding-left: 1.2rem;
+        }
+
+        .item-description li::before {
+            content: "▹";
+            color: #1d4ed8;
+            position: absolute;
+            left: 0;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 0.5rem 0 0.2rem 0;
+        }
+
+        .tech-tag {
+            background: #edf2f7;
+            color: #1a202c;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.2rem 0.8rem;
+            border-radius: 50px;
+            letter-spacing: 0.3px;
+        }
+
+        .project-link {
+            color: #1d4ed8;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            word-break: break-all;
+        }
+
+        .project-link:hover {
+            text-decoration: underline;
+        }
+
+        .nav-actions {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 100;
+        }
+
+        .action-btn {
+            background-color: white;
+            color: #667eea;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            background-color: #f7fafc;
+        }
+
+        .btn-demo {
+            background: linear-gradient(135deg, #1d4ed8 0%, #0ea5e9 100%);
+            color: white;
+            border: 2px solid white;
+            padding: 8px 18px;
+            font-size: 0.88rem;
+            border-radius: 50px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 10px;
+            width: fit-content;
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+            box-shadow: 0 4px 12px rgba(29, 78, 216, .25);
+        }
+
+        /* Responsive */
+        @media print {
+            @page {
+                size: A4;
+                margin: 0;
+            }
+
+            body {
+                background: white !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                align-items: flex-start;
+            }
+
+            .cv-container {
+                box-shadow: none !important;
+                border-radius: 0 !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                min-height: 100vh;
+                margin: 0 !important;
+                break-inside: avoid;
+                page-break-inside: avoid;
+                /* Adjust grid for perfect A4 fit */
+                grid-template-columns: 32% 68%;
+            }
+
+            .sidebar {
+                padding: 1.5rem 1rem !important;
+                min-height: 100vh;
+            }
+
+            .main-content {
+                padding: 1.5rem 1.5rem 1.5rem 1.2rem !important;
+            }
+
+            .nav-actions {
+                display: none !important;
+            }
+
+            /* Adjust font sizes to prevent spilling to a second page */
+            html {
+                font-size: 9.5px;
+            }
+
+            .profile-header h1 {
+                font-size: 1.5rem;
+            }
+
+            .sidebar h2 {
+                margin: 1.2rem 0 0.8rem 0;
+            }
+
+            .main-content h2 {
+                margin: 1.2rem 0 0.8rem 0;
+            }
+
+            .item-card {
+                margin-bottom: 0.5rem;
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+
+            .section {
+                margin-bottom: 0.9rem;
+            }
+
+            .profile-text {
+                margin-bottom: 0.1rem;
+            }
+
+            .btn-demo {
+                display: none !important;
+            }
+
+            /* Hide URL links entirely for a cleaner print OR format them nicely */
+            .project-link i,
+            .contact-item a i {
+                color: #cbd5e0 !important;
+                /* Sidebar icons */
+            }
+
+            a {
+                text-decoration: none !important;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .cv-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nav-actions">
+        <button class="action-btn" onclick="window.print()">
+            <i class="fas fa-print"></i> Imprimir CV
+        </button>
+    </div>
+
+    <div class="cv-container">
+        <!-- COLUMNA IZQUIERDA -->
+        <div class="sidebar">
+            <div class="profile-img-container">
+                <img src="profile.jpg" alt="Guadalupe Mendoza" class="profile-img">
+            </div>
+
+            <div class="profile-header">
+                <h1>GUADALUPE M. MENDOZA</h1>
+                <div class="title">Full Stack Developer | Analista de Sistemas</div>
+            </div>
+
+            <h2>📌 CONTACTO</h2>
+            <div class="contact-item">
+                <span class="icon">📍</span> <span>Misiones, Argentina</span>
+            </div>
+            <div class="contact-item">
+                <span class="icon">📧</span> <a href="mailto:guuamendoza@gmail.com">guuamendoza@gmail.com</a>
+            </div>
+            <div class="contact-item">
+                <span class="icon">📱</span> <span>3764895145</span>
+            </div>
+            <div class="contact-item">
+                <span class="icon">🔗</span> <a href="https://www.linkedin.com/in/gmmendoza/"
+                    target="_blank">linkedin.com/in/gmmendoza</a>
+            </div>
+            <div class="contact-item">
+                <span class="icon">🐙</span> <a href="https://github.com/gmmendoza"
+                    target="_blank">github.com/gmmendoza</a>
+            </div>
+            <div class="contact-item">
+                <span class="icon">🌍</span> <a href="https://gmmendoza.github.io/mi-portfolio/" target="_blank">Mi
+                    Portafolio Web</a>
+            </div>
+
+            <h2>💻 STACK TÉCNICO</h2>
+            <ul class="skills-list">
+                <li><strong>Backend:</strong> Java, Spring Boot, Node.js, Express</li>
+                <li><strong>Sec/DB:</strong> Spring Security (JWT), Relational (Postgres/MySQL)</li>
+                <li><strong>Frontend:</strong> React, JavaScript, Tailwind, HTML/CSS</li>
+            </ul>
+
+            <h2>⚙️ HERRAMIENTAS / DEVOPS</h2>
+            <ul class="skills-list">
+                <li>Git & GitHub</li>
+                <li>Docker & Compose</li>
+                <li>Postman / Swagger</li>
+                <li>Despliegues (Render)</li>
+            </ul>
+
+            <h2>🧠 METODOLOGÍAS</h2>
+            <ul class="skills-list">
+                <li>Patrones de Diseño (GoF)</li>
+                <li>Principios SOLID / Clean Code</li>
+                <li>Metodologías Ágiles (Scrum)</li>
+                <li>Arquitectura en capas (MVC)</li>
+            </ul>
+
+            <h2>🌐 IDIOMAS</h2>
+            <ul class="skills-list">
+                <li><strong>Español:</strong> Nativo</li>
+                <li><strong>Inglés:</strong> Técnico (lectura comprensiva)</li>
+            </ul>
+
+            <h2>🎓 CERTIFICACIONES</h2>
+            <ul class="skills-list">
+                <li><strong>Ciberseguridad:</strong> Silicon Misiones</li>
+                <li><strong>Data Science:</strong> Santander</li>
+                <li><strong>Scrum/Agile:</strong> Santander</li>
+                <li><strong>Community Mgr:</strong> Silicon Misiones</li>
+                <li><strong>Electrónica:</strong> UNaM (FCEQyN)</li>
+            </ul>
+        </div>
+
+        <!-- COLUMNA DERECHA -->
+        <div class="main-content">
+            <!-- PERFIL -->
+            <section class="section">
+                <h2>PERFIL PROFESIONAL</h2>
+                <p class="profile-text">
+                    Estudiante avanzada de Licenciatura en Sistemas de Información con formación en ingeniería de
+                    software y desarrollo Full Stack. Experiencia en desarrollo backend con Java y Spring Boot, diseño
+                    de APIs REST y modelado de bases de datos relacionales.
+                    <br><br>
+                    Interesada en roles de Backend Developer o Analista de Sistemas, aplicando principios de
+                    arquitectura en capas, patrones de diseño y buenas prácticas de desarrollo. También tengo interés en
+                    ciberseguridad aplicada al desarrollo de software y seguridad de APIs.
+                </p>
+            </section>
+
+            <!-- FORMACIÓN ACADÉMICA -->
+            <section class="section">
+                <h2>FORMACIÓN ACADÉMICA</h2>
+
+                <div class="item-card">
+                    <div class="item-header">
+                        <span class="item-title">LIC. EN SISTEMAS DE INFORMACIÓN</span>
+                        <span class="item-date"> Presente</span>
+                    </div>
+                    <div class="item-place">Universidad Nacional de Misiones • </div>
+                    <div class="item-description">
+                        Formación sólida en: Algoritmos I-II, Ingeniería de Software I-II-III, Base de Datos, Sistemas
+                        Operativos, Redes I-II, POO I-II.
+                    </div>
+                </div>
+
+                <div class="item-card">
+                    <div class="item-header">
+                        <span class="item-title">ANALISTA EN SIST. DE COMPUTACIÓN</span>
+                        <span class="item-date"> Presente</span>
+                    </div>
+                    <div class="item-place">Universidad Nacional de Misiones • </div>
+                    <div class="item-description">
+                        Formación sólida en: Algoritmos I-II, Análisis de Sistemas, Base de Datos, Seminario de
+                        Lenguajes
+                        I-II, Sistemas Administrativos.
+                    </div>
+                </div>
+                <div class="item-card">
+                    <div class="item-header">
+                        <span class="item-title">ANALISTA PERSONAL Y PROF. EN INFORMÁTICA</span>
+                        <span class="item-date">2017</span>
+                    </div>
+                    <div class="item-place">EPET N° 1 - Misiones</div>
+                    <div class="item-description">
+                        Título de nivel secundario con orientación técnica.
+                    </div>
+                </div>
+            </section>
+
+            <!-- EXPERIENCIA LABORAL / PROYECTOS -->
+            <section class="section">
+                <h2>EXPERIENCIA LABORAL</h2>
+
+                <!-- Proyecto SaaS ERP -->
+                <div class="item-card">
+                    <div class="item-header">
+                        <span class="item-title">SaaS ERP Cloud - Sistema de Gestión</span>
+                    </div>
+                    <div class="tech-tags">
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">Node.js</span>
+                        <span class="tech-tag">Express</span>
+                        <span class="tech-tag">SQLite</span>
+                    </div>
+                    <div class="item-description">
+                        <ul>
+                            <li>Desarrollo de ERP multi-tenant para gestión de inventarios y finanzas.</li>
+                            <li>Implementación de terminal POS y panel interactivo con alertas de stock.</li>
+                            <li>Arquitectura backend basada íntegramente en APIs REST.</li>
+                        </ul>
+                        <a href="demo-saas.html" class="btn-demo" target="_blank" style="margin-top: 6px;">
+                            <i class="fas fa-play-circle"></i> Ver Demo
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Proyecto 1: Agrosystem -->
+                <div class="item-card">
+                    <div class="item-header">
+                        <span class="item-title">Agrosystem – Plataforma Agropecuaria</span>
+                    </div>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Java</span>
+                        <span class="tech-tag">Spring Boot</span>
+                        <span class="tech-tag">Spring Security</span>
+                        <span class="tech-tag">PostgreSQL</span>
+                        <span class="tech-tag">Docker</span>
+                    </div>
+                    <div class="item-description">
+                        <ul>
+                            <li>Diseño e implementación de API REST segura bajo el patrón MVC con Spring Data JPA.</li>
+                            <li>Autenticación mediante JWT y control de accesos basado en roles (RBAC).</li>
+                            <li>Despliegue de infraestructura en Docker y base de datos relacional PostgreSQL.</li>
+                        </ul>
+                        <a href="https://agrosystem-1.onrender.com/" class="btn-demo" target="_blank">
+                            <i class="fas fa-play-circle"></i> Ver Demo
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Proyecto 2: SGT -->
+                <div class="item-card">
+                    <div class="item-header">
+                        <span class="item-title">Sistema de Gestión Textil (SGT)</span>
+                    </div>
+                    <div class="tech-tags">
+                        <span class="tech-tag">PHP / Laravel</span>
+                        <span class="tech-tag">MySQL</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">Bootstrap</span>
+                    </div>
+                    <div class="item-description">
+                        <ul>
+                            <li>Desarrollo de aplicación B2B y B2C para digitalizar procesos de tienda y ventas.</li>
+                            <li>Administración de inventario en tiempo real y actualización de catálogos.</li>
+                            <li>Registro y sincronización de comercio híbrido (preventas online y facturación local).
+                            </li>
+                        </ul>
+                        <p style="font-weight: 600; color: #1d4ed8; margin-top: 5px; font-size: 0.85rem;">* Sistema
+                            desplegado en la Nube y actualmente operando para una Pyme local.</p>
+                    </div>
+                </div>
+
+                <!-- Proyecto 3: Panadería -->
+                <div class="item-card" id="demo-panaderia">
+                    <div class="item-header">
+                        <span class="item-title">Backend API: Gestión de Panadería (Demo)</span>
+                    </div>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Node.js</span>
+                        <span class="tech-tag">Express</span>
+                        <span class="tech-tag">Sequelize</span>
+                        <span class="tech-tag">React</span>
+                    </div>
+                    <div class="item-description">
+                        <ul>
+                            <li>Arquitectura de backend orientada a validaciones estrictas de reglas de negocio para
+                                panificados.</li>
+                            <li>Desarrollo de Single Page Application (SPA) para interacción fluida de turnos en tiempo
+                                real.</li>
+                            <li>Implementación de base de datos relacional para control de recetas y dependencias.</li>
+                        </ul>
+                        <p style="font-weight: 600; color: #1d4ed8; margin-top: 5px; font-size: 0.85rem;">* Sistema con
+                            panel e interfaz pública funcional para ambientes de simulación o pruebas unitarias.</p>
+                        <a href="demo-panaderia.html" class="btn-demo" target="_blank">
+                            <i class="fas fa-play-circle"></i> Ver Demo
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- COMPETENCIAS DE INGENIERÍA -->
+            <section class="section">
+                <h2>COMPETENCIAS TÉCNICAS Y METODOLÓGICAS</h2>
+                <div class="tech-tags" style="margin-top: 10px;">
+                    <span class="tech-tag">Levantamiento de Requerimientos</span>
+                    <span class="tech-tag">Modelado Relacional de Datos (DER)</span>
+                    <span class="tech-tag">UML (Casos Uso, Secuencia, Clases)</span>
+                    <span class="tech-tag">Arquitectura en Capas y MVC</span>
+                    <span class="tech-tag">Testing de APIs (Postman/Swagger)</span>
+                </div>
+            </section>
+        </div>
+    </div>
+</body>
+
+</html>
