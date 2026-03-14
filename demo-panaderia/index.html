@@ -3446,7 +3446,8 @@
                         <h1 style="display: flex; align-items: center; gap: 12px; font-family: 'Playfair Display', serif;" id="dashboard-welcome">
                             Panel de Control <span style="font-size: 1.5rem;">✨</span>
                         </h1>
-                        <p style="font-size: 1.1rem; color: var(--text-muted);">Bienvenida de nuevo, Admin. Aquí tienes el pulso de elAromo hoy.</p>
+                        <p style="font-size: 1.1rem; color: var(--text-muted);" id="dashboard-subtitle">Bienvenida de nuevo, Admin. Aquí tienes el pulso de elAromo hoy.</p>
+
                     </div>
                 </div>
 
@@ -4385,9 +4386,14 @@
             document.getElementById('sidebar-avatar').innerText = info.avatar;
 
             const dashWelcome = document.getElementById('dashboard-welcome');
+            const dashSubtitle = document.getElementById('dashboard-subtitle');
             if (dashWelcome) {
                 dashWelcome.innerHTML = `Bienvenid@, ${info.name} <span style="font-size: 1.5rem;">👋</span>`;
             }
+            if (dashSubtitle) {
+                dashSubtitle.innerText = `Acceso operativo como ${info.role}. Aquí tienes el pulso de elAromo hoy.`;
+            }
+
 
             // Filter Sidebar Links
             const navLinks = document.querySelectorAll('.nav-link');
@@ -4937,7 +4943,8 @@
             { id: 8, fecha: new Date(Date.now() - 3600000).toISOString().split('T')[0], hora: '15:00', estado: 'cancelado', cliente_nombre: 'Laura Martínez' }
         ];
 
-        let useMockData = false;
+        let useMockData = true; // Forzado para navegación estática
+
 
         async function loadDashboard() {
             try {
