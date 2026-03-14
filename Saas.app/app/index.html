@@ -111,6 +111,14 @@
             }
         }
 
+        /* Global Button Tactile Feeling */
+        button {
+            transition: all 0.15s ease-in-out !important;
+        }
+        button:active:not(:disabled) {
+            transform: scale(0.95) !important;
+        }
+
         /* Toasts */
         .toast-container {
             position: fixed;
@@ -351,6 +359,10 @@
             <a onclick="switchView('history', this)"
                 class="nav-item flex items-center gap-3 px-3 py-2 rounded-lg cursor-pointer hover:bg-slate-800 transition-colors">
                 <i class="fas fa-history w-5 text-center"></i> <span>Historial Ventas</span>
+            </a>
+            <a onclick="switchView('facturacion', this)"
+                class="nav-item flex items-center gap-3 px-3 py-2 rounded-lg cursor-pointer hover:bg-slate-800 transition-colors">
+                <i class="fas fa-file-invoice-dollar w-5 text-center"></i> <span>Facturaci&#243;n</span>
             </a>
             <a onclick="switchView('crm', this)"
                 class="nav-item flex items-center gap-3 px-3 py-2 rounded-lg cursor-pointer hover:bg-slate-800 transition-colors">
@@ -628,6 +640,126 @@
                                     class="py-3 bg-primary-600 hover:bg-primary-700 text-white shadow-lg shadow-primary-500/30 rounded-lg font-bold transition-transform transform active:scale-95"
                                     onclick="processPayment()">Cobrar</button>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Facturación View -->
+            <section id="facturacion" class="view-section hidden animate-[fadeIn_0.3s_ease-out]">
+                <div class="flex justify-between items-center mb-6">
+                    <div>
+                        <h2 class="text-2xl font-bold text-slate-800 dark:text-white">Facturaci&#243;n & Cobranzas</h2>
+                        <p class="text-slate-500 text-sm mt-1">Gestiona las facturas emitidas a clientes y su estado de pago.</p>
+                    </div>
+                    <button class="bg-primary-600 hover:bg-primary-700 active:scale-95 transition-all text-white px-4 py-2 rounded-lg flex items-center gap-2 shadow-sm font-medium" onclick="showToast('Generando borrador de factura...', 'info')">
+                        <i class="fas fa-file-medical"></i> Generar Factura
+                    </button>
+                </div>
+
+                <div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 overflow-hidden">
+                    <!-- Filters -->
+                    <div class="p-4 border-b border-slate-200 dark:border-slate-700 flex flex-wrap gap-4 items-center justify-between bg-slate-50 dark:bg-slate-900/50">
+                        <div class="flex gap-2">
+                            <input type="date" class="px-3 py-2 border border-slate-200 dark:border-slate-600 rounded-lg text-sm bg-white dark:bg-slate-800 dark:text-white outline-none focus:border-primary-500 transition-colors">
+                            <select class="px-3 py-2 border border-slate-200 dark:border-slate-600 rounded-lg text-sm bg-white dark:bg-slate-800 dark:text-white outline-none focus:border-primary-500 transition-colors">
+                                <option value="">Todos los estados</option>
+                                <option value="pagada">Pagada</option>
+                                <option value="pendiente">Pendiente</option>
+                                <option value="vencida">Vencida</option>
+                            </select>
+                        </div>
+                        <div class="relative">
+                            <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+                            <input type="text" placeholder="Buscar factura N°, Cliente..." class="pl-9 pr-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg text-sm bg-white dark:bg-slate-800 dark:text-white outline-none focus:border-primary-500 transition-colors w-64">
+                        </div>
+                    </div>
+
+                    <!-- Table -->
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-slate-50 dark:bg-slate-900/80 text-slate-500 dark:text-slate-400 text-xs uppercase tracking-wider border-b border-slate-200 dark:border-slate-700">
+                                    <th class="p-4 font-semibold">N&#176; Factura</th>
+                                    <th class="p-4 font-semibold">Cliente</th>
+                                    <th class="p-4 font-semibold">Fecha Emisi&#243;n</th>
+                                    <th class="p-4 font-semibold">Vencimiento</th>
+                                    <th class="p-4 font-semibold">Monto</th>
+                                    <th class="p-4 font-semibold">Estado</th>
+                                    <th class="p-4 font-semibold text-right">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-sm divide-y divide-slate-100 dark:divide-slate-700/50 flex-1">
+                                <!-- Row 1 -->
+                                <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group">
+                                    <td class="p-4 font-medium text-slate-800 dark:text-white">FAC-2026-00142</td>
+                                    <td class="p-4">
+                                        <div class="font-medium dark:text-white">Tech Solutions SA</div>
+                                        <div class="text-xs text-slate-500">CUIT: 30-71234567-8</div>
+                                    </td>
+                                    <td class="p-4 text-slate-600 dark:text-slate-300">14 Mar 2026</td>
+                                    <td class="p-4 text-slate-600 dark:text-slate-300">28 Mar 2026</td>
+                                    <td class="p-4 font-bold text-slate-800 dark:text-white">$ 245,500.00</td>
+                                    <td class="p-4">
+                                        <span class="px-2.5 py-1 rounded-full text-xs font-medium bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400 border border-green-200 dark:border-green-800/50">Pagada</span>
+                                    </td>
+                                    <td class="p-4 text-right">
+                                        <div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                            <button class="w-8 h-8 rounded-full hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-500 flex items-center justify-center transition-colors hover:text-primary-600" title="Ver Detalle"><i class="fas fa-eye text-sm"></i></button>
+                                            <button class="w-8 h-8 rounded-full hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-500 flex items-center justify-center transition-colors hover:text-primary-600" title="Descargar PDF"><i class="fas fa-download text-sm"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <!-- Row 2 -->
+                                <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group">
+                                    <td class="p-4 font-medium text-slate-800 dark:text-white">FAC-2026-00143</td>
+                                    <td class="p-4">
+                                        <div class="font-medium dark:text-white">Innovatech SRL</div>
+                                        <div class="text-xs text-slate-500">CUIT: 30-65432109-1</div>
+                                    </td>
+                                    <td class="p-4 text-slate-600 dark:text-slate-300">12 Mar 2026</td>
+                                    <td class="p-4 text-slate-600 dark:text-slate-300">26 Mar 2026</td>
+                                    <td class="p-4 font-bold text-slate-800 dark:text-white">$ 89,000.00</td>
+                                    <td class="p-4">
+                                        <span class="px-2.5 py-1 rounded-full text-xs font-medium bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400 border border-amber-200 dark:border-amber-800/50">Pendiente</span>
+                                    </td>
+                                    <td class="p-4 text-right">
+                                        <div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                            <button class="w-8 h-8 rounded-full hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-500 flex items-center justify-center transition-colors hover:text-green-600" title="Registrar Pago"><i class="fas fa-hand-holding-usd text-sm"></i></button>
+                                            <button class="w-8 h-8 rounded-full hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-500 flex items-center justify-center transition-colors hover:text-primary-600" title="Descargar PDF"><i class="fas fa-download text-sm"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <!-- Row 3 -->
+                                <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group">
+                                    <td class="p-4 font-medium text-slate-800 dark:text-white">FAC-2026-00139</td>
+                                    <td class="p-4">
+                                        <div class="font-medium dark:text-white">Estudio Jur&#237;dico M&#225;rquez</div>
+                                        <div class="text-xs text-slate-500">CUIT: 27-22334455-2</div>
+                                    </td>
+                                    <td class="p-4 text-slate-600 dark:text-slate-300">01 Feb 2026</td>
+                                    <td class="p-4 text-red-500 font-medium">15 Feb 2026</td>
+                                    <td class="p-4 font-bold text-slate-800 dark:text-white">$ 12,500.00</td>
+                                    <td class="p-4">
+                                        <span class="px-2.5 py-1 rounded-full text-xs font-medium bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400 border border-red-200 dark:border-red-800/50">Vencida</span>
+                                    </td>
+                                    <td class="p-4 text-right">
+                                        <div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                            <button class="w-8 h-8 rounded-full hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-500 flex items-center justify-center transition-colors hover:text-primary-600" title="Enviar Recordatorio"><i class="fas fa-envelope text-sm"></i></button>
+                                            <button class="w-8 h-8 rounded-full hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-500 flex items-center justify-center transition-colors hover:text-primary-600" title="Descargar PDF"><i class="fas fa-download text-sm"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="p-4 border-t border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900/50 text-sm text-slate-500 flex justify-between items-center rounded-b-xl">
+                        <span>Mostrando 3 de 145 facturas</span>
+                        <div class="flex gap-1">
+                            <button class="px-3 py-1.5 border border-slate-200 dark:border-slate-600 rounded-md hover:bg-slate-100 dark:hover:bg-slate-700 disabled:opacity-50 transition-colors">Anterior</button>
+                            <button class="px-3 py-1.5 bg-primary-600 text-white rounded-md shadow-sm transition-transform active:scale-95">1</button>
+                            <button class="px-3 py-1.5 border border-slate-200 dark:border-slate-600 rounded-md hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">2</button>
+                            <button class="px-3 py-1.5 border border-slate-200 dark:border-slate-600 rounded-md hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">Siguiente</button>
                         </div>
                     </div>
                 </div>
@@ -1830,6 +1962,11 @@
                 data.push(Math.floor(Math.random() * 200) + (totalStock / 2));
             }
 
+            // Create gradient for the line chart
+            const gradient = ctx.createLinearGradient(0, 0, 0, 400);
+            gradient.addColorStop(0, 'rgba(37, 99, 235, 0.5)'); // primary-600
+            gradient.addColorStop(1, 'rgba(37, 99, 235, 0.0)');
+
             myChart = new Chart(ctx, {
                 type: 'line',
                 data: {
@@ -1837,13 +1974,14 @@
                     datasets: [{
                         label: 'Gross Volume',
                         data: data,
-                        borderColor: '#2563eb',
-                        backgroundColor: 'rgba(37, 99, 235, 0.1)',
+                        borderColor: '#2563eb', // primary-600
+                        backgroundColor: gradient,
                         borderWidth: 3,
                         pointBackgroundColor: '#ffffff',
                         pointBorderColor: '#2563eb',
                         pointBorderWidth: 2,
                         pointRadius: 4,
+                        pointHoverRadius: 6,
                         fill: true,
                         tension: 0.4
                     }]
@@ -1851,7 +1989,20 @@
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
-                    plugins: { legend: { display: false }, tooltip: { mode: 'index', intersect: false } },
+                    plugins: { 
+                        legend: { display: false }, 
+                        tooltip: { 
+                            mode: 'index', 
+                            intersect: false,
+                            backgroundColor: document.documentElement.classList.contains('dark') ? '#1e293b' : '#ffffff',
+                            titleColor: document.documentElement.classList.contains('dark') ? '#f8fafc' : '#1e293b',
+                            bodyColor: document.documentElement.classList.contains('dark') ? '#cbd5e1' : '#475569',
+                            borderColor: document.documentElement.classList.contains('dark') ? '#334155' : '#e2e8f0',
+                            borderWidth: 1,
+                            padding: 10,
+                            displayColors: false
+                        } 
+                    },
                     scales: {
                         x: { grid: { display: false }, ticks: { color: txtCo } },
                         y: { grid: { color: gridCo, borderDash: [5, 5] }, ticks: { color: txtCo } }
@@ -2013,16 +2164,49 @@
             document.getElementById('stat-totalProducts').textContent = db.length;
             document.getElementById('stat-criticalStock').textContent = criticalStock;
 
-            // Category pie chart
+            // Category doughnut chart
             const catNames = [...new Set(db.map(p => p.cat))];
             const catCounts = catNames.map(cat => db.filter(p => p.cat === cat).length);
-            const catColors = ['#3b82f6','#8b5cf6','#10b981','#f59e0b','#ef4444','#06b6d4'];
+            const catColors = ['#3b82f6','#8b5cf6','#10b981','#f59e0b','#ef4444','#06b6d4', '#ec4899', '#64748b'];
             if (statCatChartInst) statCatChartInst.destroy();
             const ctx1 = document.getElementById('statCatChart').getContext('2d');
             statCatChartInst = new Chart(ctx1, {
                 type: 'doughnut',
-                data: { labels: catNames, datasets: [{ data: catCounts, backgroundColor: catColors, borderWidth: 0 }] },
-                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'right', labels: { color: document.documentElement.classList.contains('dark') ? '#94a3b8' : '#64748b', font: { size: 11 } } } } }
+                data: { 
+                    labels: catNames, 
+                    datasets: [{ 
+                        data: catCounts, 
+                        backgroundColor: catColors, 
+                        borderWidth: 2, 
+                        borderColor: document.documentElement.classList.contains('dark') ? '#1e293b' : '#ffffff',
+                        hoverOffset: 4
+                    }] 
+                },
+                options: { 
+                    responsive: true, 
+                    maintainAspectRatio: false, 
+                    cutout: '65%',
+                    plugins: { 
+                        legend: { 
+                            position: 'right', 
+                            labels: { 
+                                color: document.documentElement.classList.contains('dark') ? '#94a3b8' : '#64748b', 
+                                font: { size: 11 },
+                                boxWidth: 12,
+                                boxHeight: 12,
+                                usePointStyle: true
+                            } 
+                        },
+                        tooltip: {
+                            backgroundColor: document.documentElement.classList.contains('dark') ? '#1e293b' : '#ffffff',
+                            titleColor: document.documentElement.classList.contains('dark') ? '#f8fafc' : '#1e293b',
+                            bodyColor: document.documentElement.classList.contains('dark') ? '#cbd5e1' : '#475569',
+                            borderColor: document.documentElement.classList.contains('dark') ? '#334155' : '#e2e8f0',
+                            borderWidth: 1,
+                            padding: 10
+                        }
+                    } 
+                }
             });
 
             // Stock status bar chart
@@ -2035,9 +2219,26 @@
                 type: 'bar',
                 data: {
                     labels: ['Óptimo', 'Stock Bajo', 'Agotado'],
-                    datasets: [{ data: [opt, low, out], backgroundColor: ['#10b981','#f59e0b','#ef4444'], borderRadius: 6 }]
+                    datasets: [{ 
+                        label: 'Artículos',
+                        data: [opt, low, out], 
+                        backgroundColor: ['#10b981','#f59e0b','#ef4444'], 
+                        borderRadius: 6,
+                        barPercentage: 0.6
+                    }]
                 },
-                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, ticks: { stepSize: 1, color: '#94a3b8' }, grid: { color: '#e2e8f0' } }, x: { ticks: { color: '#94a3b8' }, grid: { display: false } } } }
+                options: { 
+                    responsive: true, 
+                    maintainAspectRatio: false, 
+                    plugins: { 
+                        legend: { display: false },
+                        tooltip: { backgroundColor: document.documentElement.classList.contains('dark') ? '#1e293b' : '#ffffff', bodyColor: document.documentElement.classList.contains('dark') ? '#cbd5e1' : '#475569', borderColor: document.documentElement.classList.contains('dark') ? '#334155' : '#e2e8f0', borderWidth: 1 }
+                    }, 
+                    scales: { 
+                        y: { beginAtZero: true, ticks: { stepSize: 1, color: '#94a3b8' }, grid: { color: document.documentElement.classList.contains('dark') ? '#334155' : '#e2e8f0', borderDash: [5, 5] } }, 
+                        x: { ticks: { color: '#94a3b8' }, grid: { display: false } } 
+                    } 
+                }
             });
 
             // Top products by stock value
