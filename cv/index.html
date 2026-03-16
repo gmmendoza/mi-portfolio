@@ -281,6 +281,55 @@
             z-index: 100;
         }
 
+        .lang-switcher-top {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(8px);
+            padding: 6px;
+            border-radius: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e2e8f0;
+            z-index: 1001;
+        }
+
+        @media print {
+            .nav-actions, .lang-switcher-top {
+                display: none;
+            }
+        }
+
+        .lang-switcher-cv {
+            display: flex;
+            gap: 10px;
+            background: white;
+            padding: 8px;
+            border-radius: 50px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e2e8f0;
+            justify-content: center;
+        }
+
+        .lang-btn {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #4a5568;
+            cursor: pointer;
+            transition: all 0.2s;
+            padding: 5px 12px;
+            border-radius: 50px;
+            border: 1px solid transparent;
+            background: none;
+        }
+
+        .lang-btn.active {
+            color: white;
+            background: linear-gradient(135deg, #1d4ed8 0%, #0ea5e9 100%);
+        }
+
         .action-btn {
             background-color: white;
             color: #667eea;
@@ -422,11 +471,19 @@
 
 <body>
     <div class="nav-actions">
+        <div class="lang-switcher-cv">
+            <button class="lang-btn active" onclick="setLanguage('es')">ES</button>
+            <button class="lang-btn" onclick="setLanguage('en')">EN</button>
+        </div>
         <button class="action-btn" onclick="window.print()">
-            <i class="fas fa-print"></i> Imprimir CV
+            <i class="fas fa-print"></i> <span data-i18n="cv-btn-print">Imprimir CV</span>
         </button>
     </div>
 
+    <div class="lang-switcher-top">
+        <button class="lang-btn active" onclick="setLanguage('es')">ES</button>
+        <button class="lang-btn" onclick="setLanguage('en')">EN</button>
+    </div>
     <div class="cv-container">
         <!-- COLUMNA IZQUIERDA -->
         <div class="sidebar">
@@ -435,13 +492,13 @@
             </div>
 
             <div class="profile-header">
-                <h1>GUADALUPE M. MENDOZA</h1>
-                <div class="title">Full Stack Developer | Analista de Sistemas</div>
+                <h1 data-i18n="cv-title">GUADALUPE M. MENDOZA</h1>
+                <div class="title" data-i18n="hero-role">Full Stack Developer | Analista de Sistemas</div>
             </div>
 
-            <h2>📌 CONTACTO</h2>
+            <h2 data-i18n="cv-contact-h2">📌 CONTACTO</h2>
             <div class="contact-item">
-                <span class="icon">📍</span> <span>Misiones, Argentina</span>
+                <span class="icon">📍</span> <span data-i18n="hero-meta-loc">Misiones, Argentina</span>
             </div>
             <div class="contact-item">
                 <span class="icon">📧</span> <a href="mailto:guuamendoza@gmail.com">guuamendoza@gmail.com</a>
@@ -458,18 +515,18 @@
                     target="_blank">github.com/gmmendoza</a>
             </div>
             <div class="contact-item">
-                <span class="icon">🌍</span> <a href="../" target="_blank">Mi
+                <span class="icon">🌍</span> <a href="../" target="_blank" data-i18n="nav-proyectos">Mi
                     Portafolio Web</a>
             </div>
 
-            <h2>💻 STACK TÉCNICO</h2>
+            <h2 data-i18n="cv-stack-h2">💻 STACK TÉCNICO</h2>
             <ul class="skills-list">
-                <li><strong>Backend:</strong> Java, Spring Boot, Node.js, Express</li>
+                <li><strong data-i18n="stack-back">Backend:</strong> Java, Spring Boot, Node.js, Express</li>
                 <li><strong>Sec/DB:</strong> Spring Security (JWT), Relational (Postgres/MySQL)</li>
-                <li><strong>Frontend:</strong> React, JavaScript, Tailwind, HTML/CSS</li>
+                <li><strong data-i18n="stack-front">Frontend:</strong> React, JavaScript, Tailwind, HTML/CSS</li>
             </ul>
 
-            <h2>⚙️ HERRAMIENTAS / DEVOPS</h2>
+            <h2 data-i18n="cv-tools-h2">⚙️ HERRAMIENTAS / DEVOPS</h2>
             <ul class="skills-list">
                 <li>Git & GitHub</li>
                 <li>Docker & Compose</li>
@@ -477,27 +534,27 @@
                 <li>Despliegues (Render)</li>
             </ul>
 
-            <h2>🧠 METODOLOGÍAS</h2>
+            <h2 data-i18n="cv-method-h2">🧠 METODOLOGÍAS</h2>
             <ul class="skills-list">
-                <li>Patrones de Diseño (GoF)</li>
-                <li>Principios SOLID / Clean Code</li>
+                <li data-i18n="cv-lic-desc-li1">Patrones de Diseño (GoF)</li>
+                <li data-i18n="cv-lic-desc-li2">Principios SOLID / Clean Code</li>
                 <li>Metodologías Ágiles (Scrum)</li>
                 <li>Arquitectura en capas (MVC)</li>
             </ul>
 
-            <h2>🌐 IDIOMAS</h2>
+            <h2 data-i18n="cv-langs-h2">🌐 IDIOMAS</h2>
             <ul class="skills-list">
-                <li><strong>Español:</strong> Nativo</li>
-                <li><strong>Inglés:</strong> Técnico (lectura comprensiva)</li>
+                <li><strong data-i18n="lang-es">Español:</strong> Nativo</li>
+                <li><strong data-i18n="lang-en">Inglés:</strong> Técnico (lectura comprensiva)</li>
             </ul>
 
-            <h2>🎓 CERTIFICACIONES</h2>
+            <h2 data-i18n="cv-certs-h2">🎓 CERTIFICACIONES</h2>
             <ul class="skills-list">
-                <li><strong>Ciberseguridad:</strong> Silicon Misiones</li>
-                <li><strong>Data Science:</strong> Santander</li>
-                <li><strong>Scrum/Agile:</strong> Santander</li>
-                <li><strong>Community Mgr:</strong> Silicon Misiones</li>
-                <li><strong>Electrónica:</strong> UNaM (FCEQyN)</li>
+                <li data-i18n="cv-cert-cyber"><strong>Ciberseguridad:</strong> Silicon Misiones</li>
+                <li data-i18n="cv-cert-ds"><strong>Data Science:</strong> Santander</li>
+                <li data-i18n="cv-cert-scrum"><strong>Scrum/Agile:</strong> Santander</li>
+                <li data-i18n="cv-cert-cm"><strong>Community Mgr:</strong> Silicon Misiones</li>
+                <li data-i18n="cv-cert-electro"><strong>Electrónica:</strong> UNaM (FCEQyN)</li>
             </ul>
         </div>
 
@@ -505,8 +562,8 @@
         <div class="main-content">
             <!-- PERFIL -->
             <section class="section">
-                <h2>PERFIL PROFESIONAL</h2>
-                <p class="profile-text">
+                <h2 data-i18n="cv-profile-h2">PERFIL PROFESIONAL</h2>
+                <p class="profile-text" data-i18n="cv-profile-p">
                     Estudiante avanzada de Licenciatura en Sistemas de Información con formación en ingeniería de
                     software y desarrollo Full Stack. Experiencia en desarrollo backend con Java y Spring Boot, diseño
                     de APIs REST y modelado de bases de datos relacionales.
@@ -519,15 +576,15 @@
 
             <!-- FORMACIÓN ACADÉMICA -->
             <section class="section">
-                <h2>FORMACIÓN ACADÉMICA</h2>
+                <h2 data-i18n="cv-edu-h2">FORMACIÓN ACADÉMICA</h2>
 
                 <div class="item-card">
                     <div class="item-header">
-                        <span class="item-title">LIC. EN SISTEMAS DE INFORMACIÓN</span>
-                        <span class="item-date"> Presente</span>
+                        <span class="item-title" data-i18n="cv-edu-lic">LIC. EN SISTEMAS DE INFORMACIÓN</span>
+                        <span class="item-date" data-i18n="cv-present"> Presente</span>
                     </div>
                     <div class="item-place">Universidad Nacional de Misiones • </div>
-                    <div class="item-description">
+                    <div class="item-description" data-i18n="cv-edu-lic-desc">
                         Formación sólida en: Algoritmos I-II, Ingeniería de Software I-II-III, Base de Datos, Sistemas
                         Operativos, Redes I-II, POO I-II.
                     </div>
@@ -535,11 +592,11 @@
 
                 <div class="item-card">
                     <div class="item-header">
-                        <span class="item-title">ANALISTA EN SIST. DE COMPUTACIÓN</span>
-                        <span class="item-date"> Presente</span>
+                        <span class="item-title" data-i18n="cv-edu-analista">ANALISTA EN SIST. DE COMPUTACIÓN</span>
+                        <span class="item-date" data-i18n="cv-present"> Presente</span>
                     </div>
                     <div class="item-place">Universidad Nacional de Misiones • </div>
-                    <div class="item-description">
+                    <div class="item-description" data-i18n="cv-edu-ana-desc">
                         Formación sólida en: Algoritmos I-II, Análisis de Sistemas, Base de Datos, Seminario de
                         Lenguajes
                         I-II, Sistemas Administrativos.
@@ -547,7 +604,7 @@
                 </div>
                 <div class="item-card">
                     <div class="item-header">
-                        <span class="item-title">ANALISTA PERSONAL Y PROF. EN INFORMÁTICA</span>
+                        <span class="item-title" data-i18n="cv-edu-secondary">ANALISTA PERSONAL Y PROF. EN INFORMÁTICA</span>
                         <span class="item-date">2017</span>
                     </div>
                     <div class="item-place">EPET N° 1 - Misiones</div>
@@ -559,7 +616,7 @@
 
             <!-- EXPERIENCIA LABORAL / PROYECTOS -->
             <section class="section">
-                <h2>EXPERIENCIA LABORAL | PROYECTOS DESTACADOS</h2>
+                <h2 data-i18n="cv-exp-h2">EXPERIENCIA LABORAL | PROYECTOS DESTACADOS</h2>
 
                 <!-- Proyecto SaaS ERP -->
                 <div class="item-card">
@@ -574,12 +631,12 @@
                     </div>
                     <div class="item-description">
                         <ul>
-                            <li>Desarrollo de ERP multi-tenant para gestión de inventarios y finanzas.</li>
-                            <li>Implementación de terminal POS y panel interactivo con alertas de stock.</li>
-                            <li>Arquitectura backend basada íntegramente en APIs REST.</li>
+                            <li data-i18n="saas-li1">Desarrollo de ERP multi-tenant para gestión de inventarios y finanzas.</li>
+                            <li data-i18n="saas-li2">Implementación de terminal POS y panel interactivo con alertas de stock.</li>
+                            <li data-i18n="saas-li3">Arquitectura backend basada íntegramente en APIs REST.</li>
                         </ul>
                         <a href="../Saas.app/" class="btn-demo" target="_blank" style="margin-top: 6px;">
-                            <i class="fas fa-play-circle"></i> Ver Demo
+                            <i class="fas fa-play-circle"></i> <span data-i18n="btn-demo">Ver Demo</span>
                         </a>
                     </div>
                 </div>
@@ -598,12 +655,12 @@
                     </div>
                     <div class="item-description">
                         <ul>
-                            <li>Diseño e implementación de API REST segura bajo el patrón MVC con Spring Data JPA.</li>
-                            <li>Autenticación mediante JWT y control de accesos basado en roles (RBAC).</li>
-                            <li>Despliegue de infraestructura en Docker y base de datos relacional PostgreSQL.</li>
+                            <li data-i18n="agro-li1">Diseño e implementación de API REST segura bajo el patrón MVC con Spring Data JPA.</li>
+                            <li data-i18n="agro-li2">Autenticación mediante JWT y control de accesos basado en roles (RBAC).</li>
+                            <li data-i18n="agro-li3">Despliegue de infraestructura en Docker y base de datos relacional PostgreSQL.</li>
                         </ul>
                         <a href="https://agrosystem-1.onrender.com/" class="btn-demo" target="_blank">
-                            <i class="fas fa-play-circle"></i> Ver Demo
+                            <i class="fas fa-play-circle"></i> <span data-i18n="btn-demo">Ver Demo</span>
                         </a>
                     </div>
                 </div>
@@ -621,12 +678,12 @@
                     </div>
                     <div class="item-description">
                         <ul>
-                            <li>Desarrollo de aplicación B2B y B2C para digitalizar procesos de tienda y ventas.</li>
-                            <li>Administración de inventario en tiempo real y actualización de catálogos.</li>
-                            <li>Registro y sincronización de comercio híbrido (preventas online y facturación local).
+                            <li data-i18n="sgt-li1">Desarrollo de aplicación B2B y B2C para digitalizar procesos de tienda y ventas.</li>
+                            <li data-i18n="sgt-li2">Administración de inventario en tiempo real y actualización de catálogos.</li>
+                            <li data-i18n="sgt-li3">Registro y sincronización de comercio híbrido (preventas online y facturación local).
                             </li>
                         </ul>
-                        <p style="font-weight: 600; color: #1d4ed8; margin-top: 5px; font-size: 0.85rem;">* Sistema
+                        <p style="font-weight: 600; color: #1d4ed8; margin-top: 5px; font-size: 0.85rem;" data-i18n="sgt-live">* Sistema
                             desplegado en la Nube y actualmente operando para una Pyme local.</p>
                     </div>
                 </div>
@@ -644,34 +701,34 @@
                     </div>
                     <div class="item-description">
                         <ul>
-                            <li>Arquitectura de backend orientada a validaciones estrictas de reglas de negocio para
+                            <li data-i18n="pan-li1">Arquitectura de backend orientada a validaciones estrictas de reglas de negocio para
                                 panificados.</li>
-                            <li>Desarrollo de Single Page Application (SPA) para interacción fluida de turnos en tiempo
+                            <li data-i18n="pan-li2">Desarrollé una interfaz Single Page Application (SPA) para interacción fluida de turnos en tiempo
                                 real.</li>
-                            <li>Implementación de base de datos relacional para control de recetas y dependencias.</li>
+                            <li data-i18n="pan-li3">Implementación de base de datos relacional para control de recetas y dependencias.</li>
                         </ul>
                         <p style="font-weight: 600; color: #1d4ed8; margin-top: 5px; font-size: 0.85rem;">* Sistema con
                             panel e interfaz pública funcional para ambientes de simulación o pruebas unitarias.</p>
                         <a href="https://gmmendoza.github.io/proyecto-panaderia/" class="btn-demo" target="_blank">
-                            <i class="fas fa-play-circle"></i> Ver Demo
+                            <i class="fas fa-play-circle"></i> <span data-i18n="btn-demo">Ver Demo</span>
                         </a>
                     </div>
                 </div>
             </section>
 
-            <!-- COMPETENCIAS DE INGENIERÍA -->
             <section class="section">
-                <h2>COMPETENCIAS TÉCNICAS Y METODOLÓGICAS</h2>
+                <h2 data-i18n="cv-comp-h2">COMPETENCIAS TÉCNICAS Y METODOLÓGICAS</h2>
                 <div class="tech-tags" style="margin-top: 10px;">
-                    <span class="tech-tag">Levantamiento de Requerimientos</span>
-                    <span class="tech-tag">Modelado Relacional de Datos (DER)</span>
-                    <span class="tech-tag">UML (Casos Uso, Secuencia, Clases)</span>
-                    <span class="tech-tag">Arquitectura en Capas y MVC</span>
-                    <span class="tech-tag">Testing de APIs (Postman/Swagger)</span>
+                    <span class="tech-tag" data-i18n="cv-comp-req">Levantamiento de Requerimientos</span>
+                    <span class="tech-tag" data-i18n="cv-comp-rel">Modelado Relacional de Datos (DER)</span>
+                    <span class="tech-tag" data-i18n="cv-comp-uml">UML (Casos Uso, Secuencia, Clases)</span>
+                    <span class="tech-tag" data-i18n="cv-comp-arch">Arquitectura en Capas y MVC</span>
+                    <span class="tech-tag" data-i18n="cv-comp-test">Testing de APIs (Postman/Swagger)</span>
                 </div>
             </section>
         </div>
     </div>
+    <script src="../js/i18n.js"></script>
 </body>
 
 </html>
