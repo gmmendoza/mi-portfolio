@@ -281,23 +281,8 @@
             z-index: 100;
         }
 
-        .lang-switcher-top {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            display: flex;
-            gap: 8px;
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(8px);
-            padding: 6px;
-            border-radius: 30px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            border: 1px solid #e2e8f0;
-            z-index: 1001;
-        }
-
         @media print {
-            .nav-actions, .lang-switcher-top {
+            .nav-actions {
                 display: none;
             }
         }
@@ -480,10 +465,6 @@
         </button>
     </div>
 
-    <div class="lang-switcher-top">
-        <button class="lang-btn active" onclick="setLanguage('es')">ES</button>
-        <button class="lang-btn" onclick="setLanguage('en')">EN</button>
-    </div>
     <div class="cv-container">
         <!-- COLUMNA IZQUIERDA -->
         <div class="sidebar">
