@@ -51,6 +51,10 @@ const translations = {
         "sgt-li2": "Administración de inventario centralizada y actualización automática de precios.",
         "sgt-li3": "Registro y sincronización de facturación local y preventas digitales.",
         "sgt-live": "Sistema que está actualmente en funcionamiento",
+        "dsystem-sub": "Sistema de Planificación Docente",
+        "dsystem-li1": "<strong>Asistente IA:</strong> Integré a 'DocenTico', un asistente inteligente que sugiere actividades y revisa objetivos pedagógicos.",
+        "dsystem-li2": "Diseñé un planificador dinámico con soporte Multi-nivel (Inicial/Primaria) y vistas diarias/semanales.",
+        "dsystem-li3": "Optimicé la gestión de recursos multimedia y el seguimiento de objetivos curriculares personalizados.",
         "btn-demo": "Ver Demo",
 
         // Stack
@@ -170,6 +174,10 @@ const translations = {
         "sgt-li2": "Centralized inventory management and automatic price updates.",
         "sgt-li3": "Registration and synchronization of local billing and digital pre-sales.",
         "sgt-live": "System currently in operation",
+        "dsystem-sub": "Teacher Planning System",
+        "dsystem-li1": "<strong>AI Assistant:</strong> Integrated 'DocenTico', an smart assistant that suggests activities and reviews pedagogical objectives.",
+        "dsystem-li2": "Designed a dynamic planner with Multi-level support (Early Childhood/Primary) and daily/weekly views.",
+        "dsystem-li3": "Optimized multimedia resource management and tracking of personalized curricular objectives.",
         "btn-demo": "View Demo",
 
         // Stack

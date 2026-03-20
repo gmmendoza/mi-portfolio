@@ -1276,6 +1276,43 @@
                         </div>
                     </div>
 
+                    <!-- DocenteSistema -->
+                    <div class="proj-card">
+                        <div class="proj-carousel" id="dsy-c">
+                            <div class="proj-carousel-track" id="dsy-t">
+                                <img src="imagenes/dsystem/dsystem-1.png" alt="DocenteSistema — Dashboard & AI"
+                                    class="proj-slide">
+                                <img src="imagenes/dsystem/dsystem-2.png" alt="DocenteSistema — Agenda"
+                                    class="proj-slide">
+                            </div>
+                            <button class="carousel-btn carousel-prev" onclick="cMove('dsy',-1)">&#8249;</button>
+                            <button class="carousel-btn carousel-next" onclick="cMove('dsy',1)">&#8250;</button>
+                            <div class="carousel-dots" id="dsy-d"></div>
+                        </div>
+                        <div class="proj-header">
+                            <h3>DocenteSistema <span class="proj-badge" data-i18n="badge-featured">IA-Ready</span></h3>
+                            <div class="proj-sub" data-i18n="dsystem-sub">Sistema de Planificación Docente</div>
+                        </div>
+                        <div class="proj-body">
+                            <div class="tech-tags">
+                                <span class="tech-tag">React</span>
+                                <span class="tech-tag">Node.js</span>
+                                <span class="tech-tag">Vite</span>
+                                <span class="tech-tag">Tailwind CSS</span>
+                            </div>
+                            <ul class="proj-desc-list">
+                                <li data-i18n="dsystem-li1"><strong>Asistente IA:</strong> Integré a 'DocenTico', un asistente inteligente que sugiere actividades y revisa objetivos pedagógicos.</li>
+                                <li data-i18n="dsystem-li2">Diseñé un planificador dinámico con soporte Multi-nivel (Inicial/Primaria) y vistas diarias/semanales.</li>
+                                <li data-i18n="dsystem-li3">Optimicé la gestión de recursos multimedia y el seguimiento de objetivos curriculares personalizados.</li>
+                            </ul>
+                            <div class="proj-links">
+                                <a href="demo-dsystem/" target="_blank" rel="noopener" class="proj-demo-btn">
+                                    <i class="fas fa-play-circle"></i> <span data-i18n="btn-demo">Ver Demo</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
@@ -1479,6 +1516,7 @@
         initCarousel('agro', 'agro-t', 'agro-d');
         initCarousel('pan', 'pan-t', 'pan-d');
         initCarousel('sgt', 'sgt-t', 'sgt-d');
+        initCarousel('dsy', 'dsy-t', 'dsy-d');
 
         // Nav scroll
         document.querySelectorAll('.nav-links a[href^="#"]').forEach(a => {
